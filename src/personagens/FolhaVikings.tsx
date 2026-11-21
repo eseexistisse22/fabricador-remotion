@@ -10,6 +10,8 @@ const LISTA: [string, object][] = [
   ["NATIVA", VIKINGS.nativa],
   ["COLOMBO", VIKINGS.colombo],
   ["MENINO (VOCÊ)", VIKINGS.menino],
+  ["VIKING GUERREIRO", VIKINGS.vikingGuerreiro],
+  ["VIKING NAVEGADOR", VIKINGS.vikingNavegador],
   ["LUCAS (referência)", NORMAIS.lucas],
 ];
 

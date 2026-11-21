@@ -63,7 +63,7 @@ export const Root: React.FC = () => {
       <Composition id="FolhaPecasEgito" component={FolhaPecasEgito} fps={FPS} width={2400} height={1600} durationInFrames={90} defaultProps={{ pagina: 0 }} />
       <Composition id="ExemploEstiloRoma" component={ExemploEstiloRoma} fps={FPS} width={EX_W} height={EX_H} durationInFrames={1} />
       <Composition id="TesteBonecoNormal" component={TesteBonecoNormal} fps={FPS} width={LARGURA} height={ALTURA} durationInFrames={3 * FPS} />
-      <Composition id="FolhaVikings" component={FolhaVikings} fps={FPS} width={2400} height={1100} durationInFrames={1} />
+      <Composition id="FolhaVikings" component={FolhaVikings} fps={FPS} width={3200} height={1100} durationInFrames={1} />
       <Composition id="CenaModelo" component={CenaModelo} durationInFrames={120} fps={30} width={1080} height={1920} />
     </>
   );

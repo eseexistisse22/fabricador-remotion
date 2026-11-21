@@ -15,7 +15,7 @@ export type Pose =
   | "maosJuntas" | "bracosAoLado" | "maoNoQueixo" | "apontando" | "segurando";
 
 export type Cabelo = "curto" | "longo" | "careca" | "grisalho" | "nenhum" | "trancas";
-export type Cabeca = "nenhum" | "nemes" | "pileus" | "oculos" | "faixa" | "boina";
+export type Cabeca = "nenhum" | "nemes" | "pileus" | "oculos" | "faixa" | "boina" | "capacete";
 export type Objeto = "nenhum" | "papiro" | "caixa";
 
 export interface Roupa {
@@ -40,7 +40,8 @@ export interface BonecoOpcoes {
   corCabelo?: string;
   cabelo?: Cabelo;
   cabeca?: Cabeca;
-  corChapeu?: string;                // cor da faixa/boina
+  corChapeu?: string;                // cor da faixa/boina/capacete
+  barba?: string;                    // cor da barba (mesmo desenho da barba do "grisalho")
   roupa?: Roupa;
   expressao?: Expressao;
   pose?: Pose;
@@ -379,7 +380,7 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     ctx.fillStyle = "rgba(255,255,255,0.22)";
     ctx.fill();
   }
-  if (cabelo === "grisalho") {
+  if (cabelo === "grisalho" || o.barba) {
     // barba
     ctx.beginPath();
     ctx.moveTo(-9.6, cy + 1);
@@ -387,7 +388,7 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     ctx.quadraticCurveTo(9, cy + 12, 9.6, cy + 1);
     ctx.quadraticCurveTo(6, cy + 6.5, 0, cy + 6);
     ctx.quadraticCurveTo(-6, cy + 6.5, -9.6, cy + 1);
-    ctx.fillStyle = CORES.grisalho;
+    ctx.fillStyle = o.barba ? degrade(ctx, o.barba, -9.6, 9.6) : CORES.grisalho;
     ctx.fill();
   }
   if (cabelo === "trancas") {
@@ -455,6 +456,25 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     ctx.fill();
     ctx.fillStyle = escurecer(cor, 0.25);
     ctx.fillRect(-10.8, cy - 6.6, 21.6, 1.8);
+  }
+  if (o.cabeca === "capacete") {
+    // capacete viking de verdade: cúpula de ferro + aro + protetor de nariz (SEM chifres)
+    const cor = o.corChapeu ?? "#8a8f96";
+    ctx.beginPath();
+    ctx.moveTo(-11.2, cy - 4.2);
+    ctx.bezierCurveTo(-11, cy - 21, 11, cy - 21, 11.2, cy - 4.2);
+    ctx.closePath();
+    ctx.fillStyle = degrade(ctx, cor, -11.2, 11.2);
+    ctx.fill();
+    linha(ctx, [[0, cy - 16.6], [0, cy - 5]], escurecer(cor, 0.18), 0.9);
+    ctx.beginPath();
+    ctx.roundRect(-11.6, cy - 6.2, 23.2, 2.6, 1);
+    ctx.fillStyle = degrade(ctx, escurecer(cor, 0.15), -11.6, 11.6);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.roundRect(-0.9, cy - 4.4, 1.8, 6.6, 0.8);
+    ctx.fillStyle = escurecer(cor, 0.15);
+    ctx.fill();
   }
   if (o.cabeca === "oculos") {
     ctx.fillStyle = "#5a3520";
@@ -669,6 +689,17 @@ export const VIKINGS: Record<string, Omit<BonecoOpcoes, "x" | "y">> = {
     pele: PELES.clara, cabelo: "curto", corCabelo: "#c98a3e",
     expressao: "feliz", pose: "bracosAoLado",
     roupa: { tipo: "tunica", cor: "#7a6a50", avental: true },
+  },
+  // vikings homens das cenas (antigos P_VIKING / P_VIKING2): barba, capacete sem chifres, gola de pele
+  vikingGuerreiro: {
+    pele: PELES.clara, cabelo: "longo", corCabelo: "#c9973e", barba: "#b8862b", cabeca: "capacete",
+    expressao: "feliz", pose: "bracosAoLado",
+    roupa: { tipo: "tunica", cor: "#5e6b4a", golaPele: "#7a5a3a", faixa: "#5a3520" },
+  },
+  vikingNavegador: {
+    pele: PELES.media, cabelo: "longo", corCabelo: "#7a4a22", barba: "#6a3a18", cabeca: "capacete",
+    corChapeu: "#7c7468", expressao: "neutro", pose: "apontando",
+    roupa: { tipo: "tunica", cor: "#7a5a3e", golaPele: "#5a4a3a" },
   },
 };
 
