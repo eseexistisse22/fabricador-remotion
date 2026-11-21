@@ -2,15 +2,7 @@
 const VK = { madeira: '#7A5232', madeiraE: '#4A2E1A', madeiraC: '#9A6A3E', turfa: '#5E6A3A', grama: '#7E9A4A', ferro: '#8A8F98',
   vela1: '#EFE6D2', vela2: '#E0A458', ouro: '#C99A3B', neve: '#EEF3F6', neon: '#7CF3FF' };
 
-// personagens (parâmetros fixos para manter o mesmo rosto/roupa em todas as cenas)
-const P_VIKING = { tunic: '#5E6B4A', fur: '#7A5A3A', trousers: '#6A5A48', boots: '#3A2A1E', hair: '#C9973E', longHair: true, beard: '#B8862B', skin: SKIN[3], vk: { helm: true } };
-const P_VIKING2 = { tunic: '#7A5A3E', fur: '#5A4A3A', trousers: '#4E4A40', boots: '#2A1E14', hair: '#7A4A22', longHair: true, beard: '#6A3A18', skin: SKIN[0], vk: { helm: true } };
-const P_ASTRID = { tunic: '#3F5E4A', robe: true, apron: '#C9B48A', fur: '#8A6A48', hair: '#D9A55A', longHair: true, skin: SKIN[3], boots: '#3A2A1E', vk: { braids: true, band: '#C99A3B' }, brow: -.4, smile: .8 };
-const P_NATIVO = { tunic: '#A97C50', trousers: '#8A6040', boots: '#6A4A2A', hair: '#1D1410', longHair: true, skin: SKIN[2], belt: '#6A4A2A', vk: { band: '#E0A458', beads: true } };
-const P_NATIVA = { tunic: '#B88A5A', robe: true, boots: '#6A4A2A', hair: '#1D1410', longHair: true, skin: SKIN[2], belt: '#6A4A2A', vk: { braids: true, band: '#C9B48A', beads: true } };
-const P_MENINO = { tunic: '#7A6A50', trousers: '#5A4A3A', boots: '#3A2A1E', hair: '#C98A3E', skin: SKIN[3], goggles: true };
-const P_COLOMBO = { tunic: '#4A3A5A', sleeves: '#4A3A5A', trousers: '#2A2230', boots: '#1A1410', hair: '#D8D2C8', longHair: true, skin: SKIN[0], vk: { hat: '#1A1410' } };
-const VK_VOCE_HOJE = { tunic: '#3A5A5A', sleeves: '#3A5A5A', trousers: '#2A2A34', boots: '#1A1A20', hair: '#C98A3E', skin: SKIN[3], goggles: true, belt: '#2A2A34' };
+// personagens: boneco normal (BN.VIKINGS em src/personagens/boneco.ts), desenhado por VK_b em cenasVikings.js
 
 // gancho na cabeça do person (coordenadas da cabeça: centro 0,0, raio ≈ 11)
 function VK_cabeca(ctx, o, hair) {

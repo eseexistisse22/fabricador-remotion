@@ -19,6 +19,21 @@ function VK_neve(ctx, t, n, a, seed = 1) { if (a <= 0) return; ctx.save(); ctx.f
 function VK_pedras(ctx, x0, x1, y, s, seed = 1) { for (let i = 0; x0 + i * 70 * s < x1; i++) { const x = x0 + i * 70 * s + hash(i + seed) * 30 * s, r = (18 + hash(i * 3 + seed) * 26) * s; ellipse(ctx, x, y + hash(i * 5 + seed) * 10, r * 1.4, r * .8); ctx.fillStyle = shade('#7A7A78', (hash(i * 7 + seed) - .5) * .3); ctx.fill(); ellipse(ctx, x - r * .3, y - r * .3, r * .6, r * .3); ctx.fillStyle = 'rgba(255,255,255,.12)'; ctx.fill(); } }
 function VK_barco(ctx, x, y, s, t) { ctx.save(); ctx.translate(x, y + Math.sin(t * 2) * 3 * s); ctx.scale(s, s); ctx.beginPath(); ctx.moveTo(-110, -30); ctx.quadraticCurveTo(-90, 12, -30, 14); ctx.lineTo(40, 14); ctx.quadraticCurveTo(100, 10, 115, -34); ctx.quadraticCurveTo(60, -16, 0, -16); ctx.quadraticCurveTo(-60, -16, -110, -30); ctx.closePath(); ctx.fillStyle = lg(ctx, 0, -30, 0, 14, [[0, VK.madeiraC], [1, VK.madeiraE]]); ctx.fill(); ctx.restore(); }
 function VK_rosa(ctx, x, y, r, rot, col, a) { ctx.save(); ctx.globalAlpha = a; ctx.translate(x, y); ctx.rotate(rot); ctx.strokeStyle = col; ctx.lineWidth = 6; circle(ctx, 0, 0, r); ctx.stroke(); circle(ctx, 0, 0, r * .8); ctx.stroke(); for (let k = 0; k < 8; k++) { const L = k % 2 ? r * .55 : r * .95; ctx.save(); ctx.rotate(k * Math.PI / 4); poly(ctx, [0, -L, r * .08, 0, 0, r * .1, -r * .08, 0]); ctx.fillStyle = col; ctx.fill(); ctx.restore(); } ctx.restore(); }
+// ---------- pessoas = boneco normal (BN.desenharBoneco, presets BN.VIKINGS — aprovados na folha v2) ----------
+// s = escala (frente 5,4 com pés ~1405; fundo menor e mais alto). o = mudanças no preset (expressao, pose, objeto,
+// olhar, roupa {...}, cabeca, corCabelo...) + t (tempo global), seed, flip (espelhar), anda (quique de passo).
+// Respira e pisca sozinho (mesmas contas de src/animacao/anim.ts). Devolve a posição para achar as mãos (VK_mao).
+function VK_b(ctx, x, y, s, nome, o = {}) {
+  const { t = 0, seed = 0, flip = false, anda = false, roupa, ...resto } = o, f = t * 30, k = s / 5.4;
+  const base = BN.VIKINGS[nome];
+  const yy = y + Math.sin((f + seed * 23) / 18) * 1.2 * k - (anda ? Math.abs(Math.sin(f / 4)) * 10 * k : 0);
+  BN.desenharBoneco(ctx, Object.assign({}, base, resto, { x, y: yy, escala: s, espelhar: flip,
+    piscando: (Math.floor(f) + seed * 37) % 105 < 3, roupa: Object.assign({}, base.roupa, roupa) }));
+  return { x, y: yy, s, d: flip ? -1 : 1 };
+}
+// mãos do boneco (unidades do boneco.ts): apontando = direita (27.5,-70); segurando = (±6.5,-55.5); bracosAoLado = (±15.5,-45.5)
+const VK_ROUPA_HOJE = { tipo: 'camiseta', cor: '#3A5A5A', calca: '#2A2A34', sapato: '#E8E8EE', avental: false }; // "você hoje"
+const VK_mao = (b, lx, ly) => [b.x + b.d * lx * b.s, b.y + ly * b.s];
 function VK_cresce(ctx, cx, yb, p, fn) { if (p <= 0) return; ctx.save(); ctx.translate(cx, yb); ctx.scale(lerp(.6, 1, easeBack(p)), easeBack(p)); ctx.translate(-cx, -yb); fn(); ctx.restore(); }
 
 // ---------- 1 · título 0–4,8 ----------
@@ -72,7 +87,7 @@ function VK_terraNova(ctx, t, T) {
   VK_pedras(ctx, 430, 820, 1240, 1, 7);
   const sx = lerp(1060, 760, ease(prog(t, 0, 3)));
   navioDragao(ctx, sx, 1250, .78, T, { crew: t < 3.1 ? 7 : 3, flip: true, oars: t < 3 });
-  for (let k = 0; k < 3; k++) { const p = prog(t, 3.0 + k * .35, 4.1 + k * .35); if (p <= 0) continue; E_p(ctx, lerp(600, 380 - k * 120, ease(p)), lerp(1300, 1395 - k * 25, ease(p)), 2.9 - k * .2, k === 1 ? P_VIKING2 : P_VIKING, { t: T, seed: k, walk: p < 1 ? T * 9 : 0, flip: true, lookX: -1, smile: .9 }); }
+  for (let k = 0; k < 3; k++) { const p = prog(t, 3.0 + k * .35, 4.1 + k * .35); if (p <= 0) continue; VK_b(ctx, lerp(600, 400 - k * 125, ease(p)), lerp(1300, 1395 - k * 30, ease(p)), 3.6 - k * .35, k === 1 ? 'vikingNavegador' : 'vikingGuerreiro', { t: T, seed: k, anda: p < 1, flip: true, olhar: { x: -1, y: 0 }, expressao: 'feliz' }); }
   ctx.restore();
   E_rotulo(ctx, 'TERRA NOVA', 330, 720, prog(t, 3.7, 4.15));
   E_placa(ctx, '1021 d.C.', t, 1.3, 1);
@@ -88,9 +103,8 @@ function VK_casas(ctx, t, T) {
   ground(ctx, 1000, '#8AA662', '#3E5A30');
   VK_floresta(ctx, -100, 1200, 1010, 140, '#3A5A44', 11);
   VK_CASAS.forEach(([x, yb, w, h], i) => { const p = prog(t, .15 + i * .24, .55 + i * .24); VK_cresce(ctx, x + w / 2, yb, p, () => casaTurfa(ctx, x, yb, w, h, T, { fumaca: p })); if (p > 0 && p < 1) steam(ctx, x + w / 2, yb, T, { n: 8, life: .8, rise: 60, size: w * .25, color: '#B8A888', alpha: .6 * (1 - p), seed: i }); });
-  const carga = (c, h) => { c.fillStyle = '#5E6A3A'; c.fillRect(h[0][0] - 4, h[0][1] - 22, 36, 18); c.fillStyle = VK.grama; c.fillRect(h[0][0] - 4, h[0][1] - 26, 36, 6); };
-  E_p(ctx, 220 + t * 40, 1400, 3.6, P_VIKING, { t: T, walk: T * 7, armL: [1.2, .9], armR: [-.3, -.4], hold: carga, smile: .8, seed: 2 });
-  E_p(ctx, 470 + t * 30, 1405, 3.4, P_VIKING2, { t: T, walk: T * 7 + 1, armL: [1.2, .9], hold: carga, seed: 5 });
+  VK_b(ctx, 150 + t * 40, 1405, 5.4, 'vikingGuerreiro', { t: T, anda: true, pose: 'segurando', objeto: 'turfa', seed: 2 });
+  VK_b(ctx, 430 + t * 30, 1405, 5.4, 'vikingNavegador', { t: T + .4, anda: true, pose: 'segurando', objeto: 'turfa', expressao: 'feliz', seed: 5 });
   ctx.restore();
   E_rotulo(ctx, '8 CASAS', W / 2, 640, prog(t, .9, 1.3));
   vignette(ctx, .4);
@@ -108,8 +122,8 @@ function VK_partida(ctx, t, T) {
   ctx.fillStyle = lg(ctx, 0, 1000, 0, 1430, [[0, mix('#8AA662', '#8A8E80', cinza)], [1, '#3E4A30']]); ctx.beginPath(); ctx.moveTo(-300, 1010); ctx.lineTo(330, 1030); ctx.quadraticCurveTo(520, 1200, 480, 1430); ctx.lineTo(-300, 1430); ctx.fill();
   [[-40, 1080, 150, 110], [130, 1100, 170, 120]].forEach(([x, yb, w, h]) => casaTurfa(ctx, x, yb, w, h, T, { vazia: cinza }));
   VK_neve(ctx, T, 60, cinza * .6, 3);
-  E_p(ctx, 260, 1395, 4.3, P_ASTRID, { t: T, lookX: 1, brow: lerp(-.4, -1, cinza), smile: lerp(.8, .2, cinza), armR: [-.4, -.6], seed: 1 });
-  E_p(ctx, 410, 1405, 2.7, P_MENINO, { t: T, goggles: false, tunic: '#8A7A5A', hair: '#D9A55A', lookX: 1, brow: -.8, smile: .3, seed: 4 });
+  VK_b(ctx, 190, 1405, 5.4, 'astrid', { t: T, olhar: { x: 1, y: 0 }, expressao: cinza > .5 ? 'triste' : 'neutro', seed: 1 });
+  VK_b(ctx, 370, 1405, 3.8, 'menino', { t: T, olhar: { x: 1, y: 0 }, expressao: 'triste', roupa: { avental: false }, seed: 4 });
   ctx.restore();
   vignette(ctx, .5);
 }
@@ -126,9 +140,9 @@ function VK_decisao(ctx, t, T) {
   casaTurfa(ctx, 40, 1110, 190, 130, T, { fumaca: fica, luz: fica });
   VK_floresta(ctx, -100, 200, 1090, 160, '#3A5A44', 13);
   glow(ctx, 400, 900, 420, '#FFD27A', .35 * fica);
-  E_p(ctx, 720, 1400, 5.0, P_VIKING, { t: T, flip: true, lookX: lerp(1, -1, fica), smile: lerp(.3, .9, fica), brow: lerp(-.7, -.3, fica), seed: 3 });
-  E_p(ctx, 540, 1405, 3.0, P_MENINO, { t: T, goggles: false, tunic: '#8A7A5A', hair: '#D9A55A', lookX: lerp(1, -1, fica), smile: lerp(.3, 1, fica), seed: 4 });
-  E_p(ctx, 330, 1400, 5.2, P_ASTRID, { t: T, lookX: lerp(1, 0, fica), lookY: lerp(0, -.3, fica), brow: lerp(-.9, .2, fica), smile: lerp(.3, 1, fica), armR: fica > 0 ? [lerp(-.3, -2.4, fica), lerp(-.4, -.3, fica)] : [-.3, -.4], seed: 1 });
+  VK_b(ctx, 800, 1405, 5.4, 'vikingGuerreiro', { t: T, flip: true, olhar: { x: lerp(1, -1, fica), y: 0 }, expressao: fica > .5 ? 'feliz' : 'pensando', pose: fica > .5 ? 'bracosAoLado' : 'maoNoQueixo', seed: 3 });
+  VK_b(ctx, 560, 1405, 3.8, 'menino', { t: T, olhar: { x: lerp(1, -1, fica), y: 0 }, expressao: fica > .5 ? 'feliz' : 'surpreso', roupa: { avental: false }, seed: 4 });
+  VK_b(ctx, 300, 1405, 5.4, 'astrid', { t: T, flip: fica > .5, olhar: { x: lerp(1, 0, fica), y: lerp(0, -.3, fica) }, expressao: fica > .5 ? 'feliz' : 'pensando', pose: fica > .5 ? 'apontando' : 'maosJuntas', seed: 1 });
   ctx.restore();
   vignette(ctx, .45);
 }
@@ -141,16 +155,15 @@ function VK_troca(ctx, t, T) {
   hills(ctx, 960, 60, '#8A8A9A', 14, 0, .7); fog(ctx, 970, 80, '#F0E8D8', .5);
   VK_agua(ctx, 1000, '#7AA8C0', '#2A5A70', T);
   canoa(ctx, lerp(1300, 860, ease(prog(t, 3.5, 4.8))), 1060, .55, T, {});
-  if (t > 3.5) E_p(ctx, lerp(1300, 860, ease(prog(t, 3.5, 4.8))), 1050, 1.3, P_NATIVA, { t: T, seed: 7, armR: [-1.2, -.6] });
+  if (t > 3.5) VK_b(ctx, lerp(1300, 860, ease(prog(t, 3.5, 4.8))), 1050, 1.4, 'nativa', { t: T, seed: 7, pose: 'bracosAoLado', sombra: false });
   ctx.fillStyle = lg(ctx, 0, 1060, 0, 1430, [[0, '#B8A060'], [1, '#6A5A30']]); ctx.beginPath(); ctx.moveTo(-300, 1080); ctx.quadraticCurveTo(540, 1050, 1400, 1100); ctx.lineTo(1400, 1430); ctx.lineTo(-300, 1430); ctx.fill();
   [[60, 1090, 260, '#C9783A'], [190, 1080, 220, '#D9A040'], [980, 1100, 250, '#B86A30']].forEach(([x, yb, h, c]) => VK_arvore(ctx, x, yb, h, c));
-  E_p(ctx, 160, 1160, 2.0, P_VIKING2, { t: T, seed: 9, lookX: 1, smile: .8 }); E_p(ctx, 920, 1170, 2.0, P_NATIVO, { t: T, flip: true, seed: 11, lookX: 1, smile: .8, tunic: '#9A6A40' });
-  const cx = lerp(560, 330, troca);
+  VK_b(ctx, 160, 1170, 2.2, 'vikingNavegador', { t: T, seed: 9, olhar: { x: 1, y: 0 }, pose: 'bracosAoLado', expressao: 'feliz' }); VK_b(ctx, 920, 1180, 2.2, 'nativo', { t: T, flip: true, seed: 11, olhar: { x: 1, y: 0 }, expressao: 'feliz', roupa: { cor: '#9A6A40' } });
   cestaMilho(ctx, lerp(720, 420, troca), 1400, 1.5 * (milho > 0 ? 1 : 0));
-  const mA = [], mN = [];
-  E_p(ctx, 310, 1400, 4.6, P_ASTRID, { t: T, lookX: 1, smile: .9, armR: [lerp(-.3, -1.3, oferece) + troca * .9, lerp(-.4, -.3, oferece)], hold: E_maos(mA), seed: 1 });
-  E_p(ctx, 800, 1400, 4.6, P_NATIVO, { t: T, flip: true, lookX: 1, smile: lerp(.5, 1, milho), armR: [lerp(-.2, -1.2, troca), -.3], hold: E_maos(mN), seed: 6 });
-  if (mA[0] && mN[0]) { const [ax, ay] = mA[0][1], [nx, ny] = mN[0][1]; machado(ctx, lerp(ax, nx, troca), lerp(ay, ny, troca) + 20, 2.2, lerp(.4, -.4, troca)); }
+  const bA = VK_b(ctx, 290, 1405, 5.4, 'astrid', { t: T, olhar: { x: 1, y: 0 }, pose: oferece > .5 && troca < .5 ? 'apontando' : 'bracosAoLado', seed: 1 });
+  const bN = VK_b(ctx, 790, 1405, 5.4, 'nativo', { t: T, flip: true, olhar: { x: 1, y: 0 }, expressao: milho > .5 ? 'feliz' : 'neutro', pose: troca > .02 ? 'apontando' : 'bracosAoLado', seed: 6 });
+  const [ax, ay] = oferece > .5 ? VK_mao(bA, 27.5, -70) : VK_mao(bA, 15.5, -45.5), [nx, ny] = VK_mao(bN, 27.5, -70);
+  machado(ctx, lerp(ax, nx, troca), lerp(ay, ny, troca) + 20, 2.2, lerp(.4, -.4, troca));
   ctx.restore();
   E_rotulo(ctx, 'ASTRID', 310, 700, prog(t, 1.25, 1.65));
   E_placa(ctx, '1030 d.C.', t, .05, 1);
@@ -169,8 +182,8 @@ function VK_inverno(ctx, t, T) {
   [[20, 1130, 220, 150], [760, 1120, 230, 150]].forEach(([x, yb, w, h]) => casaTurfa(ctx, x, yb, w, h, T, { luz: 1, fumaca: 1 }));
   const fx = 540, fy = 1300;
   fire(ctx, fx, fy, 110, 150 * (.9 + .1 * Math.sin(T * 6)), T, 3); glow(ctx, fx, fy - 60, 520, '#FF9A40', .45);
-  const gente = [[200, 1395, P_ASTRID, 4.1, 0], [360, 1330, P_NATIVO, 3.4, 0], [720, 1330, P_VIKING, 3.4, 1], [880, 1400, P_NATIVA, 4.0, 1]];
-  gente.forEach(([x, y, P, s, fl], i) => E_p(ctx, x, y, s, P, { t: T, flip: !!fl, lookX: fl ? -1 : 1, smile: 1, seed: i + 2, armR: [-1.3, -.8], hold: (c, h) => { c.save(); c.translate(h[0][0], h[0][1]); c.rotate(.5); ellipse(c, 0, -10, 5, 13); c.fillStyle = '#F2C24A'; c.fill(); c.restore(); } }));
+  const gente = [[370, 1320, 'nativo', 3.6, 0], [710, 1320, 'vikingGuerreiro', 3.6, 1], [170, 1405, 'astrid', 5.4, 0], [910, 1405, 'nativa', 5.4, 1]];
+  gente.forEach(([x, y, P, s, fl], i) => VK_b(ctx, x, y, s, P, { t: T, flip: !!fl, olhar: { x: fl ? -1 : 1, y: 0 }, expressao: 'feliz', pose: 'segurando', objeto: 'milho', seed: i + 2 }));
   ctx.restore();
   VK_neve(ctx, T, 120, nev, 9);
   vignette(ctx, .55);
@@ -187,7 +200,8 @@ function VK_forjas(ctx, t, T) {
   VK_floresta(ctx, -300, 1500, 990, 130, '#2E4A3A', 18);
   [[-60, 1080, .55, 1.32], [380, 1120, .7, 1.57], [760, 1170, .85, 1.82]].forEach(([x, yb, s, a], i) => { const on = ease(prog(t, a, a + .4)); forja(ctx, x, yb, s, T, on); if (on > 0) VK_faiscas(ctx, x + 170 * s, yb - 70 * s, T, 10, on * (.5 + .5 * Math.sin(T * 7 + i)), i); });
   const sw = .5 + .5 * Math.sin(T * 7);
-  E_p(ctx, 300, 1400, 3.6, P_VIKING2, { t: T, vk: {}, apron: '#5A3A22', lookX: 1, armR: [lerp(-1.0, -2.5, sw), -.8], hold: (c, h) => martelo(c, h[1][0], h[1][1], .5, lerp(.2, -1.2, sw)), smile: .7, seed: 3 });
+  const bF = VK_b(ctx, 300, 1405, 5.4, 'vikingNavegador', { t: T, cabeca: 'nenhum', roupa: { avental: true }, olhar: { x: 1, y: 0 }, expressao: 'feliz', seed: 3 });
+  const [hx, hy] = VK_mao(bF, 27.5, -70); martelo(ctx, hx, hy, 1.8, lerp(.2, -1.2, sw));
   ctx.restore();
   E_placa(ctx, '1100 d.C.', t, .05, 1);
   vignette(ctx, .45);
@@ -204,8 +218,8 @@ function VK_ferreiro(ctx, t, T) {
     VK_agua(ctx, 1010, '#8AB0C0', '#2A5A70', T);
     const rem = Math.sin(T * 4);
     VK_barco(ctx, 540, 1330, 2.2, T);
-    E_p(ctx, 540, 1300, 3.4, P_MENINO, { t: T, lookX: .5, smile: .7, armL: [.9 + rem * .3, .6], armR: [-.9 - rem * .3, -.6], seed: 4 });
-    ctx.strokeStyle = VK.madeira; ctx.lineWidth = 10; ctx.lineCap = 'round'; [-1, 1].forEach(sd => { ctx.beginPath(); ctx.moveTo(540 + sd * 80, 1180); ctx.lineTo(540 + sd * (230 + rem * 40), 1390); ctx.stroke(); });
+    const bR = VK_b(ctx, 540, 1300, 4.2, 'menino', { t: T, pose: 'bracosAoLado', roupa: { avental: false }, olhar: { x: .5, y: 0 }, sombra: false, seed: 4 });
+    ctx.strokeStyle = VK.madeira; ctx.lineWidth = 10; ctx.lineCap = 'round'; [-1, 1].forEach(sd => { const [mx, my] = VK_mao(bR, sd * 15.5, -45.5); ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(540 + sd * (230 + rem * 40), 1390); ctx.stroke(); });
     for (let k = 0; k < 3; k++) { ellipse(ctx, 300 + k * 26, 1290 - k * 4, 22, 9, .2); ctx.fillStyle = '#9AA8B0'; ctx.fill(); }
     ctx.restore();
     E_rotulo(ctx, 'VOCÊ', 540, 760, prog(t, .35, .75));
@@ -218,7 +232,8 @@ function VK_ferreiro(ctx, t, T) {
     forja(ctx, 40, 1330, 1.5, T, 1);
     const sw = .5 + .5 * Math.sin(T * 7), bate = Math.max(0, Math.sin(T * 7 - .8));
     VK_faiscas(ctx, 40 + 190 * 1.5, 1330 - 105, T, 16, bate, 5);
-    E_p(ctx, 500, 1400, 4.4, P_MENINO, { t: T, flip: true, apron: '#5A3A22', lookX: 1, smile: 1, brow: -.3, armR: [lerp(-1.0, -2.5, sw), -.8], hold: (c, h) => martelo(c, h[1][0], h[1][1], .5, lerp(.2, -1.2, sw)), seed: 4 });
+    const bM = VK_b(ctx, 560, 1405, 5.4, 'menino', { t: T, flip: true, pose: 'apontando', olhar: { x: 1, y: 0 }, seed: 4 });
+    const [hx, hy] = VK_mao(bM, 27.5, -70); martelo(ctx, hx, hy, 1.8, -lerp(.2, -1.2, sw));
     ctx.restore();
     E_rotulo(ctx, '1º FERREIRO', 600, 700, prog(t, 3.3, 3.7));
   }
@@ -260,7 +275,7 @@ function VK_arados(ctx, t, T) {
   VK_boi(ctx, ax + 330, 1390, 1.3, T, T * 5);
   ctx.strokeStyle = '#5A3A22'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(ax + 60, 1300); ctx.lineTo(ax + 210, 1300); ctx.stroke();
   arado(ctx, ax, 1395, 1.2, T);
-  E_p(ctx, ax - 80, 1405, 3.5, P_VIKING2, { t: T, vk: {}, walk: T * 5, armL: [1.0, .3], armR: [-1.0, -.3], smile: .8, lookX: 1, seed: 3 });
+  VK_b(ctx, ax - 90, 1405, 5.4, 'vikingNavegador', { t: T, anda: true, cabeca: 'nenhum', pose: 'bracosAoLado', expressao: 'feliz', olhar: { x: 1, y: 0 }, seed: 3 });
   ctx.restore();
   E_rotulo(ctx, 'ARADO DE FERRO', 540, 700, prog(t, 2.0, 2.4), '#FFB347', 1 - prog(t, 3.7, 4));
   E_placa(ctx, '1350 d.C.', t, .05, 1);
@@ -278,7 +293,7 @@ function VK_caravelas(ctx, t, T) {
   caravela(ctx, lerp(1400, 1060, ch), 1050, .32, T, { flip: true });
   caravela(ctx, lerp(1250, 600, ch), 1260, .82, T, { flip: true });
   const cx = lerp(1250, 600, ch) + 60, cy = 1260 - 92 * .82;
-  E_p(ctx, cx, cy, 1.5, P_COLOMBO, { t: T, flip: true, lookX: 1, armR: [-1.6, -.2], seed: 2 });
+  VK_b(ctx, cx, cy, 1.7, 'colombo', { t: T, flip: true, sombra: false, seed: 2 });
   ctx.restore();
   E_rotulo(ctx, 'COLOMBO', 620, 720, prog(t, 2.4, 2.8));
   E_placa(ctx, '1492 d.C.', t, .05, 1);
@@ -299,7 +314,7 @@ function VK_porto(ctx, t, T) {
   ctx.fillStyle = lg(ctx, 0, 1330, 0, H, [[0, '#7A4A28'], [1, '#2E1A0E']]); ctx.fillRect(-300, 1330, cx + 360, H);
   ctx.strokeStyle = 'rgba(30,15,5,.45)'; ctx.lineWidth = 3; for (let k = 0; k < 5; k++) { ctx.beginPath(); ctx.moveTo(-300, 1350 + k * 40); ctx.lineTo(cx + 60, 1350 + k * 40); ctx.stroke(); }
   ctx.fillStyle = '#3A2412'; ctx.fillRect(cx - 170, 300, 16, 1040); ctx.strokeStyle = '#5A3A22'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx - 162, 320); ctx.lineTo(cx + 60, 1330); ctx.moveTo(cx - 162, 500); ctx.lineTo(cx - 300, 1330); ctx.stroke();
-  E_p(ctx, cx, 1400, 4.0, P_COLOMBO, { t: T, lookX: 1, brow: -.9, mouth: .5 + .3 * prog(t, 1.4, 1.8), armR: [-1.3, -1.2], seed: 2 });
+  VK_b(ctx, cx, 1405, 5.4, 'colombo', { t: T, olhar: { x: 1, y: 0 }, seed: 2 });
   ctx.restore();
   E_rotulo(ctx, 'NAVIOS-DRAGÃO', 640, 640, prog(t, 1.5, 1.9));
   vignette(ctx, .45);
@@ -315,8 +330,8 @@ function VK_acordo(ctx, t, T) {
   torreVigia(ctx, 120, 1000, .55, T, 1); navioDragao(ctx, 330, 1020, .3, T, { crew: 3 });
   ctx.fillStyle = lg(ctx, 0, 1100, 0, 1430, [[0, '#9A6A3E'], [1, '#4A2E1A']]); ctx.fillRect(-300, 1100, W + 600, 330);
   ctx.strokeStyle = 'rgba(40,20,8,.4)'; ctx.lineWidth = 3; for (let k = 0; k < 8; k++) { ctx.beginPath(); ctx.moveTo(-300, 1120 + k * 40); ctx.lineTo(W + 300, 1120 + k * 40); ctx.stroke(); }
-  E_p(ctx, 260, 1400, 4.6, P_COLOMBO, { t: T, lookX: 1, smile: lerp(.4, .9, selos), armR: [lerp(-.3, -1.4, aperto), lerp(-.3, -.1, aperto)], seed: 2 });
-  E_p(ctx, 820, 1400, 4.6, P_ASTRID, { t: T, flip: true, hair: '#D8D2C8', lookX: 1, smile: .9, armR: [lerp(-.3, -1.4, aperto), lerp(-.3, -.1, aperto)], seed: 8 });
+  VK_b(ctx, 240, 1405, 5.4, 'colombo', { t: T, olhar: { x: 1, y: 0 }, expressao: selos > .5 ? 'feliz' : 'neutro', pose: aperto > .5 ? 'apontando' : 'maosJuntas', seed: 2 });
+  VK_b(ctx, 840, 1405, 5.4, 'astrid', { t: T, flip: true, corCabelo: '#D8D2C8', corChapeu: '#8A8F98', olhar: { x: 1, y: 0 }, pose: aperto > .5 ? 'apontando' : 'maosJuntas', seed: 8 });
   ctx.fillStyle = VK.madeira; ctx.fillRect(380, 1190, 320, 24); ctx.fillStyle = VK.madeiraE; ctx.fillRect(400, 1214, 18, 186); ctx.fillRect(662, 1214, 18, 186);
   VK_pergaminho(ctx, 540, 1100, .8, papel, selos);
   if (aperto > .8) glow(ctx, 540, 990, 120, '#FFD27A', .5 * aperto);
@@ -335,7 +350,7 @@ function VK_hoje(ctx, t, T) {
   fog(ctx, 930, 80, '#E8A080', .3);
   layer(ctx, .5, camX, 0, () => { for (let i = 0; i < 5; i++) VK_predio(ctx, -60 + i * 300, 1100, 200, 300 + hash(i * 3) * 200, T, { seed: i + 10, neon: i % 2 ? VK.neon : null }); VK_floresta(ctx, -200, 1600, 1110, 120, '#1E3030', 26); });
   layer(ctx, 1, camX, 0, () => { ground(ctx, 1150, '#5A5A60', '#2A2A30'); ctx.fillStyle = 'rgba(124,243,255,.5)'; ctx.fillRect(-400, 1150, 2400, 4); VK_predio(ctx, 760, 1260, 330, 520, T, { seed: 40, neon: VK.neon }); VK_abeto(ctx, 120, 1300, 380, '#1E3A2A'); });
-  E_p(ctx, lerp(230, 520, ease(prog(t, .9, 5.2))), 1405, 4.4, VK_VOCE_HOJE, { t: T, walk: t > .9 ? T * 7 : 0, lookX: .6, smile: .9, seed: 4 });
+  VK_b(ctx, lerp(230, 520, ease(prog(t, .9, 5.2))), 1405, 5.4, 'menino', { t: T, anda: t > .9 && t < 5.2, olhar: { x: .6, y: 0 }, roupa: VK_ROUPA_HOJE, seed: 4 });
   ctx.restore();
   E_rotulo(ctx, 'VINLÂNDIA', W / 2, 660, prog(t, 1.7, 2.1));
   E_placa(ctx, 'HOJE', t, .05, 1);
@@ -359,7 +374,7 @@ function VK_trens(ctx, t, T) {
     ctx.fillStyle = lg(ctx, 0, 0, 0, H, [[0, '#C8A878'], [1, '#8A6A48']]); ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = 'rgba(60,35,15,.25)'; for (let k = 0; k < 12; k++) ctx.fillRect(k * 96, 0, 6, H);
     VK_lousa(ctx, 140, 420, 800, 300, T, prog(t, 2.8, 4.6));
-    [[210, 1400, P_MENINO, 3.7, { goggles: false, hair: '#D9A55A' }], [540, 1405, P_NATIVO, 3.9, { vk: { band: '#E0A458' }, tunic: '#3A5A5A' }], [870, 1400, P_ASTRID, 3.8, { robe: false, apron: null, fur: null, trousers: '#3A3A44', tunic: '#5A4A6A' }]].forEach(([x, y, P, s, o], i) => E_p(ctx, x, y, s, P, Object.assign({ t: T, lookY: -1, smile: 1, seed: i, armR: i === 1 ? [-2.6 + .15 * Math.sin(T * 5), -.2] : [-.2, -.3] }, o)));
+    [[200, 'menino', { roupa: { tipo: 'camiseta', cor: '#C98A3E', calca: '#3A3F55', avental: false } }], [540, 'nativo', { roupa: { tipo: 'camiseta', cor: '#3A5A5A', calca: '#2A2A34', contas: true }, pose: 'apontando' }], [880, 'astrid', { roupa: { tipo: 'camiseta', cor: '#5A4A6A', calca: '#3A3A44', golaPele: undefined } }]].forEach(([x, P, o], i) => VK_b(ctx, x, 1405, 5.4, P, Object.assign({ t: T, olhar: { x: 0, y: -1 }, expressao: 'feliz', pose: 'maosJuntas', seed: i }, o)));
     ctx.restore();
   }
   vignette(ctx, .45);
@@ -393,7 +408,7 @@ function VK_gelo(ctx, t, T) {
     if (vm > 0) { ctx.save(); ctx.strokeStyle = '#FF5A4A'; ctx.lineWidth = 14; ctx.shadowColor = '#FF5A4A'; ctx.shadowBlur = 30; ctx.beginPath(); ctx.moveTo(620, 1250); ctx.quadraticCurveTo(820, 1150, lerp(620, 900, vm), lerp(1250, 1420, vm)); ctx.stroke(); ctx.restore(); }
     navioDragao(ctx, 760, 1180, .55, T, { neon: VK.neon, olhoNeon: true, neonSail: VK.neon, vela1: '#2A3A5A', vela2: '#3A4A6A', oars: false, shields: false });
     ctx.fillStyle = '#2A2A34'; ctx.fillRect(-100, 1300, 640, 140); ctx.fillStyle = 'rgba(124,243,255,.6)'; ctx.fillRect(-100, 1300, 640, 4);
-    E_p(ctx, 300, 1300, 3.4, VK_VOCE_HOJE, { t: T, lookX: 1, lookY: -.3, brow: -.5, smile: .4, armR: [-.5, -2.5], seed: 4 });
+    VK_b(ctx, 280, 1405, 5.4, 'menino', { t: T, olhar: { x: 1, y: -.3 }, expressao: 'pensando', pose: 'maoNoQueixo', roupa: VK_ROUPA_HOJE, seed: 4 });
     ctx.restore();
   }
   vignette(ctx, .45);

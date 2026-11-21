@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Audio, continueRender, delayRender, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 // @ts-ignore (arquivo .js gerado por scripts/montar_motor_vikings.mjs)
 import { criarMotorVikings } from "./motorVikings";
+import { desenharBoneco, VIKINGS } from "../personagens/boneco";
 
 export const DURACAO_VIKINGS = 97.564;
 
@@ -28,7 +29,7 @@ export const VideoVikings: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
   const canvas = useRef<HTMLCanvasElement>(null);
-  const motor = useMemo(() => criarMotorVikings(), []);
+  const motor = useMemo(() => criarMotorVikings({ desenharBoneco, VIKINGS }), []);
   const [handle] = useState(() => delayRender("fontes"));
   const [prontas, setProntas] = useState(false);
   useLayoutEffect(() => {

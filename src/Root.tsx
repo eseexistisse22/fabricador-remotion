@@ -19,6 +19,7 @@ import { VideoEgito, DURACAO_EGITO } from "./egito/VideoEgito";
 import { VideoVikings, DURACAO_VIKINGS } from "./vikings/VideoVikings";
 import { TesteBonecoNormal } from "./personagens/TesteBonecoNormal";
 import { FolhaVikings } from "./personagens/FolhaVikings";
+import { FolhaPecasVikings } from "./vikings/FolhaPecasVikings";
 import { CenaModelo } from "./cenas/CenaModelo";
 
 export const Root: React.FC = () => {
@@ -64,6 +65,7 @@ export const Root: React.FC = () => {
       <Composition id="ExemploEstiloRoma" component={ExemploEstiloRoma} fps={FPS} width={EX_W} height={EX_H} durationInFrames={1} />
       <Composition id="TesteBonecoNormal" component={TesteBonecoNormal} fps={FPS} width={LARGURA} height={ALTURA} durationInFrames={3 * FPS} />
       <Composition id="FolhaVikings" component={FolhaVikings} fps={FPS} width={3200} height={1100} durationInFrames={1} />
+      <Composition id="FolhaPecasVikings" component={FolhaPecasVikings} fps={FPS} width={3000} height={2300} durationInFrames={1} />
       <Composition id="CenaModelo" component={CenaModelo} durationInFrames={120} fps={30} width={1080} height={1920} />
     </>
   );

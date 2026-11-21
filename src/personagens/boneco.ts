@@ -16,7 +16,7 @@ export type Pose =
 
 export type Cabelo = "curto" | "longo" | "careca" | "grisalho" | "nenhum" | "trancas";
 export type Cabeca = "nenhum" | "nemes" | "pileus" | "oculos" | "faixa" | "boina" | "capacete";
-export type Objeto = "nenhum" | "papiro" | "caixa";
+export type Objeto = "nenhum" | "papiro" | "caixa" | "turfa" | "milho";
 
 export interface Roupa {
   tipo: "camiseta" | "tunica" | "saiote"; // camiseta = PADRÃO; túnica/saiote = época
@@ -602,6 +602,22 @@ function desenharObjeto(ctx: CanvasRenderingContext2D, obj: Objeto) {
     for (const [mx, my] of [[-6, -64], [-2, -61], [3, -65], [6, -60]]) {
       circulo(ctx, mx, my, 0.6, "#b9aa86");
     }
+  } else if (obj === "turfa") {
+    // bloco de turfa (casas vikings): terra escura com grama em cima
+    ctx.fillStyle = degrade(ctx, "#5e4a32", -11, 11);
+    ctx.fillRect(-11, -66, 22, 11);
+    ctx.fillStyle = degrade(ctx, "#7e9a4a", -11, 11);
+    ctx.fillRect(-11.5, -68.5, 23, 3.4);
+    linha(ctx, [[-8, -61], [8, -61]], "#4a3a26", 0.5);
+  } else if (obj === "milho") {
+    // espiga de milho deitada entre as mãos
+    ctx.beginPath();
+    ctx.ellipse(0, -57, 8.5, 3.3, 0, 0, Math.PI * 2);
+    ctx.fillStyle = degrade(ctx, "#f2c24a", -8.5, 8.5);
+    ctx.fill();
+    for (let k = -6; k <= 6; k += 2) circulo(ctx, k, -57.6 + (k % 4 ? 1 : 0), 0.55, "#d9a032");
+    poligono(ctx, [[8, -57], [12.5, -60], [11, -55]], "#7e9a4a");
+    poligono(ctx, [[-8, -57], [-12.5, -60], [-11, -55]], "#7e9a4a");
   }
 }
 

@@ -49,9 +49,11 @@ const partes = [
 const saida = [
   "// GERADO por scripts/montar_motor_vikings.mjs — não editar à mão (edite src/vikings/fonte/*).",
   "/* eslint-disable */",
-  "export function criarMotorVikings() {",
+  "// BN = { desenharBoneco, VIKINGS } de src/personagens/boneco.ts (boneco normal, passado pelo VideoVikings.tsx)",
+  "export function criarMotorVikings(BN) {",
   ...partes.map(([n, c]) => `// ===== ${n} =====\n${c}`),
-  "return { render: renderVikings, DURACAO: DURACAO_VIKINGS, CENAS: VK_SCENES.map(([a, b, f]) => [a, b, f.name]) };",
+  "return { render: renderVikings, DURACAO: DURACAO_VIKINGS, CENAS: VK_SCENES.map(([a, b, f]) => [a, b, f.name]),",
+  "  PECAS: { navioDragao, caravela, canoa, casaTurfa, forja, torreVigia, tremDragao, cestaMilho, machado, martelo, arado, VK_boi, VK_iceberg, VK_predio } };",
   "}",
 ].join("\n");
 fs.writeFileSync("src/vikings/motorVikings.js", saida);
