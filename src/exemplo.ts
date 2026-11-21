@@ -1,0 +1,50 @@
+// Dados de DEMONSTRAÇÃO (sem narração), só para ver todos os moldes funcionando.
+// Na etapa 3, o Python vai gerar dados neste mesmo formato para cada roteiro.
+import { DadosVideo } from "./tipos";
+
+export const EXEMPLO: DadosVideo = {
+  duracao: 35,
+  gancho: { titulo: "SE A ENERGIA SUMISSE POR 30 DIAS", frase: "NÃO ABRA A GELADEIRA", ate: 8 },
+  personagem: { cor: "#f4a259", pele: "#f1c27d", acessorio: "gorro", corAcessorio: "#6c5ce7" },
+  passos: [
+    { numero: 1, titulo: "GUARDE ÁGUA", inicio: 8, fim: 16 },
+    { numero: 2, titulo: "RÁDIO A PILHA", inicio: 16, fim: 24 },
+    { numero: "★", titulo: "O OBJETIVO", inicio: 24, fim: 31 },
+  ],
+  parte2: { titulo: "A PRIMEIRA SEMANA", inicio: 31 },
+  cenas: [
+    { molde: "personagem", inicio: 0, fim: 2.5, params: { fundo: "casa", hora: "noite", acao: "parado", objeto: "lanterna" } },
+    { molde: "alerta", inicio: 2.5, fim: 4.5, params: { simbolo: "perigo", subtexto: "ALERTA", texto: "ENERGIA 0%", cor: "amarelo" } },
+    { molde: "mapa", inicio: 4.5, fim: 6.5, params: { alvos: 3, rotulo: "SEM LUZ", final: "travado", semente: "bairro" } },
+    { molde: "celular", inicio: 6.5, fim: 8, params: { tela: "sem_sinal" } },
+    { molde: "icones", inicio: 8, fim: 10, params: { icones: ["garrafa", "lata", "vela", "kit"], fundo: "madeira", destaque: 0 } },
+    { molde: "personagem", inicio: 10, fim: 12.5, params: { fundo: "estrada", hora: "entardecer", acao: "andar", direcao: "direita", objeto: "garrafa" } },
+    { molde: "icones", inicio: 12.5, fim: 14, params: { icones: ["celular", "wifi", "raio"], riscados: [0, 1, 2], fundo: "escuro" } },
+    { molde: "celular", inicio: 14, fim: 16, params: { tela: "bateria" } },
+    { molde: "icones", inicio: 16, fim: 18.5, params: { icones: ["radio"], destaque: 0, fundo: "roxo" } },
+    { molde: "personagem", inicio: 18.5, fim: 20.5, params: { fundo: "cidade", hora: "noite", acao: "correr", direcao: "esquerda" } },
+    { molde: "celular", inicio: 20.5, fim: 22.5, params: { tela: "mensagem", texto: "TEM ALGUÉM AÍ?|ESTOU NA PRAÇA|VOU AÍ" } },
+    { molde: "alerta", inicio: 22.5, fim: 24, params: { simbolo: "radar", subtexto: "PROCURANDO", texto: "SINAL FRACO" } },
+    { molde: "personagem", inicio: 24, fim: 27, params: { fundo: "floresta", hora: "entardecer", acao: "andar", direcao: "direita" } },
+    { molde: "celular", inicio: 27, fim: 29, params: { tela: "chamada", nome: "VIZINHA" } },
+    { molde: "alerta", inicio: 29, fim: 31, params: { simbolo: "olho", subtexto: "LEMBRE", texto: "FIQUE PERTO", cor: "vermelho" } },
+  ],
+  legendas: [
+    { inicio: 0.2, fim: 1.4, texto: "A LUZ ACABOU" },
+    { inicio: 1.4, fim: 2.5, texto: "E NÃO VOLTOU." },
+    { inicio: 2.5, fim: 4.5, texto: "NEM NO DIA SEGUINTE", cor: "vermelho" },
+    { inicio: 4.5, fim: 6.5, texto: "NO BAIRRO INTEIRO." },
+    { inicio: 6.5, fim: 8, texto: "SEM SINAL." },
+    { inicio: 8.2, fim: 10, texto: "ÁGUA PRIMEIRO,", cor: "amarelo" },
+    { inicio: 10, fim: 12.5, texto: "ENCHA TUDO QUE DER." },
+    { inicio: 12.5, fim: 14, texto: "TELA GASTA BATERIA", cor: "vermelho" },
+    { inicio: 14, fim: 16, texto: "ECONOMIZE." },
+    { inicio: 16.2, fim: 18.5, texto: "RÁDIO A PILHA", cor: "amarelo" },
+    { inicio: 18.5, fim: 20.5, texto: "É SUA JANELA" },
+    { inicio: 20.5, fim: 22.5, texto: "PARA AS NOTÍCIAS." },
+    { inicio: 24.2, fim: 27, texto: "O OBJETIVO É SIMPLES:" },
+    { inicio: 27, fim: 29, texto: "FICAR EM CONTATO", cor: "amarelo" },
+    { inicio: 29, fim: 31, texto: "E EM SEGURANÇA." },
+  ],
+  audio: null,
+};

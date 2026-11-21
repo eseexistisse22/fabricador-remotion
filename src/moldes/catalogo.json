@@ -1,0 +1,105 @@
+{
+  "icones": ["celular", "relogio", "dinheiro", "lanterna", "garrafa", "mapa", "bussola", "chave", "cadeado", "casa", "carro", "bateria", "radio", "kit", "vela", "lata", "wifi", "raio", "documento", "foguete", "planeta", "pegada", "coroa", "porquinho", "varinha", "ampulheta", "sol", "lua", "meteoro", "barco", "guarda_chuva", "cachorro"],
+  "cenarios": ["cidade", "estrada", "casa", "floresta", "vila", "praia", "deserto", "espaco", "escola", "chuva", "mar"],
+  "moldes": {
+    "personagem": {
+      "descricao": "O personagem do episódio num cenário, fazendo uma ação simples. Use bastante, variando cenário, hora e ação.",
+      "parametros": {
+        "fundo": "cidade | estrada | casa | floresta | vila | praia | deserto | espaco | escola | chuva | mar",
+        "hora": "noite | entardecer",
+        "acao": "parado | andar | correr | acenar | pedalar | assustado",
+        "direcao": "direita | esquerda",
+        "objeto": "(opcional) um ícone que aparece perto dele"
+      }
+    },
+    "icones": {
+      "descricao": "De 1 a 9 ícones aparecendo um por um num grid. Para listas: o que levar, o que evitar.",
+      "parametros": {
+        "icones": "lista de 1 a 9 ícones",
+        "riscados": "(opcional) posições (começando em 0) dos ícones riscados com X vermelho",
+        "destaque": "(opcional) posição de UM ícone que brilha em amarelo",
+        "fundo": "escuro | roxo | madeira"
+      }
+    },
+    "mesa": {
+      "descricao": "Objetos caindo um por um sobre uma mesa, com uma luz por cima. Para preparar, juntar, separar coisas.",
+      "parametros": {
+        "objetos": "lista de 1 a 5 ícones",
+        "destaque": "(opcional) posição de UM objeto que brilha"
+      }
+    },
+    "mapa": {
+      "descricao": "Mapa noturno visto de cima, pontos vermelhos pulsando e uma mira que fecha num alvo.",
+      "parametros": {
+        "alvos": "número de 1 a 5",
+        "rotulo": "texto curto da etiqueta (ex.: ALVO, AQUI, ABRIGO)",
+        "final": "travado | perdido",
+        "semente": "qualquer palavra (muda a posição dos pontos)"
+      }
+    },
+    "cruzamento": {
+      "descricao": "Cruzamento de ruas visto de cima, com carros e semáforos. Para trânsito, cidade parada, fuga, ruas vazias.",
+      "parametros": {
+        "transito": "livre | parado | vazio",
+        "semaforo": "verde | vermelho | piscando",
+        "semente": "qualquer palavra"
+      }
+    },
+    "celular": {
+      "descricao": "Celular grande no centro mostrando uma tela.",
+      "parametros": {
+        "tela": "chamada | alerta | mensagem | sem_sinal | bateria",
+        "nome": "(para chamada) quem está ligando, em MAIÚSCULAS",
+        "texto": "(alerta/sem_sinal/bateria) texto curto; (mensagem) mensagens separadas por |"
+      }
+    },
+    "tv": {
+      "descricao": "Uma TV antiga numa sala escura mostrando chiado, aviso ou barras coloridas.",
+      "parametros": {
+        "modo": "chiado | aviso | barras",
+        "texto": "(para aviso) texto curto do aviso"
+      }
+    },
+    "contador": {
+      "descricao": "Número grande contando (de X até Y) com um anel de progresso. Para tempo, quantidade, porcentagem.",
+      "parametros": {
+        "de": "número inicial",
+        "ate": "número final",
+        "sufixo": "(opcional) texto depois do número, ex.: H, %, DIAS",
+        "rotulo": "texto curto acima do número",
+        "cor": "branco | amarelo | vermelho"
+      }
+    },
+    "grafico": {
+      "descricao": "Gráfico de barras ou linha subindo ou caindo. Para algo que aumenta ou diminui.",
+      "parametros": {
+        "tipo": "barras | linha",
+        "tendencia": "sobe | desce",
+        "rotulo": "texto curto acima do gráfico"
+      }
+    },
+    "termica": {
+      "descricao": "Visão de câmera térmica: manchas de calor no escuro e um quadro que detecta (ou não) alguém.",
+      "parametros": {
+        "alvo": "pessoa | escondido | nenhum",
+        "rotulo": "(opcional) texto da etiqueta"
+      }
+    },
+    "onda": {
+      "descricao": "Ondas de áudio animadas com rótulos e um cronômetro. Para vozes, rádio, sons, chamados.",
+      "parametros": {
+        "rotulos": "lista de 1 ou 2 textos curtos (uma onda para cada)",
+        "modo": "falando | silencio"
+      }
+    },
+    "alerta": {
+      "descricao": "Tela de alerta com símbolo grande pulsando e texto grande. Para perigo ou regra importante.",
+      "parametros": {
+        "simbolo": "olho | perigo | radar | cadeado",
+        "texto": "(opcional) texto grande, 1 a 3 palavras",
+        "subtexto": "(opcional) texto pequeno colorido acima",
+        "cor": "vermelho | amarelo"
+      }
+    }
+  }
+}

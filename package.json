@@ -1,0 +1,25 @@
+{
+  "name": "fabricadoria-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vídeos curtos de ficção em motion graphics 2D (Fabricador de IA)",
+  "scripts": {
+    "estudio": "remotion studio",
+    "renderizar": "remotion render"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.1.2",
+    "@remotion/cli": "4.0.543",
+    "@remotion/fonts": "4.0.543",
+    "@remotion/three": "^4.0.543",
+    "@types/three": "^0.170.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.543",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
