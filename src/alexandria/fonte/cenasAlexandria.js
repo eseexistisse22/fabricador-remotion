@@ -37,9 +37,10 @@ function AL_titulo(ctx, t, T) {
   AL_navio(ctx, 560 + t * 18, 935, .8, T, {});
   AL_faixaChao(ctx, -300, W + 300, 980, 1000, '#C8A078', '#6A4A38');
   AL_biblioteca(ctx, 40, 990, 560, 520, T, { abre: 1 });
+  // palmeira = 7 m = 4 bonecos (OBJETOS_CORINGA); grande demais para a frente -> mais ao fundo (22/11)
+  AL_palmeira(ctx, -40, 1080, 927, T); AL_palmeira(ctx, 1110, 1080, 927, T);
   [[660, 1170, 'copista'], [800, 1190, 'marinheiro'], [940, 1175, 'medica']].forEach(([x, yb, n], i) =>
     AL_b(ctx, x - t * 14, yb, AL_esc(yb, 820), n, { t: T, seed: i + 2, flip: true, anda: true, olhar: { x: -1, y: -.2 } }));
-  AL_palmeira(ctx, -40, 1400, 760, T); AL_palmeira(ctx, 1110, 1400, 800, T);
   motes(ctx, T, 40, '#FFC27A', 5, .5);
   ctx.restore();
   [['A BIBLIOTECA', '#FFFFFF', 140, 520], ['ETERNA', '#F5B83D', 220, 710]].forEach(([s, c, fs, y], i) => { const p = prog(t, .15 + i * .35, .6 + i * .35); E_txt(ctx, s, W / 2, y, fs, c, p, lerp(.5, 1, easeBack(p))); });
@@ -57,7 +58,7 @@ function AL_gancho(ctx, t, T) {
   fog(ctx, 890, 60, '#F4E4C8', .5);
   AL_chao(ctx, 900, '#E0C49A', '#8A6A48');
   AL_cidadeAntiga(ctx, 930, '#E0C8A0', 2, 526 * 30 / 505);
-  AL_palmeira(ctx, 1060, 1180, 640, T);
+  AL_palmeira(ctx, 1060, 1140, 990, T);   // 4 bonecos (OBJETOS_CORINGA)
   AL_biblioteca(ctx, 300, 1120, 740, 720, T, { abre, n: 7 });
   glow(ctx, 670, 920, 380, '#FFD27A', .5 * livros);
   [[560, 1135], [790, 1138], [675, 1142]].forEach(([x, y], i) => { const p = prog(livros, i * .2, i * .2 + .5); if (p > 0) { ctx.save(); ctx.translate(x, y); ctx.scale(1, easeBack(p)); AL_caixa(ctx, 0, 0, .9); ctx.restore(); } });

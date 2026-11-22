@@ -6,15 +6,19 @@
 // Pessoas = boneco normal (P_b → desenharBoneco). Registro de apoio (AP_*) igual ao de Alexandria → conferir.py.
 // Formato do JSON: ver src/auto/videos/LEIA.md.
 import catalogo from "./catalogo_pecas.json";
+import escalaTabela from "./escala.json";   // gerado por autonomo/estilo.py a partir de coringas/OBJETOS_CORINGA.md
 
 const W = 1080, H = 1920, PE = 1405, B = 526;
-// igual a autonomo/estilo.ESCALA (altura em B; navio e rolo = comprimento). O conferir.py confere a mesma tabela.
-const ESCALA = {
+// RESERVA (lista antiga): só vale se escala.json não tiver faixas. A régua de verdade = escala.json = estilo.ESCALA,
+// a mesma que o conferir.py usa (altura em B; navio e rolo = comprimento).
+const ESCALA_RESERVA = {
   pessoa: [0.8, 1.25], crianca: [0.55, 0.85], porta: [1.0, 2.2], mesa: [0.38, 0.55], estante: [0.9, 2.0],
   caixa: [0.2, 0.45], rolo: [0.12, 0.3], lente: [0.04, 0.15], telescopio: [0.4, 1.2],
   casa: [1.8, null], templo: [3.0, null], predio: [3.0, null], farol: [4.0, null], navio: [3.0, null],
 };
-const COMPRIMENTO = new Set(["navio", "rolo"]);
+const ESCALA = escalaTabela && escalaTabela.faixas && Object.keys(escalaTabela.faixas).length ? escalaTabela.faixas : ESCALA_RESERVA;
+const COMPRIMENTO = new Set((escalaTabela && escalaTabela.comprimento) || ["navio", "rolo"]);
+const TOPO_MIN = 140;   // peça grande demais para a frente vai mais ao fundo até o topo caber (OBJETOS_CORINGA: "mais ao fundo")
 const BARCOS = new Set(["navioDragao", "canoa", "caravela", "AL_navio", "barcoEletrico"]); // exemplo com a linha d'água em y=1200
 const PECAS = Object.fromEntries(catalogo.pecas.map((p) => [p.nome, p]));
 
@@ -44,6 +48,7 @@ export function criarMotorAuto(L, DEMOS, video) {
 
   // ---------- medir cada peça uma vez (caixa do desenho de exemplo) ----------
   const MEDIDAS = {};
+  let AJUSTE = {};   // correção da conferência: {classe: fator} por cena (c.ajuste_escala), escrita pelo autonomo
   function medir(nome) {
     if (MEDIDAS[nome]) return MEDIDAS[nome];
     if (!DEMOS[nome]) throw new Error(`peça sem exemplo em pecas/demo.js: ${nome}`);
@@ -61,20 +66,34 @@ export function criarMotorAuto(L, DEMOS, video) {
     if (x1 < 0) throw new Error(`peça não desenhou nada: ${nome}`);
     x0 -= PAD; x1 -= PAD;
     const ancora = reg ? reg.yb : BARCOS.has(nome) ? 1200 : Math.abs(y1 - PE) < 16 ? PE : y1;
-    return (MEDIDAS[nome] = { x0, x1, y0, y1, cx: (x0 + x1) / 2, ancora, h: Math.max(1, ancora - y0), w: x1 - x0, reg: reg ? reg.h : null });
+    return (MEDIDAS[nome] = { x0, x1, y0, y1, cx: (x0 + x1) / 2, ancora, h: Math.max(1, ancora - y0), w: x1 - x0, reg: reg ? reg.h : null,
+      // partes registradas dentro da peça (ex.: porta da biblioteca): proporção em relação à parte principal
+      partes: reg ? ap.obj.filter((o) => o !== reg && o.tipo !== "pessoa" && o.h > 0 && !COMPRIMENTO.has(o.tipo)).map((o) => ({ tipo: o.tipo, r: o.h / reg.h })) : [] });
   }
   // altura (ou comprimento) certa em B, dentro da faixa do ESCALA (medida = a mesma que a peça registra)
   function alvoB(nome, m, tam = 1) {
     const esc = PECAS[nome].escala, faixa = esc && ESCALA[esc], medida = m.reg || (esc && COMPRIMENTO.has(esc) ? m.w : m.h);
     let b = medida / B;
-    if (faixa) b = clamp(b * tam, faixa[0] * 1.06, faixa[1] == null ? 1e9 : faixa[1] * .94);   // um pouco dentro da faixa
+    // a peça inteira e cada parte dela (porta, mesa...) têm que caber na régua ao mesmo tempo
+    let lo = faixa ? faixa[0] * 1.06 : 0, hi = faixa && faixa[1] != null ? faixa[1] * .94 : 1e9;
+    let lo2 = lo, hi2 = hi;
+    (m.partes || []).forEach(({ tipo, r }) => { const f = ESCALA[tipo]; if (!f) return; lo2 = Math.max(lo2, f[0] * 1.06 / r); if (f[1] != null) hi2 = Math.min(hi2, f[1] * .94 / r); });
+    if (lo2 <= hi2) { lo = lo2; hi = hi2; }
+    if (faixa || lo > 0 || hi < 1e9) b = clamp(b * tam, lo, hi);
     else b *= tam;
     return { b, medida };
   }
+  // correção da conferência para esta peça: classe dela × partes registradas dentro dela
+  const aj = (nome, m) => [PECAS[nome].escala, ...new Set((m.partes || []).map((p) => p.tipo))].reduce((f, k) => f * (AJUSTE[k] ?? 1), 1);
   // desenha a peça com o pé (ou a linha d'água) em (x, yb), na escala da perspectiva. Devolve topo, largura e o tampo.
   function peca(ctx, nome, x, yb, yh, T, o = {}) {
     const m = medir(nome), { b, medida } = o.livre ? { b: o.livre, medida: m.h } : alvoB(nome, m, o.tam || 1);
-    const s = (b * B * (o.k ?? fator(yb, yh))) / medida * (o.surge ?? 1);
+    const esc = PECAS[nome].escala;
+    if (o.k == null && !o.livre && yh != null && !(esc && COMPRIMENTO.has(esc)) && !BARCOS.has(nome)) {
+      const k = (b * B * aj(nome, m)) / (PE - yh);   // altura na frente ÷ espaço até o horizonte
+      if (k > 1 && k * (yb - yh) > yb - TOPO_MIN) yb = Math.max(yh + 20, (k * yh - TOPO_MIN) / (k - 1));
+    }
+    const s = (b * B * (o.k ?? fator(yb, yh))) / medida * (o.surge ?? 1) * aj(nome, m);
     if (s <= 0.001) return { topo: yb, larg: 0, s: 0 };
     ctx.save(); ctx.translate(x, yb); ctx.scale(o.flip ? -s : s, s); ctx.translate(-m.cx, -m.ancora);
     const r = DEMOS[nome](L, ctx, T, o.p ?? 1);
@@ -356,6 +375,7 @@ export function criarMotorAuto(L, DEMOS, video) {
 
   function desenharCena(ctx, i, T) {
     const [a, b, c] = CENAS[i], t = T - a;
+    AJUSTE = c.ajuste_escala || {};
     ctx.save(); MOLDES[c.molde](ctx, t, T, b - a, c); ctx.restore();
     ctx.save(); efeitos(ctx, c, T, t); textos(ctx, c, t); L.vignette(ctx, c.vinheta ?? .45); ctx.restore();
   }
@@ -398,6 +418,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     const ctx = cv.getContext("2d"); ctx.setTransform(1, 0, 0, 1, 0, 0);
     const i = cenaEm(t), [a, b, c] = CENAS[i];
     const AP = L.ligarApoio(); Object.assign(AP, { yh: null, ini: false, M0: null });
+    AJUSTE = c.ajuste_escala || {};
     ctx.save(); MOLDES[c.molde](ctx, t - a, t, b - a, c); ctx.restore();
     L.desligarApoio();
     return { cena: i, nome: c.nome || `molde${c.molde}`, ini: AP.ini, yh: AP.yh, sup: AP.sup, obj: AP.obj };

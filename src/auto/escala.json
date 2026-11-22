@@ -1,0 +1,594 @@
+{
+ "fonte": "tabela",
+ "folga": 0.15,
+ "comprimento": [
+  "navio",
+  "rolo"
+ ],
+ "pode_voar": [
+  "aguia",
+  "alfinete",
+  "aviao",
+  "balao",
+  "bandeira_no_mapa",
+  "ceu_estrelado",
+  "cometa",
+  "disco_voador",
+  "helicoptero",
+  "ilha_vista_de_cima",
+  "jupiter",
+  "lua",
+  "mapa_antigo",
+  "mapa_do_tesouro",
+  "mapa_mundi_simples",
+  "marcador",
+  "marte",
+  "nuvem",
+  "rosa_dos_ventos",
+  "rota_tracejada",
+  "satelite",
+  "saturno",
+  "seta_de_exercito",
+  "sol",
+  "terra",
+  "territorio_pintado"
+ ],
+ "faixas": {
+  "aguia": [
+   1.266,
+   1.713
+  ],
+  "anfora": [
+   0.315,
+   0.425
+  ],
+  "arbusto": [
+   0.654,
+   0.885
+  ],
+  "arco_do_triunfo": [
+   7.285,
+   9.855
+  ],
+  "arco_e_flecha": [
+   0.773,
+   1.046
+  ],
+  "armadura": [
+   0.901,
+   1.219
+  ],
+  "arranha_ceu": [
+   29.146,
+   39.433
+  ],
+  "arvore": [
+   2.916,
+   3.944
+  ],
+  "astronauta": [
+   0.926,
+   1.254
+  ],
+  "aviao": [
+   2.236,
+   3.024
+  ],
+  "balao": [
+   7.089,
+   9.591
+  ],
+  "baleia": [
+   1.36,
+   1.84
+  ],
+  "bandeira": [
+   1.266,
+   1.713
+  ],
+  "barraca_de_feira": [
+   1.309,
+   1.771
+  ],
+  "bau": [
+   0.315,
+   0.425
+  ],
+  "bicicleta": [
+   0.535,
+   0.724
+  ],
+  "bobina_de_tesla": [
+   1.556,
+   2.104
+  ],
+  "boi": [
+   0.969,
+   1.311
+  ],
+  "bonde": [
+   2.431,
+   3.289
+  ],
+  "burro": [
+   0.773,
+   1.046
+  ],
+  "cabana": [
+   1.946,
+   2.633
+  ],
+  "cachorro": [
+   0.416,
+   0.564
+  ],
+  "cacto": [
+   1.454,
+   1.966
+  ],
+  "cadeira": [
+   0.459,
+   0.621
+  ],
+  "caixa": [
+   0.2,
+   0.45
+  ],
+  "cama": [
+   0.484,
+   0.655
+  ],
+  "camelo": [
+   1.266,
+   1.713
+  ],
+  "caminhao": [
+   1.556,
+   2.104
+  ],
+  "canhao": [
+   0.68,
+   0.92
+  ],
+  "canoa": [
+   0.773,
+   1.046
+  ],
+  "capacete_romano": [
+   0.246,
+   0.333
+  ],
+  "carro_anos_1920": [
+   0.926,
+   1.254
+  ],
+  "carro_de_boi": [
+   0.969,
+   1.311
+  ],
+  "carro_de_corrida": [
+   0.535,
+   0.724
+  ],
+  "carro_moderno": [
+   0.705,
+   0.954
+  ],
+  "carroca": [
+   0.731,
+   0.989
+  ],
+  "carruagem": [
+   1.113,
+   1.506
+  ],
+  "casa": [
+   2.525,
+   3.415
+  ],
+  "castelo": [
+   9.231,
+   12.489
+  ],
+  "catapulta": [
+   1.751,
+   2.369
+  ],
+  "cavalo": [
+   1.113,
+   1.506
+  ],
+  "cobra": [
+   0.365,
+   0.494
+  ],
+  "coluna": [
+   3.885,
+   5.255
+  ],
+  "computador": [
+   0.561,
+   0.759
+  ],
+  "computador_antigo": [
+   1.165,
+   1.575
+  ],
+  "crianca": [
+   0.55,
+   0.85
+  ],
+  "crocodilo": [
+   0.289,
+   0.391
+  ],
+  "disco_voador": [
+   2.72,
+   3.68
+  ],
+  "elefante": [
+   1.606,
+   2.173
+  ],
+  "engrenagens": [
+   0.799,
+   1.081
+  ],
+  "escudo": [
+   0.535,
+   0.724
+  ],
+  "espada": [
+   0.561,
+   0.759
+  ],
+  "estante": [
+   0.9,
+   2.0
+  ],
+  "estatua": [
+   2.626,
+   3.553
+  ],
+  "farol": [
+   8.5,
+   11.5
+  ],
+  "flor": [
+   0.264,
+   0.356
+  ],
+  "fogueira": [
+   0.484,
+   0.655
+  ],
+  "foguete": [
+   19.431,
+   26.289
+  ],
+  "galera": [
+   4.369,
+   5.911
+  ],
+  "galinha": [
+   0.289,
+   0.391
+  ],
+  "gato": [
+   0.221,
+   0.299
+  ],
+  "girafa": [
+   2.431,
+   3.289
+  ],
+  "globo": [
+   0.518,
+   0.701
+  ],
+  "helicoptero": [
+   1.649,
+   2.231
+  ],
+  "iceberg": [
+   5.831,
+   7.889
+  ],
+  "igreja": [
+   9.469,
+   12.811
+  ],
+  "jangada": [
+   2.431,
+   3.289
+  ],
+  "lago": [
+   0.221,
+   0.299
+  ],
+  "lampada_acesa": [
+   0.484,
+   0.655
+  ],
+  "lampiao": [
+   0.187,
+   0.253
+  ],
+  "lanca": [
+   1.216,
+   1.644
+  ],
+  "leao": [
+   0.85,
+   1.15
+  ],
+  "lente": [
+   0.04,
+   0.15
+  ],
+  "livro": [
+   0.025,
+   0.034
+  ],
+  "lobo": [
+   0.535,
+   0.724
+  ],
+  "luneta": [
+   0.416,
+   0.564
+  ],
+  "macaco": [
+   0.535,
+   0.724
+  ],
+  "machado": [
+   0.484,
+   0.655
+  ],
+  "mamute": [
+   1.844,
+   2.495
+  ],
+  "maquina_de_escrever": [
+   0.535,
+   0.724
+  ],
+  "mesa": [
+   0.391,
+   0.529
+  ],
+  "microscopio": [
+   0.561,
+   0.759
+  ],
+  "modulo_lunar": [
+   2.525,
+   3.415
+  ],
+  "moinho": [
+   7.046,
+   9.533
+  ],
+  "montanha": [
+   29.146,
+   39.433
+  ],
+  "mosquete": [
+   0.535,
+   0.724
+  ],
+  "moto": [
+   0.535,
+   0.724
+  ],
+  "motor_a_vapor": [
+   1.411,
+   1.909
+  ],
+  "muralha_portao": [
+   3.307,
+   4.473
+  ],
+  "navio": [
+   3.0,
+   null
+  ],
+  "nuvem": [
+   4.615,
+   6.244
+  ],
+  "oasis": [
+   2.626,
+   3.553
+  ],
+  "onibus": [
+   1.556,
+   2.104
+  ],
+  "ovelha": [
+   0.535,
+   0.724
+  ],
+  "palmeira": [
+   3.4,
+   4.6
+  ],
+  "pato": [
+   0.204,
+   0.276
+  ],
+  "pedra": [
+   0.433,
+   0.586
+  ],
+  "pergaminho": [
+   0.162,
+   0.218
+  ],
+  "pessoa": [
+   0.8,
+   1.25
+  ],
+  "pinguim": [
+   0.51,
+   0.69
+  ],
+  "pinheiro": [
+   3.885,
+   5.255
+  ],
+  "piramide_pequena": [
+   6.8,
+   9.2
+  ],
+  "poco": [
+   1.266,
+   1.713
+  ],
+  "ponte_de_pedra": [
+   2.431,
+   3.289
+  ],
+  "porco": [
+   0.433,
+   0.586
+  ],
+  "porta": [
+   1.0,
+   2.2
+  ],
+  "predio": [
+   3.0,
+   null
+  ],
+  "prensa_de_livros": [
+   1.097,
+   1.483
+  ],
+  "radio_antigo": [
+   0.17,
+   0.23
+  ],
+  "relogio_de_pendulo": [
+   0.969,
+   1.311
+  ],
+  "rinoceronte": [
+   0.875,
+   1.184
+  ],
+  "rio": [
+   0.221,
+   0.299
+  ],
+  "robo": [
+   0.926,
+   1.254
+  ],
+  "roda_d_agua": [
+   2.525,
+   3.415
+  ],
+  "rolo": [
+   0.12,
+   0.3
+  ],
+  "rover_em_marte": [
+   1.045,
+   1.414
+  ],
+  "saco_de_moedas": [
+   0.204,
+   0.276
+  ],
+  "sextante": [
+   0.416,
+   0.564
+  ],
+  "submarino": [
+   2.916,
+   3.944
+  ],
+  "t_rex": [
+   2.525,
+   3.415
+  ],
+  "tanque": [
+   1.216,
+   1.644
+  ],
+  "telefone_antigo": [
+   0.459,
+   0.621
+  ],
+  "telegrafo": [
+   2.916,
+   3.944
+  ],
+  "telescopio": [
+   0.85,
+   1.15
+  ],
+  "templo": [
+   6.315,
+   8.544
+  ],
+  "templo_grego_romano": [
+   6.315,
+   8.544
+  ],
+  "tenda": [
+   1.266,
+   1.713
+  ],
+  "tocha": [
+   0.391,
+   0.529
+  ],
+  "torre": [
+   8.254,
+   11.167
+  ],
+  "trator": [
+   1.36,
+   1.84
+  ],
+  "trem_a_vapor": [
+   2.236,
+   3.024
+  ],
+  "tronco_caido": [
+   0.246,
+   0.333
+  ],
+  "trono": [
+   0.926,
+   1.254
+  ],
+  "tv_de_tubo": [
+   0.535,
+   0.724
+  ],
+  "urso": [
+   0.68,
+   0.92
+  ],
+  "vaca": [
+   0.969,
+   1.311
+  ],
+  "vaso": [
+   0.315,
+   0.425
+  ],
+  "veleiro": [
+   4.369,
+   5.911
+  ],
+  "vulcao": [
+   17.0,
+   23.0
+  ]
+ }
+}
