@@ -27,4 +27,5 @@ Cada arquivo `<id>.json` aqui é UM vídeo inteiro, sem código novo. Depois de 
 
 O motor coloca cada peça no tamanho da ESCALA FIXA (estilo.ESCALA) pela perspectiva do molde e registra onde ela pisa
 (o conferir.py confere). Peça nova: desenhar no arquivo de peças, pôr no catálogo e um exemplo em `pecas/demo.js`.
+- `dentro` (0–1), `arvores` (false), `chao_claro` (true) — na cena, opcionais: consertos do `autonomo/produzir.py` (ERROS_CONHECIDOS: peça cortada → só desenha peça com essa fração na tela; apoio no vazio → chão mais claro). Sem `dentro`, o motor já tira peça com menos de metade na tela.
 - `ajuste_escala` (na cena, opcional): {classe: fator} escrito pelo `autonomo/produzir.py` quando a conferência reprova a escala. A régua vem de `src/auto/escala.json` (gerado de `coringas/OBJETOS_CORINGA.md` por `autonomo/estilo.py`).

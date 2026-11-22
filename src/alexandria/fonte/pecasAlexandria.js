@@ -14,7 +14,12 @@ function AP_pt(ctx, x, y) { const p = AP_m(ctx).transformPoint(new DOMPoint(x, y
 function AP_k(ctx) { const m = AP_m(ctx); return Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)); }
 // base = linha do chão onde o móvel pisa (para medir a escala do que está em cima do tampo)
 function AP_sup(ctx, tipo, x0, x1, y, base) { if (!AP) return; const [a, yy] = AP_pt(ctx, x0, y), [b] = AP_pt(ctx, x1, y); const s = { tipo, x0: Math.round(Math.min(a, b)), x1: Math.round(Math.max(a, b)), y: Math.round(yy) }; if (base != null) s.base = Math.round(AP_pt(ctx, x0, base)[1]); AP.sup.push(s); }
-function AP_obj(ctx, tipo, nome, x, yb, h) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb); AP.obj.push({ tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * AP_k(ctx)) }); }
+// w = largura da peça (opcional; dx = centro da caixa em relação ao x): o conferir.py vê se metade dela está na tela
+function AP_obj(ctx, tipo, nome, x, yb, h, w, dx = 0) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb), k = AP_k(ctx), o = { tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * k) }; if (w) { o.w = Math.round(w * k); o.cx = Math.round(AP_pt(ctx, x + dx, yb)[0]); } AP.obj.push(o); }
+// número grande (tipo 'numero') e nome curto (tipo 'rotulo') da cena das escolhas: conferidos pelo conferir.py
+// câmera da cena (M0): o conferir.py passa as posições registradas para a tela com ela
+function AP_cam(A) { const m = A && A.M0; return m ? [m.a, m.b, m.c, m.d, m.e, m.f].map(v => Math.round(v * 1e4) / 1e4) : null; }
+function AP_txt(ctx, tipo, texto, x, y, h) { AP_obj(ctx, tipo, String(texto), x, y, h); }
 const AL_chaoTodo = (ctx, y) => AP_sup(ctx, 'chao', AP_LARGO[0], AP_LARGO[1], y);
 // escala do boneco numa linha de chão yb (frente = 5,4 em y=1405), para desenhar tudo na proporção certa
 const AL_esc = (yb, yh) => 5.4 * (yb - yh) / (1405 - yh);
@@ -110,7 +115,7 @@ function AL_biblioteca(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = '#2A1E18'; ctx.fillRect(dx, dy, dw, dh);
   if (ab > 0) { ctx.save(); ctx.globalAlpha = ab; ctx.fillStyle = lg(ctx, 0, dy, 0, dy + dh, [[0, '#FFE9B8'], [1, '#F2B860']]); ctx.fillRect(dx + dw * (.5 - ab / 2), dy, dw * ab, dh); ctx.restore(); glow(ctx, dx + dw / 2, dy + dh * .6, dw * 2.2, '#FFD27A', .5 * ab * (o.luz ?? 1)); }
   ctx.fillStyle = shade(AL.madeiraC, -.1); ctx.fillRect(dx, dy, dw * (.5 - ab / 2), dh); ctx.fillRect(dx + dw * (.5 + ab / 2), dy, dw * (.5 - ab / 2), dh);
-  AP_obj(ctx, 'templo', 'biblioteca', x + w / 2, yb, h);
+  AP_obj(ctx, 'templo', 'biblioteca', x + w / 2, yb, h, w);
   AP_obj(ctx, 'porta', 'porta da biblioteca', x + w / 2, yb, dh);
 }
 
@@ -254,7 +259,7 @@ function AL_anatomia(ctx, p, t) {
 }
 
 // casas antigas no fundo (base yb); altura proporcional ao boneco dessa linha (B px)
-function AL_casa(ctx, x, yb, w, h, col) { insula(ctx, x, yb, w, h, col); AP_obj(ctx, 'casa', 'casa', x + w / 2, yb, h); }
+function AL_casa(ctx, x, yb, w, h, col) { insula(ctx, x, yb, w, h, col); AP_obj(ctx, 'casa', 'casa', x + w / 2, yb, h, w); }
 
 // prédio de hoje: torre de vidro sobre colunas de mármore (x,yb = canto esquerdo)
 function AL_predio(ctx, x, yb, w, h, t, o = {}) {
@@ -265,7 +270,7 @@ function AL_predio(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = shade(AL.marmore, -.1); ctx.fillRect(x - 10, yb - base - 14, w + 20, 16);
   const n = Math.max(3, Math.round(w / 70)); for (let k = 0; k < n; k++) column(ctx, x + 10 + k * (w - 20) / (n - 1), yb, 26, base - 14, AL.marmore, -1);
   if (o.neon) { ctx.save(); ctx.shadowColor = o.neon; ctx.shadowBlur = 24; ctx.strokeStyle = o.neon; ctx.lineWidth = 5; ctx.strokeRect(x, yb - h, w, h - base); ctx.restore(); }
-  AP_obj(ctx, 'predio', 'prédio', x + w / 2, yb, h);
+  AP_obj(ctx, 'predio', 'prédio', x + w / 2, yb, h, w);
 }
 
 // nave-biblioteca (opção 1) e montanha com caverna (opção 2) — painéis das opções
@@ -301,6 +306,6 @@ function AL_b(ctx, x, y, s, nome, o = {}) {
   const yy = y + Math.sin((f + seed * 23) / 18) * 1.2 * k - (anda ? Math.abs(Math.sin(f / 4)) * 10 * k : 0);
   BN.desenharBoneco(ctx, Object.assign({}, base, resto, { x, y: yy, escala: s, espelhar: flip,
     piscando: (Math.floor(f) + seed * 37) % 105 < 3, roupa: Object.assign({}, base.roupa, roupa) }));
-  AP_obj(ctx, AL_CRIANCAS.has(nome) ? 'crianca' : 'pessoa', nome, x, y, 100 * s);
+  AP_obj(ctx, AL_CRIANCAS.has(nome) ? 'crianca' : 'pessoa', nome, x, y, 100 * s, 40 * s);
   return { x, y: yy, s, d: flip ? -1 : 1 };
 }

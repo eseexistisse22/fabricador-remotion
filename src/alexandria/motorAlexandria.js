@@ -2078,7 +2078,12 @@ function AP_pt(ctx, x, y) { const p = AP_m(ctx).transformPoint(new DOMPoint(x, y
 function AP_k(ctx) { const m = AP_m(ctx); return Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)); }
 // base = linha do chão onde o móvel pisa (para medir a escala do que está em cima do tampo)
 function AP_sup(ctx, tipo, x0, x1, y, base) { if (!AP) return; const [a, yy] = AP_pt(ctx, x0, y), [b] = AP_pt(ctx, x1, y); const s = { tipo, x0: Math.round(Math.min(a, b)), x1: Math.round(Math.max(a, b)), y: Math.round(yy) }; if (base != null) s.base = Math.round(AP_pt(ctx, x0, base)[1]); AP.sup.push(s); }
-function AP_obj(ctx, tipo, nome, x, yb, h) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb); AP.obj.push({ tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * AP_k(ctx)) }); }
+// w = largura da peça (opcional; dx = centro da caixa em relação ao x): o conferir.py vê se metade dela está na tela
+function AP_obj(ctx, tipo, nome, x, yb, h, w, dx = 0) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb), k = AP_k(ctx), o = { tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * k) }; if (w) { o.w = Math.round(w * k); o.cx = Math.round(AP_pt(ctx, x + dx, yb)[0]); } AP.obj.push(o); }
+// número grande (tipo 'numero') e nome curto (tipo 'rotulo') da cena das escolhas: conferidos pelo conferir.py
+// câmera da cena (M0): o conferir.py passa as posições registradas para a tela com ela
+function AP_cam(A) { const m = A && A.M0; return m ? [m.a, m.b, m.c, m.d, m.e, m.f].map(v => Math.round(v * 1e4) / 1e4) : null; }
+function AP_txt(ctx, tipo, texto, x, y, h) { AP_obj(ctx, tipo, String(texto), x, y, h); }
 const AL_chaoTodo = (ctx, y) => AP_sup(ctx, 'chao', AP_LARGO[0], AP_LARGO[1], y);
 // escala do boneco numa linha de chão yb (frente = 5,4 em y=1405), para desenhar tudo na proporção certa
 const AL_esc = (yb, yh) => 5.4 * (yb - yh) / (1405 - yh);
@@ -2174,7 +2179,7 @@ function AL_biblioteca(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = '#2A1E18'; ctx.fillRect(dx, dy, dw, dh);
   if (ab > 0) { ctx.save(); ctx.globalAlpha = ab; ctx.fillStyle = lg(ctx, 0, dy, 0, dy + dh, [[0, '#FFE9B8'], [1, '#F2B860']]); ctx.fillRect(dx + dw * (.5 - ab / 2), dy, dw * ab, dh); ctx.restore(); glow(ctx, dx + dw / 2, dy + dh * .6, dw * 2.2, '#FFD27A', .5 * ab * (o.luz ?? 1)); }
   ctx.fillStyle = shade(AL.madeiraC, -.1); ctx.fillRect(dx, dy, dw * (.5 - ab / 2), dh); ctx.fillRect(dx + dw * (.5 + ab / 2), dy, dw * (.5 - ab / 2), dh);
-  AP_obj(ctx, 'templo', 'biblioteca', x + w / 2, yb, h);
+  AP_obj(ctx, 'templo', 'biblioteca', x + w / 2, yb, h, w);
   AP_obj(ctx, 'porta', 'porta da biblioteca', x + w / 2, yb, dh);
 }
 
@@ -2318,7 +2323,7 @@ function AL_anatomia(ctx, p, t) {
 }
 
 // casas antigas no fundo (base yb); altura proporcional ao boneco dessa linha (B px)
-function AL_casa(ctx, x, yb, w, h, col) { insula(ctx, x, yb, w, h, col); AP_obj(ctx, 'casa', 'casa', x + w / 2, yb, h); }
+function AL_casa(ctx, x, yb, w, h, col) { insula(ctx, x, yb, w, h, col); AP_obj(ctx, 'casa', 'casa', x + w / 2, yb, h, w); }
 
 // prédio de hoje: torre de vidro sobre colunas de mármore (x,yb = canto esquerdo)
 function AL_predio(ctx, x, yb, w, h, t, o = {}) {
@@ -2329,7 +2334,7 @@ function AL_predio(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = shade(AL.marmore, -.1); ctx.fillRect(x - 10, yb - base - 14, w + 20, 16);
   const n = Math.max(3, Math.round(w / 70)); for (let k = 0; k < n; k++) column(ctx, x + 10 + k * (w - 20) / (n - 1), yb, 26, base - 14, AL.marmore, -1);
   if (o.neon) { ctx.save(); ctx.shadowColor = o.neon; ctx.shadowBlur = 24; ctx.strokeStyle = o.neon; ctx.lineWidth = 5; ctx.strokeRect(x, yb - h, w, h - base); ctx.restore(); }
-  AP_obj(ctx, 'predio', 'prédio', x + w / 2, yb, h);
+  AP_obj(ctx, 'predio', 'prédio', x + w / 2, yb, h, w);
 }
 
 // nave-biblioteca (opção 1) e montanha com caverna (opção 2) — painéis das opções
@@ -2365,7 +2370,7 @@ function AL_b(ctx, x, y, s, nome, o = {}) {
   const yy = y + Math.sin((f + seed * 23) / 18) * 1.2 * k - (anda ? Math.abs(Math.sin(f / 4)) * 10 * k : 0);
   BN.desenharBoneco(ctx, Object.assign({}, base, resto, { x, y: yy, escala: s, espelhar: flip,
     piscando: (Math.floor(f) + seed * 37) % 105 < 3, roupa: Object.assign({}, base.roupa, roupa) }));
-  AP_obj(ctx, AL_CRIANCAS.has(nome) ? 'crianca' : 'pessoa', nome, x, y, 100 * s);
+  AP_obj(ctx, AL_CRIANCAS.has(nome) ? 'crianca' : 'pessoa', nome, x, y, 100 * s, 40 * s);
   return { x, y: yy, s, d: flip ? -1 : 1 };
 }
 
@@ -2377,7 +2382,7 @@ function AL_b(ctx, x, y, s, nome, o = {}) {
 const DURACAO_ALEXANDRIA = 109.42;
 
 // ---------- ajudantes ----------
-function AL_palmeira(ctx, x, yb, h, t) { E_palmeira(ctx, x, yb, h, t, '#3E5A3A'); AP_obj(ctx, 'arvore', 'palmeira', x, yb, h); }
+function AL_palmeira(ctx, x, yb, h, t) { E_palmeira(ctx, x, yb, h, t, '#3E5A3A'); AP_obj(ctx, 'arvore', 'palmeira', x, yb, h, h * .96, h * .1); }
 function AL_mar(ctx, y, c1, c2, t, brilho = 'rgba(255,255,255,.3)') {
   ctx.fillStyle = lg(ctx, 0, y, 0, H, [[0, c1], [1, c2]]); ctx.fillRect(-400, y, W + 800, H - y + 400);
   ctx.strokeStyle = brilho; ctx.lineWidth = 3; for (let k = 0; k < 30; k++) { const xx = ((k * 173 + t * 25) % 1700) - 300, yy = y + 10 + ((k * 37) % 9) * 22 + (k % 3) * 40; ctx.beginPath(); ctx.moveTo(xx, yy); ctx.lineTo(xx + 40 + (k % 4) * 14, yy); ctx.stroke(); }
@@ -2410,7 +2415,7 @@ function AL_titulo(ctx, t, T) {
   AL_faixaChao(ctx, -300, W + 300, 980, 1000, '#C8A078', '#6A4A38');
   AL_biblioteca(ctx, 40, 990, 560, 520, T, { abre: 1 });
   // palmeira = 7 m = 4 bonecos (OBJETOS_CORINGA); grande demais para a frente -> mais ao fundo (22/11)
-  AL_palmeira(ctx, -40, 1080, 927, T); AL_palmeira(ctx, 1110, 1080, 927, T);
+  // dono 22/11 (ERROS_CONHECIDOS: peça solta cortada): as palmeiras só apareciam como folhas no canto -> tiradas
   [[660, 1170, 'copista'], [800, 1190, 'marinheiro'], [940, 1175, 'medica']].forEach(([x, yb, n], i) =>
     AL_b(ctx, x - t * 14, yb, AL_esc(yb, 820), n, { t: T, seed: i + 2, flip: true, anda: true, olhar: { x: -1, y: -.2 } }));
   motes(ctx, T, 40, '#FFC27A', 5, .5);
@@ -2430,7 +2435,7 @@ function AL_gancho(ctx, t, T) {
   fog(ctx, 890, 60, '#F4E4C8', .5);
   AL_chao(ctx, 900, '#E0C49A', '#8A6A48');
   AL_cidadeAntiga(ctx, 930, '#E0C8A0', 2, 526 * 30 / 505);
-  AL_palmeira(ctx, 1060, 1140, 990, T);   // 4 bonecos (OBJETOS_CORINGA)
+  // palmeira tirada (dono 22/11): só a folha aparecia no canto, sem tronco
   AL_biblioteca(ctx, 300, 1120, 740, 720, T, { abre, n: 7 });
   glow(ctx, 670, 920, 380, '#FFD27A', .5 * livros);
   [[560, 1135], [790, 1138], [675, 1142]].forEach(([x, y], i) => { const p = prog(livros, i * .2, i * .2 + .5); if (p > 0) { ctx.save(); ctx.translate(x, y); ctx.scale(1, easeBack(p)); AL_caixa(ctx, 0, 0, .9); ctx.restore(); } });
@@ -2813,7 +2818,7 @@ function AL_perguntaFinal(ctx, t, T) {
 // ---------- 20 · Um: nave / Dois: caverna gelada 97,29–103,79 · CORINGA 12 Escolha 1 ou 2 (tela dividida, chão 1050) ----------
 function AL_painelNave(ctx, T, w, t) {
   sky(ctx, [[0, '#05081A'], [.5, '#14204A'], [1, '#2F6FD0']]); stars(ctx, T, 120, 23, 1000);
-  AL_faixaChao(ctx, -300, W + 300, 1050, 900, '#1A2448', '#0A1020');
+  AL_faixaChao(ctx, -300, W + 300, 1050, 900, '#7A84A0', '#3A4058');   // chão claro (dono 22/11: azul-escuro parecia céu)
   AL_cidadeAntiga(ctx, 1050, '#1A2448', 3, 30);
   const sobe = ease(prog(t, .9, 3.2));
   AL_plataforma(ctx, W / 2, 1050, 260);
@@ -2834,10 +2839,11 @@ function AL_escolhas(ctx, t, T) {
   AL_b(ctx, 700, 1405, 5.4, 'sabiaHoje', { t: T, seed: 3, expressao: dois > .5 ? 'feliz' : 'neutro', olhar: { x: .6, y: -1 } });
   if (dois < 1) { ctx.fillStyle = `rgba(6,8,20,${.75 * (1 - dois)})`; ctx.fillRect(W / 2, 0, W / 2, H); }
   ctx.fillStyle = '#fff'; ctx.fillRect(W / 2 - 4, 0, 8, H);
-  bigNum(ctx, W / 4, 300, '1', '#2F6FD0', easeBack(prog(t, .4, .8)));
-  bigNum(ctx, W * 3 / 4, 300, '2', '#D0442F', easeBack(prog(t, 3.3, 3.7)));
-  E_rotulo(ctx, 'NAVE', W / 4, 480, prog(t, 1.2, 1.6));
-  E_rotulo(ctx, 'CAVERNA GELADA', W * 3 / 4, 480, prog(t, 4.3, 4.7));
+  const n1 = easeBack(prog(t, .4, .8)) * 1.3, n2 = easeBack(prog(t, 3.3, 3.7)) * 1.3, r1 = prog(t, 1.2, 1.6), r2 = prog(t, 3.5, 3.9);
+  bigNum(ctx, W / 4, 300, '1', '#2F6FD0', n1); bigNum(ctx, W * 3 / 4, 300, '2', '#D0442F', n2);
+  E_rotulo(ctx, 'NAVE', W / 4, 520, r1); E_rotulo(ctx, 'CAVERNA GELADA', W * 3 / 4, 520, r2);
+  if (n1 > 0) AP_txt(ctx, 'numero', 1, W / 4, 300, 160 * n1); if (n2 > 0) AP_txt(ctx, 'numero', 2, W * 3 / 4, 300, 160 * n2);
+  if (r1 > 0) AP_txt(ctx, 'rotulo', 'NAVE', W / 4, 520, 46); if (r2 > 0) AP_txt(ctx, 'rotulo', 'CAVERNA GELADA', W * 3 / 4, 520, 46);
   vignette(ctx, .35);
 }
 
@@ -2847,14 +2853,17 @@ function AL_fim(ctx, t, T) {
   AP_ini(ctx, 1050);
   ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W / 2, H); ctx.clip(); ctx.translate(-W / 4, 0); AL_painelNave(ctx, T, W, 0); ctx.restore();
   ctx.save(); ctx.beginPath(); ctx.rect(W / 2, 0, W / 2, H); ctx.clip(); ctx.translate(W / 4, 0); AL_painelCaverna(ctx, T, W, 6); ctx.restore();
-  ctx.fillStyle = `rgba(6,8,20,${.55 * split})`; ctx.fillRect(0, 0, W, H);
+  // dono 22/11: escurece só o alto (texto); chão e bonecos aparecem embaixo
+  ctx.fillStyle = lg(ctx, 0, 0, 0, 900, [[0, `rgba(6,8,20,${.7 * split})`], [1, 'rgba(6,8,20,0)']]); ctx.fillRect(0, 0, W, 900);
+  AL_b(ctx, 140, 1405, 5.4, 'voceHoje', { t: T, seed: 7, pose: 'apontando', expressao: 'feliz', olhar: { x: .6, y: -.6 } });
+  AL_b(ctx, 940, 1405, 5.4, 'sabiaHoje', { t: T, seed: 3, flip: true, pose: 'maoNoQueixo', expressao: 'pensando', olhar: { x: -.6, y: -.6 } });
   ctx.fillStyle = '#fff'; ctx.fillRect(W / 2 - 4, 0, 8, H);
   motes(ctx, T, 60, '#F5B83D', 17, .6);
   const a = easeBack(prog(t, .1, .5));
-  ctx.save(); ctx.translate(W / 2, 520); ctx.scale(a, a); ctx.font = '150px Anton'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 14; ctx.strokeStyle = '#1A0E0A'; ctx.strokeText('VOCÊ DECIDE', 0, 0); ctx.fillStyle = '#F5B83D'; ctx.fillText('VOCÊ DECIDE', 0, 0); ctx.font = '50px Anton'; ctx.lineWidth = 8; ctx.strokeText('ONDE GUARDAR A PRÓXIMA BIBLIOTECA?', 0, 130); ctx.fillStyle = '#fff'; ctx.fillText('ONDE GUARDAR A PRÓXIMA BIBLIOTECA?', 0, 130); ctx.restore();
-  [[0, '1', 'NAVE RUMO A', 'OUTRA ESTRELA', '#2F6FD0'], [1, '2', 'CAVERNA', 'GELADA', '#D0442F']].forEach(([i, n, l1, l2, c]) => { const p = easeBack(prog(t, .35 + i * .15, .8 + i * .15)); if (p <= 0) return; ctx.save(); ctx.translate(W / 2 + (i ? 230 : -230), 1000); ctx.scale(p, p); rrect(ctx, -200, -230, 400, 460, 30); ctx.fillStyle = c; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 8; ctx.stroke(); ctx.font = '200px Anton'; ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(n, 0, -70); ctx.font = '50px Anton'; ctx.fillText(l1, 0, 100); ctx.fillText(l2, 0, 160); ctx.restore(); });
+  ctx.save(); ctx.translate(W / 2, 230); ctx.scale(a, a); ctx.font = '150px Anton'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 14; ctx.strokeStyle = '#1A0E0A'; ctx.strokeText('VOCÊ DECIDE', 0, 0); ctx.fillStyle = '#F5B83D'; ctx.fillText('VOCÊ DECIDE', 0, 0); ctx.font = '50px Anton'; ctx.lineWidth = 8; ctx.strokeText('ONDE GUARDAR A PRÓXIMA BIBLIOTECA?', 0, 130); ctx.fillStyle = '#fff'; ctx.fillText('ONDE GUARDAR A PRÓXIMA BIBLIOTECA?', 0, 130); ctx.restore();
+  [[0, '1', 'NAVE', '', '#2F6FD0'], [1, '2', 'CAVERNA', 'GELADA', '#D0442F']].forEach(([i, n, l1, l2, c]) => { const p = easeBack(prog(t, .35 + i * .15, .8 + i * .15)); if (p <= 0) return; ctx.save(); ctx.translate(W / 2 + (i ? 230 : -230), 610); ctx.scale(p, p); rrect(ctx, -170, -200, 340, 400, 30); ctx.fillStyle = c; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 8; ctx.stroke(); ctx.font = '190px Anton'; ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(n, 0, -50); ctx.font = '50px Anton'; ctx.fillText(l1, 0, l2 ? 100 : 125); if (l2) ctx.fillText(l2, 0, 158); ctx.restore(); AP_txt(ctx, 'numero', n, W / 2 + (i ? 230 : -230), 580, 190 * p); AP_txt(ctx, 'rotulo', (l1 + ' ' + l2).trim(), W / 2 + (i ? 230 : -230), 750, 50); });
   const pulse = 1 + .06 * Math.sin(T * 8), cp = prog(t, 2.0, 2.3);
-  if (cp > 0) { ctx.save(); ctx.globalAlpha = cp; ctx.translate(W / 2, 1360); ctx.scale(pulse, pulse); rrect(ctx, -330, -70, 660, 140, 70); ctx.fillStyle = '#fff'; ctx.fill(); ctx.font = '84px Anton'; ctx.fillStyle = '#1A0E0A'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('COMENTA 1 OU 2', 0, 6); ctx.restore(); }
+  if (cp > 0) { ctx.save(); ctx.globalAlpha = cp; ctx.translate(W / 2, 885); ctx.scale(pulse, pulse); rrect(ctx, -280, -60, 560, 120, 60); ctx.fillStyle = '#fff'; ctx.fill(); ctx.font = '72px Anton'; ctx.fillStyle = '#1A0E0A'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('COMENTA 1 OU 2', 0, 6); ctx.restore(); }
 }
 
 // ---------- montagem (mesmo molde do renderVikings) ----------
@@ -3380,7 +3389,7 @@ function AL_apoio(t, cv) {
   let i = AL_SCENES.findIndex(s => t >= s[0] && t < s[1]); if (i < 0) i = AL_SCENES.length - 1;
   AP = { sup: [], obj: [], yh: null, ini: false, M0: null };
   AL_drawScene(ctx, i, t);
-  const r = { cena: i, nome: AL_SCENES[i][2].name, ini: AP.ini, yh: AP.yh, sup: AP.sup, obj: AP.obj };
+  const r = { cena: i, nome: AL_SCENES[i][2].name, ini: AP.ini, yh: AP.yh, sup: AP.sup, obj: AP.obj, cam: AP_cam(AP) };
   AP = null;
   return r;
 }

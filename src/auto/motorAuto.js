@@ -48,6 +48,8 @@ export function criarMotorAuto(L, DEMOS, video) {
 
   // ---------- medir cada peça uma vez (caixa do desenho de exemplo) ----------
   const MEDIDAS = {};
+  let REG = null;     // registro de apoio ligado (só na conferência)
+  let CENA = {};      // cena sendo desenhada (correções do autonomo: dentro, chao_claro, arvores)
   let AJUSTE = {};   // correção da conferência: {classe: fator} por cena (c.ajuste_escala), escrita pelo autonomo
   function medir(nome) {
     if (MEDIDAS[nome]) return MEDIDAS[nome];
@@ -95,10 +97,26 @@ export function criarMotorAuto(L, DEMOS, video) {
     }
     const s = (b * B * (o.k ?? fator(yb, yh))) / medida * (o.surge ?? 1) * aj(nome, m);
     if (s <= 0.001) return { topo: yb, larg: 0, s: 0 };
+    // dono 22/11 (ERROS_CONHECIDOS: peça solta cortada): ou aparece pelo menos metade na tela, ou tira
+    if (dentroDaTela(ctx, x - m.w * s / 2, yb - m.h * s, x + m.w * s / 2, yb) < (CENA.dentro ?? .5)) return { topo: yb, larg: 0, s: 0 };
+    const n0 = REG ? REG.obj.length : 0;
     ctx.save(); ctx.translate(x, yb); ctx.scale(o.flip ? -s : s, s); ctx.translate(-m.cx, -m.ancora);
     const r = DEMOS[nome](L, ctx, T, o.p ?? 1);
     ctx.restore();
+    if (REG) { const novo = REG.obj.slice(n0).sort((a, b2) => b2.h - a.h)[0]; if (novo) { novo.w = Math.round(m.w * s * L.AP_k(ctx)); novo.cx = Math.round(L.AP_pt(ctx, x, yb)[0]); } }
     return { topo: yb - m.h * s, larg: m.w * s, s, tampo: typeof r === "number" ? yb + (r - m.ancora) * s : null };
+  }
+  // fração da caixa (x0,y0)-(x1,y1) que aparece na tela; peça maior que a tela conta só a parte que caberia
+  function dentroDaTela(ctx, x0, y0, x1, y1) {
+    const M = ctx.getTransform(), a = M.transformPoint(new DOMPoint(x0, y0)), b2 = M.transformPoint(new DOMPoint(x1, y1));
+    const X0 = Math.min(a.x, b2.x), X1 = Math.max(a.x, b2.x), Y0 = Math.min(a.y, b2.y), Y1 = Math.max(a.y, b2.y);
+    const vis = Math.max(0, Math.min(W, X1) - Math.max(0, X0)) * Math.max(0, Math.min(H, Y1) - Math.max(0, Y0));
+    return vis / Math.max(1, Math.min(X1 - X0, W) * Math.min(Y1 - Y0, H));
+  }
+  // palmeira de enfeite: só se metade dela couber na tela (e registrada para o conferir.py)
+  function palmeira(ctx, x, yb, h, T) {
+    if (CENA.arvores === false || dentroDaTela(ctx, x - h * .38, yb - h, x + h * .58, yb) < (CENA.dentro ?? .5)) return;
+    L.E_palmeira(ctx, x, yb, h, T); L.AP_obj(ctx, "arvore", "palmeira", x, yb, h, h * .96, h * .1);
   }
   // peça sem chão (céu, painel, mapa): encaixa a caixa do desenho em (x, y) com largura w
   function painel(ctx, nome, x, y, w, T, p = 1) {
@@ -128,6 +146,7 @@ export function criarMotorAuto(L, DEMOS, video) {
   function chao(ctx, y, nome = "areia", h = 2400) {
     const [c1, c2] = CHAOS[nome] || CHAOS.areia;
     ctx.fillStyle = lg(ctx, 0, y, 0, y + Math.min(h, 900), [[0, c1], [1, c2]]); ctx.fillRect(-400, y, W + 800, h);
+    if (CENA.chao_claro) { ctx.fillStyle = "rgba(255,240,215,.28)"; ctx.fillRect(-400, y, W + 800, h); ctx.fillStyle = "rgba(255,255,255,.5)"; ctx.fillRect(-400, y, W + 800, 4); }
     ctx.strokeStyle = "rgba(0,0,0,.08)"; ctx.lineWidth = 2;
     for (let k = 1; k < 7; k++) { const yy = y + k * k * 10; if (yy > y + h) break; ctx.beginPath(); ctx.moveTo(-400, yy); ctx.lineTo(W + 400, yy); ctx.stroke(); }
     L.AP_sup(ctx, "chao", -3000, 4000, y);
@@ -329,8 +348,9 @@ export function criarMotorAuto(L, DEMOS, video) {
       cenario(ctx, c, T, yh, { terra: c.agua ? 980 : null, semFundo: !!c.agua });
       if (c.agua && (c.fundo || []).length) { margem(ctx, 560, W + 400, yh + 40, 40, c.chao); fundo(ctx, c, yh, T, 600, W + 150, 60); }
       (c.pecas || []).forEach((n, i) => peca(ctx, n, i ? 860 : 300, c.agua && !i ? 990 : 1000, yh, T, { tam: c.tam || 1 }));
+      // palmeira = 4 bonecos (tabela OBJETOS_CORINGA): no fundo (yb 1100) para caber inteira, antes dos bonecos
+      if (c.arvores !== false && tema(c) !== "frio") { const hp = 4 * 97.5 * L.AL_esc(1100, yh); palmeira(ctx, 70, 1100, hp, T); palmeira(ctx, 1000, 1100, hp * 1.05, T); }
       (c.pessoas || []).forEach((p, i) => { const yb = 1170 + i * 10; pessoa(ctx, p, 660 + i * 140 - t * 14, yb, yh, T, { flip: true, anda: true, seed: i + 2, olhar: { x: -1, y: -.2 } }); });
-      if (c.arvores !== false && tema(c) !== "frio") { L.E_palmeira(ctx, -40, 1400, 760, T); L.E_palmeira(ctx, 1110, 1400, 800, T); }
       ctx.restore();
     },
     // 12 Escolha 1 ou 2: SEMPRE a última; tela dividida, números grandes no topo, cada lado com chão
@@ -341,22 +361,23 @@ export function criarMotorAuto(L, DEMOS, video) {
         ctx.save(); ctx.beginPath(); ctx.rect(x0, 0, W / 2, H); ctx.clip(); L.AP_ini(ctx, yh);
         cenario(ctx, Object.assign({ ceu: i ? "frio" : "noite", chao: i ? "neve" : "pedra" }, o), T, yh, { semFundo: true });
         if ((o.pecas || [])[0]) peca(ctx, o.pecas[0], x0 + 270, 1250, yh, T, { tam: o.tam || 1 });
-        pessoa(ctx, o.pessoa, x0 + (i ? 420 : 120), PE, yh, T, { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } });
+        pessoa(ctx, o.pessoa || (c.cartao ? (i ? "sabiaHoje" : "voceHoje") : null), x0 + (i ? 420 : 120), PE, yh, T, { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } });
         if (!c.cartao) { ctx.fillStyle = `rgba(0,0,0,${.45 * (1 - ativo)})`; ctx.fillRect(x0, 0, W / 2, H); }
         ctx.restore();
-        if (!c.cartao) { const p = easeBack(ativo); if (p > 0) { L.E_txt(ctx, String(i + 1), x0 + 270, 330, 260, i ? "#FF6A4A" : "#5AA0FF", 1, p); L.E_rotulo(ctx, o.texto || "", x0 + 270, 540, ativo); } }
+        if (!c.cartao) { const p = easeBack(ativo); if (p > 0) { L.E_txt(ctx, String(i + 1), x0 + 270, 330, 260, i ? "#FF6A4A" : "#5AA0FF", 1, p); L.E_rotulo(ctx, o.texto || "", x0 + 270, 540, ativo); L.AP_txt(ctx, "numero", i + 1, x0 + 270, 330, 260 * p); L.AP_txt(ctx, "rotulo", o.texto || "", x0 + 270, 540, 46); } }
       };
       lado(o1, 0); lado(o2, 1);
       ctx.fillStyle = "#fff"; ctx.fillRect(W / 2 - 5, 0, 10, H);
       if (c.cartao) {
-        ctx.fillStyle = "rgba(10,6,4,.72)"; ctx.fillRect(0, 0, W, H); L.motes(ctx, T, 60, "#F5B83D", 17, .6);
+        // dono 22/11: o cartão também mostra os bonecos e o chão (escurece só o alto, onde fica o texto)
+        ctx.fillStyle = L.lg(ctx, 0, 0, 0, 900, [[0, "rgba(10,6,4,.72)"], [1, "rgba(10,6,4,0)"]]); ctx.fillRect(0, 0, W, 900); L.motes(ctx, T, 60, "#F5B83D", 17, .6);
         const a = easeBack(prog(t, .1, .5));
-        ctx.save(); ctx.translate(W / 2, 520); ctx.scale(a, a); ctx.font = "150px Anton"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineWidth = 14; ctx.strokeStyle = "#1A0E0A"; ctx.strokeText("VOCÊ DECIDE", 0, 0); ctx.fillStyle = "#F5B83D"; ctx.fillText("VOCÊ DECIDE", 0, 0);
+        ctx.save(); ctx.translate(W / 2, 230); ctx.scale(a, a); ctx.font = "150px Anton"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineWidth = 14; ctx.strokeStyle = "#1A0E0A"; ctx.strokeText("VOCÊ DECIDE", 0, 0); ctx.fillStyle = "#F5B83D"; ctx.fillText("VOCÊ DECIDE", 0, 0);
         if (c.pergunta) { ctx.font = "50px Anton"; ctx.lineWidth = 8; ctx.strokeText(c.pergunta, 0, 130); ctx.fillStyle = "#fff"; ctx.fillText(c.pergunta, 0, 130); }
         ctx.restore();
-        [o1, o2].forEach((o, i) => { const p = easeBack(prog(t, .35 + i * .15, .8 + i * .15)); if (p <= 0) return; const ls = (o.texto || "").split(" "), meio = Math.ceil(ls.length / 2); ctx.save(); ctx.translate(W / 2 + (i ? 230 : -230), 1000); ctx.scale(p, p); rrect(ctx, -200, -230, 400, 460, 30); ctx.fillStyle = i ? "#D0442F" : "#2F6FD0"; ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 8; ctx.stroke(); ctx.font = "200px Anton"; ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(String(i + 1), 0, -70); ctx.font = "50px Anton"; ctx.fillText(ls.slice(0, meio).join(" "), 0, 100); ctx.fillText(ls.slice(meio).join(" "), 0, 160); ctx.restore(); });
+        [o1, o2].forEach((o, i) => { const p = easeBack(prog(t, .35 + i * .15, .8 + i * .15)); if (p <= 0) return; const ls = (o.texto || "").split(" "), meio = Math.ceil(ls.length / 2); ctx.save(); ctx.translate(W / 2 + (i ? 230 : -230), 620); ctx.scale(p, p); rrect(ctx, -170, -190, 340, 380, 30); ctx.fillStyle = i ? "#D0442F" : "#2F6FD0"; ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 8; ctx.stroke(); ctx.font = "180px Anton"; ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(String(i + 1), 0, -50); ctx.font = "46px Anton"; ctx.fillText(ls.slice(0, meio).join(" "), 0, 95); ctx.fillText(ls.slice(meio).join(" "), 0, 148); ctx.restore(); L.AP_txt(ctx, "numero", i + 1, W / 2 + (i ? 230 : -230), 570, 180 * p); L.AP_txt(ctx, "rotulo", o.texto || "", W / 2 + (i ? 230 : -230), 720, 46); });
         const pulse = 1 + .06 * Math.sin(T * 8), cp = prog(t, 2.0, 2.3);
-        if (cp > 0) { ctx.save(); ctx.globalAlpha = cp; ctx.translate(W / 2, 1360); ctx.scale(pulse, pulse); rrect(ctx, -330, -70, 660, 140, 70); ctx.fillStyle = "#fff"; ctx.fill(); ctx.font = "84px Anton"; ctx.fillStyle = "#1A0E0A"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("COMENTA 1 OU 2", 0, 6); ctx.restore(); }
+        if (cp > 0) { ctx.save(); ctx.globalAlpha = cp; ctx.translate(W / 2, 1000); ctx.scale(pulse, pulse); rrect(ctx, -280, -60, 560, 120, 60); ctx.fillStyle = "#fff"; ctx.fill(); ctx.font = "72px Anton"; ctx.fillStyle = "#1A0E0A"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("COMENTA 1 OU 2", 0, 6); ctx.restore(); }
       }
     },
   };
@@ -375,7 +396,7 @@ export function criarMotorAuto(L, DEMOS, video) {
 
   function desenharCena(ctx, i, T) {
     const [a, b, c] = CENAS[i], t = T - a;
-    AJUSTE = c.ajuste_escala || {};
+    AJUSTE = c.ajuste_escala || {}; CENA = c;
     ctx.save(); MOLDES[c.molde](ctx, t, T, b - a, c); ctx.restore();
     ctx.save(); efeitos(ctx, c, T, t); textos(ctx, c, t); L.vignette(ctx, c.vinheta ?? .45); ctx.restore();
   }
@@ -418,10 +439,10 @@ export function criarMotorAuto(L, DEMOS, video) {
     const ctx = cv.getContext("2d"); ctx.setTransform(1, 0, 0, 1, 0, 0);
     const i = cenaEm(t), [a, b, c] = CENAS[i];
     const AP = L.ligarApoio(); Object.assign(AP, { yh: null, ini: false, M0: null });
-    AJUSTE = c.ajuste_escala || {};
+    AJUSTE = c.ajuste_escala || {}; CENA = c; REG = AP;
     ctx.save(); MOLDES[c.molde](ctx, t - a, t, b - a, c); ctx.restore();
-    L.desligarApoio();
-    return { cena: i, nome: c.nome || `molde${c.molde}`, ini: AP.ini, yh: AP.yh, sup: AP.sup, obj: AP.obj };
+    L.desligarApoio(); REG = null;
+    return { cena: i, nome: c.nome || `molde${c.molde}`, ini: AP.ini, yh: AP.yh, sup: AP.sup, obj: AP.obj, cam: L.AP_cam(AP) };
   }
   return { render, apoio, DURACAO: video.duracao, CENAS: CENAS.map(([a, b, c]) => [a, b, c.nome || `molde${c.molde}`]) };
 }
