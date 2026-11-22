@@ -1,0 +1,1141 @@
+{
+ "id": "AutoAlexandriaE",
+ "audio": "alexandria/alexandria_audio.m4a",
+ "duracao": 109.42,
+ "titulo": "E se a Biblioteca de Alexandria nunca tivesse sido destruída?",
+ "caps": [
+  [
+   4.89,
+   6.1,
+   "IMAGINE UMA BIBLIOTECA",
+   1
+  ],
+  [
+   6.1,
+   6.91,
+   "QUE NUNCA FECHOU",
+   0
+  ],
+  [
+   6.91,
+   7.61,
+   "E GUARDOU CADA",
+   0
+  ],
+  [
+   7.61,
+   8.53,
+   "LIVRO DO MUNDO.",
+   0
+  ],
+  [
+   9.16,
+   10.21,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   10.21,
+   11.87,
+   "EM 48 A.C.,",
+   0
+  ],
+  [
+   12.02,
+   13.1,
+   "JÚLIO CÉSAR QUEIMOU",
+   1
+  ],
+  [
+   13.1,
+   14.1,
+   "PARTE DA BIBLIOTECA",
+   0
+  ],
+  [
+   14.1,
+   14.94,
+   "POR ACIDENTE.",
+   0
+  ],
+  [
+   15.57,
+   16.32,
+   "NÃO ESTÁ CLARO",
+   0
+  ],
+  [
+   16.32,
+   17.3,
+   "QUANTO SE PERDEU.",
+   1
+  ],
+  [
+   17.94,
+   18.58,
+   "ELA PODE TER",
+   0
+  ],
+  [
+   18.58,
+   19.61,
+   "SOBREVIVIDO OU SIDO",
+   0
+  ],
+  [
+   19.61,
+   21.19,
+   "RECONSTRUÍDA POUCO DEPOIS.",
+   1
+  ],
+  [
+   21.82,
+   22.69,
+   "E SE A BIBLIOTECA",
+   0
+  ],
+  [
+   22.69,
+   23.98,
+   "TIVESSE FICADO ABERTA,",
+   1
+  ],
+  [
+   24.09,
+   25.71,
+   "COPIANDO LIVROS ATÉ HOJE?",
+   0
+  ],
+  [
+   26.34,
+   27.54,
+   "NO SÉCULO II,",
+   0
+  ],
+  [
+   27.54,
+   28.72,
+   "COPISTAS FAZEM DEZ",
+   0
+  ],
+  [
+   28.72,
+   30.02,
+   "CÓPIAS DE CADA LIVRO.",
+   1
+  ],
+  [
+   30.65,
+   31.81,
+   "NAVIOS LEVAM CAIXAS",
+   1
+  ],
+  [
+   31.81,
+   32.87,
+   "DE ROLOS PARA ATENAS",
+   0
+  ],
+  [
+   32.87,
+   33.77,
+   "E PARA A PÉRSIA.",
+   0
+  ],
+  [
+   34.4,
+   35.05,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   35.17,
+   36.37,
+   "UM JOVEM COPISTA,",
+   1
+  ],
+  [
+   36.37,
+   37.47,
+   "COPIA MAPAS À LUZ",
+   0
+  ],
+  [
+   37.47,
+   38.39,
+   "DE LAMPARINAS.",
+   0
+  ],
+  [
+   39.03,
+   40.15,
+   "EM 400,",
+   0
+  ],
+  [
+   40.15,
+   41.61,
+   "MÉDICOS ESTUDAM OS TRATADOS",
+   0
+  ],
+  [
+   41.61,
+   43.05,
+   "DE ANATOMIA DA BIBLIOTECA.",
+   1
+  ],
+  [
+   43.69,
+   44.8,
+   "HOSPITAIS COM LIVROS",
+   1
+  ],
+  [
+   44.8,
+   45.44,
+   "DE REMÉDIOS SE",
+   0
+  ],
+  [
+   45.44,
+   46.84,
+   "ESPALHAM PELO MEDITERRÂNEO.",
+   0
+  ],
+  [
+   47.47,
+   49.11,
+   "EM 850,",
+   0
+  ],
+  [
+   49.11,
+   50.14,
+   "ASTRÔNOMOS DESENHAM",
+   0
+  ],
+  [
+   50.14,
+   50.66,
+   "O MAPA MAIS",
+   0
+  ],
+  [
+   50.66,
+   51.71,
+   "EXATO DO CÉU.",
+   1
+  ],
+  [
+   52.34,
+   52.97,
+   "COM ELE,",
+   0
+  ],
+  [
+   53.07,
+   54.05,
+   "NAVEGADORES CRUZAM",
+   0
+  ],
+  [
+   54.05,
+   55.06,
+   "OCEANOS SEM PERDER",
+   1
+  ],
+  [
+   55.06,
+   55.56,
+   "O RUMO.",
+   0
+  ],
+  [
+   56.2,
+   57.08,
+   "EM 1100,",
+   0
+  ],
+  [
+   57.08,
+   57.82,
+   "CADA PORTO GANHA",
+   0
+  ],
+  [
+   57.82,
+   59.21,
+   "UMA FILIAL DA BIBLIOTECA,",
+   1
+  ],
+  [
+   59.21,
+   60.28,
+   "ABERTA A TODOS.",
+   0
+  ],
+  [
+   60.91,
+   61.95,
+   "FILHOS DE PESCADORES",
+   0
+  ],
+  [
+   61.95,
+   63.13,
+   "APRENDEM A LER ALI.",
+   1
+  ],
+  [
+   63.77,
+   64.96,
+   "EM 1300,",
+   0
+  ],
+  [
+   64.96,
+   66.23,
+   "AS LENTES DOS COPISTAS",
+   0
+  ],
+  [
+   66.23,
+   67.0,
+   "VIRAM OS PRIMEIROS",
+   0
+  ],
+  [
+   67.0,
+   67.93,
+   "TELESCÓPIOS.",
+   1
+  ],
+  [
+   68.56,
+   69.61,
+   "ASTRÔNOMOS ENXERGAM",
+   0
+  ],
+  [
+   69.61,
+   70.46,
+   "CRATERAS NA LUA",
+   0
+  ],
+  [
+   70.46,
+   70.96,
+   "E OS ANÉIS",
+   0
+  ],
+  [
+   70.96,
+   71.75,
+   "DE SATURNO.",
+   1
+  ],
+  [
+   72.38,
+   73.95,
+   "EM 1650,",
+   0
+  ],
+  [
+   74.07,
+   74.96,
+   "UM INCÊNDIO ATINGE",
+   1
+  ],
+  [
+   74.96,
+   75.84,
+   "A BIBLIOTECA,",
+   0
+  ],
+  [
+   75.84,
+   76.55,
+   "COMO NO TEMPO",
+   0
+  ],
+  [
+   76.55,
+   77.2,
+   "DE CÉSAR.",
+   0
+  ],
+  [
+   77.83,
+   79.12,
+   "MAS NADA SE PERDE:",
+   0
+  ],
+  [
+   79.12,
+   79.87,
+   "CADA LIVRO TEM",
+   0
+  ],
+  [
+   79.87,
+   81.36,
+   "CÓPIAS EM MIL CIDADES.",
+   1
+  ],
+  [
+   81.99,
+   82.47,
+   "HOJE,",
+   0
+  ],
+  [
+   82.59,
+   83.32,
+   "VOCÊ ENTRA NUMA",
+   0
+  ],
+  [
+   83.32,
+   84.67,
+   "BIBLIOTECA EM CADA ESQUINA,",
+   1
+  ],
+  [
+   84.67,
+   85.94,
+   "ABERTA DIA E NOITE.",
+   0
+  ],
+  [
+   86.57,
+   87.92,
+   "HÁ TELESCÓPIOS NAS PRAÇAS",
+   1
+  ],
+  [
+   87.92,
+   88.82,
+   "E MAPAS DO CÉU",
+   0
+  ],
+  [
+   88.82,
+   89.73,
+   "NAS PAREDES.",
+   0
+  ],
+  [
+   90.37,
+   91.08,
+   "AGORA,",
+   0
+  ],
+  [
+   91.08,
+   91.81,
+   "OS SÁBIOS QUEREM",
+   0
+  ],
+  [
+   91.81,
+   92.75,
+   "UMA CÓPIA DE TUDO",
+   0
+  ],
+  [
+   92.75,
+   93.78,
+   "LONGE DO FOGO.",
+   1
+  ],
+  [
+   94.41,
+   95.62,
+   "ONDE GUARDAR A PRÓXIMA",
+   1
+  ],
+  [
+   95.62,
+   97.05,
+   "BIBLIOTECA DE ALEXANDRIA?",
+   0
+  ],
+  [
+   97.69,
+   98.09,
+   "UM:",
+   0
+  ],
+  [
+   98.19,
+   99.05,
+   "NUMA NAVE RUMO",
+   1
+  ],
+  [
+   99.05,
+   100.0,
+   "A OUTRA ESTRELA.",
+   0
+  ],
+  [
+   100.63,
+   101.3,
+   "DOIS:",
+   0
+  ],
+  [
+   101.3,
+   102.39,
+   "NUMA CAVERNA GELADA",
+   1
+  ],
+  [
+   102.39,
+   103.55,
+   "NO ALTO DA MONTANHA.",
+   0
+  ],
+  [
+   104.19,
+   105.69,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "abertura",
+   "ceu": "por_do_sol",
+   "chao": "areia",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_biblioteca"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "bibliotecario",
+     "expressao": "pensando",
+     "pose": "maosJuntas"
+    }
+   ],
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "zoom_in",
+   "titulo": [
+    "E SE",
+    "NUNCA"
+   ]
+  },
+  {
+   "ini": 4.8,
+   "fim": 8.77,
+   "molde": 1,
+   "nome": "narrador_intro",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "AL_biblioteca"
+   ],
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "BIBLIOTECA",
+    "x": 540,
+    "y": 760,
+    "em": 0.1
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 8.77,
+   "fim": 15.18,
+   "molde": 3,
+   "nome": "incendio_cesar",
+   "ceu": "fogo",
+   "chao": "areia",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_biblioteca",
+    "AL_lamparina"
+   ],
+   "fogo": true,
+   "fogo_em": 3.2,
+   "pessoas": [
+    {
+     "quem": "cesar",
+     "expressao": "surpreso",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "48 A.C.",
+   "rotulo": {
+    "texto": "INCÊNDIO",
+    "x": 540,
+    "y": 760,
+    "em": 3.2
+   },
+   "efeitos": [
+    "brasas",
+    "fumaca"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 15.18,
+   "fim": 21.43,
+   "molde": 2,
+   "nome": "dialogo_duvida",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    },
+    {
+     "quem": "copista",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    }
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 21.43,
+   "fim": 25.95,
+   "molde": 10,
+   "nome": "antes_depois",
+   "ceu": "dia",
+   "chao": "pedra",
+   "antes": {
+    "pecas": [
+     "templo"
+    ],
+    "pessoa": "copista",
+    "ceu": "dia",
+    "chao": "areia",
+    "rotulo": "PASSADO"
+   },
+   "depois": {
+    "pecas": [
+     "AL_predio"
+    ],
+    "pessoa": "voceHoje",
+    "ceu": "futuro",
+    "chao": "rua",
+    "rotulo": "HOJE"
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 25.95,
+   "fim": 30.26,
+   "molde": 4,
+   "nome": "interior_copistas",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "copista",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "SÉCULO II",
+   "grande": {
+    "texto": "×10",
+    "em": 2.8,
+    "ate": 4.01
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 30.26,
+   "fim": 34.01,
+   "molde": 6,
+   "nome": "viagem_navio",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "NAVIOS",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 34.01,
+   "fim": 38.64,
+   "molde": 9,
+   "nome": "destaque_voce",
+   "ceu": "noite",
+   "chao": "pedra",
+   "pecas": [
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "COPISTA",
+    "x": 540,
+    "y": 300,
+    "em": 1.2
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 38.64,
+   "fim": 43.29,
+   "molde": 2,
+   "nome": "dialogo_medicos",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "medica",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    {
+     "quem": "copista400",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "400",
+   "rotulo": {
+    "texto": "MÉDICOS",
+    "x": 540,
+    "y": 760,
+    "em": 1.5
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 43.29,
+   "fim": 47.08,
+   "molde": 5,
+   "nome": "multidao_hospitais",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "temple"
+   ],
+   "pessoas": [
+    {
+     "quem": "medica",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "professora",
+     "expressao": "feliz",
+     "pose": "maosJuntas"
+    }
+   ],
+   "rotulo": {
+    "texto": "HOSPITAIS",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 47.08,
+   "fim": 51.95,
+   "molde": 8,
+   "nome": "mapa_ceu",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "escura",
+   "mapa": "AL_mapa",
+   "pontos": [
+    [
+     0.5,
+     0.5,
+     "ALEXANDRIA"
+    ]
+   ],
+   "contador": 850,
+   "pessoas": [
+    {
+     "quem": "astronoma",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "850",
+   "rotulo": {
+    "texto": "MAPA DO CÉU",
+    "x": 540,
+    "y": 1180,
+    "em": 3.1
+   },
+   "efeitos": [
+    "estrelas"
+   ],
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 51.95,
+   "fim": 55.81,
+   "molde": 6,
+   "nome": "viagem_navegadores",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "NAVEGADORES",
+    "x": 540,
+    "y": 760,
+    "em": 1.1
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 55.81,
+   "fim": 63.37,
+   "molde": 3,
+   "nome": "monumento_filial",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_biblioteca",
+    "AL_rolo"
+   ],
+   "surge": true,
+   "pessoas": [
+    {
+     "quem": "meninaPescadora",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "meninoPescador",
+     "expressao": "feliz",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "1100",
+   "rotulo": {
+    "texto": "FILIAL",
+    "x": 540,
+    "y": 760,
+    "em": 2.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 63.37,
+   "fim": 68.17,
+   "molde": 9,
+   "nome": "destaque_lentes",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "AL_lente"
+   ],
+   "pessoas": [
+    {
+     "quem": "copista1300",
+     "expressao": "surpreso",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "placa": "1300",
+   "rotulo": {
+    "texto": "LENTES",
+    "x": 540,
+    "y": 300,
+    "em": 1.6
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 68.17,
+   "fim": 71.99,
+   "molde": 7,
+   "nome": "ceu_saturno",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [],
+   "pecas": [
+    "altar"
+   ],
+   "no_ceu": [
+    "AL_lua",
+    "AL_saturno"
+   ],
+   "pessoas": [
+    {
+     "quem": "astronoma",
+     "expressao": "surpreso",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SATURNO",
+    "x": 540,
+    "y": 1000,
+    "em": 2.8
+   },
+   "efeitos": [
+    "estrelas"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 71.99,
+   "fim": 77.44,
+   "molde": 3,
+   "nome": "monumento_fogo1650",
+   "ceu": "fogo",
+   "chao": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_biblioteca"
+   ],
+   "fogo": true,
+   "fogo_em": 2.1,
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1650",
+   "rotulo": {
+    "texto": "INCÊNDIO",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "efeitos": [
+    "brasas",
+    "fumaca"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 77.44,
+   "fim": 81.6,
+   "molde": 8,
+   "nome": "mapa_copias",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "clara",
+   "mapa": "globe",
+   "pontos": [
+    [
+     0.4,
+     0.4,
+     "ROMA"
+    ],
+    [
+     0.6,
+     0.3,
+     "ATENAS"
+    ]
+   ],
+   "contador": 1000,
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "CÓPIAS",
+    "x": 540,
+    "y": 260,
+    "em": 2.4
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 81.6,
+   "fim": 86.18,
+   "molde": 1,
+   "nome": "narrador_hoje",
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [],
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "BIBLIOTECA",
+    "x": 540,
+    "y": 760,
+    "em": 1.7
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 86.18,
+   "fim": 89.98,
+   "molde": 3,
+   "nome": "monumento_hoje",
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [],
+   "pecas": [
+    "AL_predio",
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "sabiaHoje",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "TELESCÓPIOS",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 89.98,
+   "fim": 97.29,
+   "molde": 1,
+   "nome": "escolha_final",
+   "ceu": "futuro",
+   "chao": "rua",
+   "fundo": [],
+   "pecas": [],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 97.29,
+   "fim": 103.79,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "ESTAÇÃO NO ESPAÇO",
+     "pecas": [
+      "piramide"
+     ],
+     "pessoa": "cientista",
+     "em": 0.4
+    },
+    {
+     "texto": "BUNKER SUBTERRÂNEO",
+     "pecas": [
+      "AL_nave"
+     ],
+     "pessoa": "voceHoje",
+     "em": 3.34
+    }
+   ]
+  },
+  {
+   "ini": 103.79,
+   "fim": 109.42,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "ESTAÇÃO NO ESPAÇO",
+     "pecas": [
+      "piramide"
+     ]
+    },
+    {
+     "texto": "BUNKER SUBTERRÂNEO",
+     "pecas": [
+      "AL_nave"
+     ]
+    }
+   ],
+   "cartao": true,
+   "pergunta": "ONDE GUARDAR A PRÓXIMA BIBLIOTECA?"
+  }
+ ]
+}
