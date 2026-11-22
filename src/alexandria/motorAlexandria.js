@@ -2504,8 +2504,8 @@ function AL_copistas(ctx, t, T) {
   AL_chao(ctx, 1000, '#A88A64', '#4A3424');
   for (let k = 0; k < 5; k++) AL_estante(ctx, -120 + k * 300, 1000, 220, 360, T, { seed: k + 20, rows: 4, cols: 3 });
   const eb = AL_esc(1140, 700);
-  AL_mesa(ctx, 880, 1140, 300, T, { esc: eb, lamp: true, rolos: 2 });
-  AL_b(ctx, 700, 1140, eb, 'copista', { t: T, seed: 4, olhar: { x: 1, y: .3 } });
+  AL_mesa(ctx, 830, 1140, 300, T, { esc: eb, lamp: true, rolos: 2 });
+  AL_b(ctx, 1030, 1140, eb, 'copista', { t: T, seed: 4, flip: true, olhar: { x: -1, y: .3 } });
   const sup = AL_mesa(ctx, 360, 1405, 460, T, { lamp: true });
   AL_pilha(ctx, 190, sup, Math.round(pilha * 10), 1.6, 5);
   AL_b(ctx, 700, 1405, 5.4, 'copista', { t: T, seed: 1, flip: true, expressao: 'feliz', olhar: { x: -1, y: .4 } });
@@ -2593,8 +2593,11 @@ function AL_ceu(ctx, t, T) {
   AL_cidadeAntiga(ctx, 1160, '#3A3448', 5, 540 * 40 / 285);
   AL_faixaChao(ctx, -300, W + 300, 1210, 800, '#8A7A68', '#3A3028');
   for (let k = 0; k < 6; k++) column(ctx, -60 + k * 240, 1215, 40, 60, AL.marmore, -1);
-  AL_telescopio(ctx, 760, 1405, 2.8, -1.3);
-  AL_b(ctx, 400, 1405, 5.4, 'astronoma', { t: T, seed: 4, expressao: p > .3 ? 'feliz' : 'surpreso', olhar: { x: .6, y: -1 } });
+  // 850 = antes dos telescópios (cena 13, 1300): a astrônoma DESENHA o mapa do céu num cavalete
+  AL_cavalete(ctx, 770, 1405, 320, 360, 360, () => { ctx.scale(1 / 136, 1 / 144); ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.strokeStyle = '#3A2A18'; ctx.fillStyle = '#3A2A18';
+    AL_CONST.forEach((c, ci) => { const q = clamp(p * 1.4 - ci * .12); c.forEach(([px, py], k) => { if (k <= q * (c.length - 1) + .01) { circle(ctx, (px * 2 - 1) * 136, (py * 2 - 1) * 144, 7); ctx.fill(); } });
+      for (let k = 1; k < c.length; k++) { const a = clamp(q * (c.length - 1) - (k - 1)); if (a <= 0) break; const [x0, y0] = c[k - 1], [x1, y1] = c[k]; ctx.beginPath(); ctx.moveTo((x0 * 2 - 1) * 136, (y0 * 2 - 1) * 144); ctx.lineTo((lerp(x0, x1, a) * 2 - 1) * 136, (lerp(y0, y1, a) * 2 - 1) * 144); ctx.stroke(); } }); });
+  AL_b(ctx, 400, 1405, 5.4, 'astronoma', { t: T, seed: 4, expressao: p > .3 ? 'feliz' : 'surpreso', pose: p > .5 ? 'apontando' : 'bracosAoLado', olhar: p > .5 ? { x: 1, y: -.2 } : { x: .6, y: -1 } });
   ctx.restore();
   E_placa(ctx, '850 d.C.', t, .6, 1);
   vignette(ctx, .45);
