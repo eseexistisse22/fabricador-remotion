@@ -17,7 +17,25 @@ export const PARTES = [
   ["vikings/pecasVikings.js", "src/vikings/fonte/pecasVikings.js"],
   ["alexandria/pecasAlexandria.js", "src/alexandria/fonte/pecasAlexandria.js"],
   ["auto/pessoas.js", "src/auto/pecas/pessoas.js"],
+  // etapa D: só os ajudantes de texto, placa, legenda, vapor entre cenas e marca d'água (o resto do arquivo são cenas)
+  ["egito/cenasEgito.js (só ajudantes)", "src/egito/fonte/cenasEgito.js",
+    ["E_txt", "E_rotulo", "E_placa", "E_nuvem", "E_palmeira", "EG_CAP_TOP", "EG_wrap", "EG_off", "EG_msk", "EG_PUFFS", "EG_TR", "EG_marca"]],
 ];
+
+// pega só as declarações de topo pedidas (cada uma vai até a próxima linha que começa uma declaração ou comentário)
+function extrair(codigo, nomes, arq) {
+  const linhas = codigo.split("\n"), falta = new Set(nomes), out = [];
+  for (let i = 0; i < linhas.length; i++) {
+    const m = linhas[i].match(/^(?:function|const|let)\s+([A-Za-z_$][\w$]*)/);
+    if (!m || !falta.has(m[1])) continue;
+    falta.delete(m[1]);
+    let j = i + 1;
+    while (j < linhas.length && !/^(function|const|let|\/\/|\s*$)/.test(linhas[j])) j++;
+    out.push(...linhas.slice(i, j));
+  }
+  if (falta.size) throw new Error(`${arq}: não achei ${[...falta].join(", ")}`);
+  return out.join("\n");
+}
 
 export function nomesDe(codigo) {
   return [...codigo.matchAll(/^(?:function|const|let)\s+([A-Za-z_$][\w$]*)/gm)].map((m) => m[1]);
@@ -27,7 +45,7 @@ const NATIVOS = new Set(("if for while switch catch return function typeof new M
   "Boolean Error DOMMatrix DOMPoint Path2D parseInt parseFloat isNaN isFinite JSON Date Symbol Promise BigInt " +
   "require console").split(" "));
 
-const textos = PARTES.map(([nome, arq]) => [nome, ler(arq)]);
+const textos = PARTES.map(([nome, arq, so]) => [nome, so ? extrair(ler(arq), so, arq) : ler(arq)]);
 const dono = new Map();
 for (const [nome, cod] of textos)
   for (const n of nomesDe(cod)) {

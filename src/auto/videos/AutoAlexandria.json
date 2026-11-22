@@ -1,0 +1,1108 @@
+{
+ "id": "AutoAlexandria",
+ "audio": "alexandria/alexandria_audio.m4a",
+ "duracao": 109.42,
+ "titulo": "E se a Biblioteca de Alexandria nunca tivesse sido destruída?",
+ "caps": [
+  [
+   4.89,
+   6.1,
+   "IMAGINE UMA BIBLIOTECA",
+   1
+  ],
+  [
+   6.1,
+   6.91,
+   "QUE NUNCA FECHOU",
+   0
+  ],
+  [
+   6.91,
+   7.61,
+   "E GUARDOU CADA",
+   0
+  ],
+  [
+   7.61,
+   8.53,
+   "LIVRO DO MUNDO.",
+   0
+  ],
+  [
+   9.16,
+   10.21,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   10.21,
+   11.87,
+   "EM 48 A.C.,",
+   0
+  ],
+  [
+   12.02,
+   13.1,
+   "JÚLIO CÉSAR QUEIMOU",
+   1
+  ],
+  [
+   13.1,
+   14.1,
+   "PARTE DA BIBLIOTECA",
+   0
+  ],
+  [
+   14.1,
+   14.94,
+   "POR ACIDENTE.",
+   0
+  ],
+  [
+   15.57,
+   16.32,
+   "NÃO ESTÁ CLARO",
+   0
+  ],
+  [
+   16.32,
+   17.3,
+   "QUANTO SE PERDEU.",
+   1
+  ],
+  [
+   17.94,
+   18.58,
+   "ELA PODE TER",
+   0
+  ],
+  [
+   18.58,
+   19.61,
+   "SOBREVIVIDO OU SIDO",
+   0
+  ],
+  [
+   19.61,
+   21.19,
+   "RECONSTRUÍDA POUCO DEPOIS.",
+   1
+  ],
+  [
+   21.82,
+   22.69,
+   "E SE A BIBLIOTECA",
+   0
+  ],
+  [
+   22.69,
+   23.98,
+   "TIVESSE FICADO ABERTA,",
+   1
+  ],
+  [
+   24.09,
+   25.71,
+   "COPIANDO LIVROS ATÉ HOJE?",
+   0
+  ],
+  [
+   26.34,
+   27.54,
+   "NO SÉCULO II,",
+   0
+  ],
+  [
+   27.54,
+   28.72,
+   "COPISTAS FAZEM DEZ",
+   0
+  ],
+  [
+   28.72,
+   30.02,
+   "CÓPIAS DE CADA LIVRO.",
+   1
+  ],
+  [
+   30.65,
+   31.81,
+   "NAVIOS LEVAM CAIXAS",
+   1
+  ],
+  [
+   31.81,
+   32.87,
+   "DE ROLOS PARA ATENAS",
+   0
+  ],
+  [
+   32.87,
+   33.77,
+   "E PARA A PÉRSIA.",
+   0
+  ],
+  [
+   34.4,
+   35.05,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   35.17,
+   36.37,
+   "UM JOVEM COPISTA,",
+   1
+  ],
+  [
+   36.37,
+   37.47,
+   "COPIA MAPAS À LUZ",
+   0
+  ],
+  [
+   37.47,
+   38.39,
+   "DE LAMPARINAS.",
+   0
+  ],
+  [
+   39.03,
+   40.15,
+   "EM 400,",
+   0
+  ],
+  [
+   40.15,
+   41.61,
+   "MÉDICOS ESTUDAM OS TRATADOS",
+   0
+  ],
+  [
+   41.61,
+   43.05,
+   "DE ANATOMIA DA BIBLIOTECA.",
+   1
+  ],
+  [
+   43.69,
+   44.8,
+   "HOSPITAIS COM LIVROS",
+   1
+  ],
+  [
+   44.8,
+   45.44,
+   "DE REMÉDIOS SE",
+   0
+  ],
+  [
+   45.44,
+   46.84,
+   "ESPALHAM PELO MEDITERRÂNEO.",
+   0
+  ],
+  [
+   47.47,
+   49.11,
+   "EM 850,",
+   0
+  ],
+  [
+   49.11,
+   50.14,
+   "ASTRÔNOMOS DESENHAM",
+   0
+  ],
+  [
+   50.14,
+   50.66,
+   "O MAPA MAIS",
+   0
+  ],
+  [
+   50.66,
+   51.71,
+   "EXATO DO CÉU.",
+   1
+  ],
+  [
+   52.34,
+   52.97,
+   "COM ELE,",
+   0
+  ],
+  [
+   53.07,
+   54.05,
+   "NAVEGADORES CRUZAM",
+   0
+  ],
+  [
+   54.05,
+   55.06,
+   "OCEANOS SEM PERDER",
+   1
+  ],
+  [
+   55.06,
+   55.56,
+   "O RUMO.",
+   0
+  ],
+  [
+   56.2,
+   57.08,
+   "EM 1100,",
+   0
+  ],
+  [
+   57.08,
+   57.82,
+   "CADA PORTO GANHA",
+   0
+  ],
+  [
+   57.82,
+   59.21,
+   "UMA FILIAL DA BIBLIOTECA,",
+   1
+  ],
+  [
+   59.21,
+   60.28,
+   "ABERTA A TODOS.",
+   0
+  ],
+  [
+   60.91,
+   61.95,
+   "FILHOS DE PESCADORES",
+   0
+  ],
+  [
+   61.95,
+   63.13,
+   "APRENDEM A LER ALI.",
+   1
+  ],
+  [
+   63.77,
+   64.96,
+   "EM 1300,",
+   0
+  ],
+  [
+   64.96,
+   66.23,
+   "AS LENTES DOS COPISTAS",
+   0
+  ],
+  [
+   66.23,
+   67.0,
+   "VIRAM OS PRIMEIROS",
+   0
+  ],
+  [
+   67.0,
+   67.93,
+   "TELESCÓPIOS.",
+   1
+  ],
+  [
+   68.56,
+   69.61,
+   "ASTRÔNOMOS ENXERGAM",
+   0
+  ],
+  [
+   69.61,
+   70.46,
+   "CRATERAS NA LUA",
+   0
+  ],
+  [
+   70.46,
+   70.96,
+   "E OS ANÉIS",
+   0
+  ],
+  [
+   70.96,
+   71.75,
+   "DE SATURNO.",
+   1
+  ],
+  [
+   72.38,
+   73.95,
+   "EM 1650,",
+   0
+  ],
+  [
+   74.07,
+   74.96,
+   "UM INCÊNDIO ATINGE",
+   1
+  ],
+  [
+   74.96,
+   75.84,
+   "A BIBLIOTECA,",
+   0
+  ],
+  [
+   75.84,
+   76.55,
+   "COMO NO TEMPO",
+   0
+  ],
+  [
+   76.55,
+   77.2,
+   "DE CÉSAR.",
+   0
+  ],
+  [
+   77.83,
+   79.12,
+   "MAS NADA SE PERDE:",
+   0
+  ],
+  [
+   79.12,
+   79.87,
+   "CADA LIVRO TEM",
+   0
+  ],
+  [
+   79.87,
+   81.36,
+   "CÓPIAS EM MIL CIDADES.",
+   1
+  ],
+  [
+   81.99,
+   82.47,
+   "HOJE,",
+   0
+  ],
+  [
+   82.59,
+   83.32,
+   "VOCÊ ENTRA NUMA",
+   0
+  ],
+  [
+   83.32,
+   84.67,
+   "BIBLIOTECA EM CADA ESQUINA,",
+   1
+  ],
+  [
+   84.67,
+   85.94,
+   "ABERTA DIA E NOITE.",
+   0
+  ],
+  [
+   86.57,
+   87.92,
+   "HÁ TELESCÓPIOS NAS PRAÇAS",
+   1
+  ],
+  [
+   87.92,
+   88.82,
+   "E MAPAS DO CÉU",
+   0
+  ],
+  [
+   88.82,
+   89.73,
+   "NAS PAREDES.",
+   0
+  ],
+  [
+   90.37,
+   91.08,
+   "AGORA,",
+   0
+  ],
+  [
+   91.08,
+   91.81,
+   "OS SÁBIOS QUEREM",
+   0
+  ],
+  [
+   91.81,
+   92.75,
+   "UMA CÓPIA DE TUDO",
+   0
+  ],
+  [
+   92.75,
+   93.78,
+   "LONGE DO FOGO.",
+   1
+  ],
+  [
+   94.41,
+   95.62,
+   "ONDE GUARDAR A PRÓXIMA",
+   1
+  ],
+  [
+   95.62,
+   97.05,
+   "BIBLIOTECA DE ALEXANDRIA?",
+   0
+  ],
+  [
+   97.69,
+   98.09,
+   "UM:",
+   0
+  ],
+  [
+   98.19,
+   99.05,
+   "NUMA NAVE RUMO",
+   1
+  ],
+  [
+   99.05,
+   100.0,
+   "A OUTRA ESTRELA.",
+   0
+  ],
+  [
+   100.63,
+   101.3,
+   "DOIS:",
+   0
+  ],
+  [
+   101.3,
+   102.39,
+   "NUMA CAVERNA GELADA",
+   1
+  ],
+  [
+   102.39,
+   103.55,
+   "NO ALTO DA MONTANHA.",
+   0
+  ],
+  [
+   104.19,
+   105.69,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "nome": "titulo",
+   "molde": 11,
+   "ceu": "por_do_sol",
+   "agua": true,
+   "chao": "areia",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_biblioteca"
+   ],
+   "pessoas": [
+    "copista",
+    "marinheiro",
+    "medica"
+   ],
+   "titulo": [
+    "A BIBLIOTECA",
+    "ETERNA"
+   ],
+   "efeitos": [
+    "brasas"
+   ],
+   "ini": 0.0,
+   "fim": 4.8
+  },
+  {
+   "nome": "gancho",
+   "molde": 3,
+   "ceu": "tarde",
+   "chao": "areia",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_biblioteca",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    "bibliotecario"
+   ],
+   "camera": "zoom_out",
+   "surge": true,
+   "efeitos": [
+    "poeira"
+   ],
+   "ini": 4.8,
+   "fim": 8.77
+  },
+  {
+   "nome": "cesar",
+   "molde": 6,
+   "ceu": "fogo",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "cesar",
+     "expressao": "bravo"
+    }
+   ],
+   "placa": "48 a.C.",
+   "rotulo": {
+    "texto": "JÚLIO CÉSAR",
+    "x": 220,
+    "y": 780,
+    "em": 3.2
+   },
+   "efeitos": [
+    "brasas"
+   ],
+   "rota": [
+    700,
+    760
+   ],
+   "ini": 8.77,
+   "fim": 15.18
+  },
+  {
+   "nome": "duvida",
+   "molde": 4,
+   "parede": "escura",
+   "fundo": [
+    "AL_estante",
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_rolo"
+   ],
+   "pessoas": [
+    "bibliotecario"
+   ],
+   "grande": {
+    "texto": "?",
+    "x": 330,
+    "y": 620,
+    "tam": 260,
+    "em": 1.1,
+    "ate": 3.8
+   },
+   "efeitos": [
+    "fumaca"
+   ],
+   "ini": 15.18,
+   "fim": 21.43
+  },
+  {
+   "nome": "pergunta",
+   "molde": 10,
+   "antes": {
+    "pecas": [
+     "AL_biblioteca"
+    ],
+    "pessoa": "bibliotecario"
+   },
+   "depois": {
+    "pecas": [
+     "AL_biblioteca"
+    ],
+    "pessoa": "bibliotecario"
+   },
+   "ini": 21.43,
+   "fim": 25.95
+  },
+  {
+   "nome": "copistas",
+   "molde": 4,
+   "parede": "pedra",
+   "camera": "pan",
+   "fundo": [
+    "AL_estante",
+    "AL_estante",
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_caixa",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "copista",
+     "expressao": "feliz"
+    }
+   ],
+   "placa": "SÉCULO II",
+   "grande": {
+    "texto": "×10",
+    "x": 300,
+    "y": 640,
+    "em": 2.5
+   },
+   "surge": true,
+   "surge_em": 2.8,
+   "ini": 25.95,
+   "fim": 30.26
+  },
+  {
+   "nome": "navios",
+   "molde": 6,
+   "ceu": "dia",
+   "fundo": [
+    "AL_farol"
+   ],
+   "pecas": [
+    "AL_navio",
+    "AL_caixa",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    "marinheiro"
+   ],
+   "rotulo": [
+    {
+     "texto": "PARA ATENAS",
+     "x": 800,
+     "y": 700,
+     "em": 1.2
+    },
+    {
+     "texto": "E PARA A PÉRSIA",
+     "x": 800,
+     "y": 790,
+     "em": 2.6
+    }
+   ],
+   "camera": "zoom_out",
+   "ini": 30.26,
+   "fim": 34.01
+  },
+  {
+   "nome": "voce",
+   "molde": 9,
+   "pecas": [
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "feliz"
+    }
+   ],
+   "rotulo": {
+    "texto": "VOCÊ",
+    "x": 150,
+    "y": 760,
+    "em": 0.4
+   },
+   "ini": 34.01,
+   "fim": 38.64
+  },
+  {
+   "nome": "anatomia",
+   "molde": 2,
+   "parede": "clara",
+   "pecas": [
+    "AL_estante",
+    "AL_estante"
+   ],
+   "pessoas": [
+    "medica",
+    "copista400"
+   ],
+   "placa": "400 d.C.",
+   "rotulo": {
+    "texto": "ANATOMIA",
+    "x": 540,
+    "y": 760,
+    "em": 2.0
+   },
+   "ini": 38.64,
+   "fim": 43.29
+  },
+  {
+   "nome": "hospitais",
+   "molde": 8,
+   "parede": "pedra",
+   "mapa": "AL_mapa",
+   "pessoas": [
+    "medica"
+   ],
+   "pontos": [
+    [
+     0.3,
+     0.55,
+     "Roma"
+    ],
+    [
+     0.5,
+     0.7,
+     "Alexandria"
+    ],
+    [
+     0.65,
+     0.4,
+     "Atenas"
+    ],
+    [
+     0.85,
+     0.5,
+     "Antioquia"
+    ]
+   ],
+   "pontos_em": 1.2,
+   "rotulo": {
+    "texto": "MEDITERRÂNEO",
+    "x": 540,
+    "y": 300,
+    "em": 0.5
+   },
+   "ini": 43.29,
+   "fim": 47.08
+  },
+  {
+   "nome": "ceu",
+   "molde": 7,
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "no_ceu": [
+    "AL_constelacoes"
+   ],
+   "ceu_tam": [
+    700
+   ],
+   "pessoas": [
+    "astronoma",
+    "copista"
+   ],
+   "placa": "850 d.C.",
+   "ini": 47.08,
+   "fim": 51.95
+  },
+  {
+   "nome": "oceano",
+   "molde": 6,
+   "ceu": "noite",
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    "navegador"
+   ],
+   "camera": "pan",
+   "rota": [
+    500,
+    900
+   ],
+   "ini": 51.95,
+   "fim": 55.81
+  },
+  {
+   "nome": "filial",
+   "molde": 3,
+   "ceu": "dia",
+   "chao": "areia",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_biblioteca"
+   ],
+   "pessoas": [
+    "professora",
+    "meninaPescadora"
+   ],
+   "placa": "1100 d.C.",
+   "rotulo": {
+    "texto": "ABERTA A TODOS",
+    "x": 640,
+    "y": 560,
+    "em": 2.5
+   },
+   "tam": 1.05,
+   "ini": 55.81,
+   "fim": 63.37
+  },
+  {
+   "nome": "lentes",
+   "molde": 4,
+   "parede": "pedra",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_lente",
+    "AL_lente"
+   ],
+   "pessoas": [
+    "copista1300"
+   ],
+   "placa": "1300 d.C.",
+   "rotulo": {
+    "texto": "TELESCÓPIO",
+    "x": 790,
+    "y": 760,
+    "em": 2.5
+   },
+   "ini": 63.37,
+   "fim": 68.17
+  },
+  {
+   "nome": "lua",
+   "molde": 7,
+   "ceu": "noite",
+   "chao": "pedra",
+   "no_ceu": [
+    "AL_lua",
+    "AL_saturno"
+   ],
+   "ceu_em": [
+    0.2,
+    2.2
+   ],
+   "pecas": [
+    "AL_telescopio"
+   ],
+   "pessoas": [
+    "astronoma",
+    "copista1300"
+   ],
+   "rotulo": [
+    {
+     "texto": "CRATERAS DA LUA",
+     "x": 640,
+     "y": 260,
+     "em": 0.8
+    },
+    {
+     "texto": "ANÉIS DE SATURNO",
+     "x": 760,
+     "y": 1000,
+     "em": 2.4
+    }
+   ],
+   "ini": 68.17,
+   "fim": 71.99
+  },
+  {
+   "nome": "incendio",
+   "molde": 3,
+   "ceu": "fogo",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_biblioteca"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "surpreso"
+    }
+   ],
+   "placa": "1650 d.C.",
+   "fogo": true,
+   "fogo_em": 1.0,
+   "efeitos": [
+    "brasas"
+   ],
+   "ini": 71.99,
+   "fim": 77.44
+  },
+  {
+   "nome": "copias",
+   "molde": 8,
+   "parede": "pedra",
+   "mapa": "globe",
+   "pessoas": [
+    "bibliotecario1650"
+   ],
+   "pontos": [
+    [
+     0.25,
+     0.35,
+     ""
+    ],
+    [
+     0.4,
+     0.6,
+     ""
+    ],
+    [
+     0.6,
+     0.3,
+     ""
+    ],
+    [
+     0.7,
+     0.65,
+     ""
+    ],
+    [
+     0.5,
+     0.45,
+     ""
+    ],
+    [
+     0.8,
+     0.4,
+     ""
+    ]
+   ],
+   "pontos_passo": 0.3,
+   "contador": 1000,
+   "contador_em": 1.0,
+   "rotulo": {
+    "texto": "CÓPIAS EM MIL CIDADES",
+    "x": 540,
+    "y": 300,
+    "em": 0.5
+   },
+   "ini": 77.44,
+   "fim": 81.6
+  },
+  {
+   "nome": "hoje",
+   "molde": 5,
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [
+    "AL_predio"
+   ],
+   "pecas": [
+    "AL_biblioteca"
+   ],
+   "anda": true,
+   "pessoas": [
+    "voceHoje",
+    "lucas",
+    "ana",
+    "joao",
+    "bia",
+    "pedro"
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "ABERTA 24H",
+    "x": 540,
+    "y": 560,
+    "em": 2.6
+   },
+   "ini": 81.6,
+   "fim": 86.18
+  },
+  {
+   "nome": "praca",
+   "molde": 2,
+   "ceu": "noite",
+   "chao": "rua",
+   "pecas": [
+    "AL_telescopio",
+    "AL_telescopio"
+   ],
+   "pessoas": [
+    "lucas",
+    "ana"
+   ],
+   "camera": "zoom_out",
+   "ini": 86.18,
+   "fim": 89.98
+  },
+  {
+   "nome": "pergunta_final",
+   "molde": 9,
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    "sabiaHoje",
+    {
+     "quem": "voceHoje",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "surge_em": 1.0,
+   "grande": {
+    "texto": "?",
+    "x": 540,
+    "y": 520,
+    "tam": 260,
+    "em": 4.5
+   },
+   "ini": 89.98,
+   "fim": 97.29
+  },
+  {
+   "nome": "escolhas",
+   "molde": 12,
+   "opcoes": [
+    {
+     "texto": "NAVE RUMO A OUTRA ESTRELA",
+     "pecas": [
+      "AL_nave"
+     ],
+     "pessoa": "voceHoje",
+     "em": 0.2
+    },
+    {
+     "texto": "CAVERNA GELADA",
+     "pecas": [
+      "AL_montanha"
+     ],
+     "pessoa": "sabiaHoje",
+     "em": 3.0
+    }
+   ],
+   "ini": 97.29,
+   "fim": 103.79
+  },
+  {
+   "nome": "fim",
+   "molde": 12,
+   "cartao": true,
+   "pergunta": "ONDE GUARDAR A PRÓXIMA BIBLIOTECA?",
+   "opcoes": [
+    {
+     "texto": "NAVE RUMO A OUTRA ESTRELA",
+     "pecas": [
+      "AL_nave"
+     ]
+    },
+    {
+     "texto": "CAVERNA GELADA",
+     "pecas": [
+      "AL_montanha"
+     ]
+    }
+   ],
+   "ini": 103.79,
+   "fim": 109.42
+  }
+ ]
+}
