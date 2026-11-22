@@ -21,6 +21,7 @@ function AL_titulo(ctx, t, T) {
   stars(ctx, T, 40, 3, 480); sun(ctx, 300, 1150, 70, '#FFE8B0', '#FF9A5C');
   hills(ctx, 1130, 40, '#5A3A4A', 4, 0, .5);
   AL_mar(ctx, 1150, '#8A5A6A', '#1E1A2A', T, 'rgba(255,200,150,.4)');
+  AL_chao(ctx, 1225, '#B08A6A', '#3A2A24');
   AL_farol(ctx, 900, 1240, 520, T, 1);
   AL_biblioteca(ctx, 120, 1330, 560, 360, T, { abre: 1 });
   for (let k = 0; k < 9; k++) { const x = (200 + k * 140 + T * 60 * (1 + hash(k))) % 1300 - 100, y = 820 + hash(k * 3) * 260 + Math.sin(T * 2 + k) * 20; AL_rolo(ctx, x, y, .9, Math.sin(T * 1.5 + k) * .3); }
@@ -239,9 +240,10 @@ function AL_filial(ctx, t, T) {
     ctx.save(); ctx.globalAlpha = 1; cam(ctx, 1 + t * .02 + dentro * .6, 560, 1150);
     sky(ctx, [[0, '#7AA8D8'], [.55, '#E0E8E8'], [1, '#E8D0A0']]); sun(ctx, 180, 480, 55);
     AL_mar(ctx, 1000, '#5A98C0', '#1E5070', T);
+    ctx.fillStyle = lg(ctx, 0, 955, 0, 1010, [[0, '#D8BC90'], [1, '#A88A60']]); ctx.fillRect(-300, 955, W + 600, 55);
     [[140, 1080, .3], [900, 1060, .25]].forEach(([x, y, s]) => AL_navio(ctx, x, y, s, T, {}));
     [[60, 990, 300, 200], [720, 990, 300, 210]].forEach(([x, yb, w, h], i) => { const p = prog(t, 1.8 + i * .4, 2.4 + i * .4); if (p > 0) { ctx.save(); ctx.translate(x + w / 2, yb); ctx.scale(easeBack(p), easeBack(p)); AL_biblioteca(ctx, -w / 2, 0, w, h, T, { n: 4 }); ctx.restore(); } });
-    ctx.fillStyle = lg(ctx, 0, 1180, 0, 1430, [[0, '#C8A878'], [1, '#6A4E34']]); ctx.fillRect(-300, 1200, W + 600, 400);
+    ctx.fillStyle = lg(ctx, 0, 1180, 0, 1430, [[0, '#C8A878'], [1, '#6A4E34']]); ctx.fillRect(-300, 1200, W + 600, 1200);
     const p = prog(t, 2.2, 2.8); ctx.save(); ctx.translate(560, 1260); ctx.scale(easeBack(p), easeBack(p)); AL_biblioteca(ctx, -260, 0, 520, 380, T, { n: 5, abre: prog(t, 3.4, 4.0) }); ctx.restore();
     AL_b(ctx, 150, 1405, 3.8, 'meninoPescador', { t: T, seed: 2, anda: t > 3.4, olhar: { x: 1, y: -.3 } });
     AL_b(ctx, 960, 1405, 3.8, 'meninaPescadora', { t: T, seed: 4, flip: true, olhar: { x: -1, y: -.3 } });

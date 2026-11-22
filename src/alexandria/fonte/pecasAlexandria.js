@@ -2,13 +2,30 @@
 const AL = { marmore: '#EFE6D2', papiro: '#E2D5B2', ocre: '#E0A458', terracota: '#B5523B', turquesa: '#3FB8AF',
   ouro: '#D4A017', mar: '#2F5DA8', noite: '#1B1F3B', madeiraC: '#9A6A3E', madeiraE: '#5A3A22', verde: '#3FA37A' };
 
-// rolo de papiro deitado (x,y = centro)
-function AL_rolo(ctx, x, y, s, rot = 0, col = AL.papiro) {
+// ===== APOIO E ESCALA (dono 22/11) — lido pelo autonomo/conferir.py =====
+// Cada cena chama AP_ini(ctx, yh) logo depois da câmera (yh = linha do horizonte; null = mapa/painel sem chão).
+// Cada chão/água/tampo chama AP_sup; cada peça chama AP_obj (tipo, nome, x, base y, altura). Tudo é guardado nas
+// coordenadas da cena (desfaz câmera, parallax e escalas), só quando a conferência está ligada (AP != null).
+let AP = null;
+const AP_LARGO = [-3000, 4000];
+function AP_ini(ctx, yh) { if (AP) { AP.M0 = ctx.getTransform(); AP.yh = yh; AP.ini = true; } }
+function AP_m(ctx) { return (AP.M0 || new DOMMatrix()).inverse().multiply(ctx.getTransform()); }
+function AP_pt(ctx, x, y) { const p = AP_m(ctx).transformPoint(new DOMPoint(x, y)); return [p.x, p.y]; }
+function AP_k(ctx) { const m = AP_m(ctx); return Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)); }
+function AP_sup(ctx, tipo, x0, x1, y) { if (!AP) return; const [a, yy] = AP_pt(ctx, x0, y), [b] = AP_pt(ctx, x1, y); AP.sup.push({ tipo, x0: Math.round(Math.min(a, b)), x1: Math.round(Math.max(a, b)), y: Math.round(yy) }); }
+function AP_obj(ctx, tipo, nome, x, yb, h) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb); AP.obj.push({ tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * AP_k(ctx)) }); }
+const AL_chaoTodo = (ctx, y) => AP_sup(ctx, 'chao', AP_LARGO[0], AP_LARGO[1], y);
+// escala do boneco numa linha de chão yb (frente = 5,4 em y=1405), para desenhar tudo na proporção certa
+const AL_esc = (yb, yh) => 5.4 * (yb - yh) / (1405 - yh);
+
+// rolo de papiro deitado (x,y = centro). apoio=false: rolo em cima de outro rolo (pilha), não conta como solto
+function AL_rolo(ctx, x, y, s, rot = 0, col = AL.papiro, apoio = true) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(s, s);
   rrect(ctx, -30, -9, 60, 18, 9); ctx.fillStyle = lg(ctx, 0, -9, 0, 9, [[0, shade(col, .12)], [1, shade(col, -.28)]]); ctx.fill();
   [-30, 30].forEach(ex => { ellipse(ctx, ex, 0, 5, 10); ctx.fillStyle = shade(col, -.12); ctx.fill(); ellipse(ctx, ex, 0, 2, 4); ctx.fillStyle = '#7A5A3A'; ctx.fill(); });
   ctx.fillStyle = AL.terracota; ctx.fillRect(-3, -9, 6, 18);
   ctx.restore();
+  if (apoio) AP_obj(ctx, 'rolo', 'rolo', x, y + 9 * s, 60 * s);
 }
 
 // estante de rolos (x,yb = canto esquerdo do chão). o: queimada 0..1, cheia 0..1, rows, cols, seed, fogo 0..1
@@ -32,6 +49,7 @@ function AL_estante(ctx, x, yb, w, h, t, o = {}) {
     }
   }
   if (o.fogo > 0) { ctx.save(); ctx.globalAlpha = o.fogo; fire(ctx, x + w * .5, yb - h, w * .9, h * .45 * o.fogo, t, seed); ctx.restore(); }
+  AP_obj(ctx, 'estante', 'estante', x + w / 2, yb, h);
 }
 
 // lamparina de óleo (x,y = base)
@@ -46,18 +64,23 @@ function AL_lamparina(ctx, x, y, s, t, acesa = 1) {
     ctx.fillStyle = lg(ctx, 0, -58, 0, -20, [[0, 'rgba(255,240,180,.95)'], [1, 'rgba(255,140,40,.95)']]); ctx.globalAlpha = acesa; ctx.fill();
   }
   ctx.restore();
+  AP_obj(ctx, 'lamparina', 'lamparina', x, y, 0);
 }
 
-// mesa de trabalho (x,yb = centro no chão). o.lamp, o.rolos
+// mesa (x,yb = centro no chão). esc = escala do boneco nessa linha (altura da mesa = 0,44 boneco). o.lamp, o.rolos
+// Devolve a altura do tampo (para pôr coisas em cima) e registra o tampo como superfície.
 function AL_mesa(ctx, x, yb, w, t, o = {}) {
-  const h = w * .42, top = yb - h;
-  ctx.fillStyle = shade(AL.madeiraE, -.15); ctx.fillRect(x - w / 2 + 14, top, 18, h); ctx.fillRect(x + w / 2 - 32, top, 18, h);
-  ellipse(ctx, x, yb + 4, w * .55, 14); ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fill();
-  poly(ctx, [x - w / 2, top, x + w / 2, top, x + w / 2 + 30, top - 34, x - w / 2 + 30, top - 34]); ctx.fillStyle = lg(ctx, 0, top - 34, 0, top, [[0, shade(AL.madeiraC, .15)], [1, AL.madeiraC]]); ctx.fill();
-  ctx.fillStyle = lg(ctx, 0, top, 0, top + 22, [[0, AL.madeiraE], [1, shade(AL.madeiraE, -.3)]]); ctx.fillRect(x - w / 2, top, w, 22);
-  if (o.rolos) for (let k = 0; k < o.rolos; k++) AL_rolo(ctx, x - w * .35 + k * 38, top - 14 - (k % 2) * 10, .8, .1 * (k % 3 - 1));
-  if (o.lamp) AL_lamparina(ctx, x + w * .3, top - 8, 1, t);
-  return top - 17;   // altura do tampo (para pôr folhas)
+  const k = (o.esc || 5.4) / 5.4, h = 44 * 5.4 * k, top = yb - h, e = 34 * k, perna = 18 * k;
+  ctx.fillStyle = shade(AL.madeiraE, -.15); ctx.fillRect(x - w / 2 + 14 * k, top, perna, h); ctx.fillRect(x + w / 2 - 14 * k - perna, top, perna, h);
+  ellipse(ctx, x, yb + 4 * k, w * .55, 14 * k); ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fill();
+  poly(ctx, [x - w / 2, top, x + w / 2, top, x + w / 2 + 30 * k, top - e, x - w / 2 + 30 * k, top - e]); ctx.fillStyle = lg(ctx, 0, top - e, 0, top, [[0, shade(AL.madeiraC, .15)], [1, AL.madeiraC]]); ctx.fill();
+  ctx.fillStyle = lg(ctx, 0, top, 0, top + 22 * k, [[0, AL.madeiraE], [1, shade(AL.madeiraE, -.3)]]); ctx.fillRect(x - w / 2, top, w, 22 * k);
+  const sup = top - e / 2;
+  AP_obj(ctx, 'mesa', 'mesa', x, yb, h);
+  AP_sup(ctx, 'linha', x - w / 2, x + w / 2 + 30 * k, sup);
+  if (o.rolos) for (let i = 0; i < o.rolos; i++) AL_rolo(ctx, x - w * .35 + i * 60 * k * 1.1, sup - 9 * 1.6 * k, 1.6 * k, 0);
+  if (o.lamp) AL_lamparina(ctx, x + w * .3, sup, 1.2 * k, t);
+  return sup;
 }
 
 // folha de papiro aberta (x,y = centro); fn desenha o conteúdo em coordenadas -1..1
@@ -68,6 +91,16 @@ function AL_folha(ctx, x, y, w, h, fn) {
   if (fn) { ctx.save(); ctx.scale(w / 2 * .85, h / 2 * .8); fn(); ctx.restore(); }
   ctx.restore();
 }
+// folha presa num cavalete de madeira que PISA em yb (chão ou tampo da mesa)
+function AL_cavalete(ctx, x, yb, w, h, pe, fn) {
+  const cy = yb - pe - h / 2;
+  ctx.strokeStyle = AL.madeiraE; ctx.lineCap = 'round'; ctx.lineWidth = Math.max(6, w * .035);
+  [[-w * .38, -w * .3], [w * .38, w * .3]].forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(x + a, yb); ctx.lineTo(x + b, cy - h * .45); ctx.stroke(); });
+  ctx.beginPath(); ctx.moveTo(x, cy); ctx.lineTo(x + w * .12, yb); ctx.stroke();
+  ctx.fillStyle = AL.madeiraC; ctx.fillRect(x - w * .5, cy + h / 2 - 4, w, 14);
+  AL_folha(ctx, x, cy, w, h, fn);
+  AP_obj(ctx, 'cavalete', 'cavalete', x, yb, pe + h);
+}
 
 // fachada da Biblioteca: templo de Roma + porta com luz. o.abre 0..1, o.luz, o.col
 function AL_biblioteca(ctx, x, yb, w, h, t, o = {}) {
@@ -76,6 +109,8 @@ function AL_biblioteca(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = '#2A1E18'; ctx.fillRect(dx, dy, dw, dh);
   if (ab > 0) { ctx.save(); ctx.globalAlpha = ab; ctx.fillStyle = lg(ctx, 0, dy, 0, dy + dh, [[0, '#FFE9B8'], [1, '#F2B860']]); ctx.fillRect(dx + dw * (.5 - ab / 2), dy, dw * ab, dh); ctx.restore(); glow(ctx, dx + dw / 2, dy + dh * .6, dw * 2.2, '#FFD27A', .5 * ab * (o.luz ?? 1)); }
   ctx.fillStyle = shade(AL.madeiraC, -.1); ctx.fillRect(dx, dy, dw * (.5 - ab / 2), dh); ctx.fillRect(dx + dw * (.5 + ab / 2), dy, dw * (.5 - ab / 2), dh);
+  AP_obj(ctx, 'templo', 'biblioteca', x + w / 2, yb, h);
+  AP_obj(ctx, 'porta', 'porta da biblioteca', x + w / 2, yb, dh);
 }
 
 // farol de Alexandria (x,yb = base)
@@ -91,9 +126,18 @@ function AL_farol(ctx, x, yb, h, t, luz = 1) {
     poly(ctx, [x, ty, x + Math.cos(a) * 1400, ty - 120 + Math.sin(a) * 300, x + Math.cos(a) * 1400, ty + 120 + Math.sin(a) * 300]); ctx.fillStyle = '#FFE8A8'; ctx.fill(); ctx.restore();
     fire(ctx, x, ty + 6, h * .1, h * .12, t, 3);
   }
+  AP_obj(ctx, 'farol', 'farol', x, yb, h);
 }
 
-// navio de vela quadrada (x,y = linha d'água). o: flip, fogo 0..1, caixas, vela
+// rochedo/ilha onde ficam o farol e prédios no meio da água (x,yb = centro da base na linha d'água)
+function AL_rocha(ctx, x, yb, w, h) {
+  ctx.beginPath(); ctx.moveTo(x - w / 2, yb + h * .3); ctx.quadraticCurveTo(x - w * .45, yb - h, x, yb - h); ctx.quadraticCurveTo(x + w * .45, yb - h, x + w / 2, yb + h * .3); ctx.closePath();
+  ctx.fillStyle = lg(ctx, x - w / 2, 0, x + w / 2, 0, [[0, '#B8A890'], [1, '#6A5E50']]); ctx.fill();
+  AP_sup(ctx, 'chao', x - w * .4, x + w * .4, yb - h + 6);
+  return yb - h + 6;
+}
+
+// navio de vela quadrada (x,y = linha d'água; comprimento 400 × s). o: flip, fogo 0..1, caixas, vela
 function AL_navio(ctx, x, y, s, t, o = {}) {
   ctx.save(); ctx.translate(x, y + Math.sin(t * 1.8 + x) * 4 * s); ctx.scale(o.flip ? -s : s, s); ctx.rotate(Math.sin(t * 1.3 + x) * .02);
   ctx.strokeStyle = shade(AL.madeiraE, -.2); ctx.lineWidth = 4; for (let k = 0; k < 6; k++) { ctx.beginPath(); ctx.moveTo(-110 + k * 40, -8); ctx.lineTo(-130 + k * 40 + Math.sin(t * 3 + k) * 10, 30); ctx.stroke(); }
@@ -105,13 +149,14 @@ function AL_navio(ctx, x, y, s, t, o = {}) {
   ctx.beginPath(); ctx.moveTo(-sw - 10, -236); ctx.quadraticCurveTo(0, -246, sw + 10, -236); ctx.quadraticCurveTo(sw + 24, -150, sw, -60); ctx.lineTo(-sw, -60); ctx.quadraticCurveTo(-sw - 24, -150, -sw - 10, -236); ctx.closePath();
   ctx.fillStyle = lg(ctx, -sw, 0, sw, 0, [[0, AL.papiro], [1, shade(AL.papiro, -.2)]]); ctx.globalAlpha = v; ctx.fill(); ctx.globalAlpha = 1;
   ctx.fillStyle = AL.terracota; ctx.fillRect(-sw - 6, -170, sw * 2 + 12, 16);
-  for (let k = 0; k < (o.caixas || 0); k++) AL_caixa(ctx, -100 + k * 52, -24, .55);
+  for (let k = 0; k < (o.caixas || 0); k++) AL_caixa(ctx, -100 + k * 52, -24, .55, false);
   if (o.fogo > 0) { ctx.save(); ctx.globalAlpha = o.fogo; fire(ctx, 0, -60, 220, 200 * o.fogo, t, 5); fire(ctx, -110, -30, 120, 120 * o.fogo, t, 8); ctx.restore(); }
   ctx.restore();
+  AP_obj(ctx, 'navio', 'navio', x, y, 400 * s);
 }
 
-// caixa de rolos (x,yb = centro no chão)
-function AL_caixa(ctx, x, yb, s) {
+// caixa de rolos (x,yb = centro no chão; altura 64 × s)
+function AL_caixa(ctx, x, yb, s, registra = true) {
   ctx.save(); ctx.translate(x, yb); ctx.scale(s, s);
   poly(ctx, [40, 0, 54, -10, 54, -64, 40, -54]); ctx.fillStyle = shade(AL.madeiraC, -.35); ctx.fill();
   poly(ctx, [-40, -54, 40, -54, 54, -64, -26, -64]); ctx.fillStyle = shade(AL.madeiraC, .1); ctx.fill();
@@ -119,9 +164,10 @@ function AL_caixa(ctx, x, yb, s) {
   ctx.fillStyle = shade(AL.madeiraC, -.25); ctx.fillRect(-40, -30, 80, 6);
   for (let k = 0; k < 4; k++) { circle(ctx, -24 + k * 18, -62, 7); ctx.fillStyle = AL.papiro; ctx.fill(); circle(ctx, -24 + k * 18, -62, 2.5); ctx.fillStyle = '#8A6A44'; ctx.fill(); }
   ctx.restore();
+  if (registra) AP_obj(ctx, 'caixa', 'caixa de rolos', x, yb, 64 * s);
 }
 
-// telescópio de latão num tripé (x,yb = chão). ang em radianos (0 = horizontal p/ direita)
+// telescópio de latão num tripé (x,yb = chão; altura ≈ 150 × s). ang em radianos (0 = horizontal p/ direita)
 function AL_telescopio(ctx, x, yb, s, ang = -.6) {
   ctx.save(); ctx.translate(x, yb); ctx.scale(s, s);
   ctx.strokeStyle = '#5A3A22'; ctx.lineWidth = 7; ctx.lineCap = 'round';
@@ -131,16 +177,20 @@ function AL_telescopio(ctx, x, yb, s, ang = -.6) {
   rrect(ctx, 120, -20, 30, 40, 8); ctx.fillStyle = lg(ctx, 0, -20, 0, 20, [[0, '#E0C070'], [1, '#6A4A18']]); ctx.fill();
   circle(ctx, 150, 0, 14); ctx.fillStyle = '#A8D8F0'; ctx.fill();
   ctx.restore();
+  AP_obj(ctx, 'telescopio', 'telescópio', x, yb, 150 * s);
 }
 
-// lente de vidro (x,y centro)
-function AL_lente(ctx, x, y, r, brilho = 0) {
+// lente de vidro num suporte de latão que pisa em yb (r = raio da lente)
+function AL_lente(ctx, x, yb, r, brilho = 0) {
+  const y = yb - r * 2.2;
+  ctx.fillStyle = '#7A5A20'; ctx.fillRect(x - r * .12, y + r, r * .24, r * 1.2); ellipse(ctx, x, yb, r * .7, r * .2); ctx.fill();
   glow(ctx, x, y, r * 3, '#FFF6D0', .4 * brilho);
   circle(ctx, x, y, r); ctx.fillStyle = '#7A5A20'; ctx.fill();
   circle(ctx, x, y, r * .82); ctx.fillStyle = rg(ctx, x - r * .3, y - r * .3, 0, r, [[0, 'rgba(240,250,255,.95)'], [1, 'rgba(140,190,220,.75)']]); ctx.fill();
+  AP_obj(ctx, 'lente', 'lente', x, yb, r * 2);
 }
 
-// Lua com crateras / Saturno com anéis
+// Lua com crateras / Saturno com anéis (vistos pela luneta: não precisam de chão)
 function AL_lua(ctx, x, y, r) {
   glow(ctx, x, y, r * 2, '#FFF6D8', .35);
   circle(ctx, x, y, r); ctx.fillStyle = rg(ctx, x - r * .3, y - r * .3, 0, r * 1.1, [[0, '#F6F2E4'], [1, '#A8A296']]); ctx.fill();
@@ -183,7 +233,7 @@ function AL_ponto(ctx, x, y, p, col = AL.terracota, nome) {
   if (nome) { ctx.save(); ctx.globalAlpha = clamp(p * 2); ctx.font = '34px Anton'; ctx.textAlign = 'center'; ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(40,24,10,.8)'; ctx.strokeText(nome, x, y - 26); ctx.fillStyle = '#FFF4DA'; ctx.fillText(nome, x, y - 26); ctx.restore(); }
 }
 
-// ícone de hospital: casinha com cruz verde e livro (x,yb)
+// ícone de hospital no mapa: casinha com cruz verde (x,yb)
 function AL_hospital(ctx, x, yb, s, p) {
   if (p <= 0) return; const k = easeBack(p) * s;
   ctx.save(); ctx.translate(x, yb); ctx.scale(k, k);
@@ -202,6 +252,9 @@ function AL_anatomia(ctx, p, t) {
   if (p > 0) { const b = 1 + .15 * Math.sin(t * 8); ctx.save(); ctx.globalAlpha = p; ctx.translate(-.08, -.22); ctx.scale(b, b); ctx.beginPath(); ctx.moveTo(0, .08); ctx.bezierCurveTo(-.14, -.02, -.08, -.14, 0, -.06); ctx.bezierCurveTo(.08, -.14, .14, -.02, 0, .08); ctx.fillStyle = '#C8553D'; ctx.fill(); ctx.restore(); }
 }
 
+// casas antigas no fundo (base yb); altura proporcional ao boneco dessa linha (B px)
+function AL_casa(ctx, x, yb, w, h, col) { insula(ctx, x, yb, w, h, col); AP_obj(ctx, 'casa', 'casa', x + w / 2, yb, h); }
+
 // prédio de hoje: torre de vidro sobre colunas de mármore (x,yb = canto esquerdo)
 function AL_predio(ctx, x, yb, w, h, t, o = {}) {
   const d = w * .18, base = h * .18;
@@ -211,9 +264,10 @@ function AL_predio(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = shade(AL.marmore, -.1); ctx.fillRect(x - 10, yb - base - 14, w + 20, 16);
   const n = Math.max(3, Math.round(w / 70)); for (let k = 0; k < n; k++) column(ctx, x + 10 + k * (w - 20) / (n - 1), yb, 26, base - 14, AL.marmore, -1);
   if (o.neon) { ctx.save(); ctx.shadowColor = o.neon; ctx.shadowBlur = 24; ctx.strokeStyle = o.neon; ctx.lineWidth = 5; ctx.strokeRect(x, yb - h, w, h - base); ctx.restore(); }
+  AP_obj(ctx, 'predio', 'prédio', x + w / 2, yb, h);
 }
 
-// nave-biblioteca (opção 1) e montanha com caverna (opção 2)
+// nave-biblioteca (opção 1) e montanha com caverna (opção 2) — painéis das opções
 function AL_nave(ctx, x, y, s, t, fogo = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
   if (fogo > 0) { glow(ctx, 0, 40, 220, '#FFB060', .6 * fogo); for (let k = 0; k < 3; k++) fire(ctx, -50 + k * 50, 120, 60, 140 * fogo, t, k + 2); }
@@ -224,20 +278,28 @@ function AL_nave(ctx, x, y, s, t, fogo = 1) {
   [-1, 1].forEach(sd => { poly(ctx, [sd * 90, -20, sd * 150, 80, sd * 90, 60]); ctx.fillStyle = shade(AL.ouro, sd > 0 ? -.25 : 0); ctx.fill(); });
   ctx.restore();
 }
+// plataforma de lançamento: a nave pisa nela até decolar
+function AL_plataforma(ctx, x, yb, w) {
+  ctx.fillStyle = lg(ctx, 0, yb, 0, yb + 60, [[0, '#8A94A8'], [1, '#3A4256']]); ctx.fillRect(x - w / 2, yb, w, 60);
+  ctx.fillStyle = '#5A6278'; for (let k = 0; k < 4; k++) ctx.fillRect(x - w / 2 + 20 + k * (w - 60) / 3, yb + 60, 20, 200);
+  AP_sup(ctx, 'linha', x - w / 2, x + w / 2, yb);
+}
 function AL_montanha(ctx, cx, yb, w, h, t, luz = 1) {
   poly(ctx, [cx - w / 2, yb, cx - w * .05, yb - h, cx + w / 2, yb]); ctx.fillStyle = lg(ctx, cx - w / 2, 0, cx + w / 2, 0, [[0, '#8A94A8'], [1, '#4A5266']]); ctx.fill();
   poly(ctx, [cx - w * .05, yb - h, cx + w * .5 * .35, yb - h * .65, cx + w * .02, yb - h * .58, cx - w * .2, yb - h * .66]); ctx.fillStyle = '#F4F8FC'; ctx.fill();
-  const dx = cx + w * .02, dy = yb - h * .32;
-  rrect(ctx, dx - 70, dy - 110, 140, 130, [70, 70, 0, 0]); ctx.fillStyle = '#1A1E2A'; ctx.fill();
-  if (luz > 0) { ctx.save(); ctx.globalAlpha = luz; rrect(ctx, dx - 54, dy - 94, 108, 114, [54, 54, 0, 0]); ctx.fillStyle = lg(ctx, 0, dy - 94, 0, dy + 20, [[0, '#BFF6FF'], [1, '#5AB8D0']]); ctx.fill(); ctx.restore(); glow(ctx, dx, dy - 40, 220, '#9FE8FF', .45 * luz); }
+  const dx = cx + w * .02, dy = yb - h * .32, k = w / 1200;
+  rrect(ctx, dx - 70 * k, dy - 110 * k, 140 * k, 130 * k, [70 * k, 70 * k, 0, 0]); ctx.fillStyle = '#1A1E2A'; ctx.fill();
+  if (luz > 0) { ctx.save(); ctx.globalAlpha = luz; rrect(ctx, dx - 54 * k, dy - 94 * k, 108 * k, 114 * k, [54 * k, 54 * k, 0, 0]); ctx.fillStyle = lg(ctx, 0, dy - 94 * k, 0, dy + 20 * k, [[0, '#BFF6FF'], [1, '#5AB8D0']]); ctx.fill(); ctx.restore(); glow(ctx, dx, dy - 40 * k, 220 * k, '#9FE8FF', .45 * luz); }
 }
 
-// pessoas = boneco normal (presets BN.ALEXANDRIA, folha v2 aprovada 22/11). Mesmo molde do VK_b.
+// pessoas = boneco normal (presets BN.ALEXANDRIA / BN.NORMAIS, folha v2 aprovada 22/11). Mesmo molde do VK_b.
+const AL_CRIANCAS = new Set(['meninaPescadora', 'meninoPescador']);
 function AL_b(ctx, x, y, s, nome, o = {}) {
   const { t = 0, seed = 0, flip = false, anda = false, roupa, ...resto } = o, f = t * 30, k = s / 5.4;
   const base = BN.ALEXANDRIA[nome] || BN.NORMAIS[nome];
   const yy = y + Math.sin((f + seed * 23) / 18) * 1.2 * k - (anda ? Math.abs(Math.sin(f / 4)) * 10 * k : 0);
   BN.desenharBoneco(ctx, Object.assign({}, base, resto, { x, y: yy, escala: s, espelhar: flip,
     piscando: (Math.floor(f) + seed * 37) % 105 < 3, roupa: Object.assign({}, base.roupa, roupa) }));
+  AP_obj(ctx, AL_CRIANCAS.has(nome) ? 'crianca' : 'pessoa', nome, x, y, 100 * s);
   return { x, y: yy, s, d: flip ? -1 : 1 };
 }
