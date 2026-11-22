@@ -17,6 +17,7 @@ export const PARTES = [
   ["vikings/pecasVikings.js", "src/vikings/fonte/pecasVikings.js"],
   ["alexandria/pecasAlexandria.js", "src/alexandria/fonte/pecasAlexandria.js"],
   ["auto/pessoas.js", "src/auto/pecas/pessoas.js"],
+  ["auto/novas.js", "src/auto/pecas/novas.js"],   // peças desenhadas depois (Claude/ChatGPT, de memoria/faltando.json)
   // etapa D: só os ajudantes de texto, placa, legenda, vapor entre cenas e marca d'água (o resto do arquivo são cenas)
   ["egito/cenasEgito.js (só ajudantes)", "src/egito/fonte/cenasEgito.js",
     ["E_txt", "E_rotulo", "E_placa", "E_nuvem", "E_palmeira", "EG_CAP_TOP", "EG_wrap", "EG_off", "EG_msk", "EG_PUFFS", "EG_TR", "EG_marca"]],
