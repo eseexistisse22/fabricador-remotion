@@ -55,7 +55,7 @@ const saida = [
   "// BN = { desenharBoneco, ALEXANDRIA, NORMAIS } de src/personagens/boneco.ts (passado pelo VideoAlexandria.tsx)",
   "export function criarMotorAlexandria(BN) {",
   ...partes.map(([n, c]) => `// ===== ${n} =====\n${c}`),
-  "return { render: renderAlexandria, DURACAO: DURACAO_ALEXANDRIA, CENAS: AL_SCENES.map(([a, b, f]) => [a, b, f.name]) };",
+  "return { render: renderAlexandria, apoio: AL_apoio, DURACAO: DURACAO_ALEXANDRIA, CENAS: AL_SCENES.map(([a, b, f]) => [a, b, f.name]) };",
   "}",
 ].join("\n");
 fs.writeFileSync("src/alexandria/motorAlexandria.js", saida);

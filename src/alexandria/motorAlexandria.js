@@ -2066,13 +2066,31 @@ function EG_marca(ctx) {
 const AL = { marmore: '#EFE6D2', papiro: '#E2D5B2', ocre: '#E0A458', terracota: '#B5523B', turquesa: '#3FB8AF',
   ouro: '#D4A017', mar: '#2F5DA8', noite: '#1B1F3B', madeiraC: '#9A6A3E', madeiraE: '#5A3A22', verde: '#3FA37A' };
 
-// rolo de papiro deitado (x,y = centro)
-function AL_rolo(ctx, x, y, s, rot = 0, col = AL.papiro) {
+// ===== APOIO E ESCALA (dono 22/11) — lido pelo autonomo/conferir.py =====
+// Cada cena chama AP_ini(ctx, yh) logo depois da câmera (yh = linha do horizonte; null = mapa/painel sem chão).
+// Cada chão/água/tampo chama AP_sup; cada peça chama AP_obj (tipo, nome, x, base y, altura). Tudo é guardado nas
+// coordenadas da cena (desfaz câmera, parallax e escalas), só quando a conferência está ligada (AP != null).
+let AP = null;
+const AP_LARGO = [-3000, 4000];
+function AP_ini(ctx, yh) { if (AP) { AP.M0 = ctx.getTransform(); AP.yh = yh; AP.ini = true; } }
+function AP_m(ctx) { return (AP.M0 || new DOMMatrix()).inverse().multiply(ctx.getTransform()); }
+function AP_pt(ctx, x, y) { const p = AP_m(ctx).transformPoint(new DOMPoint(x, y)); return [p.x, p.y]; }
+function AP_k(ctx) { const m = AP_m(ctx); return Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)); }
+// base = linha do chão onde o móvel pisa (para medir a escala do que está em cima do tampo)
+function AP_sup(ctx, tipo, x0, x1, y, base) { if (!AP) return; const [a, yy] = AP_pt(ctx, x0, y), [b] = AP_pt(ctx, x1, y); const s = { tipo, x0: Math.round(Math.min(a, b)), x1: Math.round(Math.max(a, b)), y: Math.round(yy) }; if (base != null) s.base = Math.round(AP_pt(ctx, x0, base)[1]); AP.sup.push(s); }
+function AP_obj(ctx, tipo, nome, x, yb, h) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb); AP.obj.push({ tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * AP_k(ctx)) }); }
+const AL_chaoTodo = (ctx, y) => AP_sup(ctx, 'chao', AP_LARGO[0], AP_LARGO[1], y);
+// escala do boneco numa linha de chão yb (frente = 5,4 em y=1405), para desenhar tudo na proporção certa
+const AL_esc = (yb, yh) => 5.4 * (yb - yh) / (1405 - yh);
+
+// rolo de papiro deitado (x,y = centro). apoio=false: rolo em cima de outro rolo (pilha), não conta como solto
+function AL_rolo(ctx, x, y, s, rot = 0, col = AL.papiro, apoio = true) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(s, s);
   rrect(ctx, -30, -9, 60, 18, 9); ctx.fillStyle = lg(ctx, 0, -9, 0, 9, [[0, shade(col, .12)], [1, shade(col, -.28)]]); ctx.fill();
   [-30, 30].forEach(ex => { ellipse(ctx, ex, 0, 5, 10); ctx.fillStyle = shade(col, -.12); ctx.fill(); ellipse(ctx, ex, 0, 2, 4); ctx.fillStyle = '#7A5A3A'; ctx.fill(); });
   ctx.fillStyle = AL.terracota; ctx.fillRect(-3, -9, 6, 18);
   ctx.restore();
+  if (apoio) AP_obj(ctx, 'rolo', 'rolo', x, y + 9 * s, 60 * s);
 }
 
 // estante de rolos (x,yb = canto esquerdo do chão). o: queimada 0..1, cheia 0..1, rows, cols, seed, fogo 0..1
@@ -2096,6 +2114,7 @@ function AL_estante(ctx, x, yb, w, h, t, o = {}) {
     }
   }
   if (o.fogo > 0) { ctx.save(); ctx.globalAlpha = o.fogo; fire(ctx, x + w * .5, yb - h, w * .9, h * .45 * o.fogo, t, seed); ctx.restore(); }
+  AP_obj(ctx, 'estante', 'estante', x + w / 2, yb, h);
 }
 
 // lamparina de óleo (x,y = base)
@@ -2110,18 +2129,23 @@ function AL_lamparina(ctx, x, y, s, t, acesa = 1) {
     ctx.fillStyle = lg(ctx, 0, -58, 0, -20, [[0, 'rgba(255,240,180,.95)'], [1, 'rgba(255,140,40,.95)']]); ctx.globalAlpha = acesa; ctx.fill();
   }
   ctx.restore();
+  AP_obj(ctx, 'lamparina', 'lamparina', x, y, 0);
 }
 
-// mesa de trabalho (x,yb = centro no chão). o.lamp, o.rolos
+// mesa (x,yb = centro no chão). esc = escala do boneco nessa linha (altura da mesa = 0,44 boneco). o.lamp, o.rolos
+// Devolve a altura do tampo (para pôr coisas em cima) e registra o tampo como superfície.
 function AL_mesa(ctx, x, yb, w, t, o = {}) {
-  const h = w * .42, top = yb - h;
-  ctx.fillStyle = shade(AL.madeiraE, -.15); ctx.fillRect(x - w / 2 + 14, top, 18, h); ctx.fillRect(x + w / 2 - 32, top, 18, h);
-  ellipse(ctx, x, yb + 4, w * .55, 14); ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fill();
-  poly(ctx, [x - w / 2, top, x + w / 2, top, x + w / 2 + 30, top - 34, x - w / 2 + 30, top - 34]); ctx.fillStyle = lg(ctx, 0, top - 34, 0, top, [[0, shade(AL.madeiraC, .15)], [1, AL.madeiraC]]); ctx.fill();
-  ctx.fillStyle = lg(ctx, 0, top, 0, top + 22, [[0, AL.madeiraE], [1, shade(AL.madeiraE, -.3)]]); ctx.fillRect(x - w / 2, top, w, 22);
-  if (o.rolos) for (let k = 0; k < o.rolos; k++) AL_rolo(ctx, x - w * .35 + k * 38, top - 14 - (k % 2) * 10, .8, .1 * (k % 3 - 1));
-  if (o.lamp) AL_lamparina(ctx, x + w * .3, top - 8, 1, t);
-  return top - 17;   // altura do tampo (para pôr folhas)
+  const k = (o.esc || 5.4) / 5.4, h = 44 * 5.4 * k, top = yb - h, e = 34 * k, perna = 18 * k;
+  ctx.fillStyle = shade(AL.madeiraE, -.15); ctx.fillRect(x - w / 2 + 14 * k, top, perna, h); ctx.fillRect(x + w / 2 - 14 * k - perna, top, perna, h);
+  ellipse(ctx, x, yb + 4 * k, w * .55, 14 * k); ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fill();
+  poly(ctx, [x - w / 2, top, x + w / 2, top, x + w / 2 + 30 * k, top - e, x - w / 2 + 30 * k, top - e]); ctx.fillStyle = lg(ctx, 0, top - e, 0, top, [[0, shade(AL.madeiraC, .15)], [1, AL.madeiraC]]); ctx.fill();
+  ctx.fillStyle = lg(ctx, 0, top, 0, top + 22 * k, [[0, AL.madeiraE], [1, shade(AL.madeiraE, -.3)]]); ctx.fillRect(x - w / 2, top, w, 22 * k);
+  const sup = top - e / 2;
+  AP_obj(ctx, 'mesa', 'mesa', x, yb, h);
+  AP_sup(ctx, 'linha', x - w / 2, x + w / 2 + 30 * k, sup, yb);
+  if (o.rolos) for (let i = 0; i < o.rolos; i++) AL_rolo(ctx, x - w * .35 + i * 60 * k * 1.1, sup - 9 * 1.6 * k, 1.6 * k, 0);
+  if (o.lamp) AL_lamparina(ctx, x + w * .3, sup, 1.2 * k, t);
+  return sup;
 }
 
 // folha de papiro aberta (x,y = centro); fn desenha o conteúdo em coordenadas -1..1
@@ -2132,6 +2156,16 @@ function AL_folha(ctx, x, y, w, h, fn) {
   if (fn) { ctx.save(); ctx.scale(w / 2 * .85, h / 2 * .8); fn(); ctx.restore(); }
   ctx.restore();
 }
+// folha presa num cavalete de madeira que PISA em yb (chão ou tampo da mesa)
+function AL_cavalete(ctx, x, yb, w, h, pe, fn) {
+  const cy = yb - pe - h / 2;
+  ctx.strokeStyle = AL.madeiraE; ctx.lineCap = 'round'; ctx.lineWidth = Math.max(6, w * .035);
+  [[-w * .38, -w * .3], [w * .38, w * .3]].forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(x + a, yb); ctx.lineTo(x + b, cy - h * .45); ctx.stroke(); });
+  ctx.beginPath(); ctx.moveTo(x, cy); ctx.lineTo(x + w * .12, yb); ctx.stroke();
+  ctx.fillStyle = AL.madeiraC; ctx.fillRect(x - w * .5, cy + h / 2 - 4, w, 14);
+  AL_folha(ctx, x, cy, w, h, fn);
+  AP_obj(ctx, 'cavalete', 'cavalete', x, yb, pe + h);
+}
 
 // fachada da Biblioteca: templo de Roma + porta com luz. o.abre 0..1, o.luz, o.col
 function AL_biblioteca(ctx, x, yb, w, h, t, o = {}) {
@@ -2140,6 +2174,8 @@ function AL_biblioteca(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = '#2A1E18'; ctx.fillRect(dx, dy, dw, dh);
   if (ab > 0) { ctx.save(); ctx.globalAlpha = ab; ctx.fillStyle = lg(ctx, 0, dy, 0, dy + dh, [[0, '#FFE9B8'], [1, '#F2B860']]); ctx.fillRect(dx + dw * (.5 - ab / 2), dy, dw * ab, dh); ctx.restore(); glow(ctx, dx + dw / 2, dy + dh * .6, dw * 2.2, '#FFD27A', .5 * ab * (o.luz ?? 1)); }
   ctx.fillStyle = shade(AL.madeiraC, -.1); ctx.fillRect(dx, dy, dw * (.5 - ab / 2), dh); ctx.fillRect(dx + dw * (.5 + ab / 2), dy, dw * (.5 - ab / 2), dh);
+  AP_obj(ctx, 'templo', 'biblioteca', x + w / 2, yb, h);
+  AP_obj(ctx, 'porta', 'porta da biblioteca', x + w / 2, yb, dh);
 }
 
 // farol de Alexandria (x,yb = base)
@@ -2155,9 +2191,18 @@ function AL_farol(ctx, x, yb, h, t, luz = 1) {
     poly(ctx, [x, ty, x + Math.cos(a) * 1400, ty - 120 + Math.sin(a) * 300, x + Math.cos(a) * 1400, ty + 120 + Math.sin(a) * 300]); ctx.fillStyle = '#FFE8A8'; ctx.fill(); ctx.restore();
     fire(ctx, x, ty + 6, h * .1, h * .12, t, 3);
   }
+  AP_obj(ctx, 'farol', 'farol', x, yb, h);
 }
 
-// navio de vela quadrada (x,y = linha d'água). o: flip, fogo 0..1, caixas, vela
+// rochedo/ilha onde ficam o farol e prédios no meio da água (x,yb = centro da base na linha d'água)
+function AL_rocha(ctx, x, yb, w, h) {
+  ctx.beginPath(); ctx.moveTo(x - w / 2, yb + h * .3); ctx.quadraticCurveTo(x - w * .45, yb - h, x, yb - h); ctx.quadraticCurveTo(x + w * .45, yb - h, x + w / 2, yb + h * .3); ctx.closePath();
+  ctx.fillStyle = lg(ctx, x - w / 2, 0, x + w / 2, 0, [[0, '#B8A890'], [1, '#6A5E50']]); ctx.fill();
+  AP_sup(ctx, 'chao', x - w * .4, x + w * .4, yb - h + 6);
+  return yb - h + 6;
+}
+
+// navio de vela quadrada (x,y = linha d'água; comprimento 400 × s). o: flip, fogo 0..1, caixas, vela
 function AL_navio(ctx, x, y, s, t, o = {}) {
   ctx.save(); ctx.translate(x, y + Math.sin(t * 1.8 + x) * 4 * s); ctx.scale(o.flip ? -s : s, s); ctx.rotate(Math.sin(t * 1.3 + x) * .02);
   ctx.strokeStyle = shade(AL.madeiraE, -.2); ctx.lineWidth = 4; for (let k = 0; k < 6; k++) { ctx.beginPath(); ctx.moveTo(-110 + k * 40, -8); ctx.lineTo(-130 + k * 40 + Math.sin(t * 3 + k) * 10, 30); ctx.stroke(); }
@@ -2169,13 +2214,14 @@ function AL_navio(ctx, x, y, s, t, o = {}) {
   ctx.beginPath(); ctx.moveTo(-sw - 10, -236); ctx.quadraticCurveTo(0, -246, sw + 10, -236); ctx.quadraticCurveTo(sw + 24, -150, sw, -60); ctx.lineTo(-sw, -60); ctx.quadraticCurveTo(-sw - 24, -150, -sw - 10, -236); ctx.closePath();
   ctx.fillStyle = lg(ctx, -sw, 0, sw, 0, [[0, AL.papiro], [1, shade(AL.papiro, -.2)]]); ctx.globalAlpha = v; ctx.fill(); ctx.globalAlpha = 1;
   ctx.fillStyle = AL.terracota; ctx.fillRect(-sw - 6, -170, sw * 2 + 12, 16);
-  for (let k = 0; k < (o.caixas || 0); k++) AL_caixa(ctx, -100 + k * 52, -24, .55);
+  for (let k = 0; k < (o.caixas || 0); k++) AL_caixa(ctx, -100 + k * 52, -24, .55, false);
   if (o.fogo > 0) { ctx.save(); ctx.globalAlpha = o.fogo; fire(ctx, 0, -60, 220, 200 * o.fogo, t, 5); fire(ctx, -110, -30, 120, 120 * o.fogo, t, 8); ctx.restore(); }
   ctx.restore();
+  AP_obj(ctx, 'navio', 'navio', x, y, 400 * s);
 }
 
-// caixa de rolos (x,yb = centro no chão)
-function AL_caixa(ctx, x, yb, s) {
+// caixa de rolos (x,yb = centro no chão; altura 64 × s)
+function AL_caixa(ctx, x, yb, s, registra = true) {
   ctx.save(); ctx.translate(x, yb); ctx.scale(s, s);
   poly(ctx, [40, 0, 54, -10, 54, -64, 40, -54]); ctx.fillStyle = shade(AL.madeiraC, -.35); ctx.fill();
   poly(ctx, [-40, -54, 40, -54, 54, -64, -26, -64]); ctx.fillStyle = shade(AL.madeiraC, .1); ctx.fill();
@@ -2183,9 +2229,10 @@ function AL_caixa(ctx, x, yb, s) {
   ctx.fillStyle = shade(AL.madeiraC, -.25); ctx.fillRect(-40, -30, 80, 6);
   for (let k = 0; k < 4; k++) { circle(ctx, -24 + k * 18, -62, 7); ctx.fillStyle = AL.papiro; ctx.fill(); circle(ctx, -24 + k * 18, -62, 2.5); ctx.fillStyle = '#8A6A44'; ctx.fill(); }
   ctx.restore();
+  if (registra) AP_obj(ctx, 'caixa', 'caixa de rolos', x, yb, 64 * s);
 }
 
-// telescópio de latão num tripé (x,yb = chão). ang em radianos (0 = horizontal p/ direita)
+// telescópio de latão num tripé (x,yb = chão; altura ≈ 150 × s). ang em radianos (0 = horizontal p/ direita)
 function AL_telescopio(ctx, x, yb, s, ang = -.6) {
   ctx.save(); ctx.translate(x, yb); ctx.scale(s, s);
   ctx.strokeStyle = '#5A3A22'; ctx.lineWidth = 7; ctx.lineCap = 'round';
@@ -2195,16 +2242,20 @@ function AL_telescopio(ctx, x, yb, s, ang = -.6) {
   rrect(ctx, 120, -20, 30, 40, 8); ctx.fillStyle = lg(ctx, 0, -20, 0, 20, [[0, '#E0C070'], [1, '#6A4A18']]); ctx.fill();
   circle(ctx, 150, 0, 14); ctx.fillStyle = '#A8D8F0'; ctx.fill();
   ctx.restore();
+  AP_obj(ctx, 'telescopio', 'telescópio', x, yb, 150 * s);
 }
 
-// lente de vidro (x,y centro)
-function AL_lente(ctx, x, y, r, brilho = 0) {
+// lente de vidro num suporte de latão que pisa em yb (r = raio da lente)
+function AL_lente(ctx, x, yb, r, brilho = 0) {
+  const y = yb - r * 2.2;
+  ctx.fillStyle = '#7A5A20'; ctx.fillRect(x - r * .12, y + r, r * .24, r * 1.2); ellipse(ctx, x, yb, r * .7, r * .2); ctx.fill();
   glow(ctx, x, y, r * 3, '#FFF6D0', .4 * brilho);
   circle(ctx, x, y, r); ctx.fillStyle = '#7A5A20'; ctx.fill();
   circle(ctx, x, y, r * .82); ctx.fillStyle = rg(ctx, x - r * .3, y - r * .3, 0, r, [[0, 'rgba(240,250,255,.95)'], [1, 'rgba(140,190,220,.75)']]); ctx.fill();
+  AP_obj(ctx, 'lente', 'lente', x, yb, r * 2);
 }
 
-// Lua com crateras / Saturno com anéis
+// Lua com crateras / Saturno com anéis (vistos pela luneta: não precisam de chão)
 function AL_lua(ctx, x, y, r) {
   glow(ctx, x, y, r * 2, '#FFF6D8', .35);
   circle(ctx, x, y, r); ctx.fillStyle = rg(ctx, x - r * .3, y - r * .3, 0, r * 1.1, [[0, '#F6F2E4'], [1, '#A8A296']]); ctx.fill();
@@ -2247,7 +2298,7 @@ function AL_ponto(ctx, x, y, p, col = AL.terracota, nome) {
   if (nome) { ctx.save(); ctx.globalAlpha = clamp(p * 2); ctx.font = '34px Anton'; ctx.textAlign = 'center'; ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(40,24,10,.8)'; ctx.strokeText(nome, x, y - 26); ctx.fillStyle = '#FFF4DA'; ctx.fillText(nome, x, y - 26); ctx.restore(); }
 }
 
-// ícone de hospital: casinha com cruz verde e livro (x,yb)
+// ícone de hospital no mapa: casinha com cruz verde (x,yb)
 function AL_hospital(ctx, x, yb, s, p) {
   if (p <= 0) return; const k = easeBack(p) * s;
   ctx.save(); ctx.translate(x, yb); ctx.scale(k, k);
@@ -2266,6 +2317,9 @@ function AL_anatomia(ctx, p, t) {
   if (p > 0) { const b = 1 + .15 * Math.sin(t * 8); ctx.save(); ctx.globalAlpha = p; ctx.translate(-.08, -.22); ctx.scale(b, b); ctx.beginPath(); ctx.moveTo(0, .08); ctx.bezierCurveTo(-.14, -.02, -.08, -.14, 0, -.06); ctx.bezierCurveTo(.08, -.14, .14, -.02, 0, .08); ctx.fillStyle = '#C8553D'; ctx.fill(); ctx.restore(); }
 }
 
+// casas antigas no fundo (base yb); altura proporcional ao boneco dessa linha (B px)
+function AL_casa(ctx, x, yb, w, h, col) { insula(ctx, x, yb, w, h, col); AP_obj(ctx, 'casa', 'casa', x + w / 2, yb, h); }
+
 // prédio de hoje: torre de vidro sobre colunas de mármore (x,yb = canto esquerdo)
 function AL_predio(ctx, x, yb, w, h, t, o = {}) {
   const d = w * .18, base = h * .18;
@@ -2275,9 +2329,10 @@ function AL_predio(ctx, x, yb, w, h, t, o = {}) {
   ctx.fillStyle = shade(AL.marmore, -.1); ctx.fillRect(x - 10, yb - base - 14, w + 20, 16);
   const n = Math.max(3, Math.round(w / 70)); for (let k = 0; k < n; k++) column(ctx, x + 10 + k * (w - 20) / (n - 1), yb, 26, base - 14, AL.marmore, -1);
   if (o.neon) { ctx.save(); ctx.shadowColor = o.neon; ctx.shadowBlur = 24; ctx.strokeStyle = o.neon; ctx.lineWidth = 5; ctx.strokeRect(x, yb - h, w, h - base); ctx.restore(); }
+  AP_obj(ctx, 'predio', 'prédio', x + w / 2, yb, h);
 }
 
-// nave-biblioteca (opção 1) e montanha com caverna (opção 2)
+// nave-biblioteca (opção 1) e montanha com caverna (opção 2) — painéis das opções
 function AL_nave(ctx, x, y, s, t, fogo = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
   if (fogo > 0) { glow(ctx, 0, 40, 220, '#FFB060', .6 * fogo); for (let k = 0; k < 3; k++) fire(ctx, -50 + k * 50, 120, 60, 140 * fogo, t, k + 2); }
@@ -2288,52 +2343,71 @@ function AL_nave(ctx, x, y, s, t, fogo = 1) {
   [-1, 1].forEach(sd => { poly(ctx, [sd * 90, -20, sd * 150, 80, sd * 90, 60]); ctx.fillStyle = shade(AL.ouro, sd > 0 ? -.25 : 0); ctx.fill(); });
   ctx.restore();
 }
+// plataforma de lançamento: a nave pisa nela até decolar
+function AL_plataforma(ctx, x, yb, w) {
+  ctx.fillStyle = lg(ctx, 0, yb, 0, yb + 60, [[0, '#8A94A8'], [1, '#3A4256']]); ctx.fillRect(x - w / 2, yb, w, 60);
+  ctx.fillStyle = '#5A6278'; for (let k = 0; k < 4; k++) ctx.fillRect(x - w / 2 + 20 + k * (w - 60) / 3, yb + 60, 20, 200);
+  AP_sup(ctx, 'linha', x - w / 2, x + w / 2, yb);
+}
 function AL_montanha(ctx, cx, yb, w, h, t, luz = 1) {
   poly(ctx, [cx - w / 2, yb, cx - w * .05, yb - h, cx + w / 2, yb]); ctx.fillStyle = lg(ctx, cx - w / 2, 0, cx + w / 2, 0, [[0, '#8A94A8'], [1, '#4A5266']]); ctx.fill();
   poly(ctx, [cx - w * .05, yb - h, cx + w * .5 * .35, yb - h * .65, cx + w * .02, yb - h * .58, cx - w * .2, yb - h * .66]); ctx.fillStyle = '#F4F8FC'; ctx.fill();
-  const dx = cx + w * .02, dy = yb - h * .32;
-  rrect(ctx, dx - 70, dy - 110, 140, 130, [70, 70, 0, 0]); ctx.fillStyle = '#1A1E2A'; ctx.fill();
-  if (luz > 0) { ctx.save(); ctx.globalAlpha = luz; rrect(ctx, dx - 54, dy - 94, 108, 114, [54, 54, 0, 0]); ctx.fillStyle = lg(ctx, 0, dy - 94, 0, dy + 20, [[0, '#BFF6FF'], [1, '#5AB8D0']]); ctx.fill(); ctx.restore(); glow(ctx, dx, dy - 40, 220, '#9FE8FF', .45 * luz); }
+  const dx = cx + w * .02, dy = yb - h * .32, k = w / 1200;
+  rrect(ctx, dx - 70 * k, dy - 110 * k, 140 * k, 130 * k, [70 * k, 70 * k, 0, 0]); ctx.fillStyle = '#1A1E2A'; ctx.fill();
+  if (luz > 0) { ctx.save(); ctx.globalAlpha = luz; rrect(ctx, dx - 54 * k, dy - 94 * k, 108 * k, 114 * k, [54 * k, 54 * k, 0, 0]); ctx.fillStyle = lg(ctx, 0, dy - 94 * k, 0, dy + 20 * k, [[0, '#BFF6FF'], [1, '#5AB8D0']]); ctx.fill(); ctx.restore(); glow(ctx, dx, dy - 40 * k, 220 * k, '#9FE8FF', .45 * luz); }
 }
 
-// pessoas = boneco normal (presets BN.ALEXANDRIA, folha v2 aprovada 22/11). Mesmo molde do VK_b.
+// pessoas = boneco normal (presets BN.ALEXANDRIA / BN.NORMAIS, folha v2 aprovada 22/11). Mesmo molde do VK_b.
+const AL_CRIANCAS = new Set(['meninaPescadora', 'meninoPescador']);
 function AL_b(ctx, x, y, s, nome, o = {}) {
   const { t = 0, seed = 0, flip = false, anda = false, roupa, ...resto } = o, f = t * 30, k = s / 5.4;
   const base = BN.ALEXANDRIA[nome] || BN.NORMAIS[nome];
   const yy = y + Math.sin((f + seed * 23) / 18) * 1.2 * k - (anda ? Math.abs(Math.sin(f / 4)) * 10 * k : 0);
   BN.desenharBoneco(ctx, Object.assign({}, base, resto, { x, y: yy, escala: s, espelhar: flip,
     piscando: (Math.floor(f) + seed * 37) % 105 < 3, roupa: Object.assign({}, base.roupa, roupa) }));
+  AP_obj(ctx, AL_CRIANCAS.has(nome) ? 'crianca' : 'pessoa', nome, x, y, 100 * s);
   return { x, y: yy, s, d: flip ? -1 : 1 };
 }
 
 // ===== cenasAlexandria.js (+ legendas e cortes de FabricadorIA-temp/alexandria) =====
-// ===== CENAS DE ALEXANDRIA — mesmo molde dos Vikings: f(ctx, t local, T global, D) =====
+// ===== CENAS DE ALEXANDRIA v2 — mesmo molde dos Vikings: f(ctx, t local, T global, D) =====
 // Cortes = cenas.json (autonomo/cortes.py). Pés ≤ 1410, placas y=300, legenda a partir de y=1446.
+// v2 (dono 22/11): tudo pisa em chão/água/tampo (AP_sup) e segue a ESCALA FIXA do MÉTODO 5.5 em relação ao
+// boneco 5,4 da frente: cada cena declara o horizonte (AP_ini) e as peças longe usam AL_esc(yb, yh).
 const DURACAO_ALEXANDRIA = 109.42;
 
 // ---------- ajudantes ----------
-function AL_palmeira(ctx, x, yb, h, t) { E_palmeira(ctx, x, yb, h, t, '#3E5A3A'); }
+function AL_palmeira(ctx, x, yb, h, t) { E_palmeira(ctx, x, yb, h, t, '#3E5A3A'); AP_obj(ctx, 'arvore', 'palmeira', x, yb, h); }
 function AL_mar(ctx, y, c1, c2, t, brilho = 'rgba(255,255,255,.3)') {
   ctx.fillStyle = lg(ctx, 0, y, 0, H, [[0, c1], [1, c2]]); ctx.fillRect(-400, y, W + 800, H - y + 400);
   ctx.strokeStyle = brilho; ctx.lineWidth = 3; for (let k = 0; k < 30; k++) { const xx = ((k * 173 + t * 25) % 1700) - 300, yy = y + 10 + ((k * 37) % 9) * 22 + (k % 3) * 40; ctx.beginPath(); ctx.moveTo(xx, yy); ctx.lineTo(xx + 40 + (k % 4) * 14, yy); ctx.stroke(); }
+  AP_sup(ctx, 'agua', AP_LARGO[0], AP_LARGO[1], y);
 }
-function AL_cidadeAntiga(ctx, yb, col, seed = 1, x0 = -200, x1 = W + 200) { for (let i = 0; x0 + i * 130 < x1; i++) { const w = 90 + hash(i + seed) * 70, h = 70 + hash(i * 3 + seed) * 110; insula(ctx, x0 + i * 130, yb + hash(i * 5 + seed) * 10, w, h, shade(col, (hash(i * 7 + seed) - .5) * .2)); } }
+// cidade antiga no fundo: casas com 2 a 3,4 bonecos de altura (B = altura do boneco nessa linha, em px)
+function AL_cidadeAntiga(ctx, yb, col, seed, B, x0 = -200, x1 = W + 200) {
+  let x = x0; for (let i = 0; x < x1; i++) { const w = B * (1.6 + hash(i + seed)), h = B * (2 + hash(i * 3 + seed) * 1.4); AL_casa(ctx, x, yb, w, h, shade(col, (hash(i * 7 + seed) - .5) * .2)); x += w + B * .3; }
+}
 function AL_interior(ctx, c1 = '#3A2A20', c2 = '#1E140E') { ctx.fillStyle = lg(ctx, 0, 0, 0, H, [[0, c2], [.5, c1], [1, c2]]); ctx.fillRect(-300, -300, W + 600, H + 600); }
-function AL_chao(ctx, y, c1 = '#C8A878', c2 = '#6A4E34') { ground(ctx, y, c1, c2); ctx.strokeStyle = 'rgba(0,0,0,.1)'; ctx.lineWidth = 2; for (let k = 0; k < 8; k++) { ctx.beginPath(); ctx.moveTo(-300, y + k * k * 9); ctx.lineTo(W + 300, y + k * k * 9); ctx.stroke(); } }
+function AL_chao(ctx, y, c1 = '#C8A878', c2 = '#6A4E34') { ground(ctx, y, c1, c2); ctx.strokeStyle = 'rgba(0,0,0,.1)'; ctx.lineWidth = 2; for (let k = 0; k < 8; k++) { ctx.beginPath(); ctx.moveTo(-300, y + k * k * 9); ctx.lineTo(W + 300, y + k * k * 9); ctx.stroke(); } AL_chaoTodo(ctx, y); }
+function AL_faixaChao(ctx, x0, x1, y, h, c1, c2) { ctx.fillStyle = lg(ctx, 0, y, 0, y + h, [[0, c1], [1, c2]]); ctx.fillRect(x0, y, x1 - x0, h); AP_sup(ctx, 'chao', x0, x1, y); }
 function AL_janela(ctx, x, y, w, h, col = '#FFE0A0', a = 1) { rrect(ctx, x, y, w, h, [w / 2, w / 2, 0, 0]); ctx.fillStyle = lg(ctx, 0, y, 0, y + h, [[0, col], [1, shade(col, -.25)]]); ctx.fill(); ctx.save(); ctx.globalAlpha = .18 * a; poly(ctx, [x, y + h * .3, x + w, y + h * .3, x + w * 3.2, H, x - w * .4, H]); ctx.fillStyle = col; ctx.fill(); ctx.restore(); }
 function AL_neve(ctx, t, n, a, seed = 1) { if (a <= 0) return; ctx.save(); ctx.fillStyle = '#fff'; for (let k = 0; k < n; k++) { const x = (hash(k + seed) * W + Math.sin(t + k) * 30 + W) % W, y = (hash(k * 7 + seed) * H + t * (60 + hash(k * 3) * 80)) % H; ctx.globalAlpha = a * (.5 + .5 * hash(k * 11)); circle(ctx, x, y, 2 + hash(k * 5) * 4); ctx.fill(); } ctx.restore(); }
+// pilha de rolos em cima de uma superfície (só a 1ª fileira encosta nela; as outras encostam nos rolos de baixo)
+function AL_pilha(ctx, x, sup, n, s, porFila = 5) { for (let k = 0; k < n; k++) { const f = Math.floor(k / porFila), c = k % porFila; AL_rolo(ctx, x + c * 34 * s + f * 17 * s, sup - 9 * s - f * 17 * s, s, 0, AL.papiro, f === 0); } }
 
-// ---------- 0 · título 0–4,8 ----------
+// ---------- 0 · título 0–4,8 (horizonte = linha do mar 1150) ----------
 function AL_titulo(ctx, t, T) {
-  ctx.save(); cam(ctx, 1 + t * .025, W / 2, H * .55);
+  ctx.save(); cam(ctx, 1 + t * .025, W / 2, H * .55); AP_ini(ctx, 1150);
   sky(ctx, [[0, '#1E1A3A'], [.36, '#5A3A6A'], [.55, '#D07A5A'], [.66, '#F4C07A'], [1, '#2A1E1A']]);
-  stars(ctx, T, 40, 3, 480); sun(ctx, 300, 1150, 70, '#FFE8B0', '#FF9A5C');
-  hills(ctx, 1130, 40, '#5A3A4A', 4, 0, .5);
+  stars(ctx, T, 40, 3, 480); sun(ctx, 520, 1140, 70, '#FFE8B0', '#FF9A5C');
+  hills(ctx, 1135, 30, '#5A3A4A', 4, 0, .5);
   AL_mar(ctx, 1150, '#8A5A6A', '#1E1A2A', T, 'rgba(255,200,150,.4)');
-  AL_chao(ctx, 1225, '#B08A6A', '#3A2A24');
-  AL_farol(ctx, 900, 1240, 520, T, 1);
-  AL_biblioteca(ctx, 120, 1330, 560, 360, T, { abre: 1 });
-  for (let k = 0; k < 9; k++) { const x = (200 + k * 140 + T * 60 * (1 + hash(k))) % 1300 - 100, y = 820 + hash(k * 3) * 260 + Math.sin(T * 2 + k) * 20; AL_rolo(ctx, x, y, .9, Math.sin(T * 1.5 + k) * .3); }
+  ctx.beginPath(); ctx.moveTo(-300, 1162); ctx.lineTo(640, 1168); ctx.quadraticCurveTo(720, 1190, 700, 1330); ctx.lineTo(-300, 1330); ctx.closePath(); ctx.fillStyle = lg(ctx, 0, 1160, 0, 1330, [[0, '#C8A078'], [1, '#6A4A38']]); ctx.fill();
+  AP_sup(ctx, 'chao', -300, 650, 1168);
+  AL_biblioteca(ctx, 50, 1200, 520, 400, T, { abre: 1 });
+  AL_farol(ctx, 900, AL_rocha(ctx, 900, 1200, 240, 36), 520, T, 1);
+  AL_navio(ctx, 690 + t * 18, 1185, .62, T, {});
+  AL_chao(ctx, 1330, '#B08A6A', '#3A2A24');
   AL_palmeira(ctx, -20, 1700, 900, T); AL_palmeira(ctx, 1090, 1740, 950, T);
   motes(ctx, T, 40, '#FFC27A', 5, .5);
   ctx.restore();
@@ -2342,37 +2416,42 @@ function AL_titulo(ctx, t, T) {
   vignette(ctx, .6);
 }
 
-// ---------- 1 · biblioteca que nunca fechou 4,8–8,77 ----------
+// ---------- 1 · biblioteca que nunca fechou 4,8–8,77 (horizonte 1080) ----------
 function AL_gancho(ctx, t, T) {
-  const z = 1.18 - ease(prog(t, 0, 3.9)) * .16, abre = ease(prog(t, 1.4, 2.2)), livros = prog(t, 2.6, 3.6);
-  ctx.save(); cam(ctx, z, W / 2, 1400);
+  const z = 1.14 - ease(prog(t, 0, 3.9)) * .12, abre = ease(prog(t, 1.4, 2.2)), livros = prog(t, 2.6, 3.4);
+  ctx.save(); cam(ctx, z, W / 2, 1400); AP_ini(ctx, 1080);
   sky(ctx, [[0, '#8FB4D0'], [.5, '#F0DCC0'], [.64, '#F8C88A'], [1, '#C8A070']]); sun(ctx, 860, 760, 60, '#FFF6DA', '#FFD08A');
   E_nuvem(ctx, 250 + t * 8, 520, 130, '#FFFFFF', .6);
-  layer(ctx, .2, -t * 10, 0, () => hills(ctx, 1000, 60, '#B8A890', 3, 0, .7));
-  fog(ctx, 1010, 80, '#F4E4C8', .5);
-  AL_cidadeAntiga(ctx, 1060, '#E0C8A0', 2);
+  hills(ctx, 1060, 40, '#B8A890', 3, 0, .7);
+  fog(ctx, 1070, 60, '#F4E4C8', .5);
   AL_chao(ctx, 1080, '#E0C49A', '#8A6A48');
-  AL_biblioteca(ctx, 170, 1330, 740, 520, T, { abre, n: 7 });
-  for (let k = 0; k < 10; k++) { const p = prog(livros, k * .06, k * .06 + .4); if (p <= 0) continue; const a = -1.2 + k * .26; AL_rolo(ctx, 540 + Math.cos(a) * 420 * easeOut(p), 1020 + Math.sin(a) * 300 * easeOut(p) - 120, .9, a, AL.papiro); }
+  AL_cidadeAntiga(ctx, 1100, '#E0C8A0', 2, 540 * 20 / 325);
+  AL_biblioteca(ctx, 140, 1180, 780, 600, T, { abre, n: 7 });
+  glow(ctx, 530, 1000, 380, '#FFD27A', .5 * livros);
+  [[330, 1188], [740, 1190], [430, 1192]].forEach(([x, y], i) => { const p = prog(livros, i * .2, i * .2 + .5); if (p > 0) { ctx.save(); ctx.translate(x, y); ctx.scale(1, easeBack(p)); AL_caixa(ctx, 0, 0, .9); ctx.restore(); } });
+  AL_palmeira(ctx, 60, 1330, 520, T); AL_palmeira(ctx, 1010, 1340, 540, T);
   ctx.restore();
   AL_palmeira(ctx, -60, 1720, 1000, T); AL_palmeira(ctx, 1130, 1760, 1050, T);
   motes(ctx, T, 30, '#FFE7B0', 3, .5);
   vignette(ctx, .45);
 }
 
-// ---------- 2 · 48 a.C.: César queima parte da Biblioteca 8,77–15,18 ----------
+// ---------- 2 · 48 a.C.: César queima parte da Biblioteca 8,77–15,18 (horizonte 1080) ----------
 function AL_cesar(ctx, t, T) {
   const fogo = ease(prog(t, .6, 2.2)), pula = ease(prog(t, 5.2, 6.2));
-  ctx.save(); cam(ctx, 1 + t * .02, W / 2, 1400);
+  ctx.save(); cam(ctx, 1 + t * .02, W / 2, 1400); AP_ini(ctx, 1080);
   sky(ctx, [[0, '#0E0E22'], [.5, '#3A1E2A'], [.66, '#8A3A2A'], [1, '#1A0E0E']]);
   stars(ctx, T, 30, 4, 420);
   glow(ctx, 640, 1000, 700, '#FF6A2A', .35 * fogo);
   AL_mar(ctx, 1080, '#4A2A2A', '#0E0A12', T, 'rgba(255,140,60,.45)');
-  AL_navio(ctx, 860, 1110, .55, T, { fogo });
-  AL_navio(ctx, 520, 1140, .7, T, { fogo, flip: true });
-  ctx.fillStyle = lg(ctx, 0, 1150, 0, 1430, [[0, '#6A5040'], [1, '#2A1E16']]); ctx.fillRect(-300, 1170, W + 600, 400);
-  AL_estante(ctx, 40, 1240, 300, 200, T, { rows: 2, cols: 3, queimada: pula * .8, fogo: pula, seed: 3 });
-  insula(ctx, 640, 1250, 260, 170, '#8A6A50');
+  AL_navio(ctx, 880, 1105, .55, T, { fogo });
+  AL_navio(ctx, 470, 1135, .9, T, { fogo, flip: true });
+  AL_faixaChao(ctx, -300, W + 300, 1170, 800, '#6A5040', '#2A1E16');
+  AL_casa(ctx, 0, 1200, 320, 400, '#8A6A50');
+  ctx.fillStyle = '#1E140E'; ctx.fillRect(110, 1060, 100, 140);
+  for (let k = 0; k < 6; k++) { circle(ctx, 130 + (k % 3) * 30, 1090 + Math.floor(k / 3) * 34, 11); ctx.fillStyle = AL.papiro; ctx.fill(); }
+  if (pula > 0) { ctx.save(); ctx.globalAlpha = pula; fire(ctx, 160, 800, 300, 260 * pula, T, 3); ctx.restore(); }
+  AL_casa(ctx, 600, 1210, 300, 420, '#7A5E48');
   const c = AL_b(ctx, 820, 1405, 5.4, 'cesar', { t: T, flip: true, seed: 1, expressao: t > 5.2 ? 'surpreso' : 'bravo', pose: t > 5.2 ? 'maosJuntas' : 'apontando', olhar: { x: -1, y: 0 } });
   for (let k = 0; k < 14; k++) { const a = (T * .6 + hash(k)) % 1; circle(ctx, 300 + hash(k * 3) * 700, 1200 - a * 700, 4 * (1 - a)); ctx.fillStyle = `rgba(255,${150 + k * 6},60,${.8 * (1 - a) * fogo})`; ctx.fill(); }
   ctx.restore();
@@ -2381,26 +2460,26 @@ function AL_cesar(ctx, t, T) {
   vignette(ctx, .55);
 }
 
-// ---------- 3 · não está claro quanto se perdeu 15,18–21,43 ----------
+// ---------- 3 · não está claro quanto se perdeu 15,18–21,43 (interior, olho em 920) ----------
 function AL_duvida(ctx, t, T) {
   const rec = ease(prog(t, 4.2, 5.8)), q = prog(t, 1.1, 1.5) * (1 - prog(t, 3.8, 4.3));
-  ctx.save(); cam(ctx, 1.02 + t * .015, W / 2, 1400);
+  ctx.save(); cam(ctx, 1.02 + t * .015, W / 2, 1400); AP_ini(ctx, 920);
   AL_interior(ctx, mix('#3A2E28', '#5A4030', rec), '#1A120E');
-  AL_janela(ctx, 440, 380, 200, 330, mix('#B8B0A8', '#FFE0A0', rec), 1);
-  for (let k = 0; k < 4; k++) { const x = -40 + k * 300; AL_estante(ctx, x, 1180, 240, 560, T, { queimada: (1 - rec) * (.55 + .15 * (k % 2)), cheia: lerp(.4, 1, rec), seed: k + 5 }); }
+  AL_janela(ctx, 440, 420, 200, 330, mix('#B8B0A8', '#FFE0A0', rec), 1);
+  AL_chao(ctx, 1180, '#7A5E44', '#2A1E14');
+  for (let k = 0; k < 4; k++) { const x = -40 + k * 300; AL_estante(ctx, x, 1180, 240, 520, T, { queimada: (1 - rec) * (.55 + .15 * (k % 2)), cheia: lerp(.4, 1, rec), seed: k + 5 }); }
   if (rec > 0 && rec < 1) for (let k = 0; k < 4; k++) steam(ctx, 80 + k * 300, 1000, T, { n: 6, life: .8, rise: 120, size: 60, color: '#D8C8A8', alpha: .5 * (1 - rec), seed: k });
   steam(ctx, 540, 1050, T, { n: 8, life: 2, rise: 400, size: 90, color: '#6A6460', alpha: .35 * (1 - rec), seed: 9 });
-  AL_chao(ctx, 1180, '#7A5E44', '#2A1E14');
   AL_b(ctx, 540, 1405, 5.4, 'bibliotecario', { t: T, seed: 2, expressao: rec > .5 ? 'feliz' : 'pensando', pose: rec > .5 ? 'bracosAoLado' : 'maoNoQueixo', olhar: { x: rec > .5 ? .6 : -.5, y: -.4 } });
   ctx.restore();
   if (q > 0) E_txt(ctx, '?', 300, 640, 260, '#FFC23D', q, easeBack(q));
   vignette(ctx, .5);
 }
 
-// ---------- 4 · e se tivesse ficado aberta? 21,43–25,95 ----------
+// ---------- 4 · e se tivesse ficado aberta, copiando livros? 21,43–25,95 (salão, horizonte 820) ----------
 function AL_pergunta(ctx, t, T) {
   const abre = ease(prog(t, 1.9, 2.6)), copia = prog(t, 2.7, 4.4);
-  ctx.save(); cam(ctx, 1 + t * .035, W / 2, 1400);
+  ctx.save(); cam(ctx, 1 + t * .035, W / 2, 1400); AP_ini(ctx, 820);
   AL_interior(ctx, '#4A3626', '#1E140E');
   const vx = W / 2, vy = 820;
   rrect(ctx, vx - 130, vy - 380, 260, 400, [130, 130, 0, 0]); ctx.fillStyle = '#2A1E16'; ctx.fill();
@@ -2408,90 +2487,92 @@ function AL_pergunta(ctx, t, T) {
   glow(ctx, vx, vy - 150, 600, '#FFD999', .2 + .45 * abre);
   if (abre > 0) { ctx.save(); ctx.globalAlpha = .16 * abre; for (let k = -3; k <= 3; k++) { poly(ctx, [vx - 40, vy - 200, vx + 40, vy - 200, vx + k * 260 + 120, H, vx + k * 260 - 120, H]); ctx.fillStyle = '#FFE8B0'; ctx.fill(); } ctx.restore(); }
   hall(ctx, vx, vy, { floor: '#B89870', col: AL.marmore, n: 6, spread: 560, colH: 1150, floorY: 1500 });
-  for (let k = 0; k < 12; k++) { const p = prog(copia, k * .05, k * .05 + .3); if (p <= 0) continue; AL_rolo(ctx, vx + (hash(k) - .5) * 700 * p, vy - 140 - p * (200 + hash(k * 3) * 300), .7 + p * .3, hash(k * 5) * 3); }
+  AL_chaoTodo(ctx, vy + 10);
+  const sup = AL_mesa(ctx, 800, 1405, 440, T, { lamp: false });
+  AL_pilha(ctx, 650, sup, Math.round(copia * 12), 1.6, 6);
   AL_b(ctx, 300, 1405, 5.4, 'bibliotecario', { t: T, seed: 2, expressao: abre > .5 ? 'feliz' : 'pensando', pose: abre > .5 ? 'apontando' : 'maoNoQueixo', olhar: { x: .8, y: -.3 } });
   ctx.restore();
   vignette(ctx, .5);
 }
 
-// ---------- 5 · século II: dez cópias de cada livro 25,95–30,26 ----------
+// ---------- 5 · século II: dez cópias de cada livro 25,95–30,26 (interior, câmera alta: horizonte 700) ----------
 function AL_copistas(ctx, t, T) {
   const dez = prog(t, 2.5, 2.9), pilha = ease(prog(t, 2.8, 4.1));
-  ctx.save(); cam(ctx, 1.05, W / 2, 1400, -t * 26, 0);
+  ctx.save(); cam(ctx, 1.05, W / 2, 1400, -t * 26, 0); AP_ini(ctx, 700);
   AL_interior(ctx, '#5A4230', '#24180F');
   for (let k = 0; k < 4; k++) AL_janela(ctx, -60 + k * 340, 360, 150, 260);
-  for (let k = 0; k < 5; k++) AL_estante(ctx, -120 + k * 300, 1000, 220, 380, T, { seed: k + 20, rows: 4, cols: 3 });
   AL_chao(ctx, 1000, '#A88A64', '#4A3424');
-  AL_mesa(ctx, 860, 1140, 300, T, { lamp: true, rolos: 2 });
-  AL_b(ctx, 760, 1130, 3.8, 'copista', { t: T, seed: 4, olhar: { x: 1, y: .3 } });
-  const tp = AL_mesa(ctx, 380, 1405, 420, T, { rolos: 0, lamp: true });
-  for (let k = 0; k < Math.round(pilha * 10); k++) AL_rolo(ctx, 250 + (k % 5) * 34, tp - Math.floor(k / 5) * 18, .9);
-  AL_b(ctx, 680, 1405, 5.4, 'copista', { t: T, seed: 1, flip: true, expressao: 'feliz', olhar: { x: -1, y: .4 } });
+  for (let k = 0; k < 5; k++) AL_estante(ctx, -120 + k * 300, 1000, 220, 360, T, { seed: k + 20, rows: 4, cols: 3 });
+  const eb = AL_esc(1140, 700);
+  AL_mesa(ctx, 880, 1140, 300, T, { esc: eb, lamp: true, rolos: 2 });
+  AL_b(ctx, 700, 1140, eb, 'copista', { t: T, seed: 4, olhar: { x: 1, y: .3 } });
+  const sup = AL_mesa(ctx, 360, 1405, 460, T, { lamp: true });
+  AL_pilha(ctx, 190, sup, Math.round(pilha * 10), 1.6, 5);
+  AL_b(ctx, 700, 1405, 5.4, 'copista', { t: T, seed: 1, flip: true, expressao: 'feliz', olhar: { x: -1, y: .4 } });
   ctx.restore();
   E_placa(ctx, 'SÉCULO II', t, .6, 1);
   if (dez > 0) E_txt(ctx, '×10', 300, 640, 220, '#FFC23D', dez, easeBack(dez));
   vignette(ctx, .45);
 }
 
-// ---------- 6 · navios levam caixas para Atenas e Pérsia 30,26–34,01 ----------
+// ---------- 6 · navios levam caixas para Atenas e Pérsia 30,26–34,01 (horizonte 980) ----------
 function AL_navios(ctx, t, T) {
   const sai = ease(prog(t, .9, 3.7)), mapa = prog(t, 2.0, 2.4);
-  ctx.save(); cam(ctx, 1.12 - t * .03, W / 2, 1400);
+  ctx.save(); cam(ctx, 1.12 - t * .03, W / 2, 1400); AP_ini(ctx, 980);
   sky(ctx, [[0, '#6FA0D0'], [.55, '#CFE0EA'], [1, '#E8D8B8']]); sun(ctx, 860, 420, 60);
   E_nuvem(ctx, 200 + t * 10, 440, 140, '#FFFFFF', .7);
-  hills(ctx, 980, 40, '#9AA8B0', 6, 0, .7);
-  AL_mar(ctx, 990, '#5A90B8', '#1E4A70', T);
-  AL_farol(ctx, 150, 1010, 420, T, .4);
-  AL_navio(ctx, lerp(560, 1250, sai), lerp(1120, 1040, sai), lerp(.75, .4, sai), T, { caixas: 3 });
-  ctx.fillStyle = lg(ctx, 0, 1220, 0, 1430, [[0, '#B8946A'], [1, '#5A4028']]); ctx.fillRect(-300, 1230, W + 600, 400);
+  hills(ctx, 975, 30, '#9AA8B0', 6, 0, .7);
+  AL_mar(ctx, 980, '#5A90B8', '#1E4A70', T);
+  AL_farol(ctx, 130, AL_rocha(ctx, 130, 1040, 300, 44), 420, T, .4);
+  AL_navio(ctx, lerp(600, 1180, sai), lerp(1120, 1045, sai), lerp(1.4, .7, sai), T, { caixas: 3 });
+  AL_faixaChao(ctx, -300, W + 300, 1230, 800, '#B8946A', '#5A4028');
   ctx.fillStyle = '#7A5A3E'; for (let k = 0; k < 14; k++) ctx.fillRect(-100 + k * 100, 1230, 8, 200);
-  AL_caixa(ctx, 680, 1405, 1.4); AL_caixa(ctx, 820, 1405, 1.4); AL_caixa(ctx, 750, 1330, 1.4);
+  AL_caixa(ctx, 700, 1405, 2.2); AL_caixa(ctx, 880, 1405, 2.2); AL_caixa(ctx, 790, 1405 - 141, 2.2, false);
   AL_b(ctx, 420, 1405, 5.4, 'marinheiro', { t: T, seed: 3, anda: true, olhar: { x: 1, y: 0 } });
   ctx.restore();
   if (mapa > 0) { ctx.save(); ctx.globalAlpha = mapa; const pos = AL_mapa(ctx, 140, 160, 800, 520, T); const [ax, ay] = pos('ALEXANDRIA'); [['ATENAS', 2.2], ['PÉRSIA', 2.9]].forEach(([n, a]) => { const p = ease(prog(t, a, a + .6)); const [bx, by] = pos(n); ctx.strokeStyle = AL.terracota; ctx.lineWidth = 7; ctx.setLineDash([16, 12]); ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(lerp(ax, bx, p), lerp(ay, by, p)); ctx.stroke(); ctx.setLineDash([]); AL_ponto(ctx, bx, by, prog(t, a + .4, a + .7), AL.terracota, n); }); AL_ponto(ctx, ax, ay, 1, AL.ouro, 'ALEXANDRIA'); ctx.restore(); }
   vignette(ctx, .4);
 }
 
-// ---------- 7 · você, jovem copista, copia mapas 34,01–38,64 ----------
+// ---------- 7 · você, jovem copista, copia mapas 34,01–38,64 (interior, horizonte 760) ----------
 function AL_voce(ctx, t, T) {
   const entra = ease(prog(t, .4, 1.1)), mapa = ease(prog(t, 2.4, 4.2));
-  ctx.save(); cam(ctx, 1.04 + t * .03, W / 2, 1400);
+  ctx.save(); cam(ctx, 1.04 + t * .03, W / 2, 1400); AP_ini(ctx, 760);
   AL_interior(ctx, '#2A2034', '#0E0A12');
   AL_janela(ctx, 760, 300, 180, 300, '#3A4A7A', .3); circle(ctx, 850, 400, 40); ctx.fillStyle = '#F4F0E0'; ctx.fill();
-  AL_estante(ctx, -40, 1060, 280, 600, T, { seed: 31, rows: 5, cols: 3 });
   AL_chao(ctx, 1060, '#6A5440', '#1E160E');
-  const tp = AL_mesa(ctx, 620, 1405, 520, T, { lamp: true });
-  AL_folha(ctx, 600, tp - 120, 380, 230, () => { const p = mapa; ctx.strokeStyle = '#6A4A2A'; ctx.lineWidth = .04; ctx.beginPath(); for (let k = 0; k <= 40 * p; k++) { const a = k / 40; const x = -.9 + a * 1.8, y = Math.sin(a * 9) * .25 + Math.sin(a * 3) * .3; k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); if (p > .6) { circle(ctx, .3, .1, .08); ctx.fillStyle = AL.terracota; ctx.fill(); } });
-  glow(ctx, 760, tp - 60, 300, '#FFC870', .25);
-  AL_b(ctx, lerp(-200, 260, entra), 1405, 5.4, 'voceCopista', { t: T, seed: 7, anda: entra < 1, olhar: { x: 1, y: .4 }, expressao: 'feliz' });
+  AL_estante(ctx, -40, 1060, 280, 470, T, { seed: 31, rows: 5, cols: 3 });
+  const sup = AL_mesa(ctx, 660, 1405, 520, T, { lamp: true });
+  AL_cavalete(ctx, 600, sup, 320, 200, 24, () => { const p = mapa; ctx.strokeStyle = '#6A4A2A'; ctx.lineWidth = .04; ctx.beginPath(); for (let k = 0; k <= 40 * p; k++) { const a = k / 40; const x = -.9 + a * 1.8, y = Math.sin(a * 9) * .25 + Math.sin(a * 3) * .3; k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); if (p > .6) { circle(ctx, .3, .1, .08); ctx.fillStyle = AL.terracota; ctx.fill(); } });
+  glow(ctx, 800, sup - 60, 300, '#FFC870', .25);
+  AL_b(ctx, lerp(-200, 250, entra), 1405, 5.4, 'voceCopista', { t: T, seed: 7, anda: entra < 1, olhar: { x: 1, y: .2 }, expressao: 'feliz' });
   ctx.restore();
-  E_rotulo(ctx, 'VOCÊ', 260, 760, prog(t, .7, 1.1));
+  E_rotulo(ctx, 'VOCÊ', 250, 760, prog(t, .7, 1.1));
   vignette(ctx, .55);
 }
 
-// ---------- 8 · 400: médicos estudam anatomia 38,64–43,29 ----------
+// ---------- 8 · 400: médicos estudam anatomia 38,64–43,29 (interior, horizonte 760) ----------
 function AL_anatomiaCena(ctx, t, T) {
   const coracao = prog(t, 3.0, 3.5);
-  ctx.save(); cam(ctx, 1.02 + t * .03, W / 2, 1400);
+  ctx.save(); cam(ctx, 1.02 + t * .03, W / 2, 1400); AP_ini(ctx, 760);
   AL_interior(ctx, '#5A4634', '#22180F');
   AL_janela(ctx, 100, 330, 170, 300);
-  for (let k = 0; k < 3; k++) AL_estante(ctx, 350 + k * 260, 1000, 220, 480, T, { seed: k + 40, rows: 4, cols: 3 });
   AL_chao(ctx, 1000, '#B89870', '#4A3424');
-  const tp = AL_mesa(ctx, 560, 1300, 520, T, { rolos: 2 });
-  AL_folha(ctx, 560, tp - 190, 330, 380, () => AL_anatomia(ctx, coracao, T));
+  for (let k = 0; k < 3; k++) AL_estante(ctx, 350 + k * 260, 1000, 220, 380, T, { seed: k + 40, rows: 4, cols: 3 });
+  AL_cavalete(ctx, 560, 1330, 340, 400, 280, () => AL_anatomia(ctx, coracao, T));
   AL_b(ctx, 220, 1405, 5.4, 'medica', { t: T, seed: 3, pose: coracao > 0 ? 'apontando' : 'segurando', objeto: coracao > 0 ? 'nenhum' : 'papiro', olhar: { x: 1, y: -.2 } });
   AL_b(ctx, 880, 1405, 5.4, 'copista400', { t: T, seed: 6, flip: true, expressao: coracao > 0 ? 'surpreso' : 'neutro', olhar: { x: -1, y: -.2 } });
   ctx.restore();
   E_placa(ctx, '400 d.C.', t, .5, 1);
-  E_rotulo(ctx, 'ANATOMIA', 560, 600, prog(t, 3.0, 3.4));
+  E_rotulo(ctx, 'ANATOMIA', 560, 560, prog(t, 3.0, 3.4));
   vignette(ctx, .45);
 }
 
-// ---------- 9 · hospitais se espalham pelo Mediterrâneo 43,29–47,08 ----------
+// ---------- 9 · hospitais se espalham pelo Mediterrâneo 43,29–47,08 (mapa: sem chão) ----------
 function AL_hospitais(ctx, t, T) {
   const z = 1 + t * .015;
   ctx.fillStyle = '#2A1E14'; ctx.fillRect(0, 0, W, H);
-  ctx.save(); cam(ctx, Math.min(1.07, z), W / 2, 820);
+  ctx.save(); cam(ctx, Math.min(1.07, z), W / 2, 820); AP_ini(ctx, null);
   const pos = AL_mapa(ctx, 30, 300, 1020, 1060, T);
   const ordem = ['ALEXANDRIA', 'CIRENE', 'RODES', 'ATENAS', 'JERUSALÉM', 'ANTIOQUIA', 'ROMA', 'CARTAGO', 'MASSÁLIA'];
   ordem.forEach((n, i) => { const [x, y] = pos(n); AL_hospital(ctx, x, y + 10, 1.1, prog(t, .4 + i * .3, .8 + i * .3)); });
@@ -2500,40 +2581,41 @@ function AL_hospitais(ctx, t, T) {
   vignette(ctx, .4);
 }
 
-// ---------- 10 · 850: mapa do céu 47,08–51,95 ----------
+// ---------- 10 · 850: mapa do céu 47,08–51,95 (terraço, horizonte 1120) ----------
 function AL_ceu(ctx, t, T) {
   const p = ease(prog(t, 2.6, 4.6));
-  ctx.save(); cam(ctx, 1.1 - t * .02, W / 2, 1400);
+  ctx.save(); cam(ctx, 1.1 - t * .02, W / 2, 1400); AP_ini(ctx, 1120);
   sky(ctx, [[0, '#06081A'], [.6, '#1B1F3B'], [1, '#3A3050']]);
   stars(ctx, T, 160, 7, 1100);
-  AL_constelacoes(ctx, 80, 220, 920, 780, p, T);
-  hills(ctx, 1120, 40, '#14182A', 3, 0, .6);
-  AL_cidadeAntiga(ctx, 1150, '#3A3448', 5);
-  ctx.fillStyle = lg(ctx, 0, 1200, 0, 1430, [[0, '#8A7A68'], [1, '#3A3028']]); ctx.fillRect(-300, 1210, W + 600, 400);
+  AL_constelacoes(ctx, 80, 220, 920, 700, p, T);
+  hills(ctx, 1115, 30, '#14182A', 3, 0, .6);
+  AL_faixaChao(ctx, -300, W + 300, 1120, 100, '#2A2638', '#1E1A2A');
+  AL_cidadeAntiga(ctx, 1160, '#3A3448', 5, 540 * 40 / 285);
+  AL_faixaChao(ctx, -300, W + 300, 1210, 800, '#8A7A68', '#3A3028');
   for (let k = 0; k < 6; k++) column(ctx, -60 + k * 240, 1215, 40, 60, AL.marmore, -1);
-  AL_telescopio(ctx, 760, 1405, 1.1, -.9);
+  AL_telescopio(ctx, 760, 1405, 2.8, -1.3);
   AL_b(ctx, 400, 1405, 5.4, 'astronoma', { t: T, seed: 4, expressao: p > .3 ? 'feliz' : 'surpreso', olhar: { x: .6, y: -1 } });
   ctx.restore();
   E_placa(ctx, '850 d.C.', t, .6, 1);
   vignette(ctx, .45);
 }
 
-// ---------- 11 · navegadores cruzam oceanos 51,95–55,81 ----------
+// ---------- 11 · navegadores cruzam oceanos 51,95–55,81 (no convés; horizonte 1000) ----------
 function AL_oceano(ctx, t, T) {
   const rumo = ease(prog(t, 1.1, 3.2));
-  ctx.save(); cam(ctx, 1.05, W / 2, 1400, -t * 30, 0);
+  ctx.save(); cam(ctx, 1.05, W / 2, 1400, -t * 30, 0); AP_ini(ctx, 1000);
   sky(ctx, [[0, '#06081A'], [.55, '#1E2A50'], [1, '#2A3A60']]);
   stars(ctx, T, 120, 9, 900);
   const sx = 880, sy = 320; glow(ctx, sx, sy, 120, '#FFF6D0', .8); circle(ctx, sx, sy, 14); ctx.fillStyle = '#fff'; ctx.fill();
   AL_mar(ctx, 1000, '#1E3A60', '#08101E', T, 'rgba(180,200,255,.3)');
-  AL_navio(ctx, 900, 1060, .35, T, { flip: true });
+  AL_navio(ctx, 900, 1060, .65, T, { flip: true });
   ctx.save(); ctx.translate(0, Math.sin(T * 1.6) * 6); ctx.rotate(Math.sin(T * 1.2) * .006);
   ctx.fillStyle = '#4A3020'; ctx.fillRect(700, 300, 24, 1100);
   ctx.beginPath(); ctx.moveTo(560, 360); ctx.quadraticCurveTo(720, 340, 880, 360); ctx.quadraticCurveTo(900, 620, 870, 900); ctx.lineTo(570, 900); ctx.quadraticCurveTo(540, 620, 560, 360); ctx.fillStyle = lg(ctx, 560, 0, 900, 0, [[0, AL.papiro], [1, shade(AL.papiro, -.3)]]); ctx.fill();
   ctx.fillStyle = AL.terracota; ctx.fillRect(560, 560, 320, 30);
   ctx.fillStyle = lg(ctx, 0, 1150, 0, 1180, [[0, '#7A5232'], [1, '#4A2E1A']]); ctx.fillRect(-300, 1150, W + 600, 22);
   for (let k = 0; k < 14; k++) ctx.fillRect(-60 + k * 90, 1160, 14, 160);
-  ctx.fillStyle = lg(ctx, 0, 1300, 0, 1500, [[0, '#9A6A3E'], [1, '#4A2E1A']]); ctx.fillRect(-300, 1300, W + 600, 900);
+  AL_faixaChao(ctx, -300, W + 600, 1300, 900, '#9A6A3E', '#4A2E1A');
   ctx.strokeStyle = 'rgba(40,24,12,.4)'; ctx.lineWidth = 3; for (let k = 0; k < 6; k++) { ctx.beginPath(); ctx.moveTo(-300, 1320 + k * k * 8); ctx.lineTo(W + 300, 1320 + k * k * 8); ctx.stroke(); }
   ctx.restore();
   ctx.strokeStyle = 'rgba(255,230,150,.9)'; ctx.lineWidth = 6; ctx.setLineDash([18, 14]); ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(lerp(sx, 380, rumo), lerp(sy, 860, rumo)); ctx.stroke(); ctx.setLineDash([]);
@@ -2542,26 +2624,26 @@ function AL_oceano(ctx, t, T) {
   vignette(ctx, .5);
 }
 
-// ---------- 12 · 1100: filiais e filhos de pescadores aprendem a ler 55,81–63,37 ----------
+// ---------- 12 · 1100: filiais e filhos de pescadores aprendem a ler 55,81–63,37 (horizonte 1000) ----------
 function AL_filial(ctx, t, T) {
   const dentro = ease(prog(t, 4.6, 5.3));
   if (dentro < 1) {
-    ctx.save(); ctx.globalAlpha = 1; cam(ctx, 1 + t * .02 + dentro * .6, 560, 1150);
+    ctx.save(); cam(ctx, 1 + t * .02 + dentro * .6, 540, 1150); AP_ini(ctx, 1000);
     sky(ctx, [[0, '#7AA8D8'], [.55, '#E0E8E8'], [1, '#E8D0A0']]); sun(ctx, 180, 480, 55);
     AL_mar(ctx, 1000, '#5A98C0', '#1E5070', T);
-    ctx.fillStyle = lg(ctx, 0, 955, 0, 1010, [[0, '#D8BC90'], [1, '#A88A60']]); ctx.fillRect(-300, 955, W + 600, 55);
-    [[140, 1080, .3], [900, 1060, .25]].forEach(([x, y, s]) => AL_navio(ctx, x, y, s, T, {}));
-    [[60, 990, 300, 200], [720, 990, 300, 210]].forEach(([x, yb, w, h], i) => { const p = prog(t, 1.8 + i * .4, 2.4 + i * .4); if (p > 0) { ctx.save(); ctx.translate(x + w / 2, yb); ctx.scale(easeBack(p), easeBack(p)); AL_biblioteca(ctx, -w / 2, 0, w, h, T, { n: 4 }); ctx.restore(); } });
-    ctx.fillStyle = lg(ctx, 0, 1180, 0, 1430, [[0, '#C8A878'], [1, '#6A4E34']]); ctx.fillRect(-300, 1200, W + 600, 1200);
-    const p = prog(t, 2.2, 2.8); ctx.save(); ctx.translate(560, 1260); ctx.scale(easeBack(p), easeBack(p)); AL_biblioteca(ctx, -260, 0, 520, 380, T, { n: 5, abre: prog(t, 3.4, 4.0) }); ctx.restore();
+    AL_faixaChao(ctx, -300, 380, 1004, 40, '#D8BC90', '#A88A60'); AL_faixaChao(ctx, 700, 1400, 1004, 40, '#D8BC90', '#A88A60');
+    [[30, 1035, 260, 200], [760, 1035, 260, 200]].forEach(([x, yb, w, h], i) => { const p = prog(t, 1.8 + i * .4, 2.4 + i * .4); if (p > 0) { ctx.save(); ctx.translate(x + w / 2, yb); ctx.scale(1, easeBack(p)); AL_biblioteca(ctx, -w / 2, 0, w, h, T, { n: 4 }); ctx.restore(); } });
+    AL_navio(ctx, 540, 1075, .9, T, {});
+    AL_faixaChao(ctx, -300, W + 300, 1100, 900, '#C8A878', '#6A4E34');
+    const p = prog(t, 2.2, 2.8); if (p > 0) { ctx.save(); ctx.translate(540, 1130); ctx.scale(1, easeBack(p)); AL_biblioteca(ctx, -280, 0, 560, 560, T, { n: 5, abre: prog(t, 3.4, 4.0) }); ctx.restore(); }
     AL_b(ctx, 150, 1405, 3.8, 'meninoPescador', { t: T, seed: 2, anda: t > 3.4, olhar: { x: 1, y: -.3 } });
     AL_b(ctx, 960, 1405, 3.8, 'meninaPescadora', { t: T, seed: 4, flip: true, olhar: { x: -1, y: -.3 } });
     ctx.restore();
     E_placa(ctx, '1100 d.C.', t, .5, 1 - dentro);
-    E_rotulo(ctx, 'ABERTA A TODOS', W / 2, 640, prog(t, 3.4, 3.8) * (1 - dentro));
+    E_rotulo(ctx, 'ABERTA A TODOS', W / 2, 500, prog(t, 3.4, 3.8) * (1 - dentro));
   }
   if (dentro > 0) {
-    ctx.save(); ctx.globalAlpha = dentro; cam(ctx, 1.04 + (t - 5) * .02, W / 2, 1400);
+    ctx.save(); ctx.globalAlpha = dentro; cam(ctx, 1.04 + (t - 5) * .02, W / 2, 1400); AP_ini(ctx, 760);
     AL_interior(ctx, '#6A5038', '#2A1E14');
     AL_janela(ctx, 820, 340, 170, 300);
     rrect(ctx, 140, 420, 560, 360, 14); ctx.fillStyle = '#2E3A30'; ctx.fill(); ctx.strokeStyle = AL.madeiraC; ctx.lineWidth = 16; ctx.stroke();
@@ -2575,138 +2657,148 @@ function AL_filial(ctx, t, T) {
   vignette(ctx, .45);
 }
 
-// ---------- 13 · 1300: lentes viram telescópios 63,37–68,17 ----------
+// ---------- 13 · 1300: lentes viram telescópios 63,37–68,17 (interior, horizonte 760) ----------
 function AL_lentes(ctx, t, T) {
-  const junta = ease(prog(t, 2.0, 3.4)), vira = ease(prog(t, 3.4, 4.0));
-  ctx.save(); cam(ctx, 1.02 + t * .035, W / 2, 1400);
+  const junta = ease(prog(t, 2.0, 3.2)), vira = ease(prog(t, 3.3, 3.9));
+  ctx.save(); cam(ctx, 1.02 + t * .035, W / 2, 1400); AP_ini(ctx, 760);
   AL_interior(ctx, '#5A4230', '#22180F');
   AL_janela(ctx, 780, 300, 180, 320);
-  AL_estante(ctx, -40, 1000, 300, 560, T, { seed: 51 });
   AL_chao(ctx, 1000, '#A88A64', '#4A3424');
-  const tp = AL_mesa(ctx, 640, 1340, 560, T, { rolos: 2 });
-  const cx = 640, cy = tp - 150;
-  if (vira < 1) { ctx.save(); ctx.globalAlpha = 1 - vira; AL_lente(ctx, lerp(460, cx - 70, junta), cy, 60, junta); AL_lente(ctx, lerp(820, cx + 70, junta), cy, 46, junta); ctx.restore(); }
-  if (vira > 0) { ctx.save(); ctx.globalAlpha = vira; ctx.translate(cx, cy); ctx.scale(lerp(.6, 1, easeBack(vira)), lerp(.6, 1, easeBack(vira))); ctx.rotate(-.25); rrect(ctx, -170, -36, 340, 72, 20); ctx.fillStyle = lg(ctx, 0, -36, 0, 36, [[0, '#F0D080'], [.5, '#C99A3B'], [1, '#7A5A20']]); ctx.fill(); AL_lente(ctx, 170, 0, 40, 1); ctx.restore(); glow(ctx, cx, cy, 300, '#FFF0C0', .4 * vira * (1 - prog(t, 4.0, 4.8))); }
-  AL_b(ctx, 220, 1405, 5.4, 'copista1300', { t: T, seed: 8, expressao: vira > .5 ? 'surpreso' : 'feliz', pose: 'maosJuntas', olhar: { x: 1, y: -.3 } });
+  AL_estante(ctx, -40, 1000, 300, 380, T, { seed: 51 });
+  const sup = AL_mesa(ctx, 660, 1340, 600, T, { esc: AL_esc(1340, 760), rolos: 1 });
+  const cx = 700;
+  if (vira < 1) { ctx.save(); ctx.globalAlpha = 1 - vira; AL_lente(ctx, lerp(480, cx - 40, junta), sup, 26, junta); AL_lente(ctx, lerp(900, cx + 40, junta), sup, 20, junta); ctx.restore(); }
+  if (vira > 0) { ctx.save(); ctx.globalAlpha = vira; ctx.translate(cx, sup); ctx.scale(1, lerp(.6, 1, easeBack(vira))); AL_telescopio(ctx, 0, 0, 1.5, -.45); ctx.restore(); glow(ctx, cx, sup - 180, 300, '#FFF0C0', .4 * vira * (1 - prog(t, 4.0, 4.8))); }
+  AL_b(ctx, 220, 1405, 5.4, 'copista1300', { t: T, seed: 8, expressao: vira > .5 ? 'surpreso' : 'feliz', pose: 'maosJuntas', olhar: { x: 1, y: .2 } });
   ctx.restore();
   E_placa(ctx, '1300 d.C.', t, .6, 1);
-  E_rotulo(ctx, 'TELESCÓPIO', 640, 640, prog(t, 3.6, 4.0));
+  E_rotulo(ctx, 'TELESCÓPIO', 700, 760, prog(t, 3.6, 4.0));
   vignette(ctx, .45);
 }
 
-// ---------- 14 · crateras na Lua e anéis de Saturno 68,17–71,99 ----------
+// ---------- 14 · crateras na Lua e anéis de Saturno 68,17–71,99 (observatório; a imagem redonda é a vista da luneta) ----------
 function AL_lua_cena(ctx, t, T) {
   const sat = ease(prog(t, 2.3, 2.9));
-  ctx.fillStyle = '#05060E'; ctx.fillRect(0, 0, W, H);
-  ctx.save(); ctx.beginPath(); ctx.arc(W / 2, 820, 470, 0, TAU); ctx.clip();
+  ctx.save(); AP_ini(ctx, 760);
+  ctx.fillStyle = lg(ctx, 0, 0, 0, H, [[0, '#05060E'], [1, '#14121E']]); ctx.fillRect(0, 0, W, H);
+  AL_chao(ctx, 1250, '#3A3448', '#14121E');
+  const cx = 480, cy = 650, R = 330;
+  ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.clip();
   ctx.fillStyle = '#0A0C1E'; ctx.fillRect(0, 0, W, H); stars(ctx, T, 90, 11, H);
-  ctx.save(); ctx.globalAlpha = 1 - sat; AL_lua(ctx, W / 2 - 40 + t * 12, 820, 300 * (1 + t * .03)); ctx.restore();
-  ctx.save(); ctx.globalAlpha = sat; AL_saturno(ctx, W / 2 + (1 - sat) * 300, 820, 150 * (1 + t * .03), T); ctx.restore();
+  ctx.save(); ctx.globalAlpha = 1 - sat; AL_lua(ctx, cx - 30 + t * 12, cy, 250 * (1 + t * .03)); ctx.restore();
+  ctx.save(); ctx.globalAlpha = sat; AL_saturno(ctx, cx + (1 - sat) * 300, cy, 125 * (1 + t * .03), T); ctx.restore();
   ctx.restore();
-  ctx.lineWidth = 30; ctx.strokeStyle = lg(ctx, 0, 350, 0, 1290, [[0, '#E0C070'], [1, '#6A4A18']]); ctx.beginPath(); ctx.arc(W / 2, 820, 485, 0, TAU); ctx.stroke();
-  AL_b(ctx, 900, 1405, 4.2, 'astronoma', { t: T, flip: true, seed: 4, expressao: 'surpreso', olhar: { x: -1, y: -1 } });
-  E_rotulo(ctx, sat > .5 ? 'SATURNO' : 'CRATERAS DA LUA', W / 2, 1340, prog(t, 1.4, 1.8));
+  ctx.lineWidth = 26; ctx.strokeStyle = lg(ctx, 0, cy - R, 0, cy + R, [[0, '#E0C070'], [1, '#6A4A18']]); ctx.beginPath(); ctx.arc(cx, cy, R + 12, 0, TAU); ctx.stroke();
+  AL_telescopio(ctx, 900, 1405, 2.6, -1.45);
+  AL_b(ctx, 680, 1405, 4.8, 'astronoma', { t: T, seed: 4, expressao: 'surpreso', olhar: { x: -.6, y: -1 } });
+  ctx.restore();
+  E_rotulo(ctx, sat > .5 ? 'SATURNO' : 'CRATERAS DA LUA', cx, 1060, prog(t, 1.4, 1.8));
   vignette(ctx, .4);
 }
 
-// ---------- 15 · 1650: incêndio atinge a Biblioteca 71,99–77,44 ----------
+// ---------- 15 · 1650: incêndio atinge a Biblioteca 71,99–77,44 (horizonte 1000) ----------
 function AL_incendio(ctx, t, T) {
   const fogo = ease(prog(t, 2.1, 3.2));
-  ctx.save(); cam(ctx, 1 + t * .03, W / 2, 1400);
+  ctx.save(); cam(ctx, 1 + t * .03, W / 2, 1400); AP_ini(ctx, 1000);
   sky(ctx, [[0, '#0E0E1E'], [.6, mix('#2A2240', '#6A2A1A', fogo)], [1, '#1A0E0A']]);
   stars(ctx, T, 30, 13, 500);
   glow(ctx, 540, 900, 800, '#FF6A2A', .45 * fogo);
-  AL_cidadeAntiga(ctx, 1020, '#4A3A40', 7);
-  AL_biblioteca(ctx, 170, 1270, 740, 500, T, { abre: 0, n: 7 });
-  if (fogo > 0) { fire(ctx, 300, 780, 260, 360 * fogo, T, 2); fire(ctx, 640, 770, 320, 420 * fogo, T, 4); fire(ctx, 820, 900, 200, 260 * fogo, T, 6); steam(ctx, 540, 700, T, { n: 14, life: 2.4, rise: 700, size: 160, color: '#3A3030', alpha: .5 * fogo, seed: 3 }); }
-  ctx.fillStyle = lg(ctx, 0, 1270, 0, 1430, [[0, '#5A4434'], [1, '#2A1E16']]); ctx.fillRect(-300, 1270, W + 600, 400);
+  AL_faixaChao(ctx, -300, W + 300, 1000, 1000, '#3A3040', '#2A1E16');
+  AL_cidadeAntiga(ctx, 1060, '#4A3A40', 7, 540 * 60 / 405);
+  AL_faixaChao(ctx, -300, W + 300, 1100, 900, '#5A4434', '#2A1E16');
+  AL_biblioteca(ctx, 170, 1120, 740, 540, T, { abre: 0, n: 7 });
+  if (fogo > 0) { fire(ctx, 300, 640, 260, 340 * fogo, T, 2); fire(ctx, 600, 600, 320, 400 * fogo, T, 4); fire(ctx, 820, 700, 200, 240 * fogo, T, 6); steam(ctx, 540, 560, T, { n: 14, life: 2.4, rise: 600, size: 160, color: '#3A3030', alpha: .5 * fogo, seed: 3 }); }
   AL_b(ctx, 760, 1405, 5.4, 'bibliotecario1650', { t: T, flip: true, seed: 9, expressao: fogo > .3 ? 'surpreso' : 'neutro', pose: fogo > .3 ? 'apontando' : 'maosJuntas', olhar: { x: -.6, y: -1 } });
   ctx.restore();
   E_placa(ctx, '1650 d.C.', t, .6, 1);
   vignette(ctx, .55);
 }
 
-// ---------- 16 · nada se perde: cópias em mil cidades 77,44–81,60 ----------
+// ---------- 16 · nada se perde: cópias em mil cidades 77,44–81,60 (globo: sem chão) ----------
 function AL_copias(ctx, t, T) {
   const luz = prog(t, 2.3, 3.6), n = Math.round(lerp(0, 1000, luz));
   ctx.fillStyle = lg(ctx, 0, 0, 0, H, [[0, '#0A0E1E'], [1, '#1A1A2A']]); ctx.fillRect(0, 0, W, H);
   stars(ctx, T, 80, 15, H);
-  ctx.save(); cam(ctx, 1 + t * .015, W / 2, 860);
+  ctx.save(); cam(ctx, 1 + t * .015, W / 2, 860); AP_ini(ctx, null);
   globe(ctx, W / 2, 860, 420, T, { p: 0 });
   ctx.save(); circle(ctx, W / 2, 860, 420); ctx.clip();
   for (let k = 0; k < Math.min(n, 260); k++) { const a = hash(k * 1.7) * TAU, r = Math.sqrt(hash(k * 3.1)) * 400; const x = W / 2 + Math.cos(a) * r, y = 860 + Math.sin(a) * r * .9; glow(ctx, x, y, 18, '#FFD27A', .5); circle(ctx, x, y, 4); ctx.fillStyle = '#FFF4C8'; ctx.fill(); }
   ctx.restore();
-  for (let k = 0; k < 5; k++) { const a = T * .6 + k * 1.26; AL_rolo(ctx, W / 2 + Math.cos(a) * 520, 860 + Math.sin(a) * 200, .9, a); }
   ctx.restore();
   if (luz > 0) E_txt(ctx, n.toLocaleString('pt-BR'), W / 2, 320, 170, '#FFC23D', clamp(luz * 4), 1);
   E_rotulo(ctx, 'CÓPIAS EM MIL CIDADES', W / 2, 1340, prog(t, 2.4, 2.8));
   vignette(ctx, .4);
 }
 
-// ---------- 17 · hoje: biblioteca em cada esquina 81,60–86,18 ----------
+// ---------- 17 · hoje: biblioteca em cada esquina 81,60–86,18 (horizonte 1080) ----------
 function AL_hoje(ctx, t, T) {
   const placa = prog(t, 3.5, 3.9);
-  ctx.save(); cam(ctx, 1.05, W / 2, 1400, -t * 40, 0);
+  ctx.save(); cam(ctx, 1.05, W / 2, 1400, -t * 40, 0); AP_ini(ctx, 1080);
   sky(ctx, [[0, '#101830'], [.5, '#2A3A6A'], [1, '#5A4A7A']]);
   stars(ctx, T, 40, 17, 400);
-  for (let k = 0; k < 6; k++) AL_predio(ctx, -200 + k * 260, 1080, 200, 520 + hash(k) * 300, T, { seed: k + 3, neon: k % 2 ? '#7CF3FF' : null });
   AL_chao(ctx, 1080, '#4A4A5A', '#1A1A24');
+  for (let k = 0; k < 6; k++) AL_predio(ctx, -200 + k * 260, 1080, 200, 520 + hash(k) * 300, T, { seed: k + 3, neon: k % 2 ? '#7CF3FF' : null });
   ctx.fillStyle = 'rgba(124,243,255,.12)'; ctx.fillRect(-300, 1300, W + 800, 6);
-  AL_biblioteca(ctx, 520, 1290, 520, 380, T, { abre: 1 });
-  if (placa > 0) { ctx.save(); ctx.globalAlpha = placa; ctx.shadowColor = '#7CF3FF'; ctx.shadowBlur = 30; rrect(ctx, 600, 820, 360, 90, 16); ctx.fillStyle = 'rgba(10,20,40,.85)'; ctx.fill(); ctx.strokeStyle = '#7CF3FF'; ctx.lineWidth = 5; ctx.stroke(); ctx.font = '62px Anton'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#7CF3FF'; ctx.fillText('ABERTA 24H', 780, 868); ctx.restore(); }
+  AL_biblioteca(ctx, 560, 1150, 440, 380, T, { abre: 1 });
+  if (placa > 0) { ctx.save(); ctx.globalAlpha = placa; ctx.shadowColor = '#7CF3FF'; ctx.shadowBlur = 30; rrect(ctx, 600, 800, 360, 84, 16); ctx.fillStyle = 'rgba(10,20,40,.85)'; ctx.fill(); ctx.strokeStyle = '#7CF3FF'; ctx.lineWidth = 5; ctx.stroke(); ctx.font = '58px Anton'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#7CF3FF'; ctx.fillText('ABERTA 24H', 780, 845); ctx.restore(); }
   AL_b(ctx, 250 + t * 70, 1405, 5.4, 'voceHoje', { t: T, seed: 7, anda: true, olhar: { x: 1, y: -.2 } });
   ctx.restore();
   E_placa(ctx, 'HOJE', t, .4, 1);
   vignette(ctx, .45);
 }
 
-// ---------- 18 · telescópios nas praças e mapas do céu nas paredes 86,18–89,98 ----------
+// ---------- 18 · telescópios nas praças e mapas do céu nas paredes 86,18–89,98 (horizonte 860) ----------
 function AL_praca(ctx, t, T) {
   const mapa = ease(prog(t, 1.9, 3.2));
-  ctx.save(); cam(ctx, 1.1 - t * .025, W / 2, 1400);
+  ctx.save(); cam(ctx, 1.1 - t * .025, W / 2, 1400); AP_ini(ctx, 860);
   sky(ctx, [[0, '#080C20'], [.6, '#1B1F3B'], [1, '#3A3060']]);
   stars(ctx, T, 90, 19, 700);
   rrect(ctx, 60, 360, 960, 560, 10); ctx.fillStyle = lg(ctx, 0, 360, 0, 920, [[0, '#2A3050'], [1, '#1A1E34']]); ctx.fill();
+  ctx.fillStyle = '#2A2638'; ctx.fillRect(40, 920, 1000, 80);
   ctx.save(); ctx.shadowColor = '#7CF3FF'; ctx.shadowBlur = 18 * mapa; AL_constelacoes(ctx, 100, 400, 880, 480, mapa, T, '#7CF3FF'); ctx.restore();
   AL_chao(ctx, 1000, '#7A7488', '#2A2638');
-  AL_telescopio(ctx, 200, 1180, .8, -1); AL_telescopio(ctx, 880, 1200, .8, -.8);
-  AL_b(ctx, 360, 1405, 5.4, 'lucas', { t: T, seed: 2, flip: false, expressao: 'feliz', olhar: { x: .6, y: -1 } });
+  AL_telescopio(ctx, 190, 1180, 2.0, -1); AL_telescopio(ctx, 890, 1200, 2.0, -2.2);
+  AL_b(ctx, 360, 1405, 5.4, 'lucas', { t: T, seed: 2, expressao: 'feliz', olhar: { x: .6, y: -1 } });
   AL_b(ctx, 720, 1405, 5.4, 'ana', { t: T, seed: 5, flip: true, expressao: 'feliz', pose: 'apontando', olhar: { x: -.4, y: -1 } });
   ctx.restore();
   vignette(ctx, .45);
 }
 
-// ---------- 19 · cópia longe do fogo — onde guardar? 89,98–97,29 ----------
+// ---------- 19 · cópia longe do fogo — onde guardar? 89,98–97,29 (horizonte 1080) ----------
 function AL_perguntaFinal(ctx, t, T) {
-  const copia = ease(prog(t, 1.8, 3.0)), caminhos = ease(prog(t, 4.4, 5.2));
-  ctx.save(); cam(ctx, 1 + t * .02, W / 2, 1400);
+  const copia = prog(t, 1.8, 2.4), caminhos = ease(prog(t, 4.4, 5.2));
+  ctx.save(); cam(ctx, 1 + t * .02, W / 2, 1400); AP_ini(ctx, 1080);
   sky(ctx, [[0, '#05081A'], [.6, '#1B1F3B'], [1, '#2A2A48']]);
   stars(ctx, T, 160, 21, 1000);
   circle(ctx, 860, 330, 60); ctx.fillStyle = '#F4F0E0'; ctx.fill(); glow(ctx, 860, 330, 200, '#F4F0E0', .3);
-  hills(ctx, 1080, 60, '#1A1E30', 5, 0, .5);
-  ctx.fillStyle = lg(ctx, 0, 1080, 0, 1430, [[0, '#3A3A50'], [1, '#14141E']]); ctx.fillRect(-300, 1100, W + 600, 400);
-  if (caminhos > 0) { ctx.save(); ctx.globalAlpha = caminhos; ctx.lineCap = 'round'; [['#2F6FD0', -1], ['#D0442F', 1]].forEach(([c, sd]) => { ctx.shadowColor = c; ctx.shadowBlur = 30; ctx.strokeStyle = c; ctx.lineWidth = 34; ctx.beginPath(); ctx.moveTo(540, 1400); ctx.quadraticCurveTo(540 + sd * 120, 1250, 540 + sd * 380, 1110); ctx.stroke(); }); ctx.restore(); AL_nave(ctx, 140, 700 - caminhos * 40, .45, T, caminhos); AL_montanha(ctx, 920, 1010, 320, 320, T, caminhos); }
-  for (let k = 0; k < 8; k++) { const p = prog(copia, k * .06, k * .06 + .5); if (p <= 0) continue; ctx.save(); ctx.globalAlpha = 1 - prog(t, 3.8, 4.4); const x = 540 + (k - 3.5) * 90, y = 800 - p * 160 + Math.sin(T * 2 + k) * 14; glow(ctx, x, y, 60, '#7CF3FF', .5); poly(ctx, [x, y - 34, x + 22, y, x, y + 34, x - 22, y]); ctx.fillStyle = '#BFF6FF'; ctx.fill(); ctx.restore(); }
-  AL_b(ctx, 300, 1405, 5.4, 'sabiaHoje', { t: T, seed: 3, olhar: { x: .6, y: -.8 } });
-  AL_b(ctx, 780, 1405, 5.4, 'voceHoje', { t: T, seed: 7, flip: true, pose: caminhos > .3 ? 'maoNoQueixo' : 'bracosAoLado', expressao: caminhos > .3 ? 'pensando' : 'neutro', olhar: { x: -.3, y: -1 } });
+  if (caminhos > 0) { ctx.save(); ctx.globalAlpha = caminhos; AL_montanha(ctx, 900, 1085, 360, 380, T, caminhos); ctx.restore(); }
+  hills(ctx, 1080, 50, '#1A1E30', 5, 0, .5);
+  AL_faixaChao(ctx, -300, W + 300, 1100, 900, '#3A3A50', '#14141E');
+  if (caminhos > 0) { ctx.save(); ctx.globalAlpha = caminhos; ctx.lineCap = 'round'; [['#2F6FD0', -1], ['#D0442F', 1]].forEach(([c, sd]) => { ctx.shadowColor = c; ctx.shadowBlur = 30; ctx.strokeStyle = c; ctx.lineWidth = 34; ctx.beginPath(); ctx.moveTo(540, 1400); ctx.quadraticCurveTo(540 + sd * 120, 1250, 540 + sd * 380, 1110); ctx.stroke(); }); ctx.restore(); AL_plataforma(ctx, 150, 1110, 200); ctx.save(); ctx.globalAlpha = caminhos; AL_nave(ctx, 150, 1110 - 60 * .5, .5, T, 0); ctx.restore(); AP_obj(ctx, 'nave', 'nave', 150, 1110, 0); }
+  if (copia > 0) { glow(ctx, 540, 1330, 260, '#7CF3FF', .5 * copia); ctx.save(); ctx.translate(540, 1405); ctx.scale(1, easeBack(copia)); AL_caixa(ctx, 0, 0, 2.6); ctx.restore(); }
+  AL_b(ctx, 280, 1405, 5.4, 'sabiaHoje', { t: T, seed: 3, olhar: { x: .6, y: .3 } });
+  AL_b(ctx, 800, 1405, 5.4, 'voceHoje', { t: T, seed: 7, flip: true, pose: caminhos > .3 ? 'maoNoQueixo' : 'bracosAoLado', expressao: caminhos > .3 ? 'pensando' : 'neutro', olhar: { x: -.3, y: -1 } });
   ctx.restore();
   vignette(ctx, .45);
 }
 
-// ---------- 20 · Um: nave / Dois: caverna gelada 97,29–103,79 ----------
+// ---------- 20 · Um: nave / Dois: caverna gelada 97,29–103,79 (painéis das opções) ----------
 function AL_painelNave(ctx, T, w, t) {
   sky(ctx, [[0, '#05081A'], [.6, '#14204A'], [1, '#2F6FD0']]); stars(ctx, T, 120, 23, 1300);
-  AL_cidadeAntiga(ctx, 1500, '#1A2448', 3);
-  AL_nave(ctx, W / 2, 1250 - ease(prog(t, .5, 3.2)) * 400, 1.25, T, 1);
+  AL_faixaChao(ctx, -300, W + 300, 1500, 600, '#1A2448', '#0A1020');
+  AL_cidadeAntiga(ctx, 1500, '#1A2448', 3, 60);
+  const sobe = ease(prog(t, .9, 3.2));
+  AL_plataforma(ctx, W / 2, 1500, 300);
+  AL_nave(ctx, W / 2, 1500 - 60 * 1.25 - sobe * 500, 1.25, T, sobe > 0 ? 1 : .3);
 }
 function AL_painelCaverna(ctx, T, w, t) {
   sky(ctx, [[0, '#8AB8E0'], [.6, '#DDEAF4'], [1, '#F4F8FC']]);
   AL_neve(ctx, T, 80, .8, 5);
   AL_montanha(ctx, W / 2 + 80, 1500, 1200, 1100, T, prog(t, 3.6, 4.4));
-  ground(ctx, 1480, '#F4F8FC', '#B8C8D8');
+  AL_faixaChao(ctx, -300, W + 300, 1480, 600, '#F4F8FC', '#B8C8D8');
 }
 function AL_escolhas(ctx, t, T) {
-  ctx.save(); cam(ctx, 1.04 + (t < 3.2 ? t : t - 3.2) * .02, W / 2, 1300);
+  ctx.save(); cam(ctx, 1.04 + (t < 3.2 ? t : t - 3.2) * .02, W / 2, 1300); AP_ini(ctx, null);
   if (t < 3.2) AL_painelNave(ctx, T, W, t); else AL_painelCaverna(ctx, T, W, t);
   ctx.restore();
   if (t < 3.2) { bigNum(ctx, W / 2, 380, '1', '#2F6FD0', easeBack(prog(t, .4, .8))); E_rotulo(ctx, 'NAVE RUMO A OUTRA ESTRELA', W / 2, 600, prog(t, 1.2, 1.6)); }
@@ -2717,7 +2809,8 @@ function AL_escolhas(ctx, t, T) {
 // ---------- 21 · comenta 1 ou 2 + cartão final 103,79–109,42 ----------
 function AL_fim(ctx, t, T) {
   const split = ease(prog(t, 0, .5));
-  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W / 2, H); ctx.clip(); ctx.translate(-W / 4, 0); AL_painelNave(ctx, T, W, 3); ctx.restore();
+  AP_ini(ctx, null);
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W / 2, H); ctx.clip(); ctx.translate(-W / 4, 0); AL_painelNave(ctx, T, W, 0); ctx.restore();
   ctx.save(); ctx.beginPath(); ctx.rect(W / 2, 0, W / 2, H); ctx.clip(); ctx.translate(W / 4, 0); AL_painelCaverna(ctx, T, W, 6); ctx.restore();
   ctx.fillStyle = `rgba(6,8,20,${.55 * split})`; ctx.fillRect(0, 0, W, H);
   ctx.fillStyle = '#fff'; ctx.fillRect(W / 2 - 4, 0, 8, H);
@@ -3246,6 +3339,16 @@ function AL_captions(ctx, t) {
   ctx.restore();
 }
 function AL_drawScene(ctx, i, t) { const [a, b, f] = AL_SCENES[i]; ctx.save(); f(ctx, t - a, t, b - a); ctx.restore(); }
+// conferência (conferir.py): desenha só a cena do segundo t e devolve onde cada coisa pisa
+function AL_apoio(t, cv) {
+  const ctx = cv.getContext('2d'); ctx.setTransform(1, 0, 0, 1, 0, 0);
+  let i = AL_SCENES.findIndex(s => t >= s[0] && t < s[1]); if (i < 0) i = AL_SCENES.length - 1;
+  AP = { sup: [], obj: [], yh: null, ini: false, M0: null };
+  AL_drawScene(ctx, i, t);
+  const r = { cena: i, nome: AL_SCENES[i][2].name, ini: AP.ini, yh: AP.yh, sup: AP.sup, obj: AP.obj };
+  AP = null;
+  return r;
+}
 function renderAlexandria(t, cv) {
   const ctx = cv.getContext('2d');
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
@@ -3271,5 +3374,5 @@ function renderAlexandria(t, cv) {
   EG_marca(ctx);
 }
 
-return { render: renderAlexandria, DURACAO: DURACAO_ALEXANDRIA, CENAS: AL_SCENES.map(([a, b, f]) => [a, b, f.name]) };
+return { render: renderAlexandria, apoio: AL_apoio, DURACAO: DURACAO_ALEXANDRIA, CENAS: AL_SCENES.map(([a, b, f]) => [a, b, f.name]) };
 }

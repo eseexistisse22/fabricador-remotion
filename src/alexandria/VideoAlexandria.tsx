@@ -25,7 +25,8 @@ const carregarFontes = () => {
   return fontes;
 };
 
-export const VideoAlexandria: React.FC = () => {
+// conferir = true (só no autonomo/conferir.py): imprime no console onde cada coisa pisa ("APOIO {...}")
+export const VideoAlexandria: React.FC<{ conferir?: boolean }> = ({ conferir }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -40,7 +41,12 @@ export const VideoAlexandria: React.FC = () => {
   }, [handle]);
   useLayoutEffect(() => {
     if (prontas && canvas.current) motor.render(frame / fps, canvas.current);
-  }, [frame, fps, motor, prontas]);
+    if (prontas && conferir) {
+      const c = document.createElement("canvas");
+      c.width = width; c.height = height;
+      console.log("APOIO " + JSON.stringify(motor.apoio(frame / fps, c)));
+    }
+  }, [frame, fps, motor, prontas, conferir, width, height]);
   return (
     <>
       <canvas ref={canvas} width={width} height={height} style={{ width, height, display: "block", background: "#000" }} />

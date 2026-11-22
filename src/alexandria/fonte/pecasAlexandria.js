@@ -12,7 +12,8 @@ function AP_ini(ctx, yh) { if (AP) { AP.M0 = ctx.getTransform(); AP.yh = yh; AP.
 function AP_m(ctx) { return (AP.M0 || new DOMMatrix()).inverse().multiply(ctx.getTransform()); }
 function AP_pt(ctx, x, y) { const p = AP_m(ctx).transformPoint(new DOMPoint(x, y)); return [p.x, p.y]; }
 function AP_k(ctx) { const m = AP_m(ctx); return Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)); }
-function AP_sup(ctx, tipo, x0, x1, y) { if (!AP) return; const [a, yy] = AP_pt(ctx, x0, y), [b] = AP_pt(ctx, x1, y); AP.sup.push({ tipo, x0: Math.round(Math.min(a, b)), x1: Math.round(Math.max(a, b)), y: Math.round(yy) }); }
+// base = linha do chão onde o móvel pisa (para medir a escala do que está em cima do tampo)
+function AP_sup(ctx, tipo, x0, x1, y, base) { if (!AP) return; const [a, yy] = AP_pt(ctx, x0, y), [b] = AP_pt(ctx, x1, y); const s = { tipo, x0: Math.round(Math.min(a, b)), x1: Math.round(Math.max(a, b)), y: Math.round(yy) }; if (base != null) s.base = Math.round(AP_pt(ctx, x0, base)[1]); AP.sup.push(s); }
 function AP_obj(ctx, tipo, nome, x, yb, h) { if (!AP) return; const [px, py] = AP_pt(ctx, x, yb); AP.obj.push({ tipo, nome, x: Math.round(px), yb: Math.round(py), h: Math.round(h * AP_k(ctx)) }); }
 const AL_chaoTodo = (ctx, y) => AP_sup(ctx, 'chao', AP_LARGO[0], AP_LARGO[1], y);
 // escala do boneco numa linha de chão yb (frente = 5,4 em y=1405), para desenhar tudo na proporção certa
@@ -77,7 +78,7 @@ function AL_mesa(ctx, x, yb, w, t, o = {}) {
   ctx.fillStyle = lg(ctx, 0, top, 0, top + 22 * k, [[0, AL.madeiraE], [1, shade(AL.madeiraE, -.3)]]); ctx.fillRect(x - w / 2, top, w, 22 * k);
   const sup = top - e / 2;
   AP_obj(ctx, 'mesa', 'mesa', x, yb, h);
-  AP_sup(ctx, 'linha', x - w / 2, x + w / 2 + 30 * k, sup);
+  AP_sup(ctx, 'linha', x - w / 2, x + w / 2 + 30 * k, sup, yb);
   if (o.rolos) for (let i = 0; i < o.rolos; i++) AL_rolo(ctx, x - w * .35 + i * 60 * k * 1.1, sup - 9 * 1.6 * k, 1.6 * k, 0);
   if (o.lamp) AL_lamparina(ctx, x + w * .3, sup, 1.2 * k, t);
   return sup;
