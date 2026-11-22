@@ -719,6 +719,74 @@ export const VIKINGS: Record<string, Omit<BonecoOpcoes, "x" | "y">> = {
   },
 };
 
+// Vídeo de Alexandria (22/11): mesmo corpo, só roupa/cabelo/chapéu. "Você" = turquesa nas duas épocas.
+export const ALEXANDRIA: Record<string, Omit<BonecoOpcoes, "x" | "y">> = {
+  cesar: {
+    pele: PELES.clara, cabelo: "curto", corCabelo: "#8a7a68", cabeca: "faixa", corChapeu: "#6f9a4a",
+    expressao: "bravo", pose: "apontando",
+    roupa: { tipo: "tunica", cor: "#efe6d2", faixa: "#8e3226" },
+  },
+  bibliotecario: {
+    pele: PELES.morena, cabelo: "grisalho", barba: "#d9d5cf",
+    expressao: "pensando", pose: "maoNoQueixo",
+    roupa: { tipo: "tunica", cor: "#e2d5b2", faixa: CORES.dourado },
+  },
+  copista: {
+    pele: PELES.media, cabelo: "careca", expressao: "neutro", pose: "segurando", objeto: "papiro",
+    roupa: { tipo: "tunica", cor: "#c9a46a" },
+  },
+  voceCopista: {
+    pele: PELES.marrom, cabelo: "curto", corCabelo: CORES.cabeloEscuro,
+    expressao: "feliz", pose: "segurando", objeto: "papiro",
+    roupa: { tipo: "tunica", cor: CORES.turquesa, detalheTurquesa: true },
+  },
+  marinheiro: {
+    pele: PELES.escura, cabelo: "curto", cabeca: "faixa", corChapeu: "#b5523b",
+    expressao: "feliz", pose: "segurando", objeto: "caixa",
+    roupa: { tipo: "tunica", cor: "#7a6a50" },
+  },
+  medica: {
+    pele: PELES.escura, cabelo: "trancas", corCabelo: "#1d1410", corChapeu: "#3fa37a",
+    expressao: "neutro", pose: "segurando", objeto: "papiro",
+    roupa: { tipo: "tunica", cor: "#f1e8d6", faixa: "#3fa37a" },
+  },
+  astronoma: {
+    pele: PELES.clara, cabelo: "longo", corCabelo: "#5a3520", cabeca: "faixa", corChapeu: CORES.dourado,
+    expressao: "surpreso", pose: "apontando",
+    roupa: { tipo: "tunica", cor: "#3b4670", faixa: CORES.dourado },
+  },
+  navegador: {
+    pele: PELES.morena, cabelo: "curto", corCabelo: "#2a1a14", barba: "#2a1a14", cabeca: "boina", corChapeu: "#5a4a3a",
+    expressao: "feliz", pose: "apontando",
+    roupa: { tipo: "tunica", cor: "#8a6a48", golaPele: "#6b4126" },
+  },
+  professora: {
+    pele: PELES.morena, cabelo: "longo", corCabelo: "#2a1a14",
+    expressao: "feliz", pose: "apontando",
+    roupa: { tipo: "tunica", cor: "#b5523b", colar: true },
+  },
+  meninaPescadora: {
+    pele: PELES.media, cabelo: "trancas", corCabelo: "#2a1a14", corChapeu: "#e0a458",
+    expressao: "surpreso", pose: "segurando", objeto: "papiro",
+    roupa: { tipo: "tunica", cor: "#a89878" },
+  },
+  meninoPescador: {
+    pele: PELES.marrom, cabelo: "curto", corCabelo: "#1d1410",
+    expressao: "feliz", pose: "bracosAoLado",
+    roupa: { tipo: "tunica", cor: "#8a9a7a" },
+  },
+  voceHoje: {
+    pele: PELES.marrom, cabelo: "curto", corCabelo: CORES.cabeloEscuro,
+    expressao: "feliz", pose: "bracosAoLado",
+    roupa: { tipo: "camiseta", cor: CORES.turquesa, calca: "#3a3f55" },
+  },
+  sabiaHoje: {
+    pele: PELES.clara, cabelo: "grisalho", cabeca: "oculos",
+    expressao: "pensando", pose: "maoNoQueixo",
+    roupa: { tipo: "camiseta", cor: "#f1e8d6", calca: "#5a4a3a" },
+  },
+};
+
 // Exemplo de uso no Remotion:
 //   const ctx = canvasRef.current.getContext("2d");
 //   desenharBoneco(ctx, { x: 540, y: 1500, ...NORMAIS.lucas });
