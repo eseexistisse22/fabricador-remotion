@@ -44,6 +44,11 @@ const faltando = new Set([...semCodigo.matchAll(/(?<![.\w$])([A-Za-z_$][\w$]*)\s
 if (faltando.size) throw new Error(`peça chama função que não existe na biblioteca: ${[...faltando].join(", ")}`);
 
 const nomes = [...dono.keys()];
+const catalogo = JSON.parse(ler("src/auto/catalogo_pecas.json")).pecas;
+const semPeca = catalogo.filter((p) => !dono.has(p.nome)).map((p) => p.nome);
+if (semPeca.length) throw new Error(`catalogo_pecas.json cita peça que não existe na biblioteca: ${semPeca.join(", ")}`);
+const repetidas = catalogo.map((p) => p.nome).filter((n, i, a) => a.indexOf(n) !== i);
+if (repetidas.length) throw new Error(`catalogo_pecas.json repete: ${repetidas.join(", ")}`);
 const saida = [
   "// GERADO por scripts/montar_biblioteca.mjs — não editar à mão (edite os arquivos de origem listados abaixo).",
   "/* eslint-disable */",
