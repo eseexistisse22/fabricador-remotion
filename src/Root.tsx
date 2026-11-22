@@ -23,6 +23,7 @@ import { FolhaPecasVikings } from "./vikings/FolhaPecasVikings";
 import { FolhaAlexandria } from "./personagens/FolhaAlexandria";
 import { VideoAlexandria, DURACAO_ALEXANDRIA } from "./alexandria/VideoAlexandria";
 import { CenaModelo } from "./cenas/CenaModelo";
+import { FolhaPecasAuto, FOLHA_W, FOLHA_H } from "./auto/FolhaPecasAuto";
 
 export const Root: React.FC = () => {
   return (
@@ -70,6 +71,7 @@ export const Root: React.FC = () => {
       <Composition id="FolhaPecasVikings" component={FolhaPecasVikings} fps={FPS} width={3000} height={2300} durationInFrames={1} />
       <Composition id="VideoAlexandria" component={VideoAlexandria} fps={FPS} width={LARGURA} height={ALTURA} durationInFrames={Math.ceil(DURACAO_ALEXANDRIA * FPS)} />
       <Composition id="FolhaAlexandria" component={FolhaAlexandria} fps={FPS} width={2800} height={3100} durationInFrames={1} />
+      <Composition id="FolhaPecasAuto" component={FolhaPecasAuto} fps={FPS} width={FOLHA_W} height={FOLHA_H} durationInFrames={1} />
       <Composition id="CenaModelo" component={CenaModelo} durationInFrames={120} fps={30} width={1080} height={1920} />
     </>
   );
