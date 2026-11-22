@@ -15,7 +15,7 @@ export type Pose =
   | "maosJuntas" | "bracosAoLado" | "maoNoQueixo" | "apontando" | "segurando";
 
 export type Cabelo = "curto" | "longo" | "careca" | "grisalho" | "nenhum" | "trancas";
-export type Cabeca = "nenhum" | "nemes" | "pileus" | "oculos" | "faixa" | "boina" | "capacete";
+export type Cabeca = "nenhum" | "nemes" | "pileus" | "oculos" | "faixa" | "boina" | "capacete" | "turbante";
 export type Objeto = "nenhum" | "papiro" | "caixa" | "turfa" | "milho";
 
 export interface Roupa {
@@ -457,6 +457,25 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     ctx.fillStyle = escurecer(cor, 0.25);
     ctx.fillRect(-10.8, cy - 6.6, 21.6, 1.8);
   }
+  if (o.cabeca === "turbante") {
+    // turbante simples de pano: cúpula baixa + 2 dobras do tecido
+    const cor = o.corChapeu ?? "#e2d5b2";
+    ctx.beginPath();
+    ctx.moveTo(-11.2, cy - 4.8);
+    ctx.bezierCurveTo(-12, cy - 19, 12, cy - 19, 11.2, cy - 4.8);
+    ctx.closePath();
+    ctx.fillStyle = degrade(ctx, cor, -11.2, 11.2);
+    ctx.fill();
+    ctx.lineCap = "round";
+    ctx.strokeStyle = escurecer(cor, 0.22);
+    ctx.lineWidth = 1.1;
+    for (const [a, b] of [[-6.5, -13.5], [-9.5, -16.5]]) {
+      ctx.beginPath();
+      ctx.moveTo(-10.4, cy + a);
+      ctx.quadraticCurveTo(0, cy + b, 10.4, cy + a - 3);
+      ctx.stroke();
+    }
+  }
   if (o.cabeca === "capacete") {
     // capacete viking de verdade: cúpula de ferro + aro + protetor de nariz (SEM chifres)
     const cor = o.corChapeu ?? "#8a8f96";
@@ -731,9 +750,23 @@ export const ALEXANDRIA: Record<string, Omit<BonecoOpcoes, "x" | "y">> = {
     expressao: "pensando", pose: "maoNoQueixo",
     roupa: { tipo: "tunica", cor: "#e2d5b2", faixa: CORES.dourado },
   },
+  // mesmo cargo em outro século = outra pessoa: muda a cor da faixa (dono, 22/11)
+  bibliotecario1650: {
+    pele: PELES.morena, cabelo: "grisalho", barba: "#d9d5cf",
+    expressao: "surpreso", pose: "apontando",
+    roupa: { tipo: "tunica", cor: "#e2d5b2", faixa: "#6a4a8a" },
+  },
   copista: {
     pele: PELES.media, cabelo: "careca", expressao: "neutro", pose: "segurando", objeto: "papiro",
-    roupa: { tipo: "tunica", cor: "#c9a46a" },
+    roupa: { tipo: "tunica", cor: "#c9a46a", faixa: "#b5523b" },
+  },
+  copista400: {
+    pele: PELES.media, cabelo: "careca", expressao: "neutro", pose: "segurando", objeto: "papiro",
+    roupa: { tipo: "tunica", cor: "#c9a46a", faixa: "#5f7a34" },
+  },
+  copista1300: {
+    pele: PELES.media, cabelo: "careca", expressao: "feliz", pose: "segurando", objeto: "papiro",
+    roupa: { tipo: "tunica", cor: "#c9a46a", faixa: "#2f5da8" },
   },
   voceCopista: {
     pele: PELES.marrom, cabelo: "curto", corCabelo: CORES.cabeloEscuro,
@@ -756,7 +789,7 @@ export const ALEXANDRIA: Record<string, Omit<BonecoOpcoes, "x" | "y">> = {
     roupa: { tipo: "tunica", cor: "#3b4670", faixa: CORES.dourado },
   },
   navegador: {
-    pele: PELES.morena, cabelo: "curto", corCabelo: "#2a1a14", barba: "#2a1a14", cabeca: "boina", corChapeu: "#5a4a3a",
+    pele: PELES.morena, cabelo: "curto", corCabelo: "#2a1a14", barba: "#2a1a14", cabeca: "turbante", corChapeu: "#e2d5b2",
     expressao: "feliz", pose: "apontando",
     roupa: { tipo: "tunica", cor: "#8a6a48", golaPele: "#6b4126" },
   },

@@ -4,14 +4,14 @@ import { useVideoConfig } from "remotion";
 import { desenharBoneco, NORMAIS, ALEXANDRIA as A } from "./boneco";
 
 const FILEIRAS: [string, object][][] = [
-  [["JÚLIO CÉSAR", A.cesar], ["BIBLIOTECÁRIO", A.bibliotecario], ["COPISTA", A.copista],
-   ["VOCÊ (JOVEM COPISTA)", A.voceCopista], ["MARINHEIRO", A.marinheiro], ["MÉDICA", A.medica],
-   ["ASTRÔNOMA", A.astronoma]],
-  [["NAVEGADOR", A.navegador], ["PROFESSORA", A.professora], ["MENINA PESCADORA", A.meninaPescadora],
-   ["MENINO PESCADOR", A.meninoPescador], ["VOCÊ (HOJE)", A.voceHoje], ["SÁBIA (HOJE)", A.sabiaHoje],
-   ["LUCAS (referência)", NORMAIS.lucas]],
+  [["JÚLIO CÉSAR", A.cesar], ["BIBLIOTECÁRIO 48 a.C.", A.bibliotecario], ["BIBLIOTECÁRIO 1650", A.bibliotecario1650],
+   ["COPISTA SÉC. II", A.copista], ["COPISTA 400", A.copista400], ["COPISTA 1300", A.copista1300]],
+  [["VOCÊ (JOVEM COPISTA)", A.voceCopista], ["MARINHEIRO", A.marinheiro], ["MÉDICA", A.medica],
+   ["ASTRÔNOMA", A.astronoma], ["NAVEGADOR", A.navegador], ["PROFESSORA", A.professora]],
+  [["MENINA PESCADORA", A.meninaPescadora], ["MENINO PESCADOR", A.meninoPescador], ["VOCÊ (HOJE)", A.voceHoje],
+   ["SÁBIA (HOJE)", A.sabiaHoje], ["LUCAS (referência)", NORMAIS.lucas]],
 ];
-const PES = [880, 1880];
+const PES = [880, 1880, 2880];
 
 export const FolhaAlexandria: React.FC = () => {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -26,7 +26,7 @@ export const FolhaAlexandria: React.FC = () => {
       ctx.fillStyle = "#b5a88f";
       ctx.fillRect(0, PES[f], W, 140);
       lista.forEach(([nome, p], i) => {
-        const x = 200 + i * 400;
+        const x = (W - lista.length * 440) / 2 + 220 + i * 440;
         desenharBoneco(ctx, { x, y: PES[f], ...(p as any) });
         ctx.fillStyle = "#3a2a1e";
         ctx.font = "bold 34px Arial";
