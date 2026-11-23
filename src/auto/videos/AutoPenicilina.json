@@ -1,0 +1,1282 @@
+{
+ "id": "AutoPenicilina",
+ "audio": "penicilina/penicilina_audio.m4a",
+ "duracao": 117.17,
+ "titulo": "E se a penicilina nunca tivesse sido descoberta?",
+ "caps": [
+  [
+   4.89,
+   5.87,
+   "IMAGINE UM SOLDADO",
+   0
+  ],
+  [
+   5.87,
+   6.71,
+   "MORRENDO NUMA MACA",
+   1
+  ],
+  [
+   6.71,
+   7.72,
+   "POR CAUSA DE UM ARRANHÃO",
+   0
+  ],
+  [
+   7.72,
+   8.39,
+   "NO BRAÇO.",
+   0
+  ],
+  [
+   9.02,
+   10.03,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   10.03,
+   11.61,
+   "EM 1928,",
+   0
+  ],
+  [
+   11.61,
+   12.86,
+   "ALEXANDER FLEMING DEIXOU",
+   0
+  ],
+  [
+   12.86,
+   13.93,
+   "PLACAS COM CULTURAS",
+   0
+  ],
+  [
+   13.93,
+   14.83,
+   "NO LABORATÓRIO.",
+   1
+  ],
+  [
+   15.46,
+   16.19,
+   "NA CULTURA DE",
+   0
+  ],
+  [
+   16.19,
+   17.24,
+   "STAPHYLOCOCCUS,",
+   1
+  ],
+  [
+   17.24,
+   18.25,
+   "NÃO HAVIA BACTÉRIAS",
+   0
+  ],
+  [
+   18.25,
+   19.35,
+   "AO REDOR DO BOLOR.",
+   0
+  ],
+  [
+   19.98,
+   21.0,
+   "FLEMING E SEU COLEGA",
+   0
+  ],
+  [
+   21.0,
+   21.86,
+   "PRYCE DEMONSTRARAM",
+   1
+  ],
+  [
+   21.86,
+   22.37,
+   "QUE O FUNGO",
+   0
+  ],
+  [
+   22.37,
+   23.67,
+   "PRODUZIA A PENICILINA.",
+   0
+  ],
+  [
+   24.3,
+   24.91,
+   "E SE FLEMING",
+   0
+  ],
+  [
+   24.91,
+   25.82,
+   "JOGA FORA A PLACA",
+   0
+  ],
+  [
+   25.82,
+   26.62,
+   "COM BOLOR ANTES",
+   0
+  ],
+  [
+   26.62,
+   27.69,
+   "DE EXAMINAR O FUNGO?",
+   1
+  ],
+  [
+   28.32,
+   30.11,
+   "EM 1945,",
+   0
+  ],
+  [
+   30.11,
+   31.22,
+   "MÉDICOS MONTAM TENDAS",
+   0
+  ],
+  [
+   31.22,
+   32.39,
+   "PARA SOLDADOS COM FERIDAS",
+   0
+  ],
+  [
+   32.39,
+   33.39,
+   "INFECTADAS.",
+   1
+  ],
+  [
+   34.03,
+   35.29,
+   "UM SOLDADO COM UM ARRANHÃO",
+   1
+  ],
+  [
+   35.29,
+   36.06,
+   "NO BRAÇO MORRE",
+   0
+  ],
+  [
+   36.06,
+   36.66,
+   "NA MACA.",
+   0
+  ],
+  [
+   37.29,
+   37.98,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   37.98,
+   39.19,
+   "UM ENFERMEIRO DE CAMPO,",
+   1
+  ],
+  [
+   39.19,
+   39.82,
+   "LIMPA O BRAÇO",
+   0
+  ],
+  [
+   39.82,
+   40.79,
+   "FERIDO DE UM SOLDADO",
+   0
+  ],
+  [
+   40.79,
+   41.43,
+   "NA TENDA.",
+   0
+  ],
+  [
+   42.06,
+   43.71,
+   "EM 1960,",
+   0
+  ],
+  [
+   43.71,
+   44.99,
+   "HOSPITAIS LOTADOS SEPARAM",
+   0
+  ],
+  [
+   44.99,
+   46.24,
+   "PACIENTES INFECTADOS",
+   1
+  ],
+  [
+   46.24,
+   47.3,
+   "EM PAVILHÕES.",
+   0
+  ],
+  [
+   47.94,
+   49.32,
+   "FAMÍLIAS DEIXAM OS BAIRROS",
+   0
+  ],
+  [
+   49.32,
+   50.39,
+   "VIZINHOS EM CAMINHÕES",
+   1
+  ],
+  [
+   50.39,
+   51.14,
+   "DE MUDANÇA.",
+   0
+  ],
+  [
+   51.78,
+   53.64,
+   "EM 1975,",
+   0
+  ],
+  [
+   53.64,
+   54.69,
+   "CAMINHÕES ABASTECEM",
+   0
+  ],
+  [
+   54.69,
+   55.8,
+   "AS FAMÍLIAS ESPALHADAS",
+   1
+  ],
+  [
+   55.8,
+   56.57,
+   "PELO INTERIOR.",
+   0
+  ],
+  [
+   57.21,
+   58.45,
+   "MOTORISTAS DESCARREGAM",
+   1
+  ],
+  [
+   58.45,
+   59.41,
+   "CAIXAS EM GUARITAS",
+   0
+  ],
+  [
+   59.41,
+   60.67,
+   "NA ENTRADA DAS VILAS.",
+   0
+  ],
+  [
+   61.3,
+   63.06,
+   "EM 1985,",
+   0
+  ],
+  [
+   63.16,
+   64.16,
+   "HOSPITAIS INSTALAM",
+   1
+  ],
+  [
+   64.16,
+   64.94,
+   "GUICHÊS DE VIDRO",
+   0
+  ],
+  [
+   64.94,
+   65.75,
+   "NOS PÁTIOS.",
+   0
+  ],
+  [
+   66.38,
+   67.47,
+   "OS CAMINHÕES ENTREGAM",
+   1
+  ],
+  [
+   67.47,
+   68.78,
+   "CURATIVOS PELAS GAVETAS",
+   0
+  ],
+  [
+   68.78,
+   69.75,
+   "DESSES GUICHÊS.",
+   0
+  ],
+  [
+   70.38,
+   71.49,
+   "EM 2005,",
+   0
+  ],
+  [
+   71.49,
+   72.81,
+   "ANTIGOS CINEMAS RECEBEM",
+   0
+  ],
+  [
+   72.81,
+   73.88,
+   "GUICHÊS IGUAIS AOS DOS",
+   0
+  ],
+  [
+   73.88,
+   74.78,
+   "HOSPITAIS.",
+   1
+  ],
+  [
+   75.41,
+   76.65,
+   "ENFERMEIROS DISTRIBUEM",
+   1
+  ],
+  [
+   76.65,
+   78.11,
+   "CURATIVOS PELAS BILHETERIAS",
+   0
+  ],
+  [
+   78.11,
+   79.02,
+   "DOS CINEMAS.",
+   0
+  ],
+  [
+   79.65,
+   80.66,
+   "EM 2020,",
+   0
+  ],
+  [
+   80.75,
+   81.79,
+   "MICRO-ÔNIBUS LEVAM",
+   1
+  ],
+  [
+   81.79,
+   83.09,
+   "PACIENTES DAS BILHETERIAS",
+   0
+  ],
+  [
+   83.09,
+   84.12,
+   "AOS HOSPITAIS.",
+   0
+  ],
+  [
+   84.75,
+   86.06,
+   "DIVISÓRIAS TRANSPARENTES",
+   1
+  ],
+  [
+   86.06,
+   86.86,
+   "SEPARAM OS BANCOS",
+   0
+  ],
+  [
+   86.86,
+   88.09,
+   "DURANTE CADA VIAGEM.",
+   0
+  ],
+  [
+   88.72,
+   89.21,
+   "HOJE,",
+   0
+  ],
+  [
+   89.33,
+   90.49,
+   "VOCÊ USA O INTERFONE",
+   0
+  ],
+  [
+   90.49,
+   91.58,
+   "DA BILHETERIA DO CINEMA",
+   1
+  ],
+  [
+   91.58,
+   92.52,
+   "PARA PEDIR UMA CAIXA",
+   0
+  ],
+  [
+   92.52,
+   93.45,
+   "DE CURATIVOS.",
+   0
+  ],
+  [
+   94.08,
+   95.0,
+   "NA CALÇADA,",
+   0
+  ],
+  [
+   95.0,
+   95.9,
+   "VOCÊ RETIRA A CAIXA",
+   0
+  ],
+  [
+   95.9,
+   96.8,
+   "DA GAVETA E EMBARCA",
+   0
+  ],
+  [
+   96.8,
+   97.73,
+   "NUM MICRO-ÔNIBUS COM",
+   1
+  ],
+  [
+   97.73,
+   98.53,
+   "DIVISÓRIAS.",
+   0
+  ],
+  [
+   99.16,
+   100.17,
+   "A FILA DA BILHETERIA",
+   1
+  ],
+  [
+   100.17,
+   100.9,
+   "DOBRA A ESQUINA",
+   0
+  ],
+  [
+   100.9,
+   101.79,
+   "SOB A CHUVA.",
+   0
+  ],
+  [
+   102.42,
+   103.21,
+   "QUAL MEDIDA VOCÊ",
+   0
+  ],
+  [
+   103.21,
+   104.12,
+   "ESCOLHE PARA TIRAR",
+   1
+  ],
+  [
+   104.12,
+   105.43,
+   "ESSA FILA DA CALÇADA?",
+   0
+  ],
+  [
+   106.06,
+   106.5,
+   "UM:",
+   0
+  ],
+  [
+   106.5,
+   108.23,
+   "ABRIR GUICHÊS NAS FARMÁCIAS.",
+   1
+  ],
+  [
+   108.87,
+   109.42,
+   "DOIS:",
+   0
+  ],
+  [
+   109.52,
+   110.5,
+   "ENTREGAR CURATIVOS",
+   1
+  ],
+  [
+   110.5,
+   111.31,
+   "NAS CASAS.",
+   0
+  ],
+  [
+   111.95,
+   113.45,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "maca",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "AL_casa"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "astrid",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "triste",
+     "pose": "apontando"
+    }
+   ],
+   "camera": "zoom_in",
+   "titulo": [
+    "E SE NÃO",
+    "PENICILINA"
+   ]
+  },
+  {
+   "ini": 4.8,
+   "fim": 8.63,
+   "molde": 2,
+   "nome": "arranhao",
+   "ceu": "cinza",
+   "chao": "terra",
+   "pecas": [
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "astrid",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "triste",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "ARRANHÃO",
+    "x": 540,
+    "y": 760,
+    "em": 1.9
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 8.63,
+   "fim": 15.07,
+   "molde": 4,
+   "nome": "culturas",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "fundo": [
+    "AL_cavalete"
+   ],
+   "pecas": [
+    "placasCobre",
+    "AL_lente"
+   ],
+   "pessoas": [
+    {
+     "quem": "cientista",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "placasCobre",
+     "em": 4.2
+    }
+   ],
+   "placa": "1928",
+   "rotulo": {
+    "texto": "PLACAS COM CULTURAS",
+    "x": 540,
+    "y": 760,
+    "em": 4.2
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 15.07,
+   "fim": 19.59,
+   "molde": 9,
+   "nome": "bolor",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "placasCobre"
+   ],
+   "rotulo": {
+    "texto": "BOLOR",
+    "x": 540,
+    "y": 300,
+    "em": 3.2
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 19.59,
+   "fim": 23.91,
+   "molde": 2,
+   "nome": "penicilina",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "placasCobre",
+    "AL_lente"
+   ],
+   "pessoas": [
+    {
+     "quem": "cientista",
+     "expressao": "surpreso",
+     "pose": "apontando"
+    },
+    {
+     "quem": "joao",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "PENICILINA",
+    "x": 540,
+    "y": 760,
+    "em": 2.8
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 23.91,
+   "fim": 27.93,
+   "molde": 1,
+   "nome": "descarte",
+   "ceu": "cinza",
+   "chao": "madeira",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "placasCobre",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "cientista",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "JOGA FORA",
+    "x": 540,
+    "y": 760,
+    "em": 1.0
+   },
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 27.93,
+   "fim": 33.64,
+   "molde": 3,
+   "nome": "campo",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "AL_casa",
+    "AL_caixa",
+    "jarro"
+   ],
+   "surge": true,
+   "pessoas": [
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "pedro",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1945",
+   "rotulo": {
+    "texto": "FERIDAS INFECTADAS",
+    "x": 540,
+    "y": 760,
+    "em": 4.5
+   },
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 33.64,
+   "fim": 41.67,
+   "molde": 4,
+   "nome": "ferida",
+   "ceu": "cinza",
+   "chao": "terra",
+   "parede": "clara",
+   "fundo": [
+    "AL_mesa"
+   ],
+   "pecas": [
+    "jarro",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    {
+     "quem": "ana",
+     "expressao": "triste",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 5.5
+    }
+   ],
+   "rotulo": {
+    "texto": "BRAÇO FERIDO",
+    "x": 540,
+    "y": 760,
+    "em": 6.2
+   },
+   "camera": "zoom_in",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 41.67,
+   "fim": 47.54,
+   "molde": 5,
+   "nome": "pavilhoes",
+   "ceu": "cinza",
+   "chao": "rua",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_predio"
+   ],
+   "pessoas": [
+    {
+     "quem": "vo",
+     "expressao": "triste",
+     "pose": "maosJuntas"
+    },
+    {
+     "quem": "bia",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "pedro",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1960",
+   "rotulo": {
+    "texto": "PAVILHÕES",
+    "x": 540,
+    "y": 760,
+    "em": 4.6
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 47.54,
+   "fim": 51.39,
+   "molde": 10,
+   "nome": "mudanca",
+   "ceu": "cinza",
+   "chao": "rua",
+   "antes": {
+    "pecas": [
+     "AL_predio"
+    ],
+    "pessoa": "bia",
+    "ceu": "cinza",
+    "chao": "rua",
+    "rotulo": "BAIRROS"
+   },
+   "depois": {
+    "pecas": [
+     "AL_casa"
+    ],
+    "pessoa": "bia",
+    "ceu": "dia",
+    "chao": "terra",
+    "rotulo": "MUDANÇA"
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 51.39,
+   "fim": 56.82,
+   "molde": 8,
+   "nome": "interior",
+   "ceu": "dia",
+   "chao": "terra",
+   "parede": "clara",
+   "mapa": "globe",
+   "pontos": [
+    [
+     0.42,
+     0.46,
+     "VILA"
+    ],
+    [
+     0.56,
+     0.54,
+     "VILA"
+    ],
+    [
+     0.51,
+     0.66,
+     "VILA"
+    ]
+   ],
+   "placa": "1975",
+   "rotulo": {
+    "texto": "FAMÍLIAS ESPALHADAS",
+    "x": 540,
+    "y": 1180,
+    "em": 3.3
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 56.82,
+   "fim": 60.91,
+   "molde": 3,
+   "nome": "guarita",
+   "ceu": "dia",
+   "chao": "terra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "AL_casa",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "joao",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "CAIXAS EM GUARITAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.6
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 60.91,
+   "fim": 65.99,
+   "molde": 10,
+   "nome": "guiches",
+   "ceu": "dia",
+   "chao": "pedra",
+   "antes": {
+    "pecas": [
+     "AL_predio"
+    ],
+    "pessoa": "ana",
+    "ceu": "dia",
+    "chao": "pedra",
+    "rotulo": "PÁTIOS"
+   },
+   "depois": {
+    "pecas": [
+     "VK_predio"
+    ],
+    "pessoa": "ana",
+    "ceu": "dia",
+    "chao": "pedra",
+    "rotulo": "GUICHÊS DE VIDRO"
+   },
+   "placa": "1985",
+   "rotulo": {
+    "texto": "GUICHÊS DE VIDRO",
+    "x": 540,
+    "y": 760,
+    "em": 3.2
+   },
+   "camera": "fixa",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 65.99,
+   "fim": 69.99,
+   "molde": 2,
+   "nome": "entrega",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "AL_mesa",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "joao",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    }
+   ],
+   "rotulo": {
+    "texto": "CURATIVOS",
+    "x": 540,
+    "y": 760,
+    "em": 1.5
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 69.99,
+   "fim": 75.02,
+   "molde": 3,
+   "nome": "cinema",
+   "ceu": "tarde",
+   "chao": "rua",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_predio",
+    "AL_lente",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "2005",
+   "rotulo": {
+    "texto": "ANTIGOS CINEMAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.5
+   },
+   "camera": "zoom_out",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 75.02,
+   "fim": 79.26,
+   "molde": 4,
+   "nome": "bilheteria",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "parede": "hoje",
+   "fundo": [
+    "AL_cavalete"
+   ],
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "AL_caixa",
+     "em": 0.4
+    },
+    {
+     "quem": "pedro",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 1.6
+    }
+   ],
+   "rotulo": {
+    "texto": "BILHETERIAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.6
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 79.26,
+   "fim": 84.36,
+   "molde": 8,
+   "nome": "trajeto",
+   "ceu": "dia",
+   "chao": "rua",
+   "parede": "hoje",
+   "mapa": "globe",
+   "pontos": [
+    [
+     0.44,
+     0.49,
+     "BILHETERIAS"
+    ],
+    [
+     0.58,
+     0.56,
+     "HOSPITAIS"
+    ]
+   ],
+   "placa": "2020",
+   "rotulo": {
+    "texto": "MICRO-ÔNIBUS",
+    "x": 540,
+    "y": 1180,
+    "em": 1.5
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 84.36,
+   "fim": 88.33,
+   "molde": 2,
+   "nome": "divisorias",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "AL_cavalete"
+   ],
+   "pessoas": [
+    {
+     "quem": "bia",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    },
+    {
+     "quem": "vo",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    }
+   ],
+   "rotulo": {
+    "texto": "DIVISÓRIAS TRANSPARENTES",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 88.33,
+   "fim": 93.69,
+   "molde": 9,
+   "nome": "interfone",
+   "ceu": "cinza",
+   "chao": "rua",
+   "pecas": [
+    "aparelhoMensagem"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "INTERFONE",
+    "x": 540,
+    "y": 300,
+    "em": 1.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 93.69,
+   "fim": 98.77,
+   "molde": 3,
+   "nome": "retirada",
+   "ceu": "cinza",
+   "chao": "rua",
+   "fundo": [],
+   "pecas": [
+    "AL_predio",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "RETIRA A CAIXA",
+    "x": 540,
+    "y": 760,
+    "em": 1.3
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 98.77,
+   "fim": 105.67,
+   "molde": 1,
+   "nome": "fila",
+   "ceu": "cinza",
+   "chao": "rua",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_rocha",
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "FILA DA BILHETERIA",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 105.67,
+   "fim": 111.56,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "ABRIR OUTRO GUICHÊ",
+     "pecas": [
+      "AL_mesa"
+     ],
+     "pessoa": "ana",
+     "em": 0.39
+    },
+    {
+     "texto": "LEVAR FILA",
+     "pecas": [
+      "AL_predio"
+     ],
+     "pessoa": "voceHoje",
+     "em": 3.2
+    }
+   ]
+  },
+  {
+   "ini": 111.56,
+   "fim": 117.172,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "ABRIR OUTRO GUICHÊ",
+     "pecas": [
+      "AL_mesa"
+     ],
+     "pessoa": {
+      "quem": "astrid",
+      "expressao": "triste",
+      "pose": "bracosAoLado"
+     }
+    },
+    {
+     "texto": "LEVAR FILA",
+     "pecas": [
+      "AL_predio"
+     ],
+     "pessoa": {
+      "quem": "astrid",
+      "expressao": "triste",
+      "pose": "bracosAoLado"
+     }
+    }
+   ],
+   "cartao": true,
+   "pergunta": "COMO TIRAR A FILA DA CALÇADA?"
+  }
+ ]
+}
