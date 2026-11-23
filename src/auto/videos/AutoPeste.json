@@ -1,0 +1,1268 @@
+{
+ "id": "AutoPeste",
+ "audio": "peste/peste_audio.m4a",
+ "duracao": 109.16,
+ "titulo": "E se a Peste Negra nunca tivesse chegado à Europa?",
+ "caps": [
+  [
+   4.89,
+   6.1,
+   "IMAGINE CAMPOS DE TRIGO",
+   0
+  ],
+  [
+   6.1,
+   7.15,
+   "INFINITOS SOB UM CÉU",
+   1
+  ],
+  [
+   7.15,
+   8.29,
+   "CINZENTO E ETERNO.",
+   0
+  ],
+  [
+   8.91,
+   9.89,
+   "NA NOSSA HISTÓRIA,",
+   1
+  ],
+  [
+   9.89,
+   11.64,
+   "EM 1347,",
+   0
+  ],
+  [
+   11.64,
+   12.2,
+   "A PESTE FOI",
+   0
+  ],
+  [
+   12.2,
+   13.17,
+   "LEVADA PELA PRIMEIRA",
+   0
+  ],
+  [
+   13.17,
+   14.07,
+   "VEZ À EUROPA.",
+   0
+  ],
+  [
+   14.69,
+   16.31,
+   "SEGUNDO DIVERSOS RELATOS,",
+   0
+  ],
+  [
+   16.31,
+   17.04,
+   "ELA FOI TRAZIDA",
+   0
+  ],
+  [
+   17.04,
+   18.42,
+   "POR COMERCIANTES GENOVESES",
+   1
+  ],
+  [
+   18.42,
+   19.5,
+   "QUE VINHAM DE KAFFA.",
+   0
+  ],
+  [
+   20.12,
+   21.06,
+   "KAFFA ERA UMA CIDADE",
+   0
+  ],
+  [
+   21.06,
+   22.27,
+   "PORTUÁRIA NA CRIMEIA.",
+   1
+  ],
+  [
+   22.89,
+   23.61,
+   "E SE AS ROTAS",
+   0
+  ],
+  [
+   23.61,
+   24.27,
+   "DO MAR NEGRO",
+   0
+  ],
+  [
+   24.27,
+   25.85,
+   "TIVESSEM SIDO BLOQUEADAS?",
+   1
+  ],
+  [
+   26.47,
+   28.07,
+   "EM 1350,",
+   0
+  ],
+  [
+   28.07,
+   28.96,
+   "MILHARES DE SERVOS",
+   0
+  ],
+  [
+   28.96,
+   29.9,
+   "TRABALHAM NOS CAMPOS",
+   1
+  ],
+  [
+   29.9,
+   30.47,
+   "SOB O OLHAR",
+   0
+  ],
+  [
+   30.47,
+   31.66,
+   "DE SENHORES FEUDAIS.",
+   0
+  ],
+  [
+   32.28,
+   33.35,
+   "A POPULAÇÃO CRESCE",
+   1
+  ],
+  [
+   33.35,
+   34.24,
+   "E MANTÉM O SISTEMA",
+   0
+  ],
+  [
+   34.24,
+   35.37,
+   "DE SERVIDÃO RÍGIDO.",
+   0
+  ],
+  [
+   35.99,
+   36.73,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   36.73,
+   37.8,
+   "UM ESCRIBA REAL,",
+   0
+  ],
+  [
+   37.8,
+   38.82,
+   "ANOTA IMPOSTOS DE UMA",
+   0
+  ],
+  [
+   38.82,
+   40.01,
+   "MULTIDÃO CRESCENTE.",
+   1
+  ],
+  [
+   40.63,
+   41.79,
+   "EM 1500,",
+   0
+  ],
+  [
+   41.79,
+   43.07,
+   "GRANDES FROTAS DE CARAVELAS",
+   1
+  ],
+  [
+   43.07,
+   44.17,
+   "APODRECEM NOS PORTOS",
+   0
+  ],
+  [
+   44.17,
+   45.59,
+   "DAS CIDADES MEDIEVAIS.",
+   0
+  ],
+  [
+   46.21,
+   46.92,
+   "A MÃO DE OBRA",
+   0
+  ],
+  [
+   46.92,
+   47.9,
+   "BARATA TRAVA NOVAS",
+   0
+  ],
+  [
+   47.9,
+   48.92,
+   "EXPLORAÇÕES.",
+   1
+  ],
+  [
+   49.54,
+   50.34,
+   "MAPAS DE PAPEL",
+   0
+  ],
+  [
+   50.34,
+   51.69,
+   "AMARELADO COBREM AS MESAS",
+   1
+  ],
+  [
+   51.69,
+   52.36,
+   "DE MADEIRA.",
+   0
+  ],
+  [
+   52.98,
+   54.59,
+   "EM 1750,",
+   0
+  ],
+  [
+   54.7,
+   55.46,
+   "RODAS DE MADEIRA",
+   0
+  ],
+  [
+   55.46,
+   56.33,
+   "MOVEM MONTANHAS DE",
+   0
+  ],
+  [
+   56.33,
+   57.58,
+   "MANTIMENTOS PARA CIDADES",
+   1
+  ],
+  [
+   57.58,
+   58.38,
+   "COLOSSAIS.",
+   0
+  ],
+  [
+   59.0,
+   60.01,
+   "A FALTA DE CAPITAL",
+   0
+  ],
+  [
+   60.01,
+   60.92,
+   "IMPEDE O SURGIMENTO",
+   0
+  ],
+  [
+   60.92,
+   62.17,
+   "DE FÁBRICAS E FERRAMENTAS",
+   1
+  ],
+  [
+   62.17,
+   62.77,
+   "NOVAS.",
+   0
+  ],
+  [
+   63.39,
+   64.53,
+   "EM 1900,",
+   0
+  ],
+  [
+   64.53,
+   65.47,
+   "CIDADES DE PEDRA",
+   0
+  ],
+  [
+   65.47,
+   66.52,
+   "COM ARQUITETURA GÓTICA",
+   1
+  ],
+  [
+   66.52,
+   67.48,
+   "BRILHAM SOB O FOGO",
+   0
+  ],
+  [
+   67.48,
+   68.24,
+   "DE TOCHAS.",
+   0
+  ],
+  [
+   68.86,
+   70.0,
+   "AS DINASTIAS MILENARES",
+   1
+  ],
+  [
+   70.0,
+   70.95,
+   "GOVERNAM SEM FIOS",
+   0
+  ],
+  [
+   70.95,
+   72.77,
+   "ELÉTRICOS OU NOVOS INVENTOS.",
+   0
+  ],
+  [
+   73.39,
+   74.6,
+   "EM 2024,",
+   0
+  ],
+  [
+   74.71,
+   75.95,
+   "MULTIDÕES OCUPAM PRAÇAS",
+   1
+  ],
+  [
+   75.95,
+   76.9,
+   "LOTADAS DE PESSOAS",
+   0
+  ],
+  [
+   76.9,
+   78.09,
+   "E BARRACAS DE COMIDA.",
+   0
+  ],
+  [
+   78.71,
+   79.62,
+   "O ESPAÇO URBANO",
+   0
+  ],
+  [
+   79.62,
+   80.53,
+   "FICA APERTADO ENTRE",
+   1
+  ],
+  [
+   80.53,
+   81.68,
+   "MUROS DE TIJOLOS.",
+   0
+  ],
+  [
+   82.3,
+   82.79,
+   "HOJE,",
+   0
+  ],
+  [
+   82.9,
+   83.91,
+   "VOCÊ VÊ CARRUAGENS",
+   1
+  ],
+  [
+   83.91,
+   84.94,
+   "COM DEZENAS DE CAVALOS",
+   0
+  ],
+  [
+   84.94,
+   86.0,
+   "EM RUAS DE PEDRA.",
+   0
+  ],
+  [
+   86.62,
+   87.4,
+   "PRÉDIOS DE TRINTA",
+   0
+  ],
+  [
+   87.4,
+   88.35,
+   "ANDARES SURGEM SEM",
+   0
+  ],
+  [
+   88.35,
+   89.2,
+   "ELETRICIDADE,",
+   1
+  ],
+  [
+   89.36,
+   90.44,
+   "E MENSAGEIROS CORREM",
+   0
+  ],
+  [
+   90.44,
+   91.09,
+   "A CAVALO.",
+   0
+  ],
+  [
+   91.71,
+   92.66,
+   "O EXCESSO DE GENTE",
+   1
+  ],
+  [
+   92.66,
+   93.41,
+   "ESGOTA A COMIDA",
+   0
+  ],
+  [
+   93.41,
+   94.19,
+   "DAS TERRAS.",
+   0
+  ],
+  [
+   94.81,
+   95.89,
+   "PARA ONDE AS PESSOAS",
+   1
+  ],
+  [
+   95.89,
+   96.65,
+   "DEVEM MIGRAR?",
+   0
+  ],
+  [
+   97.27,
+   97.64,
+   "UM:",
+   0
+  ],
+  [
+   97.76,
+   99.13,
+   "CONSTRUIR NAVES DE MADEIRA",
+   1
+  ],
+  [
+   99.13,
+   99.94,
+   "PARA O ESPAÇO.",
+   0
+  ],
+  [
+   100.56,
+   101.12,
+   "DOIS:",
+   0
+  ],
+  [
+   101.23,
+   102.6,
+   "COLONIZAR ILHAS ISOLADAS",
+   1
+  ],
+  [
+   102.6,
+   103.35,
+   "NO OCEANO.",
+   0
+  ],
+  [
+   103.97,
+   105.45,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "trigais",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "pine",
+    "muralha"
+   ],
+   "pecas": [
+    "AL_farol",
+    "torreVigia"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "menino",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "zoom_in",
+   "titulo": [
+    "E SE A PESTE",
+    "NÃO VEIO?"
+   ],
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 4.8,
+   "fim": 8.52,
+   "molde": 1,
+   "nome": "gancho",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "VK_trigo",
+    "arado"
+   ],
+   "pessoas": [
+    {
+     "quem": "astrid",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "CAMPOS DE TRIGO",
+    "x": 540,
+    "y": 760,
+    "em": 0.1
+   },
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 8.52,
+   "fim": 14.3,
+   "molde": 6,
+   "nome": "chegada",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "triste",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1347",
+   "rotulo": {
+    "texto": "PESTE",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "efeitos": [
+    "fumaca"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 14.3,
+   "fim": 19.74,
+   "molde": 2,
+   "nome": "genoveses",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "pecas": [
+    "AL_caixa",
+    "jarro"
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "neutro",
+     "pose": "apontando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "GENOVESES",
+    "x": 540,
+    "y": 760,
+    "em": 2.7
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 19.74,
+   "fim": 26.09,
+   "molde": 8,
+   "nome": "kaffa",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "mapa": "AL_mapa",
+   "pontos": [
+    [
+     0.85,
+     0.25,
+     "KAFFA"
+    ],
+    [
+     0.3,
+     0.35,
+     "GÊNOVA"
+    ]
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "BLOQUEADAS?",
+    "x": 540,
+    "y": 260,
+    "em": 4.5
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 26.09,
+   "fim": 31.89,
+   "molde": 5,
+   "nome": "servos",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "torreVigia"
+   ],
+   "pessoas": [
+    {
+     "quem": "menino",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "nativa",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "cesar",
+     "expressao": "bravo",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1350",
+   "rotulo": {
+    "texto": "SERVOS",
+    "x": 540,
+    "y": 760,
+    "em": 2.0
+   },
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 31.89,
+   "fim": 35.61,
+   "molde": 10,
+   "nome": "servidao",
+   "ceu": "cinza",
+   "chao": "terra",
+   "antes": {
+    "pecas": [
+     "casaTurfa"
+    ],
+    "pessoa": "menino",
+    "ceu": "cinza",
+    "chao": "terra",
+    "rotulo": "POPULAÇÃO"
+   },
+   "depois": {
+    "pecas": [
+     "torreVigia"
+    ],
+    "pessoa": "vikingGuerreiro",
+    "ceu": "cinza",
+    "chao": "terra",
+    "rotulo": "SERVIDÃO RÍGIDA"
+   },
+   "rotulo": {
+    "texto": "SERVIDÃO",
+    "x": 540,
+    "y": 760,
+    "em": 1.5
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 35.61,
+   "fim": 40.24,
+   "molde": 4,
+   "nome": "escriba",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "pedra",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_caixa",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 2.2
+    },
+    {
+     "quem": "copista1300",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 3.2
+    }
+   ],
+   "rotulo": {
+    "texto": "IMPOSTOS",
+    "x": 540,
+    "y": 760,
+    "em": 2.2
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 40.24,
+   "fim": 45.82,
+   "molde": 6,
+   "nome": "caravelas",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "caravela"
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1500",
+   "rotulo": {
+    "texto": "APODRECEM",
+    "x": 540,
+    "y": 760,
+    "em": 2.8
+   },
+   "efeitos": [
+    "fumaca"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 45.82,
+   "fim": 52.6,
+   "molde": 8,
+   "nome": "mapas",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "escura",
+   "mapa": "VK_mapa",
+   "pontos": [
+    [
+     0.25,
+     0.5,
+     "?"
+    ]
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "EXPLORAÇÕES",
+    "x": 540,
+    "y": 260,
+    "em": 2.1
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 52.6,
+   "fim": 58.61,
+   "molde": 3,
+   "nome": "mantimentos",
+   "ceu": "tarde",
+   "chao": "terra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "guindaste",
+    "cestaMilho",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativa",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1750",
+   "rotulo": {
+    "texto": "RODAS DE MADEIRA",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 58.61,
+   "fim": 63.01,
+   "molde": 9,
+   "nome": "capital",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "pecas": [
+    "martelo"
+   ],
+   "pessoas": [
+    {
+     "quem": "romaOperadorLiberto",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "SEM FÁBRICAS",
+    "x": 540,
+    "y": 300,
+    "em": 2.3
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 63.01,
+   "fim": 68.48,
+   "molde": 7,
+   "nome": "tochas",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "muralha"
+   ],
+   "no_ceu": [
+    "AL_lua"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "surpreso",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1900",
+   "rotulo": {
+    "texto": "ARQUITETURA GÓTICA",
+    "x": 540,
+    "y": 1000,
+    "em": 2.5
+   },
+   "efeitos": [
+    "brasas"
+   ],
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 68.48,
+   "fim": 73.01,
+   "molde": 4,
+   "nome": "dinastias",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "escura",
+   "fundo": [
+    "estandarte",
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_caixa",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "cesar",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "AL_rolo",
+     "em": 1.5
+    },
+    {
+     "quem": "bibliotecario",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 2.5
+    }
+   ],
+   "rotulo": {
+    "texto": "SEM FIOS",
+    "x": 540,
+    "y": 760,
+    "em": 1.5
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 73.01,
+   "fim": 78.32,
+   "molde": 5,
+   "nome": "pracas",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "insula"
+   ],
+   "pessoas": [
+    {
+     "quem": "menino",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativa",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "meninaPescadora",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "professora",
+     "expressao": "pensando",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "2024",
+   "rotulo": {
+    "texto": "MULTIDÕES",
+    "x": 540,
+    "y": 760,
+    "em": 1.7
+   },
+   "efeitos": [
+    "fumaca"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 78.32,
+   "fim": 81.91,
+   "molde": 3,
+   "nome": "apertado",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "insula",
+    "jarro",
+    "cestaMilho"
+   ],
+   "pessoas": [
+    {
+     "quem": "meninoPescador",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "MUROS",
+    "x": 540,
+    "y": 760,
+    "em": 2.2
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 81.91,
+   "fim": 86.23,
+   "molde": 1,
+   "nome": "carruagens",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "VK_boi",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "surpreso",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "CARRUAGENS",
+    "x": 540,
+    "y": 760,
+    "em": 1.0
+   },
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 86.23,
+   "fim": 91.32,
+   "molde": 3,
+   "nome": "andares",
+   "ceu": "cinza",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "insula",
+    "AL_lamparina",
+    "AL_rolo"
+   ],
+   "surge": true,
+   "pessoas": [
+    {
+     "quem": "meninoPescador",
+     "expressao": "surpreso",
+     "pose": "apontando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SEM ELETRICIDADE",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "grande": {
+    "texto": "30",
+    "em": 0.4,
+    "ate": 4.79
+   },
+   "efeitos": [
+    "fumaca"
+   ],
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 91.32,
+   "fim": 96.88,
+   "molde": 1,
+   "nome": "escolha",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "AL_rocha",
+    "arado"
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "MIGRAR?",
+    "x": 540,
+    "y": 760,
+    "em": 4.6
+   },
+   "grande": {
+    "texto": "?",
+    "em": 4.6,
+    "ate": 5.26
+   },
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 96.88,
+   "fim": 103.59,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "CRUZAR O OCEANO",
+     "pecas": [
+      "caravela"
+     ],
+     "pessoa": "navegador",
+     "em": 0.39
+    },
+    {
+     "texto": "ABRIR NOVOS CAMPOS",
+     "pecas": [
+      "arado"
+     ],
+     "pessoa": "astrid",
+     "em": 3.68
+    }
+   ]
+  },
+  {
+   "ini": 103.59,
+   "fim": 109.156,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "CRUZAR O OCEANO",
+     "pecas": [
+      "caravela"
+     ]
+    },
+    {
+     "texto": "ABRIR NOVOS CAMPOS",
+     "pecas": [
+      "arado"
+     ]
+    }
+   ],
+   "cartao": true,
+   "pergunta": "PARA ONDE MIGRAR?"
+  }
+ ]
+}
