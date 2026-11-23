@@ -1,0 +1,1236 @@
+{
+ "id": "AutoImprensa",
+ "audio": "imprensa/imprensa_audio.m4a",
+ "duracao": 109.59,
+ "titulo": "E se a imprensa de Gutenberg nunca tivesse sido inventada?",
+ "caps": [
+  [
+   4.89,
+   5.83,
+   "IMAGINE UM MONGE",
+   0
+  ],
+  [
+   5.83,
+   6.53,
+   "COPIANDO O MAPA",
+   1
+  ],
+  [
+   6.53,
+   7.39,
+   "DA PRÓPRIA CIDADE",
+   0
+  ],
+  [
+   7.39,
+   8.26,
+   "À LUZ DE VELA.",
+   0
+  ],
+  [
+   8.89,
+   9.95,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   9.95,
+   10.94,
+   "EM 1041,",
+   0
+  ],
+  [
+   11.05,
+   11.88,
+   "INVENTARAM O TIPO",
+   1
+  ],
+  [
+   11.88,
+   12.86,
+   "MÓVEL NA CHINA.",
+   0
+  ],
+  [
+   13.49,
+   14.06,
+   "E SE O TIPO",
+   0
+  ],
+  [
+   14.06,
+   15.15,
+   "MÓVEL NUNCA SAÍSSE",
+   0
+  ],
+  [
+   15.15,
+   16.34,
+   "DO ORIENTE PARA AS OFICINAS",
+   0
+  ],
+  [
+   16.34,
+   17.17,
+   "EUROPEIAS?",
+   1
+  ],
+  [
+   17.8,
+   19.39,
+   "EM 1550,",
+   0
+  ],
+  [
+   19.52,
+   20.43,
+   "REIS ENCOMENDAM AOS",
+   0
+  ],
+  [
+   20.43,
+   21.91,
+   "MOSTEIROS CÓPIAS MANUSCRITAS",
+   1
+  ],
+  [
+   21.91,
+   23.27,
+   "DE MAPAS DAS CIDADES.",
+   0
+  ],
+  [
+   23.9,
+   24.95,
+   "OS MONGES GUARDAM",
+   0
+  ],
+  [
+   24.95,
+   25.93,
+   "OS MAPAS ORIGINAIS",
+   1
+  ],
+  [
+   25.93,
+   26.8,
+   "EM ARMÁRIOS ATRÁS",
+   0
+  ],
+  [
+   26.8,
+   27.62,
+   "DAS MESAS.",
+   0
+  ],
+  [
+   28.25,
+   28.98,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   28.98,
+   30.3,
+   "UM APRENDIZ DE ESCRIBA,",
+   1
+  ],
+  [
+   30.3,
+   31.14,
+   "COPIA OS NOMES",
+   0
+  ],
+  [
+   31.14,
+   31.82,
+   "DAS RUAS NUM",
+   0
+  ],
+  [
+   31.82,
+   32.78,
+   "MAPA DA CORTE.",
+   0
+  ],
+  [
+   33.41,
+   34.64,
+   "EM 1600,",
+   0
+  ],
+  [
+   34.64,
+   35.94,
+   "MONGES COPIAM OS MAPAS",
+   1
+  ],
+  [
+   35.94,
+   36.63,
+   "DO REI À LUZ",
+   0
+  ],
+  [
+   36.63,
+   37.22,
+   "DE VELA.",
+   0
+  ],
+  [
+   37.86,
+   39.09,
+   "CADA MENSAGEIRO DA CORTE",
+   1
+  ],
+  [
+   39.09,
+   39.92,
+   "CARREGA UMA CÓPIA",
+   0
+  ],
+  [
+   39.92,
+   41.06,
+   "ENROLADA NA SELA.",
+   0
+  ],
+  [
+   41.7,
+   43.35,
+   "EM 1750,",
+   0
+  ],
+  [
+   43.47,
+   44.58,
+   "MENSAGEIROS DA CORTE",
+   1
+  ],
+  [
+   44.58,
+   45.52,
+   "LEVAM AVISOS PELAS",
+   0
+  ],
+  [
+   45.52,
+   47.17,
+   "RUAS MARCADAS NOS MAPAS.",
+   0
+  ],
+  [
+   47.8,
+   48.65,
+   "NA PRAÇA,",
+   0
+  ],
+  [
+   48.65,
+   49.47,
+   "UM MENSAGEIRO LÊ",
+   1
+  ],
+  [
+   49.47,
+   50.29,
+   "O AVISO DIANTE",
+   0
+  ],
+  [
+   50.29,
+   50.96,
+   "DA FONTE.",
+   0
+  ],
+  [
+   51.59,
+   53.16,
+   "EM 1820,",
+   0
+  ],
+  [
+   53.16,
+   54.26,
+   "OS MENSAGEIROS DEIXAM",
+   1
+  ],
+  [
+   54.26,
+   55.29,
+   "AVISOS MANUSCRITOS",
+   0
+  ],
+  [
+   55.29,
+   56.84,
+   "NOS BALCÕES DAS OFICINAS.",
+   0
+  ],
+  [
+   57.47,
+   58.63,
+   "OS APRENDIZES DESENHAM",
+   1
+  ],
+  [
+   58.63,
+   59.48,
+   "NO VERSO O CAMINHO",
+   0
+  ],
+  [
+   59.48,
+   60.35,
+   "ATÉ A PRAÇA.",
+   0
+  ],
+  [
+   60.98,
+   62.17,
+   "EM 1900,",
+   0
+  ],
+  [
+   62.17,
+   63.55,
+   "GUARDAS ARRANCAM DAS PAREDES",
+   0
+  ],
+  [
+   63.55,
+   64.79,
+   "DAS OFICINAS OS AVISOS",
+   0
+  ],
+  [
+   64.79,
+   65.79,
+   "DOS APRENDIZES.",
+   1
+  ],
+  [
+   66.42,
+   67.59,
+   "OS APRENDIZES PENDURAM",
+   1
+  ],
+  [
+   67.59,
+   68.59,
+   "LENÇÓIS COM SETAS",
+   0
+  ],
+  [
+   68.59,
+   70.42,
+   "PINTADAS ENTRE DUAS JANELAS.",
+   0
+  ],
+  [
+   71.05,
+   72.56,
+   "EM 1930,",
+   0
+  ],
+  [
+   72.56,
+   73.52,
+   "OS BOMBEIROS SEGUEM",
+   1
+  ],
+  [
+   73.52,
+   74.62,
+   "AS SETAS DOS LENÇÓIS",
+   0
+  ],
+  [
+   74.62,
+   75.93,
+   "PELAS RUAS ESTREITAS.",
+   0
+  ],
+  [
+   76.56,
+   77.75,
+   "OS MORADORES PENDURAM",
+   1
+  ],
+  [
+   77.75,
+   78.64,
+   "SINOS NAS JANELAS",
+   0
+  ],
+  [
+   78.64,
+   80.08,
+   "DAS CASAS COM LENÇÓIS.",
+   0
+  ],
+  [
+   80.71,
+   81.19,
+   "HOJE,",
+   0
+  ],
+  [
+   81.32,
+   82.37,
+   "VOCÊ CONSULTA MAPAS",
+   0
+  ],
+  [
+   82.37,
+   83.55,
+   "MANUSCRITOS NOS BALCÕES",
+   1
+  ],
+  [
+   83.55,
+   84.46,
+   "DAS BANCAS DE RUA",
+   0
+  ],
+  [
+   84.46,
+   85.83,
+   "PERTO DA PRAÇA CENTRAL.",
+   0
+  ],
+  [
+   86.46,
+   87.41,
+   "VOCÊ SEGUE SETAS",
+   0
+  ],
+  [
+   87.41,
+   88.41,
+   "PINTADAS EM LENÇÓIS",
+   1
+  ],
+  [
+   88.41,
+   89.17,
+   "E TOCA SINOS",
+   0
+  ],
+  [
+   89.17,
+   90.05,
+   "PRESOS ÀS JANELAS",
+   0
+  ],
+  [
+   90.05,
+   90.86,
+   "DAS LOJAS.",
+   0
+  ],
+  [
+   91.49,
+   92.39,
+   "UMA ENCHENTE COBRE",
+   1
+  ],
+  [
+   92.39,
+   93.04,
+   "AS RUAS ENTRE",
+   0
+  ],
+  [
+   93.04,
+   94.12,
+   "A PRAÇA E A PONTE.",
+   0
+  ],
+  [
+   94.75,
+   95.55,
+   "QUAL AÇÃO VOCÊ",
+   0
+  ],
+  [
+   95.55,
+   96.47,
+   "ESCOLHE PARA AVISAR",
+   0
+  ],
+  [
+   96.47,
+   97.98,
+   "OS MORADORES DO OUTRO LADO?",
+   1
+  ],
+  [
+   98.62,
+   98.98,
+   "UM:",
+   0
+  ],
+  [
+   99.09,
+   100.12,
+   "MANDAR MENSAGEIROS",
+   1
+  ],
+  [
+   100.12,
+   100.73,
+   "DE BARCO.",
+   0
+  ],
+  [
+   101.37,
+   101.93,
+   "DOIS:",
+   0
+  ],
+  [
+   102.06,
+   103.73,
+   "PENDURAR AVISOS NAS TORRES.",
+   1
+  ],
+  [
+   104.37,
+   105.87,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "mapa",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "AL_casa"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "copista1300",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "camera": "zoom_in",
+   "titulo": [
+    "MUNDO SEM",
+    "IMPRENSA"
+   ],
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 4.8,
+   "fim": 8.5,
+   "molde": 4,
+   "nome": "monge",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "escura",
+   "fundo": [
+    "AL_cavalete"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "copista1300",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 1.0
+    }
+   ],
+   "rotulo": {
+    "texto": "MAPA",
+    "x": 540,
+    "y": 760,
+    "em": 1.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 8.5,
+   "fim": 13.1,
+   "molde": 9,
+   "nome": "tipo",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "bloco"
+   ],
+   "placa": "1041",
+   "rotulo": {
+    "texto": "CHINA",
+    "x": 540,
+    "y": 300,
+    "em": 3.4
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 13.1,
+   "fim": 17.41,
+   "molde": 8,
+   "nome": "oriente",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "mapa": "globe",
+   "pontos": [
+    [
+     0.76,
+     0.39,
+     "ORIENTE"
+    ],
+    [
+     0.52,
+     0.32,
+     "EUROPA"
+    ]
+   ],
+   "rotulo": {
+    "texto": "ORIENTE",
+    "x": 540,
+    "y": 260,
+    "em": 2.1
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 17.41,
+   "fim": 23.51,
+   "molde": 2,
+   "nome": "encomenda",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "AL_cavalete",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "neutro",
+     "pose": "apontando"
+    },
+    {
+     "quem": "bibliotecario",
+     "expressao": "pensando",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "1550",
+   "rotulo": {
+    "texto": "CÓPIAS MANUSCRITAS",
+    "x": 540,
+    "y": 760,
+    "em": 3.0
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 23.51,
+   "fim": 27.86,
+   "molde": 4,
+   "nome": "originais",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "AL_rolo",
+     "em": 1.4
+    },
+    {
+     "quem": "copista1300",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 2.4
+    }
+   ],
+   "rotulo": {
+    "texto": "MAPAS ORIGINAIS",
+    "x": 540,
+    "y": 760,
+    "em": 1.4
+   },
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 27.86,
+   "fim": 33.02,
+   "molde": 9,
+   "nome": "aprendiz",
+   "ceu": "tarde",
+   "chao": "madeira",
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "MAPA DA CORTE",
+    "x": 540,
+    "y": 300,
+    "em": 4.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 33.02,
+   "fim": 37.47,
+   "molde": 4,
+   "nome": "copias",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "escura",
+   "fundo": [
+    "AL_estante",
+    "AL_cavalete"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "copista1300",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 1.6
+    },
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_rolo",
+     "em": 2.9
+    }
+   ],
+   "placa": "1600",
+   "rotulo": {
+    "texto": "MAPAS DO REI",
+    "x": 540,
+    "y": 760,
+    "em": 2.9
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 37.47,
+   "fim": 41.31,
+   "molde": 1,
+   "nome": "mensageiro",
+   "ceu": "dia",
+   "chao": "terra",
+   "fundo": [
+    "muralha",
+    "pine"
+   ],
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "romaOperadorLiberto",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "CÓPIA",
+    "x": 540,
+    "y": 760,
+    "em": 1.6
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 41.31,
+   "fim": 47.41,
+   "molde": 5,
+   "nome": "ruas",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "AL_casa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "professora",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1750",
+   "rotulo": {
+    "texto": "RUAS",
+    "x": 540,
+    "y": 760,
+    "em": 4.2
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 47.41,
+   "fim": 51.2,
+   "molde": 3,
+   "nome": "praca",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "aqueduct",
+    "cypress"
+   ],
+   "pecas": [
+    "AL_casa",
+    "AL_rolo",
+    "jarro"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "professora",
+     "expressao": "pensando",
+     "pose": "maosJuntas"
+    }
+   ],
+   "rotulo": {
+    "texto": "AVISO",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 51.2,
+   "fim": 57.08,
+   "molde": 4,
+   "nome": "oficina",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "pedra",
+   "fundo": [
+    "forja",
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "martelo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "AL_rolo",
+     "em": 3.1
+    },
+    {
+     "quem": "romaOperadorLiberto",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "manejar",
+     "peca": "martelo",
+     "em": 4.1
+    }
+   ],
+   "placa": "1820",
+   "rotulo": {
+    "texto": "AVISOS MANUSCRITOS",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 57.08,
+   "fim": 60.59,
+   "molde": 2,
+   "nome": "caminho",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "pecas": [
+    "AL_cavalete",
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    {
+     "quem": "menino",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "CAMINHO",
+    "x": 540,
+    "y": 760,
+    "em": 1.6
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 60.59,
+   "fim": 66.03,
+   "molde": 4,
+   "nome": "retirada",
+   "ceu": "cinza",
+   "chao": "madeira",
+   "parede": "clara",
+   "fundo": [
+    "AL_cavalete",
+    "forja"
+   ],
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "joao",
+     "expressao": "bravo",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1900",
+   "rotulo": {
+    "texto": "AVISOS",
+    "x": 540,
+    "y": 760,
+    "em": 3.0
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 66.03,
+   "fim": 70.66,
+   "molde": 3,
+   "nome": "setas",
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_casa",
+    "martelo"
+   ],
+   "pessoas": [
+    {
+     "quem": "bia",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    {
+     "quem": "pedro",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SETAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.6
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 70.66,
+   "fim": 76.17,
+   "molde": 5,
+   "nome": "bombeiros",
+   "ceu": "cinza",
+   "chao": "rua",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "AL_casa"
+   ],
+   "pessoas": [
+    {
+     "quem": "pedro",
+     "expressao": "pensando",
+     "pose": "apontando"
+    },
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1930",
+   "rotulo": {
+    "texto": "RUAS ESTREITAS",
+    "x": 540,
+    "y": 760,
+    "em": 4.0
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 76.17,
+   "fim": 80.32,
+   "molde": 3,
+   "nome": "janelas",
+   "ceu": "tarde",
+   "chao": "rua",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_casa",
+    "martelo"
+   ],
+   "pessoas": [
+    {
+     "quem": "bia",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "vo",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SINOS NAS JANELAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.6
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 80.32,
+   "fim": 86.07,
+   "molde": 2,
+   "nome": "banca",
+   "ceu": "dia",
+   "chao": "rua",
+   "pecas": [
+    "AL_mesa",
+    "AL_cavalete"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "apontando"
+    },
+    {
+     "quem": "sabiaHoje",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "MAPAS MANUSCRITOS",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 86.07,
+   "fim": 91.1,
+   "molde": 3,
+   "nome": "sinais",
+   "ceu": "cinza",
+   "chao": "rua",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_predio",
+    "martelo",
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "apontando"
+    },
+    {
+     "quem": "ana",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SETAS",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 91.1,
+   "fim": 98.23,
+   "molde": 1,
+   "nome": "enchente",
+   "ceu": "cinza",
+   "chao": "rua",
+   "fundo": [
+    "aqueduct",
+    "muralha"
+   ],
+   "pecas": [
+    "estandarte",
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "ENCHENTE",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "grande": {
+    "texto": "?",
+    "em": 3.7,
+    "ate": 6.83
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 98.23,
+   "fim": 103.98,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "ERGUER UM SINAL",
+     "pecas": [
+      "estandarte"
+     ],
+     "pessoa": "voceHoje",
+     "em": 0.39
+    },
+    {
+     "texto": "LEVAR O AVISO",
+     "pecas": [
+      "canoa"
+     ],
+     "pessoa": "voceHoje",
+     "em": 3.14
+    }
+   ],
+   "chao_claro": true
+  },
+  {
+   "ini": 103.98,
+   "fim": 109.588,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "ERGUER UM SINAL",
+     "pecas": [
+      "estandarte"
+     ]
+    },
+    {
+     "texto": "LEVAR O AVISO",
+     "pecas": [
+      "canoa"
+     ]
+    }
+   ],
+   "cartao": true,
+   "pergunta": "COMO VOCÊ AVISA A OUTRA MARGEM?",
+   "chao_claro": true
+  }
+ ]
+}
