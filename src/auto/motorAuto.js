@@ -268,7 +268,7 @@ export function criarMotorAuto(L, DEMOS, video) {
       if ((c.pecas || [])[0]) peca(ctx, c.pecas[0], 540, 1000, yh, T, { tam: c.tam || 1 });
       const gente = c.pessoas || ["lucas", "ana"], filas = [[1060, [120, 330, 540, 750, 960]], [1200, [230, 450, 670, 890]], [PE, [300, 790]]];
       let k = 0;
-      for (const [yb, xs] of filas) for (const x of xs) { pessoa(ctx, gente[k % gente.length], x, yb, yh, T, { flip: k % 2 === 1, seed: k, anda: !!c.anda, expressao: "feliz", olhar: { x: k % 2 ? -.4 : .4, y: -.2 } }); k++; }
+      for (const [yb, xs] of filas) for (const x of xs) { pessoa(ctx, gente[k % gente.length], x, yb, yh, T, { flip: k % 2 === 1, seed: k, paradoNoChao: true, expressao: "feliz", olhar: { x: k % 2 ? -.4 : .4, y: -.2 } }); k++; }
       ctx.restore();
     },
     // 6 Viagem: água (ou estrada) é a faixa; o veículo ≥2 B×fator anda em cima dela; cais na frente
@@ -350,7 +350,7 @@ export function criarMotorAuto(L, DEMOS, video) {
       (c.pecas || []).forEach((n, i) => peca(ctx, n, i ? 860 : 300, c.agua && !i ? 990 : 1000, yh, T, { tam: c.tam || 1 }));
       // palmeira = 4 bonecos (tabela OBJETOS_CORINGA): no fundo (yb 1100) para caber inteira, antes dos bonecos
       if (c.arvores !== false && tema(c) !== "frio") { const hp = 4 * 97.5 * L.AL_esc(1100, yh); palmeira(ctx, 70, 1100, hp, T); palmeira(ctx, 1000, 1100, hp * 1.05, T); }
-      (c.pessoas || []).forEach((p, i) => { const yb = 1170 + i * 10; pessoa(ctx, p, 660 + i * 140 - t * 14, yb, yh, T, { flip: true, anda: true, seed: i + 2, olhar: { x: -1, y: -.2 } }); });
+      (c.pessoas || []).forEach((p, i) => { const yb = 1170 + i * 10, distanciaPassos = t * 14; pessoa(ctx, p, 660 + i * 140 - distanciaPassos, yb, yh, T, { flip: true, distanciaPassos, seed: i + 2, olhar: { x: -1, y: -.2 } }); });
       ctx.restore();
     },
     // 12 Escolha 1 ou 2: SEMPRE a última; tela dividida, números grandes no topo, cada lado com chão

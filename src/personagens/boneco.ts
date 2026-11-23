@@ -49,6 +49,7 @@ export interface BonecoOpcoes {
   olhar?: { x: number; y: number };  // desvio das pupilas (-1 a 1)
   piscando?: boolean;
   espelhar?: boolean;                // vira o boneco para o outro lado
+  passada?: { x: number; levantar: number }[];
   sombra?: boolean;                  // sombra no chão (padrão true)
 }
 
@@ -166,6 +167,17 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
   // 2. Pernas, tiras da sandália e pés
   for (const lado of [-1, 1]) {
     const cx = lado * M.pernaX;
+    const passo = o.passada?.[lado < 0 ? 0 : 1];
+    ctx.save();
+    if (passo) {
+      const quadril = normal ? -50 : M.barraY - 6;
+      const comprimento = M.peY - quadril;
+      const angulo = Math.asin(-passo.x / comprimento);
+      const ajusteY = comprimento * (1 - Math.cos(angulo)) - passo.levantar;
+      ctx.translate(cx, quadril + ajusteY);
+      ctx.rotate(angulo);
+      ctx.translate(-cx, -quadril);
+    }
     if (normal) {
       // calça + tênis
       ctx.fillStyle = degrade(ctx, calca, cx - 3.6, cx + 3.6);
@@ -174,6 +186,7 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
       ctx.ellipse(cx + lado * 0.6, M.peY, 5.6, 2.9, 0, 0, Math.PI * 2);
       ctx.fillStyle = sapato;
       ctx.fill();
+      ctx.restore();
       continue;
     }
     ctx.fillStyle = degrade(ctx, pele, cx - M.pernaL / 2, cx + M.pernaL / 2);
@@ -185,6 +198,7 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     ctx.ellipse(cx, M.peY, 5.2, 2.7, 0, 0, Math.PI * 2);
     ctx.fillStyle = CORES.sandalia;
     ctx.fill();
+    ctx.restore();
   }
 
   // 3. Roupa (corpo)
