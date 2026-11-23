@@ -5,7 +5,18 @@
   "description": "Vídeos curtos de ficção em motion graphics 2D (Fabricador de IA)",
   "scripts": {
     "estudio": "remotion studio",
-    "renderizar": "remotion render"
+    "renderizar": "remotion render",
+    "audio:vikings": "python scripts/gerar_audio_completo.py vikings",
+    "audio:egito": "python scripts/gerar_audio_completo.py egito",
+    "audio:roma": "python scripts/gerar_audio_completo.py roma",
+    "audio:alexandria": "python scripts/gerar_audio_completo.py alexandria",
+    "audio:imprensa": "python scripts/gerar_audio_completo.py imprensa",
+    "audio:monarquia": "python scripts/gerar_audio_completo.py monarquia",
+    "audio:peste": "python scripts/gerar_audio_completo.py peste",
+    "audio:all": "python scripts/gerar_audio_completo.py --all",
+    "audio:force": "python scripts/gerar_audio_completo.py --force",
+    "audio:check": "python scripts/gerar_audio_completo.py --check-assets",
+    "audio:list": "python scripts/gerar_audio_completo.py --list-temas"
   },
   "dependencies": {
     "@react-three/fiber": "^9.1.2",

@@ -1,0 +1,1220 @@
+{
+ "id": "AutoIncas",
+ "audio": "incas/incas_audio.m4a",
+ "duracao": 113.43,
+ "titulo": "E se o Império Inca tivesse derrotado os espanhóis?",
+ "caps": [
+  [
+   4.89,
+   5.89,
+   "IMAGINE SUA FILHA",
+   0
+  ],
+  [
+   5.89,
+   6.88,
+   "CARIMBANDO A LICENÇA",
+   1
+  ],
+  [
+   6.88,
+   7.37,
+   "DE UMA CAIXA",
+   0
+  ],
+  [
+   7.37,
+   8.84,
+   "ESPANHOLA NUM PORTO INCA.",
+   0
+  ],
+  [
+   9.47,
+   10.48,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   10.48,
+   12.18,
+   "EM 1532,",
+   0
+  ],
+  [
+   12.18,
+   13.57,
+   "FRANCISCO PIZARRO E SUAS",
+   1
+  ],
+  [
+   13.57,
+   15.1,
+   "TROPAS ATACARAM ATAHUALPA.",
+   0
+  ],
+  [
+   15.73,
+   16.54,
+   "O ATAQUE OCORREU",
+   0
+  ],
+  [
+   16.54,
+   17.45,
+   "NA PRAÇA PRINCIPAL",
+   1
+  ],
+  [
+   17.45,
+   18.29,
+   "DE CAJAMARCA,",
+   0
+  ],
+  [
+   18.4,
+   20.22,
+   "NA TARDE DE 16 DE NOVEMBRO.",
+   0
+  ],
+  [
+   20.86,
+   21.97,
+   "AS TROPAS CAPTURARAM",
+   1
+  ],
+  [
+   21.97,
+   23.45,
+   "DE SURPRESA O MONARCA INCA.",
+   0
+  ],
+  [
+   24.08,
+   24.56,
+   "E SE VOCÊ",
+   0
+  ],
+  [
+   24.56,
+   25.21,
+   "AVISA A GUARDA",
+   0
+  ],
+  [
+   25.21,
+   25.73,
+   "AO VER HOMENS",
+   0
+  ],
+  [
+   25.73,
+   27.44,
+   "ESPANHÓIS ARMADOS NA PRAÇA?",
+   1
+  ],
+  [
+   28.07,
+   29.78,
+   "EM 1532,",
+   0
+  ],
+  [
+   29.88,
+   31.03,
+   "AO OUVIR SEU AVISO,",
+   0
+  ],
+  [
+   31.03,
+   32.56,
+   "ATAHUALPA RECUA DA PRAÇA.",
+   1
+  ],
+  [
+   33.2,
+   34.19,
+   "OS SOLDADOS INCAS",
+   0
+  ],
+  [
+   34.19,
+   35.08,
+   "CERCAM OS ESPANHÓIS",
+   1
+  ],
+  [
+   35.08,
+   36.44,
+   "E LEVAM PIZARRO PRESO.",
+   0
+  ],
+  [
+   37.07,
+   37.7,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   37.81,
+   39.06,
+   "UMA JOVEM DE CAJAMARCA",
+   0
+  ],
+  [
+   39.06,
+   39.95,
+   "QUE ENTREGA CESTOS",
+   0
+  ],
+  [
+   39.95,
+   40.61,
+   "NA PRAÇA,",
+   0
+  ],
+  [
+   40.73,
+   41.64,
+   "VIRA MENSAGEIRA DE",
+   1
+  ],
+  [
+   41.64,
+   42.35,
+   "ATAHUALPA.",
+   0
+  ],
+  [
+   42.98,
+   44.72,
+   "EM 1533,",
+   0
+  ],
+  [
+   44.72,
+   46.17,
+   "ATAHUALPA ENVIA UMA PROPOSTA",
+   1
+  ],
+  [
+   46.17,
+   46.78,
+   "PARA OS CHEFES",
+   0
+  ],
+  [
+   46.78,
+   47.46,
+   "DA COSTA.",
+   0
+  ],
+  [
+   48.09,
+   48.73,
+   "NO MAPA,",
+   0
+  ],
+  [
+   48.88,
+   49.69,
+   "VOCÊ SEGUE A ROTA",
+   0
+  ],
+  [
+   49.69,
+   50.4,
+   "DO NOVO PORTO",
+   0
+  ],
+  [
+   50.4,
+   51.43,
+   "ATÉ CAJAMARCA.",
+   1
+  ],
+  [
+   52.06,
+   53.54,
+   "EM 1540,",
+   0
+  ],
+  [
+   53.66,
+   54.49,
+   "UMA CHEFE APONTA",
+   1
+  ],
+  [
+   54.49,
+   55.24,
+   "O PORTO NO MAPA",
+   0
+  ],
+  [
+   55.24,
+   56.24,
+   "E COBRA TAXAS.",
+   0
+  ],
+  [
+   56.88,
+   58.37,
+   "VIGIAS BARRAM EXPEDIÇÕES",
+   1
+  ],
+  [
+   58.37,
+   59.64,
+   "SEM LICENÇA NAS ENSEADAS",
+   0
+  ],
+  [
+   59.64,
+   60.31,
+   "DA COSTA.",
+   0
+  ],
+  [
+   60.95,
+   62.63,
+   "EM 1560,",
+   0
+  ],
+  [
+   62.63,
+   63.37,
+   "SUA FILHA PESA",
+   0
+  ],
+  [
+   63.37,
+   64.13,
+   "A PRATA ENVIADA",
+   1
+  ],
+  [
+   64.13,
+   64.89,
+   "PARA A ESPANHA.",
+   0
+  ],
+  [
+   65.53,
+   66.31,
+   "NO CAIS,",
+   0
+  ],
+  [
+   66.31,
+   67.4,
+   "ELA CARIMBA LICENÇAS",
+   0
+  ],
+  [
+   67.4,
+   68.59,
+   "PARA CAIXAS DE FERRAMENTAS",
+   1
+  ],
+  [
+   68.59,
+   69.48,
+   "ESPANHOLAS.",
+   0
+  ],
+  [
+   70.12,
+   71.66,
+   "NO SÉCULO XVII,",
+   0
+  ],
+  [
+   71.77,
+   72.72,
+   "O CONSELHO COSTEIRO",
+   1
+  ],
+  [
+   72.72,
+   73.88,
+   "PAGA REPAROS DA ESTRADA",
+   0
+  ],
+  [
+   73.88,
+   74.83,
+   "COM AS TAXAS.",
+   0
+  ],
+  [
+   75.46,
+   76.64,
+   "CARREGADORES COM LHAMAS",
+   1
+  ],
+  [
+   76.64,
+   77.87,
+   "ABASTECEM OS ARMAZÉNS",
+   0
+  ],
+  [
+   77.87,
+   79.04,
+   "NAS FEIRAS DA SERRA.",
+   0
+  ],
+  [
+   79.67,
+   81.06,
+   "NO SÉCULO XIX,",
+   0
+  ],
+  [
+   81.19,
+   82.15,
+   "CONSELHOS DA COSTA",
+   1
+  ],
+  [
+   82.15,
+   82.86,
+   "E SERRA PAGAM",
+   0
+  ],
+  [
+   82.86,
+   83.6,
+   "OS TRILHOS.",
+   0
+  ],
+  [
+   84.23,
+   85.08,
+   "GUIAS EM QUÉCHUA",
+   0
+  ],
+  [
+   85.08,
+   86.08,
+   "E ESPANHOL ACOMPANHAM",
+   1
+  ],
+  [
+   86.08,
+   87.61,
+   "OS CAIXOTES NOS VAGÕES.",
+   0
+  ],
+  [
+   88.24,
+   88.72,
+   "HOJE,",
+   0
+  ],
+  [
+   88.86,
+   89.78,
+   "VOCÊ ABRE A BANCA",
+   0
+  ],
+  [
+   89.78,
+   91.02,
+   "DE JORNAIS DA SUA FAMÍLIA",
+   1
+  ],
+  [
+   91.02,
+   92.1,
+   "NA RUA DA ESTAÇÃO.",
+   0
+  ],
+  [
+   92.73,
+   94.09,
+   "EM PRATELEIRAS DE MADEIRA,",
+   0
+  ],
+  [
+   94.2,
+   95.24,
+   "VOCÊ ORGANIZA CAIXAS",
+   0
+  ],
+  [
+   95.24,
+   96.28,
+   "DE METAL E CONSULTA",
+   0
+  ],
+  [
+   96.28,
+   97.17,
+   "MAPAS FERROVIÁRIOS",
+   1
+  ],
+  [
+   97.17,
+   97.92,
+   "EM QUÉCHUA.",
+   0
+  ],
+  [
+   98.55,
+   99.6,
+   "TRILHOS AFUNDAM.",
+   1
+  ],
+  [
+   100.23,
+   101.66,
+   "QUAL OBRA VOCÊ ESCOLHE?",
+   1
+  ],
+  [
+   102.29,
+   102.69,
+   "UM:",
+   0
+  ],
+  [
+   102.83,
+   103.86,
+   "ELEVAR TRILHOS SOBRE",
+   1
+  ],
+  [
+   103.86,
+   104.54,
+   "PILARES.",
+   0
+  ],
+  [
+   105.17,
+   105.7,
+   "DOIS:",
+   0
+  ],
+  [
+   105.82,
+   107.58,
+   "ESCAVAR CANAL PARA BARCAÇAS.",
+   1
+  ],
+  [
+   108.21,
+   109.71,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "titulo",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "fundo": [
+    "AL_montanha",
+    "muralha"
+   ],
+   "pecas": [
+    "AL_casa"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    }
+   ],
+   "camera": "zoom_in",
+   "titulo": [
+    "INCA DERROTA",
+    "ESPANHÓIS"
+   ]
+  },
+  {
+   "ini": 4.8,
+   "fim": 9.08,
+   "molde": 9,
+   "nome": "gancho",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "LICENÇA INCA",
+    "x": 540,
+    "y": 300,
+    "em": 1.1
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 9.08,
+   "fim": 15.34,
+   "molde": 5,
+   "nome": "historia_real",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "casaAdobe"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "bravo",
+     "pose": "apontando"
+    },
+    {
+     "quem": "vikingGuerreiro",
+     "expressao": "bravo",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "surpreso",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1532",
+   "rotulo": {
+    "texto": "ATAQUE 1532",
+    "x": 540,
+    "y": 760,
+    "em": 1.4
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 15.34,
+   "fim": 20.46,
+   "molde": 3,
+   "nome": "cajamarca",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "fundo": [],
+   "pecas": [
+    "casaAdobe",
+    "bloco"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "surpreso",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "colombo",
+     "expressao": "bravo",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "CAJAMARCA",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "zoom_out",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 20.46,
+   "fim": 27.68,
+   "molde": 4,
+   "nome": "ponto_virada",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "muralha",
+    "AL_mesa"
+   ],
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "surpreso",
+     "pose": "apontando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 4.1
+    },
+    {
+     "quem": "nativo",
+     "expressao": "bravo",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "AVISO DADO",
+    "x": 540,
+    "y": 760,
+    "em": 4.1
+   },
+   "camera": "fixa",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 27.68,
+   "fim": 32.81,
+   "molde": 6,
+   "nome": "recuo",
+   "ceu": "tarde",
+   "chao": "terra",
+   "fundo": [],
+   "pecas": [
+    "canoa"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "pensando",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1532",
+   "rotulo": {
+    "texto": "RECUA",
+    "x": 540,
+    "y": 760,
+    "em": 3.4
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 32.81,
+   "fim": 36.68,
+   "molde": 2,
+   "nome": "vitoria_inca",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "machado"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "bravo",
+     "pose": "apontando"
+    },
+    {
+     "quem": "colombo",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "PIZARRO PRESO",
+    "x": 540,
+    "y": 760,
+    "em": 2.3
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 36.68,
+   "fim": 42.59,
+   "molde": 1,
+   "nome": "recompensa",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "cestaMilho"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "MENSAGEIRA",
+    "x": 540,
+    "y": 760,
+    "em": 4.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 42.59,
+   "fim": 47.7,
+   "molde": 7,
+   "nome": "proposta",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "altar"
+   ],
+   "no_ceu": [
+    "AL_constelacoes"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1533",
+   "rotulo": {
+    "texto": "PROPOSTA",
+    "x": 540,
+    "y": 1000,
+    "em": 2.1
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 47.7,
+   "fim": 51.67,
+   "molde": 8,
+   "nome": "rota_porto",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "mapa": "VK_mapa",
+   "pontos": [
+    [
+     0.3,
+     0.4,
+     "PORTO"
+    ],
+    [
+     0.6,
+     0.7,
+     "CAJAMARCA"
+    ]
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "ROTA DO PORTO",
+    "x": 540,
+    "y": 260,
+    "em": 2.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 51.67,
+   "fim": 56.49,
+   "molde": 4,
+   "nome": "taxas",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "bravo",
+     "pose": "apontando",
+     "acao": "examinar",
+     "peca": "placasCobre",
+     "em": 3.6
+    }
+   ],
+   "placa": "1540",
+   "rotulo": {
+    "texto": "TAXAS PORTUÁRIAS",
+    "x": 540,
+    "y": 760,
+    "em": 3.6
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 56.49,
+   "fim": 60.56,
+   "molde": 3,
+   "nome": "defesa",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [],
+   "pecas": [
+    "torreVigia",
+    "machado"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "bravo",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "surpreso",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "VIGILÂNCIA",
+    "x": 540,
+    "y": 760,
+    "em": 0.4
+   },
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 60.56,
+   "fim": 65.13,
+   "molde": 9,
+   "nome": "prata",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1560",
+   "rotulo": {
+    "texto": "PRATA PESADA",
+    "x": 540,
+    "y": 300,
+    "em": 2.8
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 65.13,
+   "fim": 69.73,
+   "molde": 2,
+   "nome": "carimbo_licenca",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "LICENÇAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.2
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 69.73,
+   "fim": 75.07,
+   "molde": 8,
+   "nome": "estradas",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "mapa": "VK_pergaminho",
+   "pontos": [
+    [
+     0.4,
+     0.5,
+     "ESTRADA"
+    ]
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "placa": "SÉCULO XVII",
+   "rotulo": {
+    "texto": "OBRAS ESTRADA",
+    "x": 540,
+    "y": 1180,
+    "em": 3.0
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 75.07,
+   "fim": 79.28,
+   "molde": 5,
+   "nome": "feiras",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "casaAdobe"
+   ],
+   "pessoas": [
+    {
+     "quem": "egitoVoceCarregador",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "feliz",
+     "pose": "maosJuntas"
+    }
+   ],
+   "rotulo": {
+    "texto": "FEIRAS SERRA",
+    "x": 540,
+    "y": 760,
+    "em": 2.8
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 79.28,
+   "fim": 83.84,
+   "molde": 6,
+   "nome": "ferrovia",
+   "ceu": "dia",
+   "chao": "terra",
+   "fundo": [],
+   "pecas": [
+    "locomotive"
+   ],
+   "estrada": true,
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "SÉCULO XIX",
+   "rotulo": {
+    "texto": "TRILHOS",
+    "x": 540,
+    "y": 760,
+    "em": 3.6
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 83.84,
+   "fim": 87.85,
+   "molde": 4,
+   "nome": "vagoes",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "escura",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "VAGÕES",
+    "x": 540,
+    "y": 760,
+    "em": 2.2
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 87.85,
+   "fim": 92.34,
+   "molde": 1,
+   "nome": "banca_hoje",
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [
+    "AL_predio"
+   ],
+   "pecas": [
+    "aparelhoMensagem"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "BANCA FAMÍLIA",
+    "x": 540,
+    "y": 760,
+    "em": 1.9
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 92.34,
+   "fim": 98.16,
+   "molde": 10,
+   "nome": "comparacao",
+   "ceu": "dia",
+   "chao": "rua",
+   "antes": {
+    "pecas": [
+     "casaAdobe"
+    ],
+    "pessoa": "nativo",
+    "ceu": "tarde",
+    "chao": "terra",
+    "rotulo": "PASSADO"
+   },
+   "depois": {
+    "pecas": [
+     "AL_predio"
+    ],
+    "pessoa": "voceHoje",
+    "ceu": "dia",
+    "chao": "rua",
+    "rotulo": "PRESENTE"
+   },
+   "camera": "fixa",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 98.16,
+   "fim": 101.9,
+   "molde": 1,
+   "nome": "escolha_final",
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "bloco",
+    "martelo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "QUAL OBRA?",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 101.9,
+   "fim": 107.82,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "REFORÇAR OS TRILHOS",
+     "pecas": [
+      "bloco"
+     ],
+     "pessoa": "voceHoje",
+     "em": 0.39
+    },
+    {
+     "texto": "MANTER MANUTENÇÃO",
+     "pecas": [
+      "martelo"
+     ],
+     "pessoa": "voceHoje",
+     "em": 3.27
+    }
+   ],
+   "chao_claro": true
+  },
+  {
+   "ini": 107.82,
+   "fim": 113.428,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "REFORÇAR OS TRILHOS",
+     "pecas": [
+      "bloco"
+     ]
+    },
+    {
+     "texto": "MANTER MANUTENÇÃO",
+     "pecas": [
+      "martelo"
+     ]
+    }
+   ],
+   "cartao": true,
+   "pergunta": "QUAL OBRA VOCÊ ESCOLHE?",
+   "chao_claro": true
+  }
+ ]
+}
