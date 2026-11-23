@@ -645,13 +645,28 @@
     "AL_estante"
    ],
    "pecas": [
-    "AL_caixa",
+    "AL_rolo",
     "AL_lamparina"
    ],
    "pessoas": [
     {
      "quem": "copista",
-     "expressao": "feliz"
+     "expressao": "feliz",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 1.59
+    },
+    {
+     "quem": "copista",
+     "acao": "organizar",
+     "peca": "AL_rolo",
+     "em": 0.39
+    },
+    {
+     "quem": "voceCopista",
+     "acao": "transportar",
+     "peca": "AL_rolo",
+     "em": 2.77
     }
    ],
    "placa": "SÉCULO II",

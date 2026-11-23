@@ -1,0 +1,7 @@
+{
+  "escrever": ["AL_rolo"],
+  "examinar": ["AL_rolo", "AL_lente", "placasCobre", "AL_caixa", "jarro"],
+  "manejar": ["martelo", "machado"],
+  "organizar": ["AL_rolo", "AL_caixa", "placasCobre"],
+  "transportar": ["AL_rolo", "AL_caixa", "AL_lente", "placasCobre", "martelo", "machado"]
+}

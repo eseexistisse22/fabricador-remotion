@@ -727,8 +727,16 @@
    "pessoas": [
     {
      "quem": "vikingGuerreiro",
-     "expressao": "bravo",
-     "pose": "segurando"
+     "expressao": "pensando",
+     "acao": "manejar",
+     "peca": "martelo",
+     "em": 1.32
+    },
+    {
+     "quem": "astrid",
+     "acao": "organizar",
+     "peca": "placasCobre",
+     "em": 0.4
     }
    ],
    "placa": "1100",

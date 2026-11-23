@@ -17,6 +17,11 @@ Cada arquivo `<id>.json` aqui é UM vídeo inteiro, sem código novo. Depois de 
 - `fundo`: [peças] repetidas no horizonte (cidade, aldeia). No molde 4 = peças encostadas na parede.
 - `pecas`: [peças] — a 1ª é a principal (monumento, veículo, objeto do destaque, objeto em cima da mesa).
 - `pessoas`: ["preset" ou {"quem": "preset", "pose", "expressao", "olhar", "tam"}] (presets de boneco.ts).
+- No Interior, `pessoas` pode incluir `{"quem":"copista","acao":"escrever","peca":"AL_rolo","em":1.6}`.
+  A primeira pessoa pode escrever, examinar ou manejar na mesa da frente, a segunda pode organizar, examinar ou manejar
+  no fundo e a terceira pode buscar e transportar uma peça. A lista `src/auto/acoesInterior.json` define as peças
+  aceitas. A peça deve estar em `pecas` e `em` usa o tempo local da fala. Cenas antigas sem ações usam o mesmo
+  piso, perspectiva e sombras com os personagens que já têm.
 - `placa` (data, y=300), `rotulo` ("texto" ou {texto, x, y, em} ou lista), `grande` ({texto, x, y, tam, cor, em, ate}),
   `titulo` (["LINHA 1", "LINHA 2"], cena 0), `efeitos` [brasas, poeira, neve, fumaca, estrelas], `camera` (zoom_in, zoom_out, pan, fixa).
   `em` = segundos desde o começo da cena.

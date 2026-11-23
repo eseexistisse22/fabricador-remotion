@@ -1366,10 +1366,11 @@ function P_preset(nome) {
   throw new Error(`personagem sem preset no boneco.ts: ${nome}`);
 }
 function P_b(ctx, x, y, s, nome, o = {}) {
-  const { t = 0, seed = 0, flip = false, distanciaPassos, paradoNoChao = false, roupa, ...resto } = o, f = t * 30, k = s / 5.4;
+  const { t = 0, seed = 0, flip = false, distanciaPassos, comprimentoPasso = 3.2,
+    paradoNoChao = false, roupa, ...resto } = o, f = t * 30, k = s / 5.4;
   const base = P_preset(nome);
   const yy = distanciaPassos == null && !paradoNoChao ? y + Math.sin((f + seed * 23) / 18) * 1.2 * k : y;
-  const apoio = 3.2; // dist?ncia em unidades do boneco durante o apoio de um p?
+  const apoio = comprimentoPasso;
   const passada = distanciaPassos == null ? undefined : [0, 1].map((perna) => {
     const fase = (distanciaPassos / (s * apoio) + perna) % 2;
     // Durante o apoio, o p? recua exatamente o que o corpo avan?a.

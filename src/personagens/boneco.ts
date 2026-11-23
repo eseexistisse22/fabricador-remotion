@@ -51,6 +51,7 @@ export interface BonecoOpcoes {
   espelhar?: boolean;                // vira o boneco para o outro lado
   passada?: { x: number; levantar: number }[];
   sombra?: boolean;                  // sombra no chão (padrão true)
+  maoDirigida?: { lado: -1 | 1; x: number; y: number }; // posição relativa aos pés, em unidades do boneco
 }
 
 // ---------------- PALETA OFICIAL ----------------
@@ -306,7 +307,15 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
   const ombroD: [number, number] = [M.ombroX, M.ombroY + 1];
   let desenharBracoQueixo = false;
 
-  if (pose === "maosJuntas") {
+  if (o.maoDirigida) {
+    for (const lado of [-1, 1] as const) {
+      const ativa = lado === o.maoDirigida.lado;
+      const x = ativa ? o.maoDirigida.x : lado * (pose === "segurando" ? 6.5 : 15.5);
+      const y = ativa ? o.maoDirigida.y : pose === "segurando" ? -55.5 : -45.5;
+      linha(ctx, [lado === -1 ? ombroE : ombroD, [x, y]], lado === -1 ? pele : escurecer(pele, 0.06), bracoW);
+      mao(x, y);
+    }
+  } else if (pose === "maosJuntas") {
     linha(ctx, [ombroE, [-1.6, -47]], pele, bracoW);
     linha(ctx, [ombroD, [1.6, -47]], escurecer(pele, 0.06), bracoW);
     mao(-1.3, -46.5); mao(1.3, -46.5);

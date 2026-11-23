@@ -7,6 +7,7 @@
 // Formato do JSON: ver src/auto/videos/LEIA.md.
 import catalogo from "./catalogo_pecas.json";
 import escalaTabela from "./escala.json";   // gerado por autonomo/estilo.py a partir de coringas/OBJETOS_CORINGA.md
+import { desenharInteriorEspacial, linhasDoPiso } from "./interiorEspacial";
 
 const W = 1080, H = 1920, PE = 1405, B = 526;
 // RESERVA (lista antiga): só vale se escala.json não tiver faixas. A régua de verdade = escala.json = estilo.ESCALA,
@@ -130,7 +131,16 @@ export function criarMotorAuto(L, DEMOS, video) {
     const q = typeof p === "string" ? { quem: p } : p;
     const s = (yb >= PE - 5 ? 5.4 : L.AL_esc(yb, yh)) * (L.P_CRIANCAS.has(q.quem) ? .7 : 1);
     const { quem, ...resto } = Object.assign({}, extra, q);
-    return L.P_b(ctx, x, yb, s * (q.tam || 1), quem, Object.assign({ t: T, seed: Math.round(x) % 7 }, resto));
+    const escala = s * (q.tam || 1);
+    if (resto.sombra !== false && escala > 0) {
+      ctx.save();
+      ctx.translate(x, yb);
+      ctx.scale(22 * escala, 3.15 * escala);
+      ctx.fillStyle = rg(ctx, 0, 0, 0, 1, [[0, "rgba(46,29,22,.42)"], [.55, "rgba(46,29,22,.23)"], [1, "rgba(46,29,22,0)"]]);
+      ctx.fillRect(-1, -1, 2, 2);
+      ctx.restore();
+    }
+    return L.P_b(ctx, x, yb, escala, quem, { t: T, seed: Math.round(x) % 7, ...resto, sombra: false });
   }
   const olharPara = (x, y, px, py) => { const dx = px - x, dy = py - y, n = Math.hypot(dx, dy) || 1; return { x: dx / n, y: clamp(dy / n, -.6, .6) }; };
 
@@ -143,12 +153,12 @@ export function criarMotorAuto(L, DEMOS, video) {
     else if (tema(c) !== "cinza") L.sun(ctx, 860, Math.min(420, yh - 300), 55);
     if (["dia", "tarde", "frio"].includes(tema(c))) L.E_nuvem(ctx, 250 + T * 8 % 600, Math.min(380, yh - 400), 130, "#FFFFFF", .6);
   }
-  function chao(ctx, y, nome = "areia", h = 2400) {
+  function chao(ctx, y, nome = "areia", h = 2400, linhas = true) {
     const [c1, c2] = CHAOS[nome] || CHAOS.areia;
     ctx.fillStyle = lg(ctx, 0, y, 0, y + Math.min(h, 900), [[0, c1], [1, c2]]); ctx.fillRect(-400, y, W + 800, h);
     if (CENA.chao_claro) { ctx.fillStyle = "rgba(255,240,215,.28)"; ctx.fillRect(-400, y, W + 800, h); ctx.fillStyle = "rgba(255,255,255,.5)"; ctx.fillRect(-400, y, W + 800, 4); }
     ctx.strokeStyle = "rgba(0,0,0,.08)"; ctx.lineWidth = 2;
-    for (let k = 1; k < 7; k++) { const yy = y + k * k * 10; if (yy > y + h) break; ctx.beginPath(); ctx.moveTo(-400, yy); ctx.lineTo(W + 400, yy); ctx.stroke(); }
+    if (linhas) for (let k = 1; k < 7; k++) { const yy = y + k * k * 10; if (yy > y + h) break; ctx.beginPath(); ctx.moveTo(-400, yy); ctx.lineTo(W + 400, yy); ctx.stroke(); }
     L.AP_sup(ctx, "chao", -3000, 4000, y);
   }
   function agua(ctx, y, c, T, h = 2400) {
@@ -181,11 +191,24 @@ export function criarMotorAuto(L, DEMOS, video) {
     else chao(ctx, yh, c.chao);
     if (!o.semFundo) fundo(ctx, c, yh, T);
   }
-  function interior(ctx, c, T, yChao) {
+  function interior(ctx, c, T, yChao, espacial = false, cameraX = 0) {
     const [c1, c2] = PAREDES[c.parede] || PAREDES.pedra;
     ctx.fillStyle = lg(ctx, 0, 0, 0, H, [[0, c2], [.5, c1], [1, c2]]); ctx.fillRect(-300, -300, W + 600, H + 600);
-    for (let k = 0; k < 2; k++) { const x = 160 + k * 560, y = 420, w = 180, h = 300; rrect(ctx, x, y, w, h, [w / 2, w / 2, 0, 0]); ctx.fillStyle = lg(ctx, 0, y, 0, y + h, [[0, "#FFE0A0"], [1, "#C8A060"]]); ctx.fill(); }
-    chao(ctx, yChao, c.chao || "madeira");
+    const aberturas = espacial && c.parede !== "escura" ? [15, 285, 555, 825, 1095] : [160, 720];
+    for (const abertura of aberturas) {
+      const x = abertura - cameraX * L.AL_esc(yChao, 760);
+      const y = espacial ? 355 : 420, w = espacial ? 135 : 180, h = espacial ? 240 : 300;
+      rrect(ctx, x, y, w, h, [w / 2, w / 2, 0, 0]);
+      ctx.fillStyle = lg(ctx, 0, y, 0, y + h, [[0, "#FFE0A0"], [1, "#C8A060"]]);
+      ctx.fill();
+      if (espacial) {
+        L.poly(ctx, [x, y + h, x + w, y + h, x + 2.05 * w, yChao, x + .35 * w, yChao]);
+        ctx.fillStyle = lg(ctx, 0, y + h, 0, yChao, [[0, "rgba(255,224,160,.22)"], [1, "rgba(255,224,160,.05)"]]);
+        ctx.fill();
+      }
+    }
+    chao(ctx, yChao, c.chao || "madeira", 2400, !espacial);
+    if (espacial) linhasDoPiso(ctx, cameraX);
   }
   function efeitos(ctx, c, T, t) {
     for (const e of c.efeitos || []) {
@@ -252,13 +275,27 @@ export function criarMotorAuto(L, DEMOS, video) {
     },
     // 4 Interior: parede até o chão (1120); fundo encostado na parede; mesa da frente com objeto em cima
     4(ctx, t, T, d, c) {
-      const yh = 760, yc = 1120; ctx.save(); camera(ctx, c, t, d, 1400); L.AP_ini(ctx, yh);
-      interior(ctx, c, T, yc);
-      (c.fundo || []).forEach((n, i, a) => peca(ctx, n, 120 + i * (840 / Math.max(1, a.length - 1 || 1)), yc, yh, T, { flip: i % 2 === 1 }));
-      const mesa = peca(ctx, c.mesa || "AL_mesa", 790, PE, yh, T);
-      const sup = mesa.tampo ?? mesa.topo;
-      (c.pecas || []).forEach((n, i, a) => peca(ctx, n, 790 + (i - (a.length - 1) / 2) * 140, sup, yh, T, { k: 1, surge: c.surge ? surge(t, c) : 1 }));
-      pessoa(ctx, P(c, 0), 330, PE, yh, T, { expressao: "pensando", pose: "maoNoQueixo", olhar: { x: 1, y: .3 } });
+      const yh = 760, yc = 1120;
+      const espacial = !c.mesa || c.mesa === "AL_mesa";
+      const panEspacial = espacial && c.camera === "pan";
+      const cameraX = panEspacial ? (t * 22 - d * 11) / 5.4 : 0;
+      ctx.save();
+      if (panEspacial) cam(ctx, 1.06, W / 2, 1400);
+      else camera(ctx, c, t, d, 1400);
+      L.AP_ini(ctx, yh);
+      interior(ctx, c, T, yc, espacial, cameraX);
+      (c.fundo || []).forEach((n, i, a) => {
+        const x = espacial && a.length === 1 ? 540 : 120 + i * 840 / Math.max(1, a.length - 1);
+        peca(ctx, n, x - cameraX * L.AL_esc(yc, yh), yc, yh, T, { flip: i % 2 === 1 });
+      });
+      if (espacial) {
+        desenharInteriorEspacial(ctx, { L, c, t, T, d, peca, pessoa, cameraX, ajuste: AJUSTE.mesa });
+      } else {
+        const mesa = peca(ctx, c.mesa, 790, PE, yh, T);
+        const sup = mesa.tampo ?? mesa.topo;
+        (c.pecas || []).forEach((n, i, a) => peca(ctx, n, 790 + (i - (a.length - 1) / 2) * 140, sup, yh, T, { k: 1, surge: c.surge ? surge(t, c) : 1 }));
+        pessoa(ctx, P(c, 0), 330, PE, yh, T, { expressao: "pensando", pose: "maoNoQueixo", olhar: { x: 1, y: .3 } });
+      }
       ctx.restore();
     },
     // 5 Multidão: 3 fileiras (y 1060 / 1200 / 1405), x alternado
