@@ -1,0 +1,1269 @@
+{
+ "id": "AutoChineses",
+ "audio": "chineses/chineses_audio.m4a",
+ "duracao": 121.25,
+ "titulo": "E se os chineses tivessem chegado à América antes dos europeus?",
+ "caps": [
+  [
+   4.89,
+   5.99,
+   "IMAGINE UMA FEIRANTE",
+   0
+  ],
+  [
+   5.99,
+   6.97,
+   "DE TENOCHTITLÁN PAGANDO",
+   1
+  ],
+  [
+   6.97,
+   8.02,
+   "POR MILHO COM UMA MOEDA",
+   0
+  ],
+  [
+   8.02,
+   9.36,
+   "DE INSCRIÇÕES CHINESAS.",
+   0
+  ],
+  [
+   9.99,
+   10.94,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   11.04,
+   12.59,
+   "EM 1405,",
+   0
+  ],
+  [
+   12.69,
+   13.52,
+   "COMEÇOU A SÉRIE",
+   0
+  ],
+  [
+   13.52,
+   14.29,
+   "DE SETE GRANDES",
+   0
+  ],
+  [
+   14.29,
+   15.96,
+   "EXPEDIÇÕES SOB SEU COMANDO.",
+   1
+  ],
+  [
+   16.59,
+   18.53,
+   "ATÉ 1433,",
+   0
+  ],
+  [
+   18.63,
+   19.44,
+   "FROTAS DA CHINA",
+   0
+  ],
+  [
+   19.44,
+   20.43,
+   "PASSARAM PELO SUDESTE",
+   1
+  ],
+  [
+   20.43,
+   21.13,
+   "ASIÁTICO.",
+   0
+  ],
+  [
+   21.77,
+   22.61,
+   "PELO ÍNDICO,",
+   0
+  ],
+  [
+   22.61,
+   23.54,
+   "CHEGARAM À ARÁBIA",
+   1
+  ],
+  [
+   23.54,
+   24.87,
+   "E À ÁFRICA ORIENTAL.",
+   0
+  ],
+  [
+   25.5,
+   26.27,
+   "E SE AS FROTAS",
+   0
+  ],
+  [
+   26.27,
+   27.62,
+   "CHINESAS CRUZAM O PACÍFICO",
+   0
+  ],
+  [
+   27.62,
+   29.15,
+   "E FICAM NA COSTA AMERICANA?",
+   1
+  ],
+  [
+   29.79,
+   31.59,
+   "EM 1425,",
+   0
+  ],
+  [
+   31.69,
+   32.55,
+   "OS JUNCOS CHINESES",
+   0
+  ],
+  [
+   32.55,
+   33.87,
+   "DESCARREGAM SEDA NA COSTA",
+   1
+  ],
+  [
+   33.87,
+   34.57,
+   "AMERICANA.",
+   0
+  ],
+  [
+   35.21,
+   36.49,
+   "PILOTOS LOCAIS DESENHAM",
+   0
+  ],
+  [
+   36.49,
+   37.53,
+   "ENSEADAS NOS MAPAS",
+   0
+  ],
+  [
+   37.53,
+   38.68,
+   "DAS TRIPULAÇÕES.",
+   1
+  ],
+  [
+   39.31,
+   40.92,
+   "EM 1430,",
+   0
+  ],
+  [
+   40.92,
+   41.76,
+   "OS MAPAS GUIAM",
+   0
+  ],
+  [
+   41.76,
+   42.7,
+   "JUNCOS ATÉ PORTOS",
+   0
+  ],
+  [
+   42.7,
+   43.87,
+   "ASTECAS E INCAS.",
+   1
+  ],
+  [
+   44.51,
+   45.39,
+   "NAS DOCAS,",
+   0
+  ],
+  [
+   45.39,
+   46.73,
+   "MERCADORES TROCAM FARDOS",
+   1
+  ],
+  [
+   46.73,
+   47.66,
+   "DE SEDA POR SACAS",
+   0
+  ],
+  [
+   47.66,
+   48.23,
+   "DE MILHO.",
+   0
+  ],
+  [
+   48.87,
+   49.69,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   49.69,
+   50.82,
+   "ESCRIBA DO PORTO,",
+   0
+  ],
+  [
+   50.82,
+   51.62,
+   "ANOTA NO LIVRO",
+   0
+  ],
+  [
+   51.62,
+   52.72,
+   "CADA SACO DE SEMENTES",
+   0
+  ],
+  [
+   52.72,
+   54.02,
+   "ENTREGUE AOS MANDARINS.",
+   1
+  ],
+  [
+   54.65,
+   56.34,
+   "EM 1550,",
+   0
+  ],
+  [
+   56.34,
+   57.59,
+   "NAVIOS AMERICANOS LEVAM",
+   1
+  ],
+  [
+   57.59,
+   58.38,
+   "PRATA ÀS CASAS",
+   0
+  ],
+  [
+   58.38,
+   59.57,
+   "DE MOEDA CHINESAS.",
+   0
+  ],
+  [
+   60.21,
+   61.54,
+   "UMA FEIRANTE DE TENOCHTITLÁN",
+   1
+  ],
+  [
+   61.54,
+   62.7,
+   "COMPRA MILHO COM UMA MOEDA",
+   0
+  ],
+  [
+   62.7,
+   64.02,
+   "DE INSCRIÇÕES CHINESAS.",
+   0
+  ],
+  [
+   64.65,
+   66.28,
+   "EM 1650,",
+   0
+  ],
+  [
+   66.28,
+   67.44,
+   "CARGUEIROS DESEMBARCAM",
+   1
+  ],
+  [
+   67.44,
+   68.89,
+   "PORCELANA CHINESA NOS PORTOS",
+   0
+  ],
+  [
+   68.89,
+   69.79,
+   "AMERICANOS.",
+   0
+  ],
+  [
+   70.42,
+   71.52,
+   "AS ALFÂNDEGAS RECOLHEM",
+   1
+  ],
+  [
+   71.52,
+   72.37,
+   "MOEDAS DE PRATA",
+   0
+  ],
+  [
+   72.37,
+   73.13,
+   "NAS DOCAS.",
+   0
+  ],
+  [
+   73.77,
+   75.28,
+   "EM 1880,",
+   0
+  ],
+  [
+   75.44,
+   76.37,
+   "MERCADORES COMPRAM",
+   1
+  ],
+  [
+   76.37,
+   77.39,
+   "COMPORTAS COM A PRATA",
+   0
+  ],
+  [
+   77.39,
+   78.39,
+   "DAS ALFÂNDEGAS.",
+   0
+  ],
+  [
+   79.03,
+   80.07,
+   "ENGENHEIROS INSTALAM",
+   1
+  ],
+  [
+   80.07,
+   81.28,
+   "AS COMPORTAS NOS CANAIS",
+   0
+  ],
+  [
+   81.28,
+   82.64,
+   "DE IRRIGAÇÃO DO DESERTO.",
+   0
+  ],
+  [
+   83.28,
+   84.78,
+   "EM 1930,",
+   0
+  ],
+  [
+   84.78,
+   86.0,
+   "ESPELHOS JUNTO AOS CANAIS",
+   0
+  ],
+  [
+   86.0,
+   87.09,
+   "CONCENTRAM LUZ SOLAR",
+   1
+  ],
+  [
+   87.09,
+   88.19,
+   "NUMA USINA ELÉTRICA.",
+   0
+  ],
+  [
+   88.82,
+   89.5,
+   "TRENS DE TESTE",
+   0
+  ],
+  [
+   89.5,
+   90.53,
+   "FLUTUAM SOBRE TRILHOS",
+   0
+  ],
+  [
+   90.53,
+   91.99,
+   "MAGNÉTICOS ENTRE PLANTAÇÕES",
+   1
+  ],
+  [
+   91.99,
+   92.72,
+   "NO DESERTO.",
+   0
+  ],
+  [
+   93.36,
+   93.84,
+   "HOJE,",
+   0
+  ],
+  [
+   93.99,
+   94.87,
+   "VOCÊ LÊ UM LETREIRO",
+   1
+  ],
+  [
+   94.87,
+   95.59,
+   "EM MANDARIM SOB",
+   0
+  ],
+  [
+   95.59,
+   96.67,
+   "OS TELHADOS DE PAGODE",
+   0
+  ],
+  [
+   96.67,
+   97.6,
+   "DE NOVA YORK.",
+   0
+  ],
+  [
+   98.23,
+   99.21,
+   "VOCÊ CHAMA UM CARRO",
+   0
+  ],
+  [
+   99.21,
+   100.27,
+   "ELÉTRICO NUM PAINEL",
+   0
+  ],
+  [
+   100.27,
+   101.06,
+   "DE RUA ILUMINADO",
+   1
+  ],
+  [
+   101.06,
+   102.2,
+   "POR DRAGÕES DE NEON.",
+   0
+  ],
+  [
+   102.83,
+   103.78,
+   "NAVIOS DA ALIANÇA",
+   0
+  ],
+  [
+   103.78,
+   105.03,
+   "ATLÂNTICA FECHAM A ENTRADA",
+   1
+  ],
+  [
+   105.03,
+   106.47,
+   "DO PORTO DE NOVA YORK.",
+   0
+  ],
+  [
+   107.11,
+   107.96,
+   "COMO VOCÊ LEVA",
+   0
+  ],
+  [
+   107.96,
+   109.34,
+   "A CARGA ATÉ O PACÍFICO?",
+   1
+  ],
+  [
+   109.97,
+   110.35,
+   "UM:",
+   0
+  ],
+  [
+   110.57,
+   112.37,
+   "ESCOLTAR NAVIOS MERCANTES.",
+   1
+  ],
+  [
+   113.0,
+   113.64,
+   "DOIS:",
+   0
+  ],
+  [
+   113.64,
+   115.39,
+   "DESPACHAR TRENS MAGNÉTICOS.",
+   1
+  ],
+  [
+   116.03,
+   117.53,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "feira",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "AL_montanha",
+    "muralha"
+   ],
+   "pecas": [
+    "piramide",
+    "casaAdobe"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "camera": "zoom_in",
+   "titulo": [
+    "CHINA CHEGA À",
+    "AMÉRICA"
+   ],
+   "chao_claro": true
+  },
+  {
+   "ini": 4.8,
+   "fim": 9.6,
+   "molde": 2,
+   "nome": "pagamento",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "placasCobre",
+    "cestaMilho"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "feliz",
+     "pose": "apontando"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "INSCRIÇÕES CHINESAS",
+    "x": 540,
+    "y": 760,
+    "em": 3.2
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 9.6,
+   "fim": 16.2,
+   "molde": 8,
+   "nome": "expedições",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "mapa": "globe",
+   "pontos": [],
+   "contador": 7,
+   "placa": "1405",
+   "rotulo": {
+    "texto": "EXPEDIÇÕES",
+    "x": 540,
+    "y": 1180,
+    "em": 4.7
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 16.2,
+   "fim": 21.37,
+   "molde": 6,
+   "nome": "frota",
+   "ceu": "dia",
+   "chao": "areia",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1433",
+   "rotulo": {
+    "texto": "SUDESTE ASIÁTICO",
+    "x": 540,
+    "y": 760,
+    "em": 4.2
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 21.37,
+   "fim": 25.11,
+   "molde": 8,
+   "nome": "índico",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "mapa": "globe",
+   "pontos": [
+    [
+     0.59,
+     0.39,
+     "ARÁBIA"
+    ],
+    [
+     0.54,
+     0.53,
+     ""
+    ],
+    [
+     0.65,
+     0.58,
+     "ÍNDICO"
+    ]
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 25.11,
+   "fim": 29.4,
+   "molde": 7,
+   "nome": "travessia",
+   "ceu": "noite",
+   "chao": "areia",
+   "fundo": [
+    "casaAdobe"
+   ],
+   "pecas": [
+    "AL_rocha"
+   ],
+   "no_ceu": [
+    "AL_constelacoes"
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "PACÍFICO",
+    "x": 540,
+    "y": 1000,
+    "em": 1.2
+   },
+   "efeitos": [
+    "estrelas"
+   ],
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 29.4,
+   "fim": 34.82,
+   "molde": 6,
+   "nome": "desembarque",
+   "ceu": "tarde",
+   "chao": "areia",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1425",
+   "rotulo": {
+    "texto": "SEDA",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 34.82,
+   "fim": 38.92,
+   "molde": 4,
+   "nome": "enseadas",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "fundo": [
+    "AL_cavalete"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 0.4
+    },
+    {
+     "quem": "navegador",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 2.7
+    }
+   ],
+   "rotulo": {
+    "texto": "ENSEADAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.7
+   },
+   "camera": "zoom_in",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 38.92,
+   "fim": 44.11,
+   "molde": 8,
+   "nome": "portos",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "mapa": "globe",
+   "pontos": [
+    [
+     0.23,
+     0.4,
+     "PORTOS ASTECAS"
+    ],
+    [
+     0.29,
+     0.55,
+     "PORTOS INCAS"
+    ]
+   ],
+   "pessoas": [
+    {
+     "quem": "navegador",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1430",
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 44.11,
+   "fim": 48.48,
+   "molde": 5,
+   "nome": "escambo",
+   "ceu": "tarde",
+   "chao": "madeira",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "casaAdobe"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "MILHO",
+    "x": 540,
+    "y": 760,
+    "em": 3.5
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 48.48,
+   "fim": 54.26,
+   "molde": 4,
+   "nome": "registro",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "cestaMilho",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 2.3
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 4.2
+    }
+   ],
+   "rotulo": {
+    "texto": "SEMENTES",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "camera": "zoom_in",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 54.26,
+   "fim": 59.82,
+   "molde": 6,
+   "nome": "prata",
+   "ceu": "tarde",
+   "chao": "areia",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativo",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1550",
+   "rotulo": {
+    "texto": "PRATA",
+    "x": 540,
+    "y": 760,
+    "em": 3.3
+   },
+   "camera": "pan"
+  },
+  {
+   "ini": 59.82,
+   "fim": 64.26,
+   "molde": 9,
+   "nome": "moeda",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "feliz",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "INSCRIÇÕES CHINESAS",
+    "x": 540,
+    "y": 300,
+    "em": 2.9
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 64.26,
+   "fim": 70.03,
+   "molde": 3,
+   "nome": "porcelana",
+   "ceu": "dia",
+   "chao": "madeira",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "guindaste",
+    "jarro",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativa",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1650",
+   "rotulo": {
+    "texto": "PORCELANA CHINESA",
+    "x": 540,
+    "y": 760,
+    "em": 3.2
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 70.03,
+   "fim": 78.63,
+   "molde": 4,
+   "nome": "alfândega",
+   "ceu": "tarde",
+   "chao": "madeira",
+   "parede": "pedra",
+   "fundo": [
+    "AL_cavalete",
+    "AL_estante"
+   ],
+   "pecas": [
+    "placasCobre",
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 5.4
+    },
+    {
+     "quem": "nativa",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "placasCobre",
+     "em": 1.5
+    }
+   ],
+   "placa": "1880",
+   "rotulo": {
+    "texto": "COMPORTAS",
+    "x": 540,
+    "y": 760,
+    "em": 6.3
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 78.63,
+   "fim": 82.88,
+   "molde": 10,
+   "nome": "irrigação",
+   "ceu": "dia",
+   "chao": "areia",
+   "antes": {
+    "pecas": [
+     "casaAdobe"
+    ],
+    "pessoa": "nativo",
+    "ceu": "dia",
+    "chao": "areia",
+    "rotulo": "DESERTO"
+   },
+   "depois": {
+    "pecas": [
+     "guindaste"
+    ],
+    "pessoa": "nativo",
+    "ceu": "dia",
+    "chao": "grama",
+    "rotulo": "IRRIGAÇÃO"
+   },
+   "camera": "fixa",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 82.88,
+   "fim": 88.43,
+   "molde": 3,
+   "nome": "usina",
+   "ceu": "dia",
+   "chao": "areia",
+   "fundo": [
+    "aqueduct"
+   ],
+   "pecas": [
+    "beamEngine",
+    "AL_lente"
+   ],
+   "pessoas": [
+    {
+     "quem": "ana",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1930",
+   "rotulo": {
+    "texto": "LUZ SOLAR",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 88.43,
+   "fim": 92.97,
+   "molde": 6,
+   "nome": "trilhos",
+   "ceu": "dia",
+   "chao": "areia",
+   "fundo": [
+    "AL_montanha",
+    "aqueduct"
+   ],
+   "pecas": [
+    "AL_navio",
+    "AL_rolo"
+   ],
+   "estrada": true,
+   "pessoas": [
+    {
+     "quem": "ana",
+     "expressao": "surpreso",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "TRILHOS MAGNÉTICOS",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 92.97,
+   "fim": 97.84,
+   "molde": 3,
+   "nome": "letreiro",
+   "ceu": "dia",
+   "chao": "rua",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "VK_predio",
+    "AL_lente",
+    "cestaMilho"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "MANDARIM",
+    "x": 540,
+    "y": 760,
+    "em": 1.9
+   },
+   "camera": "zoom_out",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 97.84,
+   "fim": 102.44,
+   "molde": 1,
+   "nome": "painel",
+   "ceu": "noite",
+   "chao": "rua",
+   "fundo": [
+    "beamEngine"
+   ],
+   "pecas": [
+    "AL_cavalete",
+    "posteLotus"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "DRAGÕES DE NEON",
+    "x": 540,
+    "y": 760,
+    "em": 3.2
+   },
+   "camera": "zoom_in",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 102.44,
+   "fim": 109.58,
+   "molde": 2,
+   "nome": "bloqueio",
+   "ceu": "cinza",
+   "chao": "rua",
+   "pecas": [
+    "muralha"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    },
+    "nativo"
+   ],
+   "rotulo": {
+    "texto": "PORTO DE NOVA YORK",
+    "x": 540,
+    "y": 760,
+    "em": 2.6
+   },
+   "grande": {
+    "texto": "?",
+    "em": 5.5,
+    "ate": 6.84
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 109.58,
+   "fim": 115.63,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "SEGUIR PELOS TRILHOS",
+     "pecas": [
+      "maglev"
+     ],
+     "pessoa": "voceHoje",
+     "em": 0.39
+    },
+    {
+     "texto": "CONTORNAR O BLOQUEIO",
+     "pecas": [
+      "caravela"
+     ],
+     "pessoa": "voceHoje",
+     "em": 3.42
+    }
+   ],
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 115.63,
+   "fim": 121.252,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "SEGUIR PELOS TRILHOS",
+     "pecas": [
+      "maglev"
+     ]
+    },
+    {
+     "texto": "CONTORNAR O BLOQUEIO",
+     "pecas": [
+      "caravela"
+     ]
+    }
+   ],
+   "cartao": true,
+   "pergunta": "COMO LEVAR A CARGA AO PACÍFICO?",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  }
+ ]
+}
