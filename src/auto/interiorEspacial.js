@@ -81,7 +81,7 @@ export function desenharInteriorEspacial(ctx, { L, c, t, T, d, peca, pessoa, cam
   const pecas = c.pecas || [];
   const acao = (q, indice) => {
     const permitidos = [["escrever", "examinar", "manejar"], ["organizar", "examinar", "manejar"], ["transportar"]];
-    return permitidos[indice].includes(q?.acao) && pecas.includes(q.peca)
+    return q?.quem && permitidos[indice].includes(q.acao) && pecas.includes(q.peca)
       && acoes[q.acao]?.includes(q.peca) ? q : null;
   };
   const principal = acao(pessoas[0], 0), apoio = acao(pessoas[1], 1);
@@ -97,24 +97,25 @@ export function desenharInteriorEspacial(ctx, { L, c, t, T, d, peca, pessoa, cam
     enfileirar(m.z + m.d / 2, () => mesa(ctx, L, projetar, m));
   }
 
+  function mao(q, x, z, alvo, flip = false) {
+    const p = projetar(x, 0, z);
+    const direcao = flip ? -1 : 1;
+    const escala = p.s * (L.P_CRIANCAS.has(q.quem) ? .7 : 1) * (q.tam || 1);
+    const dx = (alvo.x - p.x) * direcao / escala;
+    const dy = (alvo.y - p.y) / escala;
+    const local = { lado: dx < 0 ? -1 : 1, x: L.clamp(dx, -32, 32), y: L.clamp(dy, -79, -39) };
+    return { local, x: p.x + local.x * escala * direcao, y: p.y + local.y * escala, base: p.y };
+  }
+
   function ator(q, x, z, alvo, extra = {}) {
     if (!q?.quem) return;
     const p = projetar(x, 0, z);
     sombra(ctx, L, projetar, x, z, 21, 9, .46);
-    const direcao = extra.flip ? -1 : 1;
-    const escala = p.s * (L.P_CRIANCAS.has(q.quem) ? .7 : 1) * (q.tam || 1);
     const desenho = { ...q };
     if (alvo) {
-      const dx = (alvo.x - p.x) * direcao / escala;
-      const dy = (alvo.y - p.y) / escala;
-      const lado = dx < 0 ? -1 : 1;
       desenho.pose = extra.carregando ? "segurando" : "bracosAoLado";
       desenho.objeto = "nenhum";
-      desenho.maoDirigida = {
-        lado,
-        x: L.clamp(dx, -32, 32),
-        y: L.clamp(dy, -79, -39),
-      };
+      desenho.maoDirigida = mao(q, x, z, alvo, extra.flip).local;
     }
     enfileirar(z, () => pessoa(ctx, desenho, p.x, p.y, HORIZONTE, T, {
       sombra: false, paradoNoChao: true, expressao: "pensando", pose: "maoNoQueixo",
@@ -165,32 +166,40 @@ export function desenharInteriorEspacial(ctx, { L, c, t, T, d, peca, pessoa, cam
   }
 
   const emEntrega = mover ? L.clamp(mover.em ?? d * .58, 0, Math.max(0, d - .58)) : 0;
-  const vem = curva(Math.min(.1, emEntrega * .2), Math.max(.25, emEntrega - .17), t);
-  const sai = curva(emEntrega + .42, d + .12, t);
-  const partida = -56, chegada = 14, fundoEntrega = -93;
+  const fimDaChegada = Math.max(0, emEntrega - .24);
+  const vem = curva(0, fimDaChegada, t);
+  const pegaEm = emEntrega + .04;
+  const sai = curva(pegaEm + .4, d + .12, t);
+  const chegada = L.P_CRIANCAS.has(mover?.quem) ? 21 : 14, fundoEntrega = -93;
+  const proporcaoEntrega = (L.P_CRIANCAS.has(mover?.quem) ? .7 : 1) * (mover?.tam || 1);
+  const alturaCarregada = Math.min(54, 68 * proporcaoEntrega);
+  const partida = chegada - Math.min(70, fimDaChegada * 32);
   const xEntrega = L.lerp(partida, chegada, vem) - Math.min(64, Math.max(0, d - emEntrega - .35) * 36) * sai;
-  const coleta = curva(emEntrega, emEntrega + .4, t);
-  const alcance = curva(emEntrega - .24, emEntrega + .02, t);
+  const coleta = curva(pegaEm, pegaEm + .4, t);
+  const alcance = curva(emEntrega - .24, pegaEm, t);
   let alvoApoio, alvoEntrega;
-  let frente = 0, atras = 0;
+  let carregando = false;
+  let frente = 0;
   const primeiro = pecas.indexOf(principal?.peca);
   const levar = pecas.indexOf(mover?.peca);
   const arrumar = pecas.indexOf(outraPeca?.peca);
   for (const [i, nome] of pecas.slice(0, 3).entries()) {
     const estaLonge = i === levar || i === arrumar || (tipo === "escrever" && pessoaDoFundo && nome === "AL_lamparina");
     const m = estaLonge ? mesaDoFundo : mesaDaFrente;
-    const slot = estaLonge ? atras++ : i === primeiro && tipo !== "escrever" ? 0 : frente++;
-    let x = estaLonge ? 40 + slot * 24 : i === primeiro && tipo !== "escrever" ? -41 : -82 + slot * 17;
-    let z = m.z + 6, h = m.h;
-    let apoioNaMao = null;
+    const xMesa = estaLonge
+      ? i === levar ? 40 : i === arrumar ? (levar >= 0 ? 64 : 40) : (levar >= 0 && arrumar >= 0 && levar !== arrumar ? 88 : 72)
+      : i === primeiro && tipo !== "escrever" ? -41 : -82 + frente++ * 17;
+    const zMesa = m.z + 6;
+    let x = xMesa, z = zMesa, h = m.h;
+    let contato = null;
     if (i === arrumar && apoio?.acao === "organizar" && (i !== levar || emEntrega >= .76)) {
       const em = i === levar ? Math.min(apoio.em ?? .35, emEntrega - .76) : apoio.em ?? .35;
       const progresso = curva(em, em + .61, t);
       x += 12 * (1 - progresso);
       h += 4 * Math.sin(Math.PI * progresso);
       const p = projetar(x, h, z);
-      if (progresso > 0 && progresso < 1) apoioNaMao = projetar(61, 0, -130).y;
       if (t < em + .9) alvoApoio = { x: p.x, y: p.y - 3.5 * p.s };
+      if (progresso > 0 && progresso < 1) contato = mao(pessoas[1], 61, -130, alvoApoio);
     }
     if (i === primeiro && tipo && tipo !== "escrever") {
       const ativado = curva(inicio - .14, inicio + .12, t);
@@ -198,35 +207,51 @@ export function desenharInteriorEspacial(ctx, { L, c, t, T, d, peca, pessoa, cam
         ? Math.sin(Math.PI * ((Math.max(0, t - inicio) * 1.5) % 1)) * ativado
         : curva(inicio, inicio + .48, t) * (1 - curva(inicio + .95, inicio + 1.56, t));
       h += (tipo === "manejar" ? 18 : 11) * movimento;
-      if (movimento > .01) apoioNaMao = projetar(escritorX, 0, escritorZ).y;
       const p = projetar(x, h, z);
       alvoPrincipal = { x: p.x, y: p.y - 3.5 * p.s };
+      if (movimento > 0) contato = mao(pessoas[0], escritorX, escritorZ, alvoPrincipal);
     }
     if (i === arrumar && apoio?.acao !== "organizar" && i !== levar) {
       const em = apoio?.em ?? .3;
       const levantar = curva(em, em + .45, t) * (1 - curva(em + .8, em + 1.4, t));
       h += 10 * levantar;
       const p = projetar(x, h, z);
-      if (levantar > .01) apoioNaMao = projetar(61, 0, -130).y;
       alvoApoio = { x: p.x, y: p.y - 3.5 * p.s };
+      if (levantar > 0) contato = mao(pessoas[1], 61, -130, alvoApoio);
     }
     if (i === levar && alcance > 0) {
-      x = L.lerp(x, xEntrega + 6, coleta);
-      z = L.lerp(z, fundoEntrega + .8, coleta);
-      h = L.lerp(h, 54, coleta);
+      const apoioInicial = projetar(xMesa, m.h, zMesa);
+      const alvoInicial = { x: apoioInicial.x, y: apoioInicial.y - 3.5 * apoioInicial.s };
+      const maoInicial = mao(pessoas[2], chegada, fundoEntrega, alvoInicial);
+      const alcanca = Math.hypot(maoInicial.x - alvoInicial.x, maoInicial.y - alvoInicial.y) <= 1;
+      const pegou = alcanca ? coleta : 0;
+      x = L.lerp(x, xEntrega + 6, pegou);
+      z = L.lerp(z, fundoEntrega + .8, pegou);
+      h = L.lerp(h, alturaCarregada, pegou);
       const p = projetar(x, h, z), pe = projetar(xEntrega, 0, fundoEntrega);
-      alvoEntrega = { x: L.lerp(pe.x + 15 * pe.s, p.x, alcance), y: L.lerp(pe.y - 45.5 * pe.s, p.y - 3.5 * p.s, alcance) };
-      if (coleta > .001) apoioNaMao = pe.y;
+      if (alcanca || sai === 0) {
+        alvoEntrega = { x: L.lerp(pe.x + 15 * pe.s, p.x, alcance), y: L.lerp(pe.y - 45.5 * pe.s, p.y - 3.5 * p.s, alcance) };
+      }
+      if (pegou > 0) contato = mao(pessoas[2], xEntrega, fundoEntrega, alvoEntrega, sai > 0);
     }
 
-    const p = projetar(x, h, z);
+    let p = projetar(x, h, z);
+    if (contato && Math.hypot(contato.x - p.x, contato.y - (p.y - 3.5 * p.s)) > 1) {
+      // A mão respeita o alcance do braço. Se não chegar, a peça fica no tampo.
+      contato = null;
+      x = xMesa;
+      z = zMesa;
+      h = m.h;
+      p = projetar(x, h, z);
+    }
+    if (contato && i === levar) carregando = coleta > .98;
     const pe = projetar(x, 0, z);
     const cresce = c.surge && !estaLonge && i !== primeiro;
     const visibilidade = cresce ? curva(c.surge_em ?? .2, (c.surge_em ?? .2) + .65, t) : 1;
     if (visibilidade <= .001) continue;
-    enfileirar(z + (apoioNaMao != null && i === levar ? .25 : 15), () => {
-      if (apoioNaMao != null) {
-        L.AP_sup(ctx, "mao", p.x - 7, p.x + 7, p.y, apoioNaMao);
+    enfileirar(z + (contato && i === levar ? .25 : 15), () => {
+      if (contato) {
+        L.AP_sup(ctx, "mao", contato.x - 7, contato.x + 7, contato.y + 3.5 * p.s, contato.base);
       } else {
         const esq = projetar(m.x - m.w / 2, h, z), dir = projetar(m.x + m.w / 2, h, z);
         L.AP_sup(ctx, "linha", esq.x, dir.x, p.y, pe.y);
@@ -240,9 +265,9 @@ export function desenharInteriorEspacial(ctx, { L, c, t, T, d, peca, pessoa, cam
   if (mover) {
     const p = projetar(xEntrega, 0, fundoEntrega);
     const deslocamento = sai > 0 ? (chegada - xEntrega) * p.s : (xEntrega - partida) * p.s;
-    const andando = (vem > 0 && vem < 1) || (sai > 0 && sai < 1);
+    const andando = (partida < chegada && vem > 0 && vem < 1) || (sai > 0 && sai < 1);
     ator(pessoas[2], xEntrega, fundoEntrega, alvoEntrega, {
-      seed: 8, flip: sai > 0, carregando: coleta > .98,
+      seed: 8, flip: sai > 0, carregando,
       distanciaPassos: andando ? deslocamento : undefined, comprimentoPasso: 9,
       olhar: { x: sai > 0 ? -.6 : .6, y: .25 }, pose: "bracosAoLado",
     });
