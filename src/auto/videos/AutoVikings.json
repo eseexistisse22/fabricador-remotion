@@ -1,446 +1,524 @@
 {
  "id": "AutoVikings",
  "audio": "vikings/vikings_audio.m4a",
- "duracao": 114.0,
- "titulo": "E se os vikings tivessem ficado na América?",
+ "duracao": 97.5,
+ "titulo": "E se Vikings",
  "caps": [
   [
-   4.89,
-   5.85,
-   "IMAGINE NAVIOS",
+   0.0,
+   0.37,
+   "E SE OS",
    0
   ],
   [
-   5.85,
-   6.89,
-   "COM CABEÇA DE DRAGÃO",
+   0.43,
+   1.58,
+   "VIKINGS TIVESSEM FICADO",
    1
   ],
   [
-   6.89,
-   8.29,
-   "SUBINDO OS RIOS DA AMÉRICA.",
-   0
-  ],
-  [
-   8.93,
-   9.93,
-   "NA NOSSA HISTÓRIA,",
-   0
-  ],
-  [
-   9.93,
-   11.3,
-   "POR VOLTA DE 1021,",
-   0
-  ],
-  [
-   11.45,
-   12.28,
-   "VIKINGS CHEGARAM À",
-   0
-  ],
-  [
-   12.28,
-   13.33,
-   "ILHA DE TERRA NOVA.",
+   1.62,
+   2.26,
+   "NA AMÉRICA",
    1
   ],
   [
-   13.96,
-   15.48,
-   "LÁ, ERGUERAM OITO CASAS",
-   1
-  ],
-  [
-   15.48,
-   16.63,
-   "DE TURFA E MADEIRA.",
+   2.51,
+   4.38,
+   "IMAGINE NAVIOS COM",
    0
   ],
   [
-   17.27,
-   17.88,
+   4.49,
+   5.62,
+   "CABEÇA DE DRAGÃO",
+   1
+  ],
+  [
+   6.04,
+   7.34,
+   "SUBINDO OS RIOS",
+   0
+  ],
+  [
+   7.4,
+   8.08,
+   "DA AMÉRICA",
+   1
+  ],
+  [
+   8.36,
+   9.5,
+   "NA NOSSA HISTÓRIA",
+   0
+  ],
+  [
+   9.75,
+   10.43,
+   "POR VOLTA DE",
+   0
+  ],
+  [
+   10.5,
+   12.23,
+   "1021 VIKINGS",
+   1
+  ],
+  [
+   12.3,
+   13.77,
+   "CHEGARAM À ILHA",
+   0
+  ],
+  [
+   13.79,
+   14.14,
+   "DE TERRA",
+   1
+  ],
+  [
+   14.19,
+   16.02,
+   "NOVA LÁ ERGUERAM",
+   0
+  ],
+  [
+   16.14,
+   17.47,
+   "OITO CASAS DE",
+   0
+  ],
+  [
+   17.53,
+   18.48,
+   "TURFA E MADEIRA",
+   1
+  ],
+  [
+   18.72,
+   19.38,
    "MAS A VILA",
    0
   ],
   [
-   17.88,
-   18.67,
-   "DUROU POUCO,",
+   19.74,
+   21.21,
+   "DUROU POUCO E",
+   0
+  ],
+  [
+   21.33,
+   22.94,
+   "OS NAVIOS VOLTARAM",
+   0
+  ],
+  [
+   23.0,
+   23.57,
+   "PARA O MAR",
    1
   ],
   [
-   18.84,
-   19.47,
-   "E OS NAVIOS",
+   23.82,
+   24.35,
+   "E SE UMA",
    0
   ],
   [
-   19.47,
-   20.48,
-   "VOLTARAM PARA O MAR.",
-   0
-  ],
-  [
-   21.12,
-   21.94,
-   "E SE UMA FAMÍLIA",
-   0
-  ],
-  [
-   21.94,
-   23.11,
-   "VIKING TIVESSE DECIDIDO",
-   0
-  ],
-  [
-   23.11,
-   23.61,
-   "FICAR?",
+   24.39,
+   25.83,
+   "FAMÍLIA VIKING",
    1
   ],
   [
-   24.24,
-   25.14,
-   "EM 1030,",
+   25.91,
+   27.83,
+   "TIVESSE DECIDIDO FICAR",
    0
   ],
   [
-   25.14,
-   25.96,
-   "A CHEFE ASTRID",
+   28.1,
+   29.43,
+   "EM 1030 A",
    0
   ],
   [
-   25.96,
-   27.23,
-   "TROCA FERRAMENTAS DE FERRO",
+   29.52,
+   30.29,
+   "CHEFE ASTRID",
    1
   ],
   [
-   27.23,
-   27.69,
-   "POR MILHO",
+   30.65,
+   31.83,
+   "TROCA FERRAMENTAS DE",
    0
   ],
   [
-   27.69,
-   29.01,
-   "COM OS POVOS NATIVOS.",
-   0
-  ],
-  [
-   29.64,
-   30.34,
-   "JUNTOS,",
-   0
-  ],
-  [
-   30.34,
-   31.34,
-   "ELES ENFRENTAM O PRIMEIRO",
-   0
-  ],
-  [
-   31.34,
-   32.88,
-   "INVERNO SEM PASSAR FOME.",
+   31.9,
+   33.23,
+   "FERRO POR MILHO",
    1
   ],
   [
-   33.52,
-   34.44,
-   "EM 1100,",
+   33.58,
+   34.22,
+   "COM OS POVOS",
    0
   ],
   [
-   34.44,
-   35.32,
+   34.27,
+   36.27,
+   "NATIVOS JUNTOS ELES",
+   0
+  ],
+  [
+   36.33,
+   37.65,
+   "ENFRENTAM O PRIMEIRO",
+   0
+  ],
+  [
+   37.99,
+   39.23,
+   "INVERNO SEM PASSAR",
+   0
+  ],
+  [
+   39.31,
+   40.75,
+   "FOME EM 1100",
+   0
+  ],
+  [
+   41.19,
+   42.1,
    "FORJAS DE FERRO",
    1
   ],
   [
-   35.32,
-   36.71,
-   "SOLTAM FUMAÇA ÀS MARGENS",
+   42.49,
+   43.75,
+   "SOLTAM FUMAÇA ÀS",
    0
   ],
   [
-   36.71,
-   37.82,
-   "DOS GRANDES RIOS.",
+   43.84,
+   45.34,
+   "MARGENS DOS GRANDES",
    0
   ],
   [
-   38.46,
-   39.12,
-   "E VOCÊ,",
+   45.42,
+   46.68,
+   "RIOS E VOCÊ",
    0
   ],
   [
-   39.22,
-   40.19,
-   "UM MENINO QUE REMAVA",
+   46.95,
+   47.87,
+   "UM MENINO QUE",
    0
   ],
   [
-   40.19,
-   41.22,
-   "BARCOS DE PESCA,",
+   47.89,
+   49.34,
+   "REMAVA BARCOS DE",
    0
   ],
   [
-   41.36,
-   41.95,
-   "VIRA O PRIMEIRO",
+   49.41,
+   50.69,
+   "PESCA VIRA O",
    0
   ],
   [
-   41.95,
-   42.92,
-   "FERREIRO DA VILA.",
-   1
-  ],
-  [
-   43.55,
-   45.04,
-   "EM 1250,",
+   50.76,
+   52.31,
+   "PRIMEIRO FERREIRO DA",
    0
   ],
   [
-   45.15,
-   46.02,
+   52.36,
+   54.42,
+   "VILA EM 1250",
+   0
+  ],
+  [
+   54.75,
+   55.74,
    "NAVIOS DE CASCO",
    0
   ],
   [
-   46.02,
-   46.97,
+   56.15,
+   57.38,
    "LARGO LEVAM MADEIRA",
    1
   ],
   [
-   46.97,
-   48.22,
-   "E PELES ATÉ A ISLÂNDIA.",
+   57.72,
+   58.48,
+   "E PELES ATÉ",
    0
   ],
   [
-   48.86,
-   50.39,
-   "EM 1350,",
+   58.51,
+   59.75,
+   "A ISLÂNDIA EM",
    0
   ],
   [
-   50.49,
-   51.37,
-   "ARADOS DE FERRO",
+   59.92,
+   62.05,
+   "1350 ARADOS DE",
    0
   ],
   [
-   51.37,
-   52.45,
-   "ABREM CAMPOS DE TRIGO",
+   62.14,
+   63.56,
+   "FERRO ABREM CAMPOS",
    1
   ],
   [
-   52.45,
-   53.49,
-   "POR TODA A COSTA.",
-   0
-  ],
-  [
-   54.13,
-   56.02,
-   "EM 1492,",
-   0
-  ],
-  [
-   56.12,
-   57.33,
-   "AS CARAVELAS DE COLOMBO",
+   63.62,
+   64.05,
+   "DE TRIGO",
    1
   ],
   [
-   57.33,
-   58.62,
-   "CHEGAM AO NOVO MUNDO.",
+   64.46,
+   64.98,
+   "POR TODA A",
    0
   ],
   [
-   59.26,
-   60.38,
-   "MAS ENCONTRAM UM PORTO",
+   65.03,
+   67.13,
+   "COSTA EM 1492",
    0
   ],
   [
-   60.38,
-   61.53,
-   "CHEIO DE NAVIOS-DRAGÃO",
-   1
-  ],
-  [
-   61.53,
-   62.62,
-   "E TORRES DE VIGIA.",
+   67.48,
+   68.5,
+   "AS CARAVELAS DE",
    0
   ],
   [
-   63.26,
-   64.64,
-   "COLOMBO VOLTA PARA CASA",
-   0
-  ],
-  [
-   64.64,
-   66.09,
-   "COM UM ACORDO DE COMÉRCIO,",
-   1
-  ],
-  [
-   66.09,
-   67.44,
-   "E NÃO COM UMA CONQUISTA.",
-   0
-  ],
-  [
-   68.07,
    68.55,
-   "HOJE,",
-   0
-  ],
-  [
-   68.67,
-   69.41,
-   "VOCÊ CAMINHA POR",
-   0
-  ],
-  [
-   69.41,
-   70.05,
-   "VINLÂNDIA,",
+   69.93,
+   "COLOMBO CHEGAM AO",
    1
   ],
   [
-   70.22,
-   71.24,
-   "UMA CIDADE DE MADEIRA",
-   0
-  ],
-  [
-   71.24,
-   71.75,
-   "E VIDRO COM",
-   0
-  ],
-  [
-   71.75,
-   72.78,
-   "TELHADOS DE GRAMA.",
-   0
-  ],
-  [
-   73.41,
-   74.58,
-   "TRENS COM PROA DE DRAGÃO",
+   70.0,
+   70.72,
+   "NOVO MUNDO",
    1
   ],
   [
-   74.58,
-   75.73,
-   "CRUZAM FLORESTAS,",
+   71.01,
+   72.09,
+   "MAS ENCONTRAM UM",
    0
   ],
   [
-   75.73,
-   76.71,
-   "E ESCOLAS ENSINAM",
+   72.18,
+   73.47,
+   "PORTO CHEIO DE",
+   1
+  ],
+  [
+   73.53,
+   75.34,
+   "NAVIOS-DRAGÃO E TORRES",
    0
   ],
   [
-   76.71,
-   77.78,
-   "RUNAS E NÚMEROS.",
+   75.38,
+   75.93,
+   "DE VIGIA",
+   1
+  ],
+  [
+   76.21,
+   77.35,
+   "COLOMBO VOLTA PARA",
+   1
+  ],
+  [
+   77.39,
+   78.6,
+   "CASA COM UM",
    0
   ],
   [
-   78.41,
-   79.05,
+   78.67,
+   79.97,
+   "ACORDO DE COMÉRCIO",
+   1
+  ],
+  [
+   80.2,
+   80.67,
+   "E NÃO COM",
+   0
+  ],
+  [
+   80.7,
+   81.56,
+   "UMA CONQUISTA",
+   1
+  ],
+  [
+   81.78,
+   83.13,
+   "HOJE VOCÊ CAMINHA",
+   0
+  ],
+  [
+   83.16,
+   84.66,
+   "POR VINLÂNDIA",
+   1
+  ],
+  [
+   85.03,
+   85.84,
+   "UMA CIDADE",
+   1
+  ],
+  [
+   85.88,
+   86.45,
+   "DE MADEIRA",
+   1
+  ],
+  [
+   86.8,
+   87.28,
+   "E VIDRO",
+   1
+  ],
+  [
+   87.33,
+   88.53,
+   "COM TELHADOS DE",
+   0
+  ],
+  [
+   88.57,
+   89.88,
+   "GRAMA TRENS COM",
+   1
+  ],
+  [
+   89.95,
+   90.79,
+   "PROA DE DRAGÃO",
+   1
+  ],
+  [
+   91.16,
+   92.68,
+   "CRUZAM FLORESTAS E",
+   0
+  ],
+  [
+   92.73,
+   94.49,
+   "ESCOLAS ENSINAM RUNAS",
+   1
+  ],
+  [
+   94.56,
+   95.18,
+   "E NÚMEROS",
+   1
+  ],
+  [
+   95.48,
+   96.41,
    "MAS O GELO",
    1
   ],
   [
-   79.05,
-   80.38,
-   "DO NORTE ESTÁ DERRETENDO,",
+   96.83,
+   97.8,
+   "DO NORTE ESTÁ",
    0
   ],
   [
-   80.49,
-   81.03,
-   "E AS ROTAS",
-   0
+   97.88,
+   99.07,
+   "DERRETENDO E AS",
+   1
   ],
   [
-   81.03,
-   82.13,
-   "ANTIGAS MUDARAM.",
-   0
+   99.15,
+   101.1,
+   "ROTAS ANTIGAS MUDARAM",
+   1
   ],
   [
-   82.77,
-   83.81,
+   101.38,
+   102.5,
    "PARA ONDE VINLÂNDIA",
-   0
-  ],
-  [
-   83.81,
-   84.95,
-   "DEVE NAVEGAR AGORA?",
    1
   ],
   [
-   85.58,
-   85.95,
-   "UM:",
-   0
-  ],
-  [
-   86.06,
-   87.13,
-   "ATRAVESSAR O OCEANO",
-   0
-  ],
-  [
-   87.13,
-   88.51,
-   "PACÍFICO ATÉ A ÁSIA.",
+   102.86,
+   103.55,
+   "DEVE NAVEGAR",
    1
   ],
   [
-   89.14,
-   89.69,
-   "DOIS:",
+   103.58,
+   105.23,
+   "AGORA UM ATRAVESSAR",
    0
   ],
   [
-   89.79,
-   90.8,
-   "CONSTRUIR CIDADES",
+   105.31,
+   106.97,
+   "O OCEANO PACÍFICO",
+   1
+  ],
+  [
+   107.07,
+   108.27,
+   "ATÉ A ÁSIA",
+   1
+  ],
+  [
+   108.53,
+   110.84,
+   "DOIS CONSTRUIR CIDADES",
    0
   ],
   [
-   90.8,
-   91.7,
-   "NO FUNDO DO MAR.",
+   111.22,
+   111.79,
+   "NO FUNDO",
    1
   ],
   [
-   92.33,
-   93.84,
-   "COMENTA 1 OU 2!",
+   111.84,
+   112.33,
+   "DO MAR",
    1
+  ],
+  [
+   112.62,
+   113.49,
+   "COMENTA 1 OU",
+   1
+  ],
+  [
+   113.57,
+   113.74,
+   "2",
+   0
   ]
  ],
  "cenas": [
@@ -448,19 +526,17 @@
    "ini": 0,
    "fim": 4.8,
    "molde": 11,
-   "nome": "titulo",
-   "ceu": "frio",
+   "nome": "abertura",
+   "ceu": "dia",
    "chao": "neve",
    "fundo": [
     "pine"
    ],
-   "pecas": [
-    "casaTurfa"
-   ],
-   "agua": true,
+   "pecas": [],
+   "agua": false,
    "pessoas": [
     {
-     "quem": "vikingNavegador",
+     "quem": "vikingGuerreiro",
      "expressao": "neutro",
      "pose": "bracosAoLado"
     }
@@ -468,80 +544,70 @@
    "efeitos": [
     "neve"
    ],
-   "camera": "zoom_in",
+   "camera": "pan",
    "titulo": [
-    "E SE OS",
-    "NA AMÉRICA"
+    "E SE",
+    "VIKINGS"
    ]
   },
   {
    "ini": 4.8,
    "fim": 8.53,
    "molde": 6,
-   "nome": "navios_dragao",
-   "ceu": "frio",
-   "chao": "neve",
+   "nome": "viagem_rio",
+   "ceu": "dia",
+   "chao": "grama",
    "fundo": [
     "pine"
    ],
    "pecas": [
-    "navioDragao"
+    "canoa"
    ],
    "pessoas": [
     {
      "quem": "vikingNavegador",
-     "expressao": "surpreso",
-     "pose": "apontando"
+     "expressao": "neutro",
+     "pose": "segurando"
     }
    ],
-   "rotulo": {
-    "texto": "NAVIO DRAGÃO",
-    "x": 540,
-    "y": 760,
-    "em": 1.0
-   },
+   "efeitos": [
+    "poeira",
+    "canoa"
+   ],
    "camera": "pan"
   },
   {
    "ini": 8.53,
    "fim": 13.57,
-   "molde": 8,
-   "nome": "mapa_1021",
-   "ceu": "dia",
-   "chao": "madeira",
-   "parede": "escura",
-   "mapa": "VK_mapa",
-   "pontos": [
-    [
-     0.4,
-     0.5,
-     "TERRA NOVA"
-    ]
+   "molde": 1,
+   "nome": "chegada_ilha",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "fundo": [
+    "AL_montanha"
    ],
-   "contador": 1021,
+   "pecas": [
+    "AL_rocha"
+   ],
    "pessoas": [
     {
-     "quem": "astrid",
-     "expressao": "pensando",
-     "pose": "maoNoQueixo"
+     "quem": "vikingGuerreiro",
+     "expressao": "surpreso",
+     "pose": "bracosAoLado"
     }
    ],
-   "placa": "1021",
-   "rotulo": {
-    "texto": "TERRA NOVA",
-    "x": 540,
-    "y": 1180,
-    "em": 3.8
-   },
+   "efeitos": [
+    "AL_rocha"
+   ],
    "camera": "zoom_in"
   },
   {
    "ini": 13.57,
    "fim": 16.87,
    "molde": 3,
-   "nome": "casas_turfa",
-   "ceu": "frio",
-   "chao": "grama",
+   "nome": "construcao",
+   "ceu": "dia",
+   "chao": "terra",
    "fundo": [
     "pine"
    ],
@@ -554,240 +620,51 @@
     {
      "quem": "vikingGuerreiro",
      "expressao": "neutro",
-     "pose": "bracosAoLado"
+     "pose": "segurando"
     }
    ],
-   "rotulo": {
-    "texto": "CASAS DE TURFA",
-    "x": 540,
-    "y": 760,
-    "em": 1.9
-   },
    "efeitos": [
-    "poeira"
+    "poeira",
+    "casaTurfa"
    ],
+   "surge_em": 0.2,
    "camera": "fixa"
   },
   {
    "ini": 16.87,
    "fim": 20.72,
-   "molde": 7,
-   "nome": "partida_navios",
+   "molde": 1,
+   "nome": "vila_queimada",
    "ceu": "cinza",
-   "chao": "neve",
+   "chao": "cinza",
    "fundo": [
     "pine"
    ],
    "pecas": [
-    "VK_iceberg"
-   ],
-   "no_ceu": [
-    "AL_lua"
+    "AL_mesa"
    ],
    "pessoas": [
     {
-     "quem": "vikingNavegador",
+     "quem": "astrid",
      "expressao": "triste",
-     "pose": "bracosAoLado"
+     "pose": "maosJuntas"
     }
    ],
-   "rotulo": {
-    "texto": "VOLTARAM AO MAR",
-    "x": 540,
-    "y": 1000,
-    "em": 2.6
-   },
    "efeitos": [
-    "neve"
+    "fumaca",
+    "AL_mesa"
    ],
    "camera": "zoom_out"
   },
   {
    "ini": 20.72,
    "fim": 23.85,
-   "molde": 1,
-   "nome": "decisao_ficar",
-   "ceu": "tarde",
-   "chao": "grama",
-   "fundo": [
-    "pine"
-   ],
-   "pecas": [
-    "cestaMilho",
-    "machado"
-   ],
-   "pessoas": [
-    {
-     "quem": "astrid",
-     "expressao": "pensando",
-     "pose": "maoNoQueixo"
-    }
-   ],
-   "rotulo": {
-    "texto": "DECIDIDO FICAR",
-    "x": 540,
-    "y": 760,
-    "em": 2.33
-   },
-   "camera": "zoom_in"
-  },
-  {
-   "ini": 23.85,
-   "fim": 29.25,
-   "molde": 2,
-   "nome": "troca_comercio",
-   "ceu": "dia",
-   "chao": "terra",
-   "pecas": [
-    "cestaMilho",
-    "machado"
-   ],
-   "pessoas": [
-    {
-     "quem": "astrid",
-     "expressao": "feliz",
-     "pose": "segurando"
-    },
-    {
-     "quem": "nativo",
-     "expressao": "feliz",
-     "pose": "maosJuntas"
-    }
-   ],
-   "placa": "1030",
-   "rotulo": {
-    "texto": "TROCA DE FERRO",
-    "x": 540,
-    "y": 760,
-    "em": 2.1
-   },
-   "camera": "fixa"
-  },
-  {
-   "ini": 29.25,
-   "fim": 33.12,
-   "molde": 5,
-   "nome": "uniao_povo",
-   "ceu": "frio",
-   "chao": "neve",
-   "fundo": [
-    "pine"
-   ],
-   "pecas": [
-    "casaTurfa"
-   ],
-   "pessoas": [
-    {
-     "quem": "astrid",
-     "expressao": "feliz",
-     "pose": "maosJuntas"
-    },
-    {
-     "quem": "nativo",
-     "expressao": "feliz",
-     "pose": "bracosAoLado"
-    },
-    {
-     "quem": "nativa",
-     "expressao": "feliz",
-     "pose": "segurando"
-    },
-    {
-     "quem": "vikingGuerreiro",
-     "expressao": "feliz",
-     "pose": "bracosAoLado"
-    }
-   ],
-   "rotulo": {
-    "texto": "SEM FOME",
-    "x": 540,
-    "y": 760,
-    "em": 2.1
-   },
-   "efeitos": [
-    "brasas"
-   ],
-   "camera": "zoom_out"
-  },
-  {
-   "ini": 33.12,
-   "fim": 38.06,
-   "molde": 4,
-   "nome": "forjas_1100",
-   "ceu": "cinza",
-   "chao": "pedra",
-   "parede": "escura",
-   "fundo": [
-    "forja"
-   ],
-   "pecas": [
-    "martelo",
-    "placasCobre"
-   ],
-   "pessoas": [
-    {
-     "quem": "vikingGuerreiro",
-     "expressao": "pensando",
-     "acao": "manejar",
-     "peca": "martelo",
-     "em": 1.32
-    },
-    {
-     "quem": "astrid",
-     "acao": "organizar",
-     "peca": "placasCobre",
-     "em": 0.4
-    }
-   ],
-   "placa": "1100",
-   "rotulo": {
-    "texto": "FORJAS DE FERRO",
-    "x": 540,
-    "y": 760,
-    "em": 1.3
-   },
-   "efeitos": [
-    "fumaca"
-   ],
-   "camera": "fixa"
-  },
-  {
-   "ini": 38.06,
-   "fim": 43.16,
-   "molde": 9,
-   "nome": "voce_ferreiro",
-   "ceu": "dia",
-   "chao": "madeira",
-   "pecas": [
-    "martelo"
-   ],
-   "pessoas": [
-    {
-     "quem": "menino",
-     "expressao": "surpreso",
-     "pose": "apontando"
-    }
-   ],
-   "rotulo": {
-    "texto": "PRIMEIRO FERREIRO",
-    "x": 540,
-    "y": 300,
-    "em": 3.9
-   },
-   "efeitos": [
-    "brasas"
-   ],
-   "camera": "zoom_in"
-  },
-  {
-   "ini": 43.16,
-   "fim": 48.46,
    "molde": 6,
-   "nome": "comercio_1250",
-   "ceu": "dia",
+   "nome": "partida",
+   "ceu": "tarde",
    "chao": "pedra",
    "fundo": [
-    "pine"
+    "AL_montanha"
    ],
    "pecas": [
     "navioDragao"
@@ -796,90 +673,126 @@
     {
      "quem": "vikingNavegador",
      "expressao": "neutro",
-     "pose": "apontando"
+     "pose": "segurando"
     }
    ],
-   "placa": "1250",
-   "rotulo": {
-    "texto": "ROTA ISLÂNDIA",
-    "x": 540,
-    "y": 760,
-    "em": 3.8
-   },
+   "efeitos": [
+    "fumaca",
+    "navioDragao"
+   ],
+   "sai_em": 0.2,
    "camera": "pan"
   },
   {
-   "ini": 48.46,
-   "fim": 53.73,
-   "molde": 10,
-   "nome": "campos_1350",
+   "ini": 23.85,
+   "fim": 29.25,
+   "molde": 4,
+   "nome": "familia_viking",
    "ceu": "dia",
    "chao": "grama",
-   "antes": {
-    "pecas": [
-     "casaAdobe"
-    ],
-    "pessoa": "nativo",
-    "ceu": "dia",
-    "chao": "terra",
-    "rotulo": "ANTES"
-   },
-   "depois": {
-    "pecas": [
-     "casaTurfa"
-    ],
-    "pessoa": "astrid",
-    "ceu": "dia",
-    "chao": "grama",
-    "rotulo": "DEPOIS"
-   },
-   "placa": "1350",
-   "rotulo": {
-    "texto": "CAMPOS DE TRIGO",
-    "x": 540,
-    "y": 760,
-    "em": 2.9
-   },
-   "camera": "fixa"
-  },
-  {
-   "ini": 53.73,
-   "fim": 58.86,
-   "molde": 6,
-   "nome": "colombo_1492",
-   "ceu": "por_do_sol",
-   "chao": "pedra",
-   "fundo": [],
+   "parede": "pedra",
+   "fundo": [
+    "pine"
+   ],
    "pecas": [
-    "navioDragao"
+    "AL_lamparina",
+    "AL_caixa"
    ],
    "pessoas": [
     {
-     "quem": "colombo",
-     "expressao": "surpreso",
-     "pose": "apontando"
+     "quem": "astrid",
+     "expressao": "feliz",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "AL_caixa",
+     "em": -0.0
     }
    ],
-   "placa": "1492",
-   "rotulo": {
-    "texto": "CARAVELAS",
-    "x": 540,
-    "y": 760,
-    "em": 2.4
-   },
-   "camera": "zoom_in"
+   "placa": "1030",
+   "efeitos": [
+    "AL_lamparina",
+    "AL_caixa"
+   ],
+   "camera": "fixa"
   },
   {
-   "ini": 58.86,
-   "fim": 62.86,
-   "molde": 3,
-   "nome": "porto_fortificado",
-   "ceu": "por_do_sol",
-   "chao": "pedra",
-   "fundo": [],
+   "ini": 29.25,
+   "fim": 33.12,
+   "molde": 2,
+   "nome": "troca",
+   "ceu": "dia",
+   "chao": "terra",
    "pecas": [
-    "torreVigia",
-    "machado"
+    "machado",
+    "cestaMilho"
+   ],
+   "pessoas": [
+    {
+     "quem": "astrid",
+     "expressao": "neutro",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "efeitos": [
+    "machado",
+    "cestaMilho"
+   ],
+   "surge": true,
+   "surge_em": 0.2,
+   "camera": "fixa"
+  },
+  {
+   "ini": 33.12,
+   "fim": 38.06,
+   "molde": 7,
+   "nome": "inverno",
+   "ceu": "frio",
+   "chao": "neve",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "AL_montanha"
+   ],
+   "no_ceu": [
+    "AL_constelacoes"
+   ],
+   "pessoas": [
+    {
+     "quem": "astrid",
+     "expressao": "triste",
+     "pose": "maosJuntas"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "triste",
+     "pose": "maosJuntas"
+    }
+   ],
+   "efeitos": [
+    "neve",
+    "AL_montanha"
+   ],
+   "camera": "zoom_out"
+  },
+  {
+   "ini": 38.06,
+   "fim": 43.16,
+   "molde": 3,
+   "nome": "forja",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "casaTurfa",
+    "anforaVinagre"
    ],
    "pessoas": [
     {
@@ -888,135 +801,222 @@
      "pose": "segurando"
     }
    ],
-   "rotulo": {
-    "texto": "TORRES DE VIGIA",
-    "x": 540,
-    "y": 760,
-    "em": 2.7
+   "placa": "1100",
+   "efeitos": [
+    "fumaca",
+    "casaTurfa"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 43.16,
+   "fim": 48.46,
+   "molde": 6,
+   "nome": "menino_remador",
+   "ceu": "dia",
+   "chao": "grama",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "canoa"
+   ],
+   "pessoas": [
+    {
+     "quem": "menino",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "efeitos": [
+    "canoa"
+   ],
+   "sai_em": 0.2,
+   "camera": "pan"
+  },
+  {
+   "ini": 48.46,
+   "fim": 53.73,
+   "molde": 1,
+   "nome": "ferreiro",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "martelo",
+    "forja"
+   ],
+   "pessoas": [
+    {
+     "quem": "menino",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1250",
+   "efeitos": [
+    "fumaca",
+    "martelo"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 53.73,
+   "fim": 58.86,
+   "molde": 6,
+   "nome": "comercio_madeira",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "fundo": [
+    "pine"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "vikingNavegador",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "efeitos": [
+    "poeira",
+    "AL_navio"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 58.86,
+   "fim": 62.86,
+   "molde": 10,
+   "nome": "arados",
+   "ceu": "dia",
+   "chao": "terra",
+   "antes": {
+    "pecas": [
+     "farol"
+    ],
+    "pessoa": "vikingGuerreiro",
+    "ceu": "dia",
+    "chao": "terra"
    },
+   "depois": {
+    "pecas": [
+     "farol"
+    ],
+    "pessoa": "vikingGuerreiro",
+    "ceu": "dia",
+    "chao": "terra"
+   },
+   "placa": "1350",
    "camera": "fixa"
   },
   {
    "ini": 62.86,
    "fim": 67.68,
-   "molde": 2,
-   "nome": "acordo_comercial",
-   "ceu": "tarde",
-   "chao": "madeira",
-   "pecas": [
-    "AL_caixa"
-   ],
-   "pessoas": [
-    {
-     "quem": "colombo",
-     "expressao": "neutro",
-     "pose": "maosJuntas"
-    },
-    {
-     "quem": "astrid",
-     "expressao": "feliz",
-     "pose": "segurando"
-    }
-   ],
-   "rotulo": {
-    "texto": "ACORDO",
-    "x": 540,
-    "y": 760,
-    "em": 1.8
-   },
-   "camera": "fixa"
-  },
-  {
-   "ini": 67.68,
-   "fim": 73.02,
    "molde": 1,
-   "nome": "vinlandia_hoje",
+   "nome": "trigo_costa",
    "ceu": "dia",
-   "chao": "rua",
+   "chao": "terra",
    "fundo": [
     "pine"
    ],
    "pecas": [
-    "arado"
+    "VK_trigo"
    ],
    "pessoas": [
     {
-     "quem": "voceHoje",
+     "quem": "menino",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "1492",
+   "efeitos": [
+    "VK_trigo"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 67.68,
+   "fim": 73.02,
+   "molde": 6,
+   "nome": "colombo_chegada",
+   "ceu": "tarde",
+   "chao": "areia",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "caravela"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
      "expressao": "surpreso",
      "pose": "apontando"
     }
    ],
-   "placa": "HOJE",
-   "rotulo": {
-    "texto": "VINLÂNDIA",
-    "x": 540,
-    "y": 760,
-    "em": 1.7
-   },
+   "efeitos": [
+    "poeira",
+    "caravela"
+   ],
+   "sai_em": 0.2,
    "camera": "zoom_in"
   },
   {
    "ini": 73.02,
    "fim": 78.02,
-   "molde": 8,
-   "nome": "tecnologia_runas",
-   "ceu": "futuro",
-   "chao": "madeira",
-   "parede": "hoje",
-   "mapa": "VK_lousa",
-   "pontos": [
-    [
-     0.5,
-     0.5,
-     "RUNAS"
-    ]
-   ],
-   "contador": 2024,
-   "pessoas": [
-    {
-     "quem": "sabiaHoje",
-     "expressao": "feliz",
-     "pose": "apontando"
-    }
-   ],
-   "rotulo": {
-    "texto": "TRENS DRAGÃO",
-    "x": 540,
-    "y": 260,
-    "em": 0.4
-   },
-   "camera": "fixa"
-  },
-  {
-   "ini": 78.02,
-   "fim": 85.19,
    "molde": 1,
-   "nome": "escolha_final",
-   "ceu": "cinza",
-   "chao": "neve",
+   "nome": "porto_viking",
+   "ceu": "dia",
+   "chao": "pedra",
    "fundo": [
     "torreVigia"
    ],
    "pecas": [
-    "VK_iceberg"
+    "AL_rocha"
    ],
    "pessoas": [
     {
-     "quem": "vikingNavegador",
-     "expressao": "pensando",
-     "pose": "maoNoQueixo"
+     "quem": "vikingGuerreiro",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
     }
    ],
-   "rotulo": {
-    "texto": "NOVA ROTA",
-    "x": 540,
-    "y": 760,
-    "em": 3.0
-   },
    "efeitos": [
-    "neve"
+    "AL_rocha"
    ],
-   "camera": "zoom_out"
+   "camera": "pan"
+  },
+  {
+   "ini": 78.02,
+   "fim": 85.19,
+   "molde": 6,
+   "nome": "vinlandia_hoje",
+   "ceu": "dia",
+   "chao": "grama",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "efeitos": [
+    "AL_navio"
+   ],
+   "sai_em": 0.2,
+   "camera": "pan"
   },
   {
    "ini": 85.19,
@@ -1025,20 +1025,24 @@
    "nome": "escolhas",
    "opcoes": [
     {
-     "texto": "EXPLORAR O OESTE",
+     "texto": "FICAR E CULTIVAR",
      "pecas": [
-      "navioDragao"
+      "VK_trigo"
      ],
-     "pessoa": "vikingNavegador",
-     "em": 0.39
+     "pessoa": "menino",
+     "chao": "pedra",
+     "ceu": "noite",
+     "em": 0.2
     },
     {
-     "texto": "EXPANDIR PELO SUL",
+     "texto": "PARTIR E EXPLORAR",
      "pecas": [
-      "arado"
+      "AL_navio"
      ],
-     "pessoa": "astrid",
-     "em": 3.95
+     "pessoa": "vikingNavegador",
+     "chao": "pedra",
+     "ceu": "noite",
+     "em": 3.0
     }
    ]
   },
@@ -1049,20 +1053,24 @@
    "nome": "fim",
    "opcoes": [
     {
-     "texto": "EXPLORAR O OESTE",
+     "texto": "FICAR E CULTIVAR",
      "pecas": [
-      "navioDragao"
-     ]
+      "VK_trigo"
+     ],
+     "chao": "pedra",
+     "ceu": "noite"
     },
     {
-     "texto": "EXPANDIR PELO SUL",
+     "texto": "PARTIR E EXPLORAR",
      "pecas": [
-      "arado"
-     ]
+      "AL_navio"
+     ],
+     "chao": "pedra",
+     "ceu": "noite"
     }
    ],
    "cartao": true,
-   "pergunta": "PARA ONDE VINLÂNDIA DEVE NAVEGAR AGORA?"
+   "pergunta": "O QUE VOCÊ FARIA?"
   }
  ]
 }

@@ -16,7 +16,21 @@
     "audio:all": "python scripts/gerar_audio_completo.py --all",
     "audio:force": "python scripts/gerar_audio_completo.py --force",
     "audio:check": "python scripts/gerar_audio_completo.py --check-assets",
-    "audio:list": "python scripts/gerar_audio_completo.py --list-temas"
+    "audio:list": "python scripts/gerar_audio_completo.py --list-temas",
+    "video:vikings": "python scripts/gerar_video_completo.py vikings",
+    "video:egito": "python scripts/gerar_video_completo.py egito",
+    "video:incas": "python scripts/gerar_video_completo.py incas",
+    "video:alexandria": "python scripts/gerar_video_completo.py alexandria",
+    "video:imprensa": "python scripts/gerar_video_completo.py imprensa",
+    "video:monarquia": "python scripts/gerar_video_completo.py monarquia",
+    "video:peste": "python scripts/gerar_video_completo.py peste",
+    "video:all": "python scripts/gerar_video_completo.py --all",
+    "video:force": "python scripts/gerar_video_completo.py --force",
+    "video:preview": "python scripts/gerar_video_completo.py --quality preview",
+    "script:generate": "python scripts/llm_to_json.py",
+    "assets:download": "python scripts/download_assets.py",
+    "assets:check": "python scripts/assets_audio.py",
+    "pipeline:test": "python scripts/gerar_video_completo.py --check"
   },
   "dependencies": {
     "@react-three/fiber": "^9.1.2",

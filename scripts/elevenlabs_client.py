@@ -40,63 +40,83 @@ class VoiceProfile:
 
 # Vozes recomendadas (grátis no plano starter)
 # Veja IDs em: https://elevenlabs.io/app/voice-library
+# Filtre por language: "pt" ou labels: "brazilian", "portuguese"
 VOCES_PT_BR = {
+    # Vozes nativas PT-BR (substitua pelos IDs reais da sua library)
     "narrador_padrao": VoiceProfile(
-        voice_id="pNInz6obpgDQGcFmaJgB",  # Adam - voz masculina neutra, boa para narração
-        name="Adam (Narrador Neutro)",
+        voice_id="pNInz6obpgDQGcFmaJgB",  # SUBSTITUA: ID de voz PT-BR nativa (ex: "Thiago", "Rafael", "Lucas")
+        name="Narrador PT-BR (Neutro)",
         settings=VoiceSettings(
             stability=0.5,
             similarity_boost=0.75,
             style=0.3,
             use_speaker_boost=True,
         ),
-        description="Narração padrão, clara e profissional"
+        description="Narração padrão em PT-BR nativo"
     ),
     "narrador_epico": VoiceProfile(
-        voice_id="VR6AewLTigWG4xSOukaG",  # Arnold - voz profunda, épica
-        name="Arnold (Épico)",
+        voice_id="VR6AewLTigWG4xSOukaG",  # SUBSTITUA: ID de voz PT-BR profunda/épica
+        name="Narrador PT-BR (Épico)",
         settings=VoiceSettings(
             stability=0.4,
             similarity_boost=0.8,
             style=0.5,
             use_speaker_boost=True,
         ),
-        description="Momentos épicos, climáticos, ganchos fortes"
+        description="Momentos épicos, climáticos, ganchos fortes em PT-BR"
     ),
     "narrador_curioso": VoiceProfile(
-        voice_id="pNInz6obpgDQGcFmaJgB",  # Adam com style alto
-        name="Adam (Curioso)",
+        voice_id="pNInz6obpgDQGcFmaJgB",  # SUBSTITUA: ID de voz PT-BR curiosa
+        name="Narrador PT-BR (Curioso)",
         settings=VoiceSettings(
             stability=0.3,
             similarity_boost=0.7,
             style=0.6,
             use_speaker_boost=True,
         ),
-        description="Gancho inicial, perguntas, mistério"
+        description="Gancho inicial, perguntas, mistério em PT-BR"
+    ),
+    "narrador_contador": VoiceProfile(
+        voice_id="EXAVITQu4vr4xnSDxMaL",  # SUBSTITUA: ID de voz PT-BR estilo contador de histórias
+        name="Narrador PT-BR (Contador)",
+        settings=VoiceSettings(
+            stability=0.45,
+            similarity_boost=0.75,
+            style=0.4,
+            use_speaker_boost=True,
+        ),
+        description="Estilo 'contação de história', envolvente"
     ),
     "personagem_feminina": VoiceProfile(
-        voice_id="EXAVITQu4vr4xnSDxMaL",  # Bella - voz feminina clara
-        name="Bella (Feminina)",
+        voice_id="EXAVITQu4vr4xnSDxMaL",  # SUBSTITUA: ID de voz feminina PT-BR
+        name="Personagem Feminina PT-BR",
         settings=VoiceSettings(
             stability=0.5,
             similarity_boost=0.75,
             style=0.3,
             use_speaker_boost=True,
         ),
-        description="Diálogos femininos, personagens"
+        description="Diálogos femininos em PT-BR nativo"
     ),
     "personagem_masculino": VoiceProfile(
-        voice_id="VR6AewLTigWG4xSOukaG",  # Arnold
-        name="Arnold (Masculino)",
+        voice_id="VR6AewLTigWG4xSOukaG",  # SUBSTITUA: ID de voz masculina PT-BR
+        name="Personagem Masculino PT-BR",
         settings=VoiceSettings(
             stability=0.45,
             similarity_boost=0.8,
             style=0.4,
             use_speaker_boost=True,
         ),
-        description="Diálogos masculinos, personagens"
+        description="Diálogos masculinos em PT-BR nativo"
     ),
 }
+
+# Como achar vozes PT-BR na ElevenLabs:
+# 1. Acesse https://elevenlabs.io/app/voice-library
+# 2. Filtro: Language → "Portuguese" ou "Portuguese (Brazil)"
+# 3. Ou busca: "brazilian", "brazil", "portuguese brazil", "pt-br"
+# 4. Copie o Voice ID (ex: "AbCdEfGhIjKlMnOpQrSt")
+# 5. Substitua os voice_id acima
 
 # Perfil por tema (padrão)
 TEMA_VOICE_MAP = {
@@ -104,6 +124,10 @@ TEMA_VOICE_MAP = {
     "egito": "narrador_epico",
     "incas": "narrador_epico",
     "alexandria": "narrador_padrao",
+    "imprensa": "narrador_padrao",
+    "monarquia": "narrador_epico",
+    "peste": "narrador_padrao",
+    "roma": "narrador_epico",
     "auto": "narrador_padrao",
     "default": "narrador_padrao",
 }

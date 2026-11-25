@@ -110,6 +110,10 @@ export const DEMOS = {
   AL_ponto: (L, c, T = T0, p = P0) => { L.AL_mapa(c, 140, 500, 800, 520, T); L.AL_ponto(c, 540, 760, 1, '#B5523B', 'Alexandria'); },
   AL_hospital: (L, c, T = T0, p = P0) => L.AL_hospital(c, 540, Y, 2, 1),
   plaque: (L, c, T = T0, p = P0) => L.plaque(c, '62 d.C.', p, { y: 700 }),
+  AL_tapioca: (L, c, T = T0, p = P0) => L.AL_tapioca(c, 600, Y, 1.4, T, {}),
+  AL_janela_barca: (L, c, T = T0, p = P0) => L.AL_janela_barca(c, 600, 1000, 400, 300),
+  AL_rede_pescador: (L, c, T = T0, p = P0) => L.AL_rede_pescador(c, 600, Y, 1.4, T, {}),
+  AL_peixe_seco: (L, c, T = T0, p = P0) => L.AL_peixe_seco(c, 600, Y, 1.4, T, {}),
 };
 // mostra o boneco de referência (frente, 5,4) ao lado das peças que têm escala
 export const PESSOA_REF = { x: 110, y: Y, s: 5.4, nome: 'lucas' };

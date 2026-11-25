@@ -42,10 +42,404 @@ const MORROS = { dia: "#9AA8B0", tarde: "#B8A890", por_do_sol: "#5A3A4A", noite:
 const AGUAS = { dia: ["#5A90B8", "#1E4A70"], tarde: ["#6A98B8", "#2A4A68"], por_do_sol: ["#8A5A6A", "#1E1A2A"], noite: ["#1E2A4A", "#0A0E1E"],
   fogo: ["#4A2A2A", "#0E0A12"], cinza: ["#5A6068", "#2A3038"], frio: ["#6A9AC0", "#2A4A6A"], futuro: ["#2A2F6A", "#0B1030"] };
 
+// ============================================================
+// EFEITOS VISUAIS AVANÇADOS (Partículas, Shake, Transições, Expressões)
+// ============================================================
+
+// Sistema de partículas genérico
+class ParticleSystem {
+  constructor() {
+    this.particles = [];
+    this.emitters = [];
+  }
+
+  addEmitter(emitter) {
+    this.emitters.push({ ...emitter, lastEmit: 0, count: 0 });
+  }
+
+  removeEmitter(tipo) {
+    this.emitters = this.emitters.filter(e => e.tipo !== tipo);
+  }
+
+  update(dt, T) {
+    for (const e of this.emitters) {
+      const numToEmit = Math.floor(e.rate * dt) + (Math.random() < (e.rate * dt) % 1 ? 1 : 0);
+      for (let i = 0; i < numToEmit; i++) {
+        const angle = e.anguloBase ? e.anguloBase + (Math.random() - 0.5) * (e.spread || 0.5) : Math.random() * Math.PI * 2;
+        const speed = (e.velocidade || 50) * (0.5 + Math.random() * 0.5);
+        this.particles.push({
+          x: e.x + (Math.random() - 0.5) * (e.width || 0),
+          y: e.y + (Math.random() - 0.5) * (e.height || 0),
+          vx: Math.cos(angle) * speed + (e.vento || 0),
+          vy: Math.sin(angle) * speed,
+          vida: (e.vida || 2) * (0.7 + Math.random() * 0.6),
+          vidaMax: e.vida || 2,
+          cor: e.cor || "#FFFFFF",
+          tamanho: (e.tamanho || 4) * (0.5 + Math.random() * 0.5),
+          gravidade: e.gravidade || 0,
+          tipo: e.tipo,
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 2,
+          alpha: 1,
+        });
+      }
+    }
+
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      p.vida -= dt;
+      if (p.vida <= 0) {
+        this.particles.splice(i, 1);
+        continue;
+      }
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+      p.vy += p.gravidade * dt;
+      p.rotation += p.rotSpeed * dt;
+      p.alpha = p.vida / p.vidaMax;
+    }
+  }
+
+  draw(ctx) {
+    for (const p of this.particles) {
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+
+      if (p.tipo === "neve") {
+        ctx.fillStyle = p.cor;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (p.tipo === "fogo" || p.tipo === "brasa") {
+        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, p.tamanho);
+        grad.addColorStop(0, p.cor);
+        grad.addColorStop(1, "rgba(255,100,20,0)");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (p.tipo === "magia" || p.tipo === "brilho") {
+        ctx.fillStyle = p.cor;
+        ctx.globalCompositeOperation = "lighter";
+        ctx.beginPath();
+        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = "source-over";
+      } else if (p.tipo === "areia" || p.tipo === "poeira") {
+        ctx.fillStyle = p.cor;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (p.tipo === "folha") {
+        ctx.fillStyle = p.cor;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.tamanho, p.tamanho * 0.4, p.rotation, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = p.cor;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+}
+
+// Camera shake system
+class CameraShake {
+  constructor() {
+    this.trauma = 0;
+    this.decay = 0.8;
+  }
+
+  addTrauma(amount) {
+    this.trauma = Math.min(1, this.trauma + amount);
+  }
+
+  update(dt) {
+    this.trauma = Math.max(0, this.trauma - this.decay * dt);
+  }
+
+  getOffset() {
+    if (this.trauma <= 0) return { x: 0, y: 0, rotation: 0 };
+    const t = this.trauma * this.trauma;
+    const maxOffset = 15;
+    const maxRotation = 0.03;
+    return {
+      x: (Math.random() - 0.5) * maxOffset * t,
+      y: (Math.random() - 0.5) * maxOffset * t,
+      rotation: (Math.random() - 0.5) * maxRotation * t,
+    };
+  }
+}
+
+// Transition effects
+const TRANSITION_TYPES = {
+  FADE: "fade",
+  SLIDE: "slide",
+  ZOOM: "zoom",
+  DISSOLVE: "dissolve",
+  GLITCH: "glitch",
+  FLASH: "flash",
+};
+
+function drawTransition(ctx, type, progress, fromCanvas, toCanvas, params = {}) {
+  const p = Math.max(0, Math.min(1, progress));
+  const eased = ease(p);
+
+  switch (type) {
+    case TRANSITION_TYPES.FADE:
+      ctx.globalAlpha = 1 - eased;
+      ctx.drawImage(fromCanvas, 0, 0);
+      ctx.globalAlpha = eased;
+      ctx.drawImage(toCanvas, 0, 0);
+      ctx.globalAlpha = 1;
+      break;
+
+    case TRANSITION_TYPES.SLIDE:
+      const dir = params.direction || "left";
+      const offset = W * (1 - eased);
+      if (dir === "left") {
+        ctx.drawImage(fromCanvas, -offset, 0);
+        ctx.drawImage(toCanvas, W - offset, 0);
+      } else if (dir === "right") {
+        ctx.drawImage(fromCanvas, offset, 0);
+        ctx.drawImage(toCanvas, -W + offset, 0);
+      } else if (dir === "up") {
+        ctx.drawImage(fromCanvas, 0, -offset);
+        ctx.drawImage(toCanvas, 0, H - offset);
+      } else {
+        ctx.drawImage(fromCanvas, 0, offset);
+        ctx.drawImage(toCanvas, 0, -H + offset);
+      }
+      break;
+
+    case TRANSITION_TYPES.ZOOM:
+      const scale = 0.8 + 0.4 * eased;
+      ctx.save();
+      ctx.translate(W / 2, H / 2);
+      ctx.scale(1 / scale, 1 / scale);
+      ctx.translate(-W / 2, -H / 2);
+      ctx.globalAlpha = 1 - eased;
+      ctx.drawImage(fromCanvas, 0, 0);
+      ctx.restore();
+      ctx.save();
+      ctx.translate(W / 2, H / 2);
+      ctx.scale(scale, scale);
+      ctx.translate(-W / 2, -H / 2);
+      ctx.globalAlpha = eased;
+      ctx.drawImage(toCanvas, 0, 0);
+      ctx.restore();
+      break;
+
+    case TRANSITION_TYPES.GLITCH:
+      if (p < 1) {
+        ctx.drawImage(fromCanvas, 0, 0);
+        if (Math.random() < 0.1 * p) {
+          ctx.save();
+          ctx.globalAlpha = 0.3 * p;
+          ctx.fillStyle = "#00FFFF";
+          ctx.fillRect(0, Math.random() * H, W, Math.random() * 4 + 1);
+          ctx.restore();
+        }
+        if (Math.random() < 0.05 * p) {
+          ctx.save();
+          const slice = Math.random() * H * 0.1;
+          const y = Math.random() * H;
+          ctx.drawImage(fromCanvas, (Math.random() - 0.5) * 20, y, W, slice, (Math.random() - 0.5) * 20, y, W, slice);
+          ctx.restore();
+        }
+      } else {
+        ctx.drawImage(toCanvas, 0, 0);
+      }
+      break;
+
+    case TRANSITION_TYPES.FLASH:
+      ctx.drawImage(fromCanvas, 0, 0);
+      if (p < 0.5) {
+        ctx.globalAlpha = p * 2;
+        ctx.fillStyle = params.color || "#FFFFFF";
+        ctx.fillRect(0, 0, W, H);
+      } else {
+        ctx.globalAlpha = (1 - p) * 2;
+        ctx.fillStyle = params.color || "#FFFFFF";
+        ctx.fillRect(0, 0, W, H);
+        ctx.globalAlpha = 1;
+        ctx.drawImage(toCanvas, 0, 0);
+      }
+      break;
+  }
+}
+
+// Ease function standalone (para drawTransition fora do criarMotorAuto)
+function ease(t) { return t * t * (3 - 2 * t); }
+
+// Character expressions and gestures
+const EXPRESSIONS = {
+  neutro: { eyebrows: 0, mouth: 0, eyes: 1 },
+  feliz: { eyebrows: -0.2, mouth: 0.5, eyes: 1 },
+  triste: { eyebrows: 0.3, mouth: -0.5, eyes: 0.7 },
+  surpreso: { eyebrows: -0.5, mouth: 0.8, eyes: 1.3 },
+  bravo: { eyebrows: 0.5, mouth: -0.3, eyes: 0.8 },
+  pensando: { eyebrows: 0.2, mouth: 0, eyes: 0.6, lookUp: true },
+  curioso: { eyebrows: -0.3, mouth: 0.1, eyes: 1.1 },
+  assustado: { eyebrows: -0.6, mouth: 0.6, eyes: 1.4 },
+  confiante: { eyebrows: -0.1, mouth: 0.3, eyes: 1 },
+  cansado: { eyebrows: 0.2, mouth: -0.1, eyes: 0.4 },
+};
+
+const GESTURES = {
+  bracosAoLado: { leftArm: 0, rightArm: 0 },
+  apontando: { leftArm: 0, rightArm: -1.2 },
+  maoNoQueixo: { leftArm: 0.5, rightArm: 0 },
+  maosJuntas: { leftArm: 0.6, rightArm: -0.6 },
+  acenando: { leftArm: 0, rightArm: -1.5 },
+  cruzados: { leftArm: 0.8, rightArm: -0.8 },
+  segurando: { leftArm: 0.4, rightArm: -0.4 },
+  explicando: { leftArm: -0.5, rightArm: -0.8 },
+};
+
+function getBreathOffset(T, speed = 1) {
+  return Math.sin(T * 2 * speed) * 2;
+}
+
+function getBlinkState(T, seed = 0) {
+  const cycle = (T * 0.5 + seed * 7.3) % 4;
+  return cycle < 0.1 ? 0 : (cycle < 0.15 ? 0.5 : 1);
+}
+
 export function criarMotorAuto(L, DEMOS, video) {
   const { clamp, lerp, prog, ease, easeBack, hash, mix, shade, lg, rg, rrect, circle } = L;
   const cam = (ctx, z, px = W / 2, py = H / 2, dx = 0, dy = 0) => { ctx.translate(px + dx, py + dy); ctx.scale(z, z); ctx.translate(-px, -py); };
   const fator = (yb, yh) => clamp((yb - yh) / (PE - yh), 0.05, 1.2);
+
+  // ===== NOVOS SISTEMAS VISUAIS =====
+  const particleSystem = new ParticleSystem();
+  const cameraShake = new CameraShake();
+
+  // Configura emissores de partículas baseados nos efeitos da cena
+  function setupParticleEmitters(c, yh) {
+    particleSystem.emitters = []; // limpa emissores anteriores
+
+    if (!c.efeitos) return;
+
+    for (const e of c.efeitos) {
+      if (e === "neve") {
+        particleSystem.addEmitter({
+          tipo: "neve",
+          x: W / 2, y: 0, width: W, height: yh,
+          rate: 30, velocidade: 80, vida: 4,
+          gravidade: 20, vento: (Math.random() - 0.5) * 30,
+          tamanho: 4, cor: "#FFFFFF",
+          anguloBase: Math.PI / 2, spread: 0.3,
+        });
+      } else if (e === "fogo" || e === "brasas") {
+        particleSystem.addEmitter({
+          tipo: "fogo",
+          x: W / 2, y: H * 0.8, width: W * 0.8, height: 100,
+          rate: 50, velocidade: 100, vida: 1.5,
+          gravidade: -50, vento: 0,
+          tamanho: 12, cor: "#FF6A2A",
+          anguloBase: -Math.PI / 2, spread: 0.6,
+        });
+      } else if (e === "fumaca") {
+        particleSystem.addEmitter({
+          tipo: "fogo",
+          x: W / 2, y: H * 0.6, width: W * 0.6, height: 200,
+          rate: 15, velocidade: 40, vida: 3,
+          gravidade: -30, vento: (Math.random() - 0.5) * 20,
+          tamanho: 40, cor: "#4A4444",
+          anguloBase: -Math.PI / 2, spread: 0.8,
+        });
+      } else if (e === "poeira") {
+        particleSystem.addEmitter({
+          tipo: "poeira",
+          x: W / 2, y: H * 0.7, width: W, height: 100,
+          rate: 20, velocidade: 60, vida: 2,
+          gravidade: 10, vento: (Math.random() - 0.5) * 40,
+          tamanho: 3, cor: "#FFE7B0",
+          anguloBase: 0, spread: Math.PI,
+        });
+      } else if (e === "estrelas" || e === "magia") {
+        particleSystem.addEmitter({
+          tipo: "magia",
+          x: W / 2, y: H / 2, width: W, height: H,
+          rate: 25, velocidade: 30, vida: 3,
+          gravidade: 0, vento: 0,
+          tamanho: 6, cor: "#FFD700",
+          anguloBase: 0, spread: Math.PI * 2,
+        });
+      }
+    }
+  }
+
+  // Adiciona trauma de câmera em momentos de impacto
+  function checkCameraShake(c, t, T) {
+    // Impacto em transições de cena (primeiros frames)
+    if (t < 0.3) {
+      cameraShake.addTrauma(0.3);
+    }
+    // Eventos específicos: fogo, explosão, impacto
+    if (c.efeitos && (c.efeitos.includes("fogo") || c.efeitos.includes("explosao"))) {
+      if (Math.sin(T * 8) > 0.9) cameraShake.addTrauma(0.15);
+    }
+    // Batalha / guerra
+    if (c.nome && (c.nome.includes("batalha") || c.nome.includes("guerra") || c.nome.includes("conquista"))) {
+      if (Math.sin(T * 12) > 0.95) cameraShake.addTrauma(0.2);
+    }
+  }
+
+  // Aplica expressão e gesto baseados no contexto da cena
+  function getExpressionGesture(c, pessoaIndex, t) {
+    const expressions = {
+      "gancho": "curioso",
+      "introducao": "curioso",
+      "desenvolvimento": "neutro",
+      "climax": "epico",
+      "final": "feliz",
+      "cta": "convidativo",
+      "surpresa": "surpreso",
+      "perigo": "assustado",
+      "pensativo": "pensando",
+      "confiante": "confiante",
+      "triste": "triste",
+    };
+
+    const gestures = {
+      "apontando": "apontando",
+      "explicando": "explicando",
+      "pensando": "maoNoQueixo",
+      "aconchegante": "maosJuntas",
+      "apresentando": "segurando",
+      "bracosAoLado": "bracosAoLado",
+    };
+
+    // Detecta fase baseada no tempo da cena
+    const progress = t / (c.duracao || 1);
+    let expression = "neutro";
+    let gesture = "bracosAoLado";
+
+    if (progress < 0.2) { expression = "curioso"; gesture = "apontando"; }
+    else if (progress < 0.6) { expression = "neutro"; gesture = "explicando"; }
+    else if (progress < 0.9) { expression = "epico"; gesture = "apontando"; }
+    else { expression = "feliz"; gesture = "bracosAoLado"; }
+
+    // Sobrescreve se cena tem tags específicas
+    if (c.expressao) expression = c.expressao;
+    if (c.gesto) gesture = c.gesto;
+    if (c.pessoas && c.pessoas[pessoaIndex] && typeof c.pessoas[pessoaIndex] === "object") {
+      if (c.pessoas[pessoaIndex].expressao) expression = c.pessoas[pessoaIndex].expressao;
+      if (c.pessoas[pessoaIndex].gesto) gesture = c.pessoas[pessoaIndex].gesto;
+    }
+
+    return {
+      expressao: expressions[expression] || expression,
+      pose: gestures[gesture] || gesture,
+    };
+  }
 
   // ---------- medir cada peça uma vez (caixa do desenho de exemplo) ----------
   const MEDIDAS = {};
@@ -132,15 +526,28 @@ export function criarMotorAuto(L, DEMOS, video) {
     const s = (yb >= PE - 5 ? 5.4 : L.AL_esc(yb, yh)) * (L.P_CRIANCAS.has(q.quem) ? .7 : 1);
     const { quem, ...resto } = Object.assign({}, extra, q);
     const escala = s * (q.tam || 1);
+
+    // Aplica breathing offset e blink
+    const breathOffset = getBreathOffset(T);
+    const blinkState = getBlinkState(T, Math.round(x));
+
     if (resto.sombra !== false && escala > 0) {
       ctx.save();
-      ctx.translate(x, yb);
+      ctx.translate(x, yb + breathOffset);
       ctx.scale(22 * escala, 3.15 * escala);
       ctx.fillStyle = rg(ctx, 0, 0, 0, 1, [[0, "rgba(46,29,22,.42)"], [.55, "rgba(46,29,22,.23)"], [1, "rgba(46,29,22,0)"]]);
       ctx.fillRect(-1, -1, 2, 2);
       ctx.restore();
     }
-    return L.P_b(ctx, x, yb, escala, quem, { t: T, seed: Math.round(x) % 7, ...resto, sombra: false });
+
+    // Passa expressão e blink para o desenho da pessoa
+    return L.P_b(ctx, x, yb + breathOffset, escala, quem, {
+      t: T,
+      seed: Math.round(x) % 7,
+      ...resto,
+      sombra: false,
+      blink: blinkState < 1 ? blinkState : undefined,
+    });
   }
   const olharPara = (x, y, px, py) => { const dx = px - x, dy = py - y, n = Math.hypot(dx, dy) || 1; return { x: dx / n, y: clamp(dy / n, -.6, .6) }; };
 
@@ -395,8 +802,12 @@ export function criarMotorAuto(L, DEMOS, video) {
       const yh = 1050, [o1, o2] = c.opcoes || [{}, {}];
       const lado = (o, i) => {
         const x0 = i ? W / 2 : 0, ativo = c.cartao ? 0 : prog(t, o.em ?? (i ? 3 : .2), (o.em ?? (i ? 3 : .2)) + .4);
+        // USA chao/ceu/agua definidos no JSON da opção (storyboard.py agora define baseado no texto da opção)
+        const ceuOpcao = o.ceu || (i ? "frio" : "noite");
+        const chaoOpcao = o.chao || (i ? "neve" : "pedra");
+        const aguaOpcao = o.agua || false;
         ctx.save(); ctx.beginPath(); ctx.rect(x0, 0, W / 2, H); ctx.clip(); L.AP_ini(ctx, yh);
-        cenario(ctx, Object.assign({ ceu: i ? "frio" : "noite", chao: i ? "neve" : "pedra" }, o), T, yh, { semFundo: true });
+        cenario(ctx, Object.assign({ ceu: ceuOpcao, chao: chaoOpcao, agua: aguaOpcao }, o), T, yh, { semFundo: true });
         if ((o.pecas || [])[0]) peca(ctx, o.pecas[0], x0 + 270, 1250, yh, T, { tam: o.tam || 1 });
         pessoa(ctx, o.pessoa || (c.cartao ? (i ? "sabiaHoje" : "voceHoje") : null), x0 + (i ? 420 : 120), PE, yh, T, { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } });
         if (!c.cartao) { ctx.fillStyle = `rgba(0,0,0,${.45 * (1 - ativo)})`; ctx.fillRect(x0, 0, W / 2, H); }
@@ -433,9 +844,38 @@ export function criarMotorAuto(L, DEMOS, video) {
 
   function desenharCena(ctx, i, T) {
     const [a, b, c] = CENAS[i], t = T - a;
+    const d = b - a;
     AJUSTE = c.ajuste_escala || {}; CENA = c;
-    ctx.save(); MOLDES[c.molde](ctx, t, T, b - a, c); ctx.restore();
-    ctx.save(); efeitos(ctx, c, T, t); textos(ctx, c, t); L.vignette(ctx, c.vinheta ?? .45); ctx.restore();
+
+    // Configura emissores de partículas para esta cena
+    setupParticleEmitters(c, c.yh || 1000);
+
+    // Verifica camera shake
+    checkCameraShake(c, t, T);
+
+    // Aplica offset de camera shake
+    const shakeOffset = cameraShake.getOffset();
+    ctx.save();
+    if (shakeOffset.x !== 0 || shakeOffset.y !== 0 || shakeOffset.rotation !== 0) {
+      ctx.translate(shakeOffset.x, shakeOffset.y);
+      ctx.rotate(shakeOffset.rotation);
+    }
+
+    MOLDES[c.molde](ctx, t, T, d, c);
+    ctx.restore();
+
+    // Atualiza e desenha partículas
+    particleSystem.update(1/30, T); // assumes 30fps
+    particleSystem.draw(ctx);
+
+    // Atualiza camera shake
+    cameraShake.update(1/30);
+
+    ctx.save();
+    efeitos(ctx, c, T, t);
+    textos(ctx, c, t);
+    L.vignette(ctx, c.vinheta ?? .45);
+    ctx.restore();
   }
   function legenda(ctx, t) {
     const c = CAPS.find((c) => t >= c[0] && t < c[1]); if (!c) return;
@@ -453,20 +893,48 @@ export function criarMotorAuto(L, DEMOS, video) {
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
     const i = cenaEm(t), [a, b] = CENAS[i];
     let blend = null;
+
+    // Determina tipo de transição baseado na cena
+    let transitionType = TRANSITION_TYPES.FADE;
+    if (i < CENAS.length - 1) {
+      const nextScene = CENAS[i + 1][2];
+      if (nextScene.transicao) transitionType = nextScene.transicao;
+      else if (nextScene.molde !== CENAS[i][2].molde) transitionType = TRANSITION_TYPES.SLIDE;
+    }
+
     if (i > 0 && t < a + TR) blend = [i - 1, i, (t - (a - TR)) / (2 * TR)];
     else if (i < CENAS.length - 1 && t > b - TR) blend = [i, i + 1, (t - (b - TR)) / (2 * TR)];
-    if (!blend) desenharCena(ctx, i, t);
-    else {
-      const [ia, ib, p] = blend, q = ease(p);
-      desenharCena(ctx, ia, t);
-      octx.setTransform(1, 0, 0, 1, 0, 0); octx.clearRect(0, 0, W, H); desenharCena(octx, ib, t);
-      mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.clearRect(0, 0, W, H); mctx.fillStyle = "#fff";
-      L.EG_PUFFS.forEach(([x, y, d]) => { const r = Math.max(0, q * 1.5 - d * .5) * 620; if (r > 0) { circle(mctx, x, y, r); mctx.fill(); } });
-      octx.globalCompositeOperation = "destination-in"; octx.drawImage(L.EG_msk, 0, 0); octx.globalCompositeOperation = "source-over";
-      ctx.drawImage(L.EG_off, 0, 0);
-      const e = Math.sin(Math.PI * clamp(p)); ctx.save(); ctx.globalAlpha = .75 * e;
-      L.EG_PUFFS.forEach(([x, y, d], k) => { const r = Math.max(0, q * 1.5 - d * .5) * 620; if (r > 10) { const rr = r * .25 + 60, ax = x + Math.cos(k) * r, ay = y + Math.sin(k) * r; ctx.fillStyle = rg(ctx, ax, ay, 0, rr, [[0, "rgba(255,255,255,.95)"], [1, "rgba(255,255,255,0)"]]); ctx.fillRect(ax - rr, ay - rr, rr * 2, rr * 2); } });
-      ctx.restore();
+
+    if (!blend) {
+      desenharCena(ctx, i, t);
+    } else {
+      const [ia, ib, p] = blend;
+      const q = ease(p);
+
+      // Usa novo sistema de transições se for tipo customizado
+      if (transitionType !== TRANSITION_TYPES.FADE && transitionType !== TRANSITION_TYPES.DISSOLVE) {
+        // Renderiza ambas as cenas em offscreen para transição customizada
+        octx.setTransform(1, 0, 0, 1, 0, 0); octx.clearRect(0, 0, W, H); desenharCena(octx, ia, t);
+        const nextCtx = L.EG_off.getContext("2d");
+        nextCtx.setTransform(1, 0, 0, 1, 0, 0); nextCtx.clearRect(0, 0, W, H); desenharCena(nextCtx, ib, t);
+
+        // Desenha transição
+        drawTransition(ctx, transitionType, p, L.EG_off, octx.canvas, {
+          direction: "left",
+          color: "#FFFFFF",
+        });
+      } else {
+        // Transição original (puff/dissolve)
+        desenharCena(ctx, ia, t);
+        octx.setTransform(1, 0, 0, 1, 0, 0); octx.clearRect(0, 0, W, H); desenharCena(octx, ib, t);
+        mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.clearRect(0, 0, W, H); mctx.fillStyle = "#fff";
+        L.EG_PUFFS.forEach(([x, y, d]) => { const r = Math.max(0, q * 1.5 - d * .5) * 620; if (r > 0) { circle(mctx, x, y, r); mctx.fill(); } });
+        octx.globalCompositeOperation = "destination-in"; octx.drawImage(L.EG_msk, 0, 0); octx.globalCompositeOperation = "source-over";
+        ctx.drawImage(L.EG_off, 0, 0);
+        const e = Math.sin(Math.PI * clamp(p)); ctx.save(); ctx.globalAlpha = .75 * e;
+        L.EG_PUFFS.forEach(([x, y, d], k) => { const r = Math.max(0, q * 1.5 - d * .5) * 620; if (r > 10) { const rr = r * .25 + 60, ax = x + Math.cos(k) * r, ay = y + Math.sin(k) * r; ctx.fillStyle = rg(ctx, ax, ay, 0, rr, [[0, "rgba(255,255,255,.95)"], [1, "rgba(255,255,255,0)"]]); ctx.fillRect(ax - rr, ay - rr, rr * 2, rr * 2); } });
+        ctx.restore();
+      }
     }
     legenda(ctx, t);
     L.EG_marca(ctx);

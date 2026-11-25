@@ -20,7 +20,7 @@ for (const q of pedido.quadros || []) {
   const frame = Math.max(0, Math.min(durationInFrames - 1, q.frame ?? Math.round(q.t * fps)));
   fs.mkdirSync(path.dirname(q.arquivo), { recursive: true });
   let apoio = null;
-  await renderStill({ composition, serveUrl, frame, output: q.arquivo, inputProps, chromiumOptions: { gl: "angle" },
+  await renderStill({ composition, serveUrl, frame, output: q.arquivo, inputProps, chromiumOptions: { gl: "angle", timeout: 120000 },
     onBrowserLog: (log) => { if (log.text && log.text.startsWith("APOIO ")) apoio = log.text.slice(6); } });
   if (q.apoio && apoio) fs.writeFileSync(q.apoio, apoio);
 }

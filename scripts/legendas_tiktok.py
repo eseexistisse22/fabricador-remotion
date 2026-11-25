@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Gerador de legendas estilo TikTok/Reels/Shorts (viral).
+Gerador de legendas estilo TikTok/Reels/Shorts (viral) v2.
 - Palavra por palavra (não linha por linha)
-- Bounce na sílaba forte
-- Cor muda na palavra-chave
-- Emoji contextual
-- Formato compatível com Remotion (JSON)
+- Bounce na sílaba tônica (melhor timing)
+- Cores: Dourado (palavra-chave), Ciano (números), Rosa (CTA), Branco (normal)
+- Emoji contextual por tema + palavra
+- 3 palavras / 20 chars por linha (legibilidade mobile)
+- Formato compatível com Remotion (JSON) + Legacy CAPS
 """
 import json
 import re
@@ -27,6 +28,7 @@ class TikTokWord:
     bounce: bool = True    # se faz animação de bounce
     color: str = "#FFFFFF" # cor da palavra
     bold: bool = False     # negrito
+    syllable_bounce: bool = True  # bounce na sílaba tônica
 
 
 @dataclass
@@ -42,16 +44,20 @@ class TikTokLine:
 # DICIONÁRIOS DE PALAVRAS-CHAVE E EMOJIS POR TEMA
 # ============================================================
 
-PALAVRAS_CHAVE_GERAIS = {
-    # Conectivos importantes (não destacar)
-    "conectivos": {"e", "ou", "mas", "porém", "então", "logo", "pois", "que", "se", "como", "quando", "onde", "enquanto", "depois", "antes", "até", "desde", "contra", "sem", "sob", "sobre", "entre", "para", "com", "em", "no", "na", "nos", "nas", "do", "da", "dos", "das", "pelo", "pela", "pelos", "pelas", "num", "numa", "nuns", "numas", "um", "uma", "uns", "umas", "o", "a", "os", "as", "de", "da", "de", "em", "por", "per", "pro", "pra", "pras", "pros"},
+CONECTIVOS = {
+    "e", "ou", "mas", "porém", "então", "logo", "pois", "que", "se", "como",
+    "quando", "onde", "enquanto", "depois", "antes", "até", "desde", "contra",
+    "sem", "sob", "sobre", "entre", "para", "com", "em", "no", "na", "nos",
+    "nas", "do", "da", "dos", "das", "pelo", "pela", "pelos", "pelas",
+    "num", "numa", "nuns", "numas", "um", "uma", "uns", "umas",
+    "o", "a", "os", "as", "de", "por", "per", "pro", "pra", "pras", "pros"
 }
 
 PALAVRAS_CHAVE_TEMA = {
     "vikings": {
         "destaque": {"viking", "vikings", "navio", "dragão", "dragao", "américa", "america", "vinlândia", "vinlandia", "ferro", "aço", "aco", "guerra", "batalha", "chefe", "astrid", "odin", "thor", "valhalla", "runas", "fúria", "furia", "honra", "sangue", "terra", "novo", "mundo", "colombo", "caravela", "porto", "torre", "vigia", "acordo", "conquista", "comércio", "comercio", "trigo", "campo", "cidade", "madeira", "vidro", "grama", "telhado", "trem", "proa", "floresta", "escola", "números", "numeros", "gelo", "derretendo", "rotas", "navegar", "pacífico", "pacifico", "ásia", "asia", "fundo", "mar", "escolha", "comenta"},
         "emojis": {
-            "viking": "⚔️", "navio": "🚢", "dragão": "🐉", "américa": "🌎", "vinlândia": "🏰",
+            "viking": "⚔️", "vikings": "⚔️", "navio": "🚢", "dragão": "🐉", "américa": "🌎", "vinlândia": "🏰",
             "ferro": "⚒️", "guerra": "⚔️", "odin": "👁️", "thor": "⚡", "valhalla": "🏰",
             "runas": "ᛟ", "fúria": "😤", "honra": "🛡️", "sangue": "🩸", "colombo": "🧭",
             "caravela": "⛵", "porto": "⚓", "comércio": "🤝", "trigo": "🌾", "cidade": "🏘️",
@@ -67,13 +73,12 @@ PALAVRAS_CHAVE_TEMA = {
             "eterno": "♾️", "império": "🏰",
         }
     },
-    "roma": {
-        "destaque": {"roma", "romano", "romanos", "império", "imperio", "césar", "cesar", "augusto", "legião", "legiao", "centurião", "centuriao", "senado", "gladiador", "coliseu", "aqueduto", "via", "apiana", "mármore", "marmore", "estátua", "estatua", "vesta", "júpiter", "jupiter", "marte", "minerva", "vênus", "venus", "cidadão", "cidao", "república", "republica", "ditador", "cônsul", "consul", "pretoriano", "escudo", "gládio", "gladio", "pilum", "testudo", "vitória", "vitoria", "triunfo", "spqr"},
+    "incas": {
+        "destaque": {"incas", "inca", "império", "imperio", "andeano", "andeana", "machu", "picchu", "cusco", "sol", "inti", "pachacuti", "espanhol", "espanhóis", "pizarro", "ouro", "prata", "montanha", "andino", "lhama", "quipu", "terraço", "agricultura", "chuva", "sol", "imperador", "sacerdote", "templo", "cidade", "estrada", "ponte", "suspensa", "mensageiro", "chasqui"},
         "emojis": {
-            "roma": "🏛️", "império": "🏰", "césar": "👑", "legião": "🛡️", "senado": "🏛️",
-            "gladiador": "⚔️", "coliseu": "🏟️", "aqueduto": "🏗️", "mármore": "🏛️",
-            "júpiter": "⚡", "marte": "⚔️", "cidadão": "👤", "república": "🏛️",
-            "vitória": "🏆", "spqr": "🦅",
+            "incas": "🏔️", "inca": "🏔️", "machu": "🏔️", "picchu": "🏔️", "sol": "☀️",
+            "ouro": "💛", "montanha": "⛰️", "lhama": "🦙", "templo": "🏛️",
+            "espanhol": "⚔️", "pizarro": "👑", "chuva": "🌧️", "estrada": "🛤️",
         }
     },
     "alexandria": {
@@ -83,6 +88,39 @@ PALAVRAS_CHAVE_TEMA = {
             "filósofo": "🤔", "ciência": "🔬", "astronomia": "🌌", "geometria": "📐",
             "hipátia": "👩‍🏫", "pergaminho": "📜", "descoberta": "💡", "gênio": "✨",
             "luz": "🕯️", "incêndio": "🔥", "perda": "😢", "história": "📜", "memória": "🧠",
+        }
+    },
+    "imprensa": {
+        "destaque": {"imprensa", "gutenberg", "tipo", "móvel", "movel", "livro", "impresso", "bíblia", "biblia", "alemão", "alemao", "mainz", "renascimento", "reformação", "reformacao", "leitura", "alfabetização", "alfabetizacao", "conhecimento", "difusão", "difusao", "cultura", "ciência", "ciencia", "jornal", "papel", "tinta", "prensa", "matriz", "caractere", "fonte", "tipografia"},
+        "emojis": {
+            "imprensa": "📰", "gutenberg": "👨‍💼", "livro": "📖", "bíblia": "📜",
+            "renascimento": "🎨", "leitura": "📚", "conhecimento": "🧠", "papel": "📄",
+            "tinta": "🖋️", "prensa": "🏭", "tipografia": "🔤", "jornal": "🗞️",
+        }
+    },
+    "monarquia": {
+        "destaque": {"brasil", "monarquia", "imperador", "imperatriz", "pedro", "ii", "dom", "pedro ii", "princesa", "isabel", "leis", "áurea", "aurea", "abolição", "abolicao", "escravidão", "escravidao", "república", "republica", "proclamação", "proclamacao", "deodoro", "marechal", "exílio", "exilio", "portugal", "colônia", "colonia", "independência", "independencia", "coroa", "trono", "palácio", "palacio", "petrópolis", "petropolis"},
+        "emojis": {
+            "brasil": "🇧🇷", "monarquia": "👑", "imperador": "🤴", "princesa": "👸",
+            "leis": "📜", "abolição": "⛓️", "república": "🏛️", "exílio": "✈️",
+            "independência": "🎉", "coroa": "👑", "trono": "🪑", "palácio": "🏰",
+        }
+    },
+    "peste": {
+        "destaque": {"peste", "negra", "morte", "negra", "europa", "século", "seculo", "xiv", "1347", "1351", "bubônica", "bubonica", "pulga", "rato", "navio", "genovês", "genoves", "crimeia", "sicília", "sicilia", "médico", "medico", "máscara", "mascara", "bico", "ervas", "sangria", "quarentena", "isolamento", "bandana", "praga", "epidemia", "pandemia", "sobrevivente", "imunidade", "mudança", "mudanca", "trabalho", "salário", "salario", "camponês", "campones", "nobreza", "igreja", "fé", "fe", "pecado", "castigo"},
+        "emojis": {
+            "peste": "☠️", "morte": "💀", "europa": "🇪🇺", "pulga": "🪳",
+            "rato": "🐀", "navio": "🚢", "médico": "👨‍⚕️", "máscara": "🎭",
+            "quarentena": "🏠", "igreja": "⛪", "fé": "🙏", "camponês": "👨‍🌾",
+        }
+    },
+    "roma": {
+        "destaque": {"roma", "romano", "romanos", "império", "imperio", "césar", "cesar", "augusto", "legião", "legiao", "centurião", "centuriao", "senado", "gladiador", "coliseu", "aqueduto", "via", "apiana", "mármore", "marmore", "estátua", "estatua", "vesta", "júpiter", "jupiter", "marte", "minerva", "vênus", "venus", "cidadão", "cidao", "república", "republica", "ditador", "cônsul", "consul", "pretoriano", "escudo", "gládio", "gladio", "pilum", "testudo", "vitória", "vitoria", "triunfo", "spqr", "hannibal", "cartago", "gália", "galia", "cleopatra", "marco", "antônio", "antonio"},
+        "emojis": {
+            "roma": "🏛️", "império": "🏰", "césar": "👑", "legião": "🛡️", "senado": "🏛️",
+            "gladiador": "⚔️", "coliseu": "🏟️", "aqueduto": "🏗️", "mármore": "🏛️",
+            "júpiter": "⚡", "marte": "⚔️", "cidadão": "👤", "república": "🏛️",
+            "vitória": "🏆", "spqr": "🦅", "hannibal": "🐘", "cleopatra": "👑",
         }
     },
     "auto": {
@@ -98,7 +136,7 @@ PALAVRAS_CHAVE_TEMA = {
 
 
 # ============================================================
-# FUNÇÕES PRINCIPAIS
+# FUNÇÕES AUXILIARES
 # ============================================================
 
 def get_tema_config(tema: str) -> Dict:
@@ -124,13 +162,48 @@ def normalize_word(word: str) -> str:
     """Normaliza palavra (lower, sem acentos, sem pontuação)."""
     w = unicodedata.normalize("NFD", word.lower())
     w = "".join(c for c in w if c.isalnum() or c in "ãõáéíóúâêôàç")
-    # Remove pontuação final
     w = w.rstrip(".,!?;:…")
     return w
 
 
+def count_syllables_pt(word: str) -> int:
+    """Conta sílabas aproximadas em português."""
+    word = normalize_word(word)
+    if not word:
+        return 0
+    # Vogais (inclui acentuadas após normalize)
+    vowels = "aeiouãõáéíóúâêôà"
+    count = 0
+    prev_vowel = False
+    for c in word:
+        is_vowel = c in vowels
+        if is_vowel and not prev_vowel:
+            count += 1
+        prev_vowel = is_vowel
+    return max(1, count)
+
+
+def find_tonic_syllable_start(word: str) -> int:
+    """
+    Encontra índice aproximado da sílaba tônica em português.
+    Regra geral: paroxítona (penúltima) = maioria das palavras.
+    """
+    word = normalize_word(word)
+    syllables = count_syllables_pt(word)
+
+    if syllables <= 1:
+        return 0
+
+    # Heurística: paroxítona (penúltima sílaba) = ~80% das palavras PT
+    # Retorna índice aproximado do caractere onde começa a sílaba tônica
+    chars_per_syllable = len(word) / syllables
+    tonic_syllable_idx = syllables - 2  # penúltima (0-indexed)
+    char_idx = int(tonic_syllable_idx * chars_per_syllable)
+    return min(char_idx, len(word) - 1)
+
+
 def assign_colors(words: List[TikTokWord], tema: str) -> List[TikTokWord]:
-    """Atribui cores: branco normal, amarelo/dourado para destaque, vermelho para CTA."""
+    """Atribui cores: Dourado (chave), Ciano (números), Rosa (CTA), Branco (normal)."""
     config = get_tema_config(tema)
 
     for w in words:
@@ -156,6 +229,10 @@ def assign_colors(words: List[TikTokWord], tema: str) -> List[TikTokWord]:
     return words
 
 
+# ============================================================
+# FUNÇÕES PRINCIPAIS
+# ============================================================
+
 def create_tiktok_words_from_timestamps(
     word_timestamps: List[Dict],
     tema: str = "auto",
@@ -164,7 +241,7 @@ def create_tiktok_words_from_timestamps(
 ) -> List[TikTokLine]:
     """
     Converte timestamps de palavras (do ElevenLabs) em linhas estilo TikTok.
-    Agrupa palavras em linhas curtas (3 palavras / 20 chars) para legibilidade.
+    Agrupa palavras em linhas curtas (3 palavras / 20 chars) para legibilidade mobile.
     """
     if not word_timestamps:
         return []
@@ -187,6 +264,7 @@ def create_tiktok_words_from_timestamps(
             highlighted=highlighted,
             emoji=emoji,
             bounce=True,
+            syllable_bounce=True,
         ))
 
     # Atribui cores
@@ -197,19 +275,19 @@ def create_tiktok_words_from_timestamps(
     current_line = []
     current_start = tiktok_words[0].start
 
-    for tw in tiktok_words:
+    for i, tw in enumerate(tiktok_words):
         current_line.append(tw)
 
-        # Verifica se deve quebrar linha
         line_text = " ".join(w.word for w in current_line)
         should_break = (
             len(current_line) >= max_words_per_line or
             len(line_text) >= max_chars_per_line or
             tw.word.endswith((".", "!", "?", ":", "…")) or
-            tw.highlighted and len(current_line) > 1  # palavra-chave sozinha ou com poucas
+            (tw.highlighted and len(current_line) > 1) or
+            i == len(tiktok_words) - 1
         )
 
-        if should_break or tw == tiktok_words[-1]:
+        if should_break:
             lines.append(TikTokLine(
                 words=current_line.copy(),
                 start=current_start,
@@ -217,8 +295,8 @@ def create_tiktok_words_from_timestamps(
                 text=line_text,
             ))
             current_line = []
-            if tw != tiktok_words[-1]:
-                current_start = tiktok_words[tiktok_words.index(tw) + 1].start if tw != tiktok_words[-1] else tw.end
+            if i < len(tiktok_words) - 1:
+                current_start = tiktok_words[i + 1].start
 
     return lines
 
@@ -234,12 +312,10 @@ def create_remotion_legendas_json(
     """
     lines = create_tiktok_words_from_timestamps(word_timestamps, tema)
 
-    # Formato atual do Remotion: [inicio, fim, TEXTO, destaque_binario]
     remotion_format = []
     tiktok_format = []
 
     for line in lines:
-        # Remotion: texto completo da linha, destaque = 1 se tem palavra-chave
         has_highlight = any(w.highlighted for w in line.words)
         remotion_format.append([
             round(line.start, 2),
@@ -248,7 +324,6 @@ def create_remotion_legendas_json(
             1 if has_highlight else 0,
         ])
 
-        # TikTok format (para futuro)
         tiktok_format.append({
             "start": round(line.start, 2),
             "end": round(line.end, 2),
@@ -263,14 +338,15 @@ def create_remotion_legendas_json(
                     "color": w.color,
                     "bold": w.bold,
                     "bounce": w.bounce,
+                    "syllable_bounce": w.syllable_bounce,
                 }
                 for w in line.words
             ],
         })
 
     result = {
-        "remotion": remotion_format,      # compatível com seu código atual
-        "tiktok": tiktok_format,          # novo formato viral
+        "remotion": remotion_format,
+        "tiktok": tiktok_format,
         "tema": tema,
         "total_linhas": len(lines),
         "duracao_total": round(lines[-1].end, 2) if lines else 0,
@@ -321,7 +397,6 @@ def create_caps_json_for_existing_pipeline(
 # ============================================================
 
 if __name__ == "__main__":
-    # Simula timestamps do ElevenLabs
     test_timestamps = [
         {"word": "Imagine", "start": 0.5, "end": 1.2},
         {"word": "navios", "start": 1.2, "end": 1.8},

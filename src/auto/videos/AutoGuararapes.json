@@ -1,0 +1,1213 @@
+{
+ "id": "AutoGuararapes",
+ "audio": "guararapes/guararapes_audio.m4a",
+ "duracao": 112.49,
+ "titulo": "E se o Brasil tivesse continuado holandês no Nordeste?",
+ "caps": [
+  [
+   4.89,
+   6.16,
+   "IMAGINE LIA COMPRANDO",
+   1
+  ],
+  [
+   6.16,
+   7.2,
+   "TAPIOCA PELA JANELA",
+   0
+  ],
+  [
+   7.2,
+   7.99,
+   "DA BARCA ENQUANTO",
+   0
+  ],
+  [
+   7.99,
+   8.99,
+   "A ÁGUA A LEVANTA.",
+   0
+  ],
+  [
+   9.62,
+   10.62,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   10.62,
+   12.23,
+   "EM 1649,",
+   0
+  ],
+  [
+   12.35,
+   13.56,
+   "OS PORTUGUESES VENCERAM",
+   1
+  ],
+  [
+   13.56,
+   14.55,
+   "O SEGUNDO CONFRONTO",
+   0
+  ],
+  [
+   14.55,
+   16.07,
+   "DA BATALHA DOS GUARARAPES.",
+   0
+  ],
+  [
+   16.71,
+   18.43,
+   "O COMBATE DE 19 DE FEVEREIRO",
+   1
+  ],
+  [
+   18.43,
+   19.31,
+   "PÔS FRENTE A FRENTE",
+   0
+  ],
+  [
+   19.31,
+   20.54,
+   "OS DOIS EXÉRCITOS.",
+   0
+  ],
+  [
+   21.18,
+   22.09,
+   "LUTARAM NO MORRO",
+   0
+  ],
+  [
+   22.09,
+   23.15,
+   "DOS GUARARAPES.",
+   1
+  ],
+  [
+   23.79,
+   24.72,
+   "E SE OS HOLANDESES",
+   1
+  ],
+  [
+   24.72,
+   25.48,
+   "SEGURAM O ALTO",
+   0
+  ],
+  [
+   25.48,
+   26.39,
+   "DO MORRO E VENCEM",
+   0
+  ],
+  [
+   26.39,
+   27.09,
+   "A BATALHA?",
+   0
+  ],
+  [
+   27.72,
+   29.58,
+   "EM 1649,",
+   0
+  ],
+  [
+   29.58,
+   30.65,
+   "SOLDADOS HOLANDESES",
+   1
+  ],
+  [
+   30.65,
+   31.55,
+   "REABREM A ESTRADA",
+   0
+  ],
+  [
+   31.55,
+   33.01,
+   "DOS ENGENHOS AO RECIFE.",
+   0
+  ],
+  [
+   33.64,
+   34.41,
+   "NO CAIS,",
+   0
+  ],
+  [
+   34.41,
+   35.29,
+   "A BALANÇA PESA",
+   1
+  ],
+  [
+   35.29,
+   36.39,
+   "OS SACOS DE AÇÚCAR.",
+   0
+  ],
+  [
+   37.03,
+   38.38,
+   "E VOCÊ, BENTO,",
+   0
+  ],
+  [
+   38.38,
+   39.64,
+   "APRENDIZ DE BARQUEIRO,",
+   1
+  ],
+  [
+   39.64,
+   40.39,
+   "COBRE COM LONA",
+   0
+  ],
+  [
+   40.39,
+   41.34,
+   "OS SACOS DE AÇÚCAR",
+   0
+  ],
+  [
+   41.34,
+   41.95,
+   "DO PAI.",
+   0
+  ],
+  [
+   42.58,
+   44.13,
+   "EM 1650,",
+   0
+  ],
+  [
+   44.29,
+   45.29,
+   "O GOVERNO DO RECIFE",
+   1
+  ],
+  [
+   45.29,
+   46.14,
+   "COBRA UMA TAXA",
+   0
+  ],
+  [
+   46.14,
+   46.87,
+   "POR CARGA.",
+   0
+  ],
+  [
+   47.51,
+   48.59,
+   "COM ESSAS MOEDAS,",
+   0
+  ],
+  [
+   48.59,
+   49.33,
+   "O GOVERNO PAGA",
+   0
+  ],
+  [
+   49.33,
+   50.47,
+   "OS SOLDADOS QUE PATRULHAM",
+   1
+  ],
+  [
+   50.47,
+   51.07,
+   "A ESTRADA.",
+   0
+  ],
+  [
+   51.71,
+   53.64,
+   "EM 1654,",
+   0
+  ],
+  [
+   53.64,
+   54.95,
+   "PORTUGAL ASSINA UM ACORDO",
+   0
+  ],
+  [
+   54.95,
+   56.23,
+   "CEDENDO PARTE DO LITORAL",
+   0
+  ],
+  [
+   56.23,
+   57.21,
+   "AOS HOLANDESES.",
+   1
+  ],
+  [
+   57.84,
+   58.87,
+   "BARCAS PORTUGUESAS",
+   1
+  ],
+  [
+   58.87,
+   59.7,
+   "CRUZAM A FRONTEIRA",
+   0
+  ],
+  [
+   59.7,
+   60.95,
+   "RUMO AO MESMO CAIS.",
+   0
+  ],
+  [
+   61.58,
+   63.26,
+   "EM 1840,",
+   0
+  ],
+  [
+   63.26,
+   64.17,
+   "HAIA SOBE A TAXA",
+   0
+  ],
+  [
+   64.17,
+   64.91,
+   "DO AÇÚCAR.",
+   1
+  ],
+  [
+   65.54,
+   66.56,
+   "BARQUEIROS DAS DUAS",
+   1
+  ],
+  [
+   66.56,
+   67.57,
+   "MARGENS AMARRAM SUAS",
+   0
+  ],
+  [
+   67.57,
+   68.37,
+   "BARCAS E DEIXAM",
+   0
+  ],
+  [
+   68.37,
+   69.48,
+   "NAVIOS SEM CARGA.",
+   0
+  ],
+  [
+   70.12,
+   71.86,
+   "EM 1841,",
+   0
+  ],
+  [
+   71.86,
+   72.88,
+   "HAIA ENTREGA AO CONSELHO",
+   1
+  ],
+  [
+   72.88,
+   73.74,
+   "ELEITO DO RECIFE",
+   0
+  ],
+  [
+   73.74,
+   75.1,
+   "O CONTROLE DAS TAXAS.",
+   0
+  ],
+  [
+   75.73,
+   76.94,
+   "UMA DESCENDENTE DE BENTO",
+   1
+  ],
+  [
+   76.94,
+   78.19,
+   "DESAMARRA SUA BARCA.",
+   0
+  ],
+  [
+   78.82,
+   80.41,
+   "EM 1870,",
+   0
+  ],
+  [
+   80.53,
+   81.34,
+   "O CONSELHO PAGA",
+   0
+  ],
+  [
+   81.34,
+   82.44,
+   "A CONSTRUÇÃO DE ECLUSAS",
+   1
+  ],
+  [
+   82.44,
+   83.04,
+   "COM A RECEITA",
+   0
+  ],
+  [
+   83.04,
+   83.73,
+   "DO CAIS.",
+   0
+  ],
+  [
+   84.37,
+   85.36,
+   "NA MARÉ BAIXA,",
+   0
+  ],
+  [
+   85.36,
+   86.2,
+   "AS BARCAS LEVAM",
+   0
+  ],
+  [
+   86.2,
+   87.37,
+   "CRIANÇAS À ESCOLA.",
+   1
+  ],
+  [
+   88.0,
+   88.48,
+   "HOJE,",
+   0
+  ],
+  [
+   88.64,
+   89.28,
+   "VOCÊ É LIA",
+   0
+  ],
+  [
+   89.28,
+   90.12,
+   "E COMPRA TAPIOCA",
+   0
+  ],
+  [
+   90.12,
+   91.08,
+   "PELA JANELA DA BARCA",
+   0
+  ],
+  [
+   91.08,
+   92.36,
+   "ENQUANTO A ECLUSA ENCHE.",
+   1
+  ],
+  [
+   92.99,
+   93.97,
+   "VOCÊ LÊ NO LETREIRO",
+   0
+  ],
+  [
+   93.97,
+   94.69,
+   "DA CABINE O NOME",
+   0
+  ],
+  [
+   94.69,
+   95.72,
+   "DA PARADA EM PORTUGUÊS",
+   1
+  ],
+  [
+   95.72,
+   96.55,
+   "E HOLANDÊS.",
+   0
+  ],
+  [
+   97.19,
+   97.94,
+   "NO MURAL,",
+   0
+  ],
+  [
+   97.94,
+   99.59,
+   "HAIA REIVINDICA AS TAXAS.",
+   1
+  ],
+  [
+   100.22,
+   101.72,
+   "COMO RECIFE RESPONDE?",
+   1
+  ],
+  [
+   102.36,
+   102.82,
+   "UM:",
+   0
+  ],
+  [
+   102.82,
+   104.02,
+   "ENVIAR EMISSÁRIOS.",
+   1
+  ],
+  [
+   104.65,
+   105.22,
+   "DOIS:",
+   0
+  ],
+  [
+   105.32,
+   106.63,
+   "CONVOCAR PLEBISCITO.",
+   1
+  ],
+  [
+   107.27,
+   108.77,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "eclusa",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "insula",
+    "AL_casa"
+   ],
+   "agua": true,
+   "pessoas": [
+    {
+     "quem": "egitoVoceHoje",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "egitoVoceHoje",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "camera": "zoom_out",
+   "titulo": [
+    "NORDESTE",
+    "HOLANDÊS"
+   ],
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 4.8,
+   "fim": 9.23,
+   "molde": 2,
+   "nome": "janela",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "egitoVoceHoje",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "egitoVoceHoje",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "TAPIOCA",
+    "x": 540,
+    "y": 760,
+    "em": 1.4
+   },
+   "camera": "pan",
+   "chao_claro": true
+  },
+  {
+   "ini": 9.23,
+   "fim": 16.32,
+   "molde": 1,
+   "nome": "guararapes",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "estandarte"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1649",
+   "rotulo": {
+    "texto": "GUARARAPES",
+    "x": 540,
+    "y": 760,
+    "em": 5.3
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 16.32,
+   "fim": 20.78,
+   "molde": 5,
+   "nome": "exercitos",
+   "ceu": "cinza",
+   "chao": "terra",
+   "fundo": [
+    "AL_montanha"
+   ],
+   "pecas": [
+    "torreVigia"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "bravo",
+     "pose": "apontando"
+    },
+    {
+     "quem": "menino",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "bravo",
+     "pose": "bracosAoLado"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "19 DE FEVEREIRO",
+   "rotulo": {
+    "texto": "DOIS EXÉRCITOS",
+    "x": 540,
+    "y": 760,
+    "em": 3.0
+   },
+   "efeitos": [
+    "poeira"
+   ],
+   "camera": "zoom_out",
+   "chao_claro": true
+  },
+  {
+   "ini": 20.78,
+   "fim": 27.33,
+   "molde": 3,
+   "nome": "morro",
+   "ceu": "tarde",
+   "chao": "terra",
+   "fundo": [
+    "AL_montanha",
+    "cypress"
+   ],
+   "pecas": [
+    "torreVigia",
+    "martelo"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "pensando",
+     "pose": "apontando"
+    },
+    {
+     "quem": "menino",
+     "expressao": "neutro",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "ALTO DO MORRO",
+    "x": 540,
+    "y": 760,
+    "em": 3.9
+   },
+   "grande": {
+    "texto": "?",
+    "em": 5.6,
+    "ate": 6.25
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 27.33,
+   "fim": 33.25,
+   "molde": 10,
+   "nome": "estrada",
+   "ceu": "dia",
+   "chao": "terra",
+   "antes": {
+    "pecas": [
+     "torreVigia"
+    ],
+    "pessoa": "colombo",
+    "ceu": "cinza",
+    "chao": "terra",
+    "rotulo": "ANTES"
+   },
+   "depois": {
+    "pecas": [
+     "torreVigia"
+    ],
+    "pessoa": "marinheiro",
+    "ceu": "dia",
+    "chao": "terra",
+    "rotulo": "ESTRADA REABERTA"
+   },
+   "placa": "1649",
+   "rotulo": {
+    "texto": "ESTRADA",
+    "x": 540,
+    "y": 760,
+    "em": 3.3
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 33.25,
+   "fim": 42.19,
+   "molde": 2,
+   "nome": "carga",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SACOS DE AÇÚCAR",
+    "x": 540,
+    "y": 760,
+    "em": 7.1
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 42.19,
+   "fim": 47.11,
+   "molde": 4,
+   "nome": "taxa",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo",
+    "AL_caixa"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 3.1
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "AL_caixa",
+     "em": 4.0
+    }
+   ],
+   "placa": "1650",
+   "rotulo": {
+    "texto": "TAXA POR CARGA",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 47.11,
+   "fim": 51.32,
+   "molde": 9,
+   "nome": "pagamento",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "MOEDAS",
+    "x": 540,
+    "y": 300,
+    "em": 0.4
+   },
+   "camera": "zoom_in",
+   "chao_claro": true
+  },
+  {
+   "ini": 51.32,
+   "fim": 57.45,
+   "molde": 8,
+   "nome": "acordo",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "mapa": "VK_pergaminho",
+   "pontos": [],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "pensando",
+     "pose": "apontando"
+    },
+    {
+     "quem": "colombo",
+     "expressao": "neutro",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "1654",
+   "rotulo": {
+    "texto": "ACORDO",
+    "x": 540,
+    "y": 1180,
+    "em": 2.3
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 57.45,
+   "fim": 61.19,
+   "molde": 6,
+   "nome": "travessia",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "caravela"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "FRONTEIRA",
+    "x": 540,
+    "y": 760,
+    "em": 1.4
+   },
+   "camera": "pan",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 61.19,
+   "fim": 65.15,
+   "molde": 4,
+   "nome": "aumento",
+   "ceu": "cinza",
+   "chao": "madeira",
+   "parede": "escura",
+   "fundo": [
+    "AL_estante"
+   ],
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "escrever",
+     "peca": "AL_rolo",
+     "em": 2.1
+    }
+   ],
+   "placa": "1840",
+   "rotulo": {
+    "texto": "TAXA DO AÇÚCAR",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "zoom_in",
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 65.15,
+   "fim": 69.73,
+   "molde": 5,
+   "nome": "paralisacao",
+   "ceu": "cinza",
+   "chao": "madeira",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "guindaste"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "bravo",
+     "pose": "segurando"
+    },
+    {
+     "quem": "astrid",
+     "expressao": "bravo",
+     "pose": "segurando"
+    },
+    {
+     "quem": "meninoPescador",
+     "expressao": "triste",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "rotulo": {
+    "texto": "SEM CARGA",
+    "x": 540,
+    "y": 760,
+    "em": 3.2
+   },
+   "camera": "zoom_out",
+   "chao_claro": true
+  },
+  {
+   "ini": 69.73,
+   "fim": 75.34,
+   "molde": 2,
+   "nome": "conselho",
+   "ceu": "dia",
+   "chao": "pedra",
+   "pecas": [
+    "AL_cavalete"
+   ],
+   "pessoas": [
+    {
+     "quem": "bibliotecario1650",
+     "expressao": "neutro",
+     "pose": "apontando"
+    },
+    {
+     "quem": "professora",
+     "expressao": "pensando",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "1841",
+   "rotulo": {
+    "texto": "CONSELHO ELEITO",
+    "x": 540,
+    "y": 760,
+    "em": 2.1
+   },
+   "camera": "fixa",
+   "chao_claro": true
+  },
+  {
+   "ini": 75.34,
+   "fim": 83.98,
+   "molde": 3,
+   "nome": "obra",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "guindaste",
+    "bloco",
+    "martelo"
+   ],
+   "surge": true,
+   "pessoas": [
+    {
+     "quem": "astrid",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "nativo",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "placa": "1870",
+   "rotulo": {
+    "texto": "ECLUSAS",
+    "x": 540,
+    "y": 760,
+    "em": 6.0
+   },
+   "camera": "zoom_out",
+   "dentro": 0.8,
+   "arvores": false,
+   "chao_claro": true
+  },
+  {
+   "ini": 83.98,
+   "fim": 87.61,
+   "molde": 6,
+   "nome": "escola",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "canoa"
+   ],
+   "pessoas": [
+    {
+     "quem": "meninoPescador",
+     "expressao": "feliz",
+     "pose": "maosJuntas"
+    }
+   ],
+   "rotulo": {
+    "texto": "ESCOLA",
+    "x": 540,
+    "y": 760,
+    "em": 2.2
+   },
+   "camera": "pan",
+   "chao_claro": true,
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 87.61,
+   "fim": 92.6,
+   "molde": 2,
+   "nome": "tapioca",
+   "ceu": "dia",
+   "chao": "madeira",
+   "pecas": [
+    "AL_mesa"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "feliz",
+     "pose": "segurando"
+    },
+    {
+     "quem": "bia",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "ECLUSA ENCHE",
+    "x": 540,
+    "y": 760,
+    "em": 3.5
+   },
+   "camera": "zoom_out",
+   "chao_claro": true
+  },
+  {
+   "ini": 92.6,
+   "fim": 96.79,
+   "molde": 4,
+   "nome": "letreiro",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "hoje",
+   "fundo": [
+    "AL_cavalete"
+   ],
+   "pecas": [
+    "AL_rolo"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "PORTUGUÊS E HOLANDÊS",
+    "x": 540,
+    "y": 760,
+    "em": 3.1
+   },
+   "camera": "zoom_in",
+   "chao_claro": true,
+   "dentro": 0.8,
+   "arvores": false
+  },
+  {
+   "ini": 96.79,
+   "fim": 101.97,
+   "molde": 1,
+   "nome": "escolha",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_cavalete"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "rotulo": {
+    "texto": "TAXAS",
+    "x": 540,
+    "y": 760,
+    "em": 1.1
+   },
+   "grande": {
+    "texto": "?",
+    "em": 3.4,
+    "ate": 4.88
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 101.97,
+   "fim": 106.87,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "MANTER NO RECIFE",
+     "pecas": [
+      "bomba"
+     ],
+     "pessoa": "voceHoje",
+     "em": 0.39
+    },
+    {
+     "texto": "ENVIAR PARA HAIA",
+     "pecas": [
+      "AL_caixa"
+     ],
+     "pessoa": "joao",
+     "em": 2.68
+    }
+   ],
+   "chao_claro": true
+  },
+  {
+   "ini": 106.87,
+   "fim": 112.492,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "MANTER NO RECIFE",
+     "pecas": [
+      "bomba"
+     ]
+    },
+    {
+     "texto": "ENVIAR PARA HAIA",
+     "pecas": [
+      "AL_caixa"
+     ]
+    }
+   ],
+   "cartao": true,
+   "pergunta": "QUEM FICA COM AS TAXAS?",
+   "chao_claro": true
+  }
+ ]
+}

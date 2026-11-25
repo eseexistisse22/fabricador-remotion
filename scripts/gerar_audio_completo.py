@@ -68,13 +68,13 @@ TEMAS_ORDEM = ["vikings", "egito", "incas", "alexandria", "imprensa", "monarquia
 # FUNÇÕES PRINCIPAIS
 # ============================================================
 
-def load_video_json(tema: str) -> Dict:
+def load_video_json(tema: str, json_path: Path | None = None) -> Dict:
     """Carrega o JSON do vídeo (src/auto/videos/Auto*.json)."""
     filename = TEMA_VIDEO_MAP.get(tema)
     if not filename:
         raise ValueError(f"Tema desconhecido: {tema}. Disponíveis: {list(TEMA_VIDEO_MAP.keys())}")
 
-    path = VIDEOS_DIR / filename
+    path = json_path if json_path is not None else VIDEOS_DIR / filename
     if not path.exists():
         raise FileNotFoundError(f"Arquivo não encontrado: {path}")
 
@@ -183,7 +183,8 @@ def build_sfx_cues_from_cenas(video_data: Dict, tema: str) -> List[SFXCue]:
     return unique
 
 
-async def process_tema(tema: str, force: bool = False) -> bool:
+async def process_tema(tema: str, force: bool = False, *, json_path: Path | None = None,
+                       output_dir: Path | None = None) -> bool:
     """
     Processa um tema completo: narração + mixagem + legendas.
     Retorna True se sucesso.
@@ -193,8 +194,8 @@ async def process_tema(tema: str, force: bool = False) -> bool:
     print(f"{'='*60}")
 
     # Diretórios de saída
-    tema_temp = TEMP_DIR / tema
-    tema_public = PUBLIC_DIR / tema
+    tema_temp = output_dir if output_dir is not None else TEMP_DIR / tema
+    tema_public = output_dir if output_dir is not None else PUBLIC_DIR / tema
     tema_temp.mkdir(parents=True, exist_ok=True)
     tema_public.mkdir(parents=True, exist_ok=True)
 
@@ -212,7 +213,7 @@ async def process_tema(tema: str, force: bool = False) -> bool:
     try:
         # 1. Carrega JSON do vídeo
         print("📖 Lendo roteiro do vídeo...")
-        video_data = load_video_json(tema)
+        video_data = load_video_json(tema, json_path)
         script = extract_script_from_video_json(video_data)
 
         print(f"   Título: {script['titulo']}")
