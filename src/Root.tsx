@@ -24,6 +24,7 @@ import { FolhaAlexandria } from "./personagens/FolhaAlexandria";
 import { VideoAlexandria, DURACAO_ALEXANDRIA } from "./alexandria/VideoAlexandria";
 import { CenaModelo } from "./cenas/CenaModelo";
 import { FolhaPecasAuto, FOLHA_W, FOLHA_H } from "./auto/FolhaPecasAuto";
+import { PilotoDepoisFull } from "./auto/PilotoDepoisFull";
 import { VideoAuto } from "./auto/VideoAuto";
 import { VIDEOS_AUTO } from "./auto/videos";
 
@@ -74,6 +75,7 @@ export const Root: React.FC = () => {
       <Composition id="VideoAlexandria" component={VideoAlexandria} fps={FPS} width={LARGURA} height={ALTURA} durationInFrames={Math.ceil(DURACAO_ALEXANDRIA * FPS)} />
       <Composition id="FolhaAlexandria" component={FolhaAlexandria} fps={FPS} width={2800} height={3100} durationInFrames={1} />
       <Composition id="FolhaPecasAuto" component={FolhaPecasAuto} fps={FPS} width={FOLHA_W} height={FOLHA_H} durationInFrames={1} />
+      <Composition id="PilotoDepoisFull" component={PilotoDepoisFull} fps={FPS} width={1080} height={1920} durationInFrames={150} />
       <Composition id="CenaModelo" component={CenaModelo} durationInFrames={120} fps={30} width={1080} height={1920} />
       {/* Etapa D: motor genérico — 1 composição por JSON de src/auto/videos/ (id = nome do arquivo) */}
       {VIDEOS_AUTO.map((v) => (

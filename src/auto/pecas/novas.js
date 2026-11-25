@@ -68,3 +68,142 @@ function AL_peixe_seco(ctx, x, yb, s, t) {
 }
 
 function _novas_vazio() {}
+
+// sacola_amarela (x,y = centro; escala caixa ~0.35 boneco)
+function sacola_amarela(ctx, x, y, s, t, estado = 'na_mao_ciclista') {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const w = 45, h = 60;
+  // corpo
+  ctx.fillStyle = '#FFD400'; rrect(ctx, -w/2, -h/2, w, h, 4); ctx.fill();
+  // sombra lateral
+  ctx.fillStyle = '#CCAA00'; ctx.fillRect(-w/2, -h/2, 6, h);
+  // alças
+  ctx.strokeStyle = '#CCAA00'; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(-w/2 + 5, -h/2 + 5); ctx.quadraticCurveTo(-w/2 - 10, -h/2 - 15, -w/2 + 5, -h/2 + 5); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w/2 - 5, -h/2 + 5); ctx.quadraticCurveTo(w/2 + 10, -h/2 - 15, w/2 - 5, -h/2 + 5); ctx.stroke();
+  // amassados
+  ctx.strokeStyle = 'rgba(200,170,0,.5)'; ctx.lineWidth = 1;
+  for (let i = 1; i < 4; i++) { const yy = -h/2 + i * h/4; ctx.beginPath(); ctx.moveTo(-w/2 + 2, yy); ctx.lineTo(w/2 - 2, yy); ctx.stroke(); }
+  ctx.restore();
+  AP_obj(ctx, 'sacola_amarela', 'sacola amarela', x, y, w * s, h * s);
+}
+
+// Altura da bicicleta em unidades da pe?a, da roda ao guidão.
+const BICICLETA_ALTURA = 100;
+const BICICLETA_RODA = 32;
+const BICICLETA_SEMIEIXO = 65;
+const BICICLETA_SELIM_X = -19;
+const BICICLETA_SELIM_Y = -89;
+const BICICLETA_GUIDAO_X = 52;
+const BICICLETA_GUIDAO_Y = -100;
+
+// Posição de referência do punho para enquadrar o close do relógio.
+function bicicletaGuidao(x, yb, s) {
+  return [x + BICICLETA_GUIDAO_X * s, yb + BICICLETA_GUIDAO_Y * s];
+}
+
+// A origem yb é o ponto de contato dos pneus com o chão.
+function bicicleta(ctx, x, yb, s, t, estado = 'parada', opcoes = {}) {
+  const flip = estado === 'inversa' ? -1 : 1;
+  const montado = estado === 'pedalando';
+  const fase = montado ? t * 5 : -.7;
+  const pedais = [fase, fase + Math.PI].map((a) =>
+    [-12 + 11 * Math.cos(a), -39 + 11 * Math.sin(a)]
+  );
+  const eixo = -BICICLETA_RODA;
+  const [guidaoX, guidaoY] = bicicletaGuidao(x, yb, s);
+  ctx.save();
+  ctx.translate(x, yb);
+  ctx.scale(s * flip, s);
+  for (const rodaX of [-BICICLETA_SEMIEIXO, BICICLETA_SEMIEIXO]) {
+    circle(ctx, rodaX, eixo, BICICLETA_RODA - 1.75);
+    ctx.strokeStyle = '#292737';
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+    circle(ctx, rodaX, eixo, BICICLETA_RODA - 4.3);
+    ctx.strokeStyle = '#8D8590';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.beginPath();
+    for (let i = 0; i < 8; i++) {
+      const a = fase + i * Math.PI / 4;
+      ctx.moveTo(rodaX, eixo);
+      ctx.lineTo(rodaX + Math.cos(a) * 27, eixo + Math.sin(a) * 27);
+    }
+    ctx.strokeStyle = '#716B7B';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  ctx.moveTo(-BICICLETA_SEMIEIXO, eixo);
+  ctx.lineTo(BICICLETA_SELIM_X, -76);
+  ctx.lineTo(40, -73);
+  ctx.lineTo(-12, -39);
+  ctx.closePath();
+  ctx.moveTo(-BICICLETA_SEMIEIXO, eixo);
+  ctx.lineTo(-12, -39);
+  ctx.lineTo(BICICLETA_SELIM_X, BICICLETA_SELIM_Y + 4);
+  ctx.moveTo(BICICLETA_SEMIEIXO, eixo);
+  ctx.lineTo(34, BICICLETA_GUIDAO_Y + 10);
+  ctx.lineTo(BICICLETA_GUIDAO_X, BICICLETA_GUIDAO_Y + 1);
+  ctx.strokeStyle = '#648B91';
+  ctx.lineWidth = 3.8;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  rrect(ctx, BICICLETA_SELIM_X - 10, BICICLETA_SELIM_Y, 20, 5, 2);
+  ctx.fillStyle = '#4C3547';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(-12, -39);
+  ctx.lineTo(...pedais[0]);
+  ctx.moveTo(-12, -39);
+  ctx.lineTo(...pedais[1]);
+  ctx.strokeStyle = '#978C9A';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  for (const [px, py] of pedais) {
+    rrect(ctx, px - 5, py - 1.5, 10, 3, 1);
+    ctx.fillStyle = '#978C9A';
+    ctx.fill();
+  }
+  ctx.restore();
+
+  if (montado) {
+    const escala = opcoes.escalaBoneco ?? 5.4;
+    const origemX = x + BICICLETA_SELIM_X * s;
+    const origemY = yb + BICICLETA_SELIM_Y * s + 50 * escala;
+    const paraBoneco = (px, py) => [(px - origemX) / escala, (py - origemY) / escala];
+    BN.desenharBoneco(ctx, {
+      ...BN.NORMAIS.lucas, x: origemX, y: origemY, escala, sombra: false,
+      montaria: {
+        pedais: pedais.map(([px, py]) => paraBoneco(x + px * s, yb + (py - 1.5) * s)),
+        maos: [paraBoneco(guidaoX - 7, guidaoY), paraBoneco(guidaoX, guidaoY + 4)],
+        acessorio: opcoes.acessorio,
+      },
+    });
+  }
+  AP_obj(ctx, 'bicicleta', 'bicicleta', x, yb, BICICLETA_ALTURA * s, 194 * s);
+}
+
+// Acessório preso ao pulso em coordenadas do boneco.
+function relogioPulso(ctx, x, y, angulo, hora) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angulo);
+  rrect(ctx, -1.25, -4.5, 2.5, 9, 0.9);
+  ctx.fillStyle = '#433746';
+  ctx.fill();
+  rrect(ctx, -3.8, -2.55, 7.6, 5.1, 1.05);
+  ctx.fillStyle = lg(ctx, -3.8, 0, 3.8, 0, [[0, '#DDD3C4'], [1, '#8F8999']]);
+  ctx.fill();
+  rrect(ctx, -3.2, -1.93, 6.4, 3.86, .55);
+  ctx.fillStyle = '#303342';
+  ctx.fill();
+  ctx.fillStyle = '#F3E9CE';
+  ctx.font = 'bold 1.8px monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(hora, 0, .12);
+  ctx.restore();
+}

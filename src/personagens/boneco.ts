@@ -32,7 +32,16 @@ export interface Roupa {
   contas?: boolean;                  // colar de contas coloridas
 }
 
+type PontoMontado = [number, number];
+
+export interface MontariaBoneco {
+  pedais: [PontoMontado, PontoMontado];
+  maos: [PontoMontado, PontoMontado];
+  acessorio?: (ctx: CanvasRenderingContext2D, mao: PontoMontado, pulso: PontoMontado, angulo: number) => void;
+}
+
 export interface BonecoOpcoes {
+  montaria?: MontariaBoneco;
   x: number;
   y: number;                         // linha dos pés
   escala?: number;                   // padrão 5.4
@@ -147,6 +156,8 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
   const corCabelo = o.corCabelo ?? (cabelo === "grisalho" ? CORES.grisalho : CORES.cabeloEscuro);
   const roupa: Roupa = o.roupa ?? { tipo: "camiseta" };
   const normal = roupa.tipo === "camiseta";
+  const montaria = normal ? o.montaria : undefined;
+  const inclinacao = 0.26;
   const corRoupa = roupa.cor ?? (normal ? "#3f6fa8" : CORES.creme);
   const calca = roupa.calca ?? "#3a3f55";
   const sapato = roupa.sapato ?? "#f2efe9";
@@ -168,6 +179,22 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
   // 2. Pernas, tiras da sandália e pés
   for (const lado of [-1, 1]) {
     const cx = lado * M.pernaX;
+    if (montaria) {
+      const [px, py] = montaria.pedais[lado < 0 ? 0 : 1];
+      const quadril = -50;
+      const centroTenis = py - 2.9;
+      const dx = px - cx, dy = centroTenis - quadril;
+      const distancia = Math.max(1, Math.hypot(dx, dy));
+      const dobra = Math.sqrt(Math.max(0, 24 ** 2 - (distancia / 2) ** 2));
+      const joelhoX = (cx + px) / 2 + dy * dobra / distancia;
+      const joelhoY = (quadril + centroTenis) / 2 - dx * dobra / distancia;
+      linha(ctx, [[cx, quadril], [joelhoX, joelhoY], [px, centroTenis]], calca, 7.2);
+      ctx.beginPath();
+      ctx.ellipse(px, centroTenis, 5.6, 2.9, 0, 0, Math.PI * 2);
+      ctx.fillStyle = sapato;
+      ctx.fill();
+      continue;
+    }
     const passo = o.passada?.[lado < 0 ? 0 : 1];
     ctx.save();
     if (passo) {
@@ -200,6 +227,12 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     ctx.fillStyle = CORES.sandalia;
     ctx.fill();
     ctx.restore();
+  }
+
+  if (montaria) {
+    ctx.translate(0, -50);
+    ctx.rotate(inclinacao);
+    ctx.translate(0, 50);
   }
 
   // 3. Roupa (corpo)
@@ -307,7 +340,21 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
   const ombroD: [number, number] = [M.ombroX, M.ombroY + 1];
   let desenharBracoQueixo = false;
 
-  if (o.maoDirigida) {
+  if (montaria) {
+    const cos = Math.cos(inclinacao), sin = Math.sin(inclinacao);
+    for (const i of [0, 1] as const) {
+      const [x, y] = montaria.maos[i];
+      const alvo: PontoMontado = [x * cos + (y + 50) * sin, -x * sin + (y + 50) * cos - 50];
+      const ombro = i === 0 ? ombroE : ombroD;
+      linha(ctx, [ombro, alvo], i === 0 ? pele : escurecer(pele, 0.06), bracoW);
+      mao(...alvo);
+      if (i === 1 && montaria.acessorio) {
+        const angulo = Math.atan2(alvo[1] - ombro[1], alvo[0] - ombro[0]);
+        const pulso: PontoMontado = [alvo[0] - 3.3 * Math.cos(angulo), alvo[1] - 3.3 * Math.sin(angulo)];
+        montaria.acessorio(ctx, alvo, pulso, angulo);
+      }
+    }
+  } else if (o.maoDirigida) {
     for (const lado of [-1, 1] as const) {
       const ativa = lado === o.maoDirigida.lado;
       const x = ativa ? o.maoDirigida.x : lado * (pose === "segurando" ? 6.5 : 15.5);

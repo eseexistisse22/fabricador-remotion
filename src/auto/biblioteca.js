@@ -1458,6 +1458,145 @@ function AL_peixe_seco(ctx, x, yb, s, t) {
 
 function _novas_vazio() {}
 
+// sacola_amarela (x,y = centro; escala caixa ~0.35 boneco)
+function sacola_amarela(ctx, x, y, s, t, estado = 'na_mao_ciclista') {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const w = 45, h = 60;
+  // corpo
+  ctx.fillStyle = '#FFD400'; rrect(ctx, -w/2, -h/2, w, h, 4); ctx.fill();
+  // sombra lateral
+  ctx.fillStyle = '#CCAA00'; ctx.fillRect(-w/2, -h/2, 6, h);
+  // alças
+  ctx.strokeStyle = '#CCAA00'; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(-w/2 + 5, -h/2 + 5); ctx.quadraticCurveTo(-w/2 - 10, -h/2 - 15, -w/2 + 5, -h/2 + 5); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w/2 - 5, -h/2 + 5); ctx.quadraticCurveTo(w/2 + 10, -h/2 - 15, w/2 - 5, -h/2 + 5); ctx.stroke();
+  // amassados
+  ctx.strokeStyle = 'rgba(200,170,0,.5)'; ctx.lineWidth = 1;
+  for (let i = 1; i < 4; i++) { const yy = -h/2 + i * h/4; ctx.beginPath(); ctx.moveTo(-w/2 + 2, yy); ctx.lineTo(w/2 - 2, yy); ctx.stroke(); }
+  ctx.restore();
+  AP_obj(ctx, 'sacola_amarela', 'sacola amarela', x, y, w * s, h * s);
+}
+
+// Altura da bicicleta em unidades da pe?a, da roda ao guidão.
+const BICICLETA_ALTURA = 100;
+const BICICLETA_RODA = 32;
+const BICICLETA_SEMIEIXO = 65;
+const BICICLETA_SELIM_X = -19;
+const BICICLETA_SELIM_Y = -89;
+const BICICLETA_GUIDAO_X = 52;
+const BICICLETA_GUIDAO_Y = -100;
+
+// Posição de referência do punho para enquadrar o close do relógio.
+function bicicletaGuidao(x, yb, s) {
+  return [x + BICICLETA_GUIDAO_X * s, yb + BICICLETA_GUIDAO_Y * s];
+}
+
+// A origem yb é o ponto de contato dos pneus com o chão.
+function bicicleta(ctx, x, yb, s, t, estado = 'parada', opcoes = {}) {
+  const flip = estado === 'inversa' ? -1 : 1;
+  const montado = estado === 'pedalando';
+  const fase = montado ? t * 5 : -.7;
+  const pedais = [fase, fase + Math.PI].map((a) =>
+    [-12 + 11 * Math.cos(a), -39 + 11 * Math.sin(a)]
+  );
+  const eixo = -BICICLETA_RODA;
+  const [guidaoX, guidaoY] = bicicletaGuidao(x, yb, s);
+  ctx.save();
+  ctx.translate(x, yb);
+  ctx.scale(s * flip, s);
+  for (const rodaX of [-BICICLETA_SEMIEIXO, BICICLETA_SEMIEIXO]) {
+    circle(ctx, rodaX, eixo, BICICLETA_RODA - 1.75);
+    ctx.strokeStyle = '#292737';
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+    circle(ctx, rodaX, eixo, BICICLETA_RODA - 4.3);
+    ctx.strokeStyle = '#8D8590';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.beginPath();
+    for (let i = 0; i < 8; i++) {
+      const a = fase + i * Math.PI / 4;
+      ctx.moveTo(rodaX, eixo);
+      ctx.lineTo(rodaX + Math.cos(a) * 27, eixo + Math.sin(a) * 27);
+    }
+    ctx.strokeStyle = '#716B7B';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  ctx.moveTo(-BICICLETA_SEMIEIXO, eixo);
+  ctx.lineTo(BICICLETA_SELIM_X, -76);
+  ctx.lineTo(40, -73);
+  ctx.lineTo(-12, -39);
+  ctx.closePath();
+  ctx.moveTo(-BICICLETA_SEMIEIXO, eixo);
+  ctx.lineTo(-12, -39);
+  ctx.lineTo(BICICLETA_SELIM_X, BICICLETA_SELIM_Y + 4);
+  ctx.moveTo(BICICLETA_SEMIEIXO, eixo);
+  ctx.lineTo(34, BICICLETA_GUIDAO_Y + 10);
+  ctx.lineTo(BICICLETA_GUIDAO_X, BICICLETA_GUIDAO_Y + 1);
+  ctx.strokeStyle = '#648B91';
+  ctx.lineWidth = 3.8;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  rrect(ctx, BICICLETA_SELIM_X - 10, BICICLETA_SELIM_Y, 20, 5, 2);
+  ctx.fillStyle = '#4C3547';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(-12, -39);
+  ctx.lineTo(...pedais[0]);
+  ctx.moveTo(-12, -39);
+  ctx.lineTo(...pedais[1]);
+  ctx.strokeStyle = '#978C9A';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  for (const [px, py] of pedais) {
+    rrect(ctx, px - 5, py - 1.5, 10, 3, 1);
+    ctx.fillStyle = '#978C9A';
+    ctx.fill();
+  }
+  ctx.restore();
+
+  if (montado) {
+    const escala = opcoes.escalaBoneco ?? 5.4;
+    const origemX = x + BICICLETA_SELIM_X * s;
+    const origemY = yb + BICICLETA_SELIM_Y * s + 50 * escala;
+    const paraBoneco = (px, py) => [(px - origemX) / escala, (py - origemY) / escala];
+    BN.desenharBoneco(ctx, {
+      ...BN.NORMAIS.lucas, x: origemX, y: origemY, escala, sombra: false,
+      montaria: {
+        pedais: pedais.map(([px, py]) => paraBoneco(x + px * s, yb + (py - 1.5) * s)),
+        maos: [paraBoneco(guidaoX - 7, guidaoY), paraBoneco(guidaoX, guidaoY + 4)],
+        acessorio: opcoes.acessorio,
+      },
+    });
+  }
+  AP_obj(ctx, 'bicicleta', 'bicicleta', x, yb, BICICLETA_ALTURA * s, 194 * s);
+}
+
+// Acessório preso ao pulso em coordenadas do boneco.
+function relogioPulso(ctx, x, y, angulo, hora) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angulo);
+  rrect(ctx, -1.25, -4.5, 2.5, 9, 0.9);
+  ctx.fillStyle = '#433746';
+  ctx.fill();
+  rrect(ctx, -3.8, -2.55, 7.6, 5.1, 1.05);
+  ctx.fillStyle = lg(ctx, -3.8, 0, 3.8, 0, [[0, '#DDD3C4'], [1, '#8F8999']]);
+  ctx.fill();
+  rrect(ctx, -3.2, -1.93, 6.4, 3.86, .55);
+  ctx.fillStyle = '#303342';
+  ctx.fill();
+  ctx.fillStyle = '#F3E9CE';
+  ctx.font = 'bold 1.8px monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(hora, 0, .12);
+  ctx.restore();
+}
+
 // ===== egito/cenasEgito.js (só ajudantes) =====
 function E_txt(ctx, txt, x, y, fs, col, a = 1, sc = 1) { if (a <= 0) return; ctx.save(); ctx.globalAlpha = clamp(a); ctx.translate(x, y); ctx.scale(sc, sc); ctx.font = `${fs}px Anton`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round'; ctx.lineWidth = fs * .13; ctx.strokeStyle = '#1A0E0A'; ctx.strokeText(txt, 0, 0); ctx.fillStyle = col; ctx.fillText(txt, 0, 0); ctx.restore(); }
 function E_rotulo(ctx, txt, x, y, p, col = '#FFB347', a = 1) { if (p <= 0 || a <= 0) return; const s = lerp(.6, 1, easeBack(p)); ctx.save(); ctx.globalAlpha = clamp(p * 2) * a; ctx.translate(x, y); ctx.scale(s, s); ctx.font = '46px Anton'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; const w = ctx.measureText(txt).width + 64; rrect(ctx, -w / 2, -35, w, 70, 35); ctx.fillStyle = 'rgba(20,12,8,.84)'; ctx.fill(); ctx.strokeStyle = rgba('#F5B83D', .7); ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = col; ctx.fillText(txt, 0, 3); ctx.restore(); }
@@ -1487,6 +1626,6 @@ function EG_marca(ctx) {
 }
 const ligarApoio = () => { AP = { sup: [], obj: [] }; return AP; };
 const desligarApoio = () => { const a = AP; AP = null; return a; };
-return { W, clamp, lerp, prog, ease, easeOut, easeIn, easeBack, hash, noise1, hex2rgb, shade, rgba, mix, rrect, circle, ellipse, poly, lg, rg, sky, glow, sun, stars, hills, fog, vignette, cypress, pine, DEP, insula, column, temple, aqueduct, steam, jet, fire, motes, SKIN, limb, person, aeolipile, plaque, coin, gear, chimney, colosseum, locomotive, maglev, track, rocket, automaton, neuralNet, globe, beamEngine, EG, faisca, raio, sombra, piramide, colunaPapiro, templo, casaAdobe, muralha, farol, obeliscoNeon, jarro, placasCobre, anforaVinagre, altar, bloco, guindaste, posteLotus, bomba, aparelhoMensagem, barcoEletrico, tremLuz, piramideEspacial, torreRaios, camelo, peixeEletrico, estandarte, mapaEgito, VK, VK_cabeca, VK_sombra, navioDragao, VK_cabecaDragao, casaTurfa, canoa, cestaMilho, machado, martelo, forja, VK_faiscas, VK_boi, arado, VK_trigo, caravela, torreVigia, VK_pergaminho, VK_predio, tremDragao, VK_RUNAS, VK_runa, VK_lousa, VK_iceberg, VK_LUG, VK_mapa, AL, AP, AP_LARGO, AP_ini, AP_m, AP_pt, AP_k, AP_sup, AP_obj, AP_cam, AP_txt, AL_chaoTodo, AL_esc, AL_rolo, AL_estante, AL_lamparina, AL_mesa, AL_folha, AL_cavalete, AL_biblioteca, AL_farol, AL_rocha, AL_navio, AL_caixa, AL_telescopio, AL_lente, AL_lua, AL_saturno, AL_CONST, AL_constelacoes, AL_CIDADES, AL_MAR, AL_mapa, AL_ponto, AL_hospital, AL_anatomia, AL_casa, AL_predio, AL_nave, AL_plataforma, AL_montanha, AL_CRIANCAS, AL_b, P_CRIANCAS, P_preset, P_b, P_mao, AL_tapioca, AL_janela_barca, AL_rede_pescador, AL_peixe_seco, _novas_vazio, E_txt, E_rotulo, E_placa, E_palmeira, E_nuvem, EG_CAP_TOP, EG_wrap, EG_off, EG_msk, EG_PUFFS, EG_TR, EG_marca, ligarApoio, desligarApoio };
+return { W, clamp, lerp, prog, ease, easeOut, easeIn, easeBack, hash, noise1, hex2rgb, shade, rgba, mix, rrect, circle, ellipse, poly, lg, rg, sky, glow, sun, stars, hills, fog, vignette, cypress, pine, DEP, insula, column, temple, aqueduct, steam, jet, fire, motes, SKIN, limb, person, aeolipile, plaque, coin, gear, chimney, colosseum, locomotive, maglev, track, rocket, automaton, neuralNet, globe, beamEngine, EG, faisca, raio, sombra, piramide, colunaPapiro, templo, casaAdobe, muralha, farol, obeliscoNeon, jarro, placasCobre, anforaVinagre, altar, bloco, guindaste, posteLotus, bomba, aparelhoMensagem, barcoEletrico, tremLuz, piramideEspacial, torreRaios, camelo, peixeEletrico, estandarte, mapaEgito, VK, VK_cabeca, VK_sombra, navioDragao, VK_cabecaDragao, casaTurfa, canoa, cestaMilho, machado, martelo, forja, VK_faiscas, VK_boi, arado, VK_trigo, caravela, torreVigia, VK_pergaminho, VK_predio, tremDragao, VK_RUNAS, VK_runa, VK_lousa, VK_iceberg, VK_LUG, VK_mapa, AL, AP, AP_LARGO, AP_ini, AP_m, AP_pt, AP_k, AP_sup, AP_obj, AP_cam, AP_txt, AL_chaoTodo, AL_esc, AL_rolo, AL_estante, AL_lamparina, AL_mesa, AL_folha, AL_cavalete, AL_biblioteca, AL_farol, AL_rocha, AL_navio, AL_caixa, AL_telescopio, AL_lente, AL_lua, AL_saturno, AL_CONST, AL_constelacoes, AL_CIDADES, AL_MAR, AL_mapa, AL_ponto, AL_hospital, AL_anatomia, AL_casa, AL_predio, AL_nave, AL_plataforma, AL_montanha, AL_CRIANCAS, AL_b, P_CRIANCAS, P_preset, P_b, P_mao, AL_tapioca, AL_janela_barca, AL_rede_pescador, AL_peixe_seco, _novas_vazio, sacola_amarela, BICICLETA_ALTURA, BICICLETA_RODA, BICICLETA_SEMIEIXO, BICICLETA_SELIM_X, BICICLETA_SELIM_Y, BICICLETA_GUIDAO_X, BICICLETA_GUIDAO_Y, bicicletaGuidao, bicicleta, relogioPulso, E_txt, E_rotulo, E_placa, E_palmeira, E_nuvem, EG_CAP_TOP, EG_wrap, EG_off, EG_msk, EG_PUFFS, EG_TR, EG_marca, ligarApoio, desligarApoio };
 }
-export const NOMES = {"W":"roma/lib.js","clamp":"roma/lib.js","lerp":"roma/lib.js","prog":"roma/lib.js","ease":"roma/lib.js","easeOut":"roma/lib.js","easeIn":"roma/lib.js","easeBack":"roma/lib.js","hash":"roma/lib.js","noise1":"roma/lib.js","hex2rgb":"roma/lib.js","shade":"roma/lib.js","rgba":"roma/lib.js","mix":"roma/lib.js","rrect":"roma/lib.js","circle":"roma/lib.js","ellipse":"roma/lib.js","poly":"roma/lib.js","lg":"roma/lib.js","rg":"roma/lib.js","sky":"roma/lib.js","glow":"roma/lib.js","sun":"roma/lib.js","stars":"roma/lib.js","hills":"roma/lib.js","fog":"roma/lib.js","vignette":"roma/lib.js","cypress":"roma/lib.js","pine":"roma/lib.js","DEP":"roma/lib.js","insula":"roma/lib.js","column":"roma/lib.js","temple":"roma/lib.js","aqueduct":"roma/lib.js","steam":"roma/lib.js","jet":"roma/lib.js","fire":"roma/lib.js","motes":"roma/lib.js","SKIN":"roma/lib.js","limb":"roma/lib.js","person":"roma/lib.js","aeolipile":"roma/lib.js","plaque":"roma/lib.js","coin":"roma/lib.js","gear":"roma/props.js","chimney":"roma/props.js","colosseum":"roma/props.js","locomotive":"roma/props.js","maglev":"roma/props.js","track":"roma/props.js","rocket":"roma/props.js","automaton":"roma/props.js","neuralNet":"roma/props.js","globe":"roma/props.js","beamEngine":"roma/props.js","EG":"egito/pecasEgito.js","faisca":"egito/pecasEgito.js","raio":"egito/pecasEgito.js","sombra":"egito/pecasEgito.js","piramide":"egito/pecasEgito.js","colunaPapiro":"egito/pecasEgito.js","templo":"egito/pecasEgito.js","casaAdobe":"egito/pecasEgito.js","muralha":"egito/pecasEgito.js","farol":"egito/pecasEgito.js","obeliscoNeon":"egito/pecasEgito.js","jarro":"egito/pecasEgito.js","placasCobre":"egito/pecasEgito.js","anforaVinagre":"egito/pecasEgito.js","altar":"egito/pecasEgito.js","bloco":"egito/pecasEgito.js","guindaste":"egito/pecasEgito.js","posteLotus":"egito/pecasEgito.js","bomba":"egito/pecasEgito.js","aparelhoMensagem":"egito/pecasEgito.js","barcoEletrico":"egito/pecasEgito.js","tremLuz":"egito/pecasEgito.js","piramideEspacial":"egito/pecasEgito.js","torreRaios":"egito/pecasEgito.js","camelo":"egito/pecasEgito.js","peixeEletrico":"egito/pecasEgito.js","estandarte":"egito/pecasEgito.js","mapaEgito":"egito/pecasEgito.js","VK":"vikings/pecasVikings.js","VK_cabeca":"vikings/pecasVikings.js","VK_sombra":"vikings/pecasVikings.js","navioDragao":"vikings/pecasVikings.js","VK_cabecaDragao":"vikings/pecasVikings.js","casaTurfa":"vikings/pecasVikings.js","canoa":"vikings/pecasVikings.js","cestaMilho":"vikings/pecasVikings.js","machado":"vikings/pecasVikings.js","martelo":"vikings/pecasVikings.js","forja":"vikings/pecasVikings.js","VK_faiscas":"vikings/pecasVikings.js","VK_boi":"vikings/pecasVikings.js","arado":"vikings/pecasVikings.js","VK_trigo":"vikings/pecasVikings.js","caravela":"vikings/pecasVikings.js","torreVigia":"vikings/pecasVikings.js","VK_pergaminho":"vikings/pecasVikings.js","VK_predio":"vikings/pecasVikings.js","tremDragao":"vikings/pecasVikings.js","VK_RUNAS":"vikings/pecasVikings.js","VK_runa":"vikings/pecasVikings.js","VK_lousa":"vikings/pecasVikings.js","VK_iceberg":"vikings/pecasVikings.js","VK_LUG":"vikings/pecasVikings.js","VK_mapa":"vikings/pecasVikings.js","AL":"alexandria/pecasAlexandria.js","AP":"alexandria/pecasAlexandria.js","AP_LARGO":"alexandria/pecasAlexandria.js","AP_ini":"alexandria/pecasAlexandria.js","AP_m":"alexandria/pecasAlexandria.js","AP_pt":"alexandria/pecasAlexandria.js","AP_k":"alexandria/pecasAlexandria.js","AP_sup":"alexandria/pecasAlexandria.js","AP_obj":"alexandria/pecasAlexandria.js","AP_cam":"alexandria/pecasAlexandria.js","AP_txt":"alexandria/pecasAlexandria.js","AL_chaoTodo":"alexandria/pecasAlexandria.js","AL_esc":"alexandria/pecasAlexandria.js","AL_rolo":"alexandria/pecasAlexandria.js","AL_estante":"alexandria/pecasAlexandria.js","AL_lamparina":"alexandria/pecasAlexandria.js","AL_mesa":"alexandria/pecasAlexandria.js","AL_folha":"alexandria/pecasAlexandria.js","AL_cavalete":"alexandria/pecasAlexandria.js","AL_biblioteca":"alexandria/pecasAlexandria.js","AL_farol":"alexandria/pecasAlexandria.js","AL_rocha":"alexandria/pecasAlexandria.js","AL_navio":"alexandria/pecasAlexandria.js","AL_caixa":"alexandria/pecasAlexandria.js","AL_telescopio":"alexandria/pecasAlexandria.js","AL_lente":"alexandria/pecasAlexandria.js","AL_lua":"alexandria/pecasAlexandria.js","AL_saturno":"alexandria/pecasAlexandria.js","AL_CONST":"alexandria/pecasAlexandria.js","AL_constelacoes":"alexandria/pecasAlexandria.js","AL_CIDADES":"alexandria/pecasAlexandria.js","AL_MAR":"alexandria/pecasAlexandria.js","AL_mapa":"alexandria/pecasAlexandria.js","AL_ponto":"alexandria/pecasAlexandria.js","AL_hospital":"alexandria/pecasAlexandria.js","AL_anatomia":"alexandria/pecasAlexandria.js","AL_casa":"alexandria/pecasAlexandria.js","AL_predio":"alexandria/pecasAlexandria.js","AL_nave":"alexandria/pecasAlexandria.js","AL_plataforma":"alexandria/pecasAlexandria.js","AL_montanha":"alexandria/pecasAlexandria.js","AL_CRIANCAS":"alexandria/pecasAlexandria.js","AL_b":"alexandria/pecasAlexandria.js","P_CRIANCAS":"auto/pessoas.js","P_preset":"auto/pessoas.js","P_b":"auto/pessoas.js","P_mao":"auto/pessoas.js","AL_tapioca":"auto/novas.js","AL_janela_barca":"auto/novas.js","AL_rede_pescador":"auto/novas.js","AL_peixe_seco":"auto/novas.js","_novas_vazio":"auto/novas.js","E_txt":"egito/cenasEgito.js (só ajudantes)","E_rotulo":"egito/cenasEgito.js (só ajudantes)","E_placa":"egito/cenasEgito.js (só ajudantes)","E_palmeira":"egito/cenasEgito.js (só ajudantes)","E_nuvem":"egito/cenasEgito.js (só ajudantes)","EG_CAP_TOP":"egito/cenasEgito.js (só ajudantes)","EG_wrap":"egito/cenasEgito.js (só ajudantes)","EG_off":"egito/cenasEgito.js (só ajudantes)","EG_msk":"egito/cenasEgito.js (só ajudantes)","EG_PUFFS":"egito/cenasEgito.js (só ajudantes)","EG_TR":"egito/cenasEgito.js (só ajudantes)","EG_marca":"egito/cenasEgito.js (só ajudantes)"};
+export const NOMES = {"W":"roma/lib.js","clamp":"roma/lib.js","lerp":"roma/lib.js","prog":"roma/lib.js","ease":"roma/lib.js","easeOut":"roma/lib.js","easeIn":"roma/lib.js","easeBack":"roma/lib.js","hash":"roma/lib.js","noise1":"roma/lib.js","hex2rgb":"roma/lib.js","shade":"roma/lib.js","rgba":"roma/lib.js","mix":"roma/lib.js","rrect":"roma/lib.js","circle":"roma/lib.js","ellipse":"roma/lib.js","poly":"roma/lib.js","lg":"roma/lib.js","rg":"roma/lib.js","sky":"roma/lib.js","glow":"roma/lib.js","sun":"roma/lib.js","stars":"roma/lib.js","hills":"roma/lib.js","fog":"roma/lib.js","vignette":"roma/lib.js","cypress":"roma/lib.js","pine":"roma/lib.js","DEP":"roma/lib.js","insula":"roma/lib.js","column":"roma/lib.js","temple":"roma/lib.js","aqueduct":"roma/lib.js","steam":"roma/lib.js","jet":"roma/lib.js","fire":"roma/lib.js","motes":"roma/lib.js","SKIN":"roma/lib.js","limb":"roma/lib.js","person":"roma/lib.js","aeolipile":"roma/lib.js","plaque":"roma/lib.js","coin":"roma/lib.js","gear":"roma/props.js","chimney":"roma/props.js","colosseum":"roma/props.js","locomotive":"roma/props.js","maglev":"roma/props.js","track":"roma/props.js","rocket":"roma/props.js","automaton":"roma/props.js","neuralNet":"roma/props.js","globe":"roma/props.js","beamEngine":"roma/props.js","EG":"egito/pecasEgito.js","faisca":"egito/pecasEgito.js","raio":"egito/pecasEgito.js","sombra":"egito/pecasEgito.js","piramide":"egito/pecasEgito.js","colunaPapiro":"egito/pecasEgito.js","templo":"egito/pecasEgito.js","casaAdobe":"egito/pecasEgito.js","muralha":"egito/pecasEgito.js","farol":"egito/pecasEgito.js","obeliscoNeon":"egito/pecasEgito.js","jarro":"egito/pecasEgito.js","placasCobre":"egito/pecasEgito.js","anforaVinagre":"egito/pecasEgito.js","altar":"egito/pecasEgito.js","bloco":"egito/pecasEgito.js","guindaste":"egito/pecasEgito.js","posteLotus":"egito/pecasEgito.js","bomba":"egito/pecasEgito.js","aparelhoMensagem":"egito/pecasEgito.js","barcoEletrico":"egito/pecasEgito.js","tremLuz":"egito/pecasEgito.js","piramideEspacial":"egito/pecasEgito.js","torreRaios":"egito/pecasEgito.js","camelo":"egito/pecasEgito.js","peixeEletrico":"egito/pecasEgito.js","estandarte":"egito/pecasEgito.js","mapaEgito":"egito/pecasEgito.js","VK":"vikings/pecasVikings.js","VK_cabeca":"vikings/pecasVikings.js","VK_sombra":"vikings/pecasVikings.js","navioDragao":"vikings/pecasVikings.js","VK_cabecaDragao":"vikings/pecasVikings.js","casaTurfa":"vikings/pecasVikings.js","canoa":"vikings/pecasVikings.js","cestaMilho":"vikings/pecasVikings.js","machado":"vikings/pecasVikings.js","martelo":"vikings/pecasVikings.js","forja":"vikings/pecasVikings.js","VK_faiscas":"vikings/pecasVikings.js","VK_boi":"vikings/pecasVikings.js","arado":"vikings/pecasVikings.js","VK_trigo":"vikings/pecasVikings.js","caravela":"vikings/pecasVikings.js","torreVigia":"vikings/pecasVikings.js","VK_pergaminho":"vikings/pecasVikings.js","VK_predio":"vikings/pecasVikings.js","tremDragao":"vikings/pecasVikings.js","VK_RUNAS":"vikings/pecasVikings.js","VK_runa":"vikings/pecasVikings.js","VK_lousa":"vikings/pecasVikings.js","VK_iceberg":"vikings/pecasVikings.js","VK_LUG":"vikings/pecasVikings.js","VK_mapa":"vikings/pecasVikings.js","AL":"alexandria/pecasAlexandria.js","AP":"alexandria/pecasAlexandria.js","AP_LARGO":"alexandria/pecasAlexandria.js","AP_ini":"alexandria/pecasAlexandria.js","AP_m":"alexandria/pecasAlexandria.js","AP_pt":"alexandria/pecasAlexandria.js","AP_k":"alexandria/pecasAlexandria.js","AP_sup":"alexandria/pecasAlexandria.js","AP_obj":"alexandria/pecasAlexandria.js","AP_cam":"alexandria/pecasAlexandria.js","AP_txt":"alexandria/pecasAlexandria.js","AL_chaoTodo":"alexandria/pecasAlexandria.js","AL_esc":"alexandria/pecasAlexandria.js","AL_rolo":"alexandria/pecasAlexandria.js","AL_estante":"alexandria/pecasAlexandria.js","AL_lamparina":"alexandria/pecasAlexandria.js","AL_mesa":"alexandria/pecasAlexandria.js","AL_folha":"alexandria/pecasAlexandria.js","AL_cavalete":"alexandria/pecasAlexandria.js","AL_biblioteca":"alexandria/pecasAlexandria.js","AL_farol":"alexandria/pecasAlexandria.js","AL_rocha":"alexandria/pecasAlexandria.js","AL_navio":"alexandria/pecasAlexandria.js","AL_caixa":"alexandria/pecasAlexandria.js","AL_telescopio":"alexandria/pecasAlexandria.js","AL_lente":"alexandria/pecasAlexandria.js","AL_lua":"alexandria/pecasAlexandria.js","AL_saturno":"alexandria/pecasAlexandria.js","AL_CONST":"alexandria/pecasAlexandria.js","AL_constelacoes":"alexandria/pecasAlexandria.js","AL_CIDADES":"alexandria/pecasAlexandria.js","AL_MAR":"alexandria/pecasAlexandria.js","AL_mapa":"alexandria/pecasAlexandria.js","AL_ponto":"alexandria/pecasAlexandria.js","AL_hospital":"alexandria/pecasAlexandria.js","AL_anatomia":"alexandria/pecasAlexandria.js","AL_casa":"alexandria/pecasAlexandria.js","AL_predio":"alexandria/pecasAlexandria.js","AL_nave":"alexandria/pecasAlexandria.js","AL_plataforma":"alexandria/pecasAlexandria.js","AL_montanha":"alexandria/pecasAlexandria.js","AL_CRIANCAS":"alexandria/pecasAlexandria.js","AL_b":"alexandria/pecasAlexandria.js","P_CRIANCAS":"auto/pessoas.js","P_preset":"auto/pessoas.js","P_b":"auto/pessoas.js","P_mao":"auto/pessoas.js","AL_tapioca":"auto/novas.js","AL_janela_barca":"auto/novas.js","AL_rede_pescador":"auto/novas.js","AL_peixe_seco":"auto/novas.js","_novas_vazio":"auto/novas.js","sacola_amarela":"auto/novas.js","BICICLETA_ALTURA":"auto/novas.js","BICICLETA_RODA":"auto/novas.js","BICICLETA_SEMIEIXO":"auto/novas.js","BICICLETA_SELIM_X":"auto/novas.js","BICICLETA_SELIM_Y":"auto/novas.js","BICICLETA_GUIDAO_X":"auto/novas.js","BICICLETA_GUIDAO_Y":"auto/novas.js","bicicletaGuidao":"auto/novas.js","bicicleta":"auto/novas.js","relogioPulso":"auto/novas.js","E_txt":"egito/cenasEgito.js (só ajudantes)","E_rotulo":"egito/cenasEgito.js (só ajudantes)","E_placa":"egito/cenasEgito.js (só ajudantes)","E_palmeira":"egito/cenasEgito.js (só ajudantes)","E_nuvem":"egito/cenasEgito.js (só ajudantes)","EG_CAP_TOP":"egito/cenasEgito.js (só ajudantes)","EG_wrap":"egito/cenasEgito.js (só ajudantes)","EG_off":"egito/cenasEgito.js (só ajudantes)","EG_msk":"egito/cenasEgito.js (só ajudantes)","EG_PUFFS":"egito/cenasEgito.js (só ajudantes)","EG_TR":"egito/cenasEgito.js (só ajudantes)","EG_marca":"egito/cenasEgito.js (só ajudantes)"};
