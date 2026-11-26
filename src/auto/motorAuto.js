@@ -851,10 +851,10 @@ export function criarMotorAuto(L, DEMOS, video) {
     setupParticleEmitters(c, c.yh || 1000);
 
     // Verifica camera shake
-    checkCameraShake(c, t, T);
+    if (!c.corte_direto) checkCameraShake(c, t, T);
 
     // Aplica offset de camera shake
-    const shakeOffset = cameraShake.getOffset();
+    const shakeOffset = c.corte_direto ? { x: 0, y: 0, rotation: 0 } : cameraShake.getOffset();
     ctx.save();
     if (shakeOffset.x !== 0 || shakeOffset.y !== 0 || shakeOffset.rotation !== 0) {
       ctx.translate(shakeOffset.x, shakeOffset.y);
@@ -902,8 +902,8 @@ export function criarMotorAuto(L, DEMOS, video) {
       else if (nextScene.molde !== CENAS[i][2].molde) transitionType = TRANSITION_TYPES.SLIDE;
     }
 
-    if (i > 0 && t < a + TR) blend = [i - 1, i, (t - (a - TR)) / (2 * TR)];
-    else if (i < CENAS.length - 1 && t > b - TR) blend = [i, i + 1, (t - (b - TR)) / (2 * TR)];
+    if (i > 0 && !CENAS[i][2].corte_direto && t < a + TR) blend = [i - 1, i, (t - (a - TR)) / (2 * TR)];
+    else if (i < CENAS.length - 1 && !CENAS[i + 1][2].corte_direto && t > b - TR) blend = [i, i + 1, (t - (b - TR)) / (2 * TR)];
 
     if (!blend) {
       desenharCena(ctx, i, t);
