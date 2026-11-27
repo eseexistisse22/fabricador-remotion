@@ -528,7 +528,8 @@ export function criarMotorAuto(L, DEMOS, video) {
     const escala = s * (q.tam || 1);
 
     // Aplica breathing offset e blink
-    const breathOffset = (resto.paradoNoChao || resto.maoDirigida) ? 0 : getBreathOffset(T);
+    const ancoraFixa = Boolean(resto.paradoNoChao || resto.maoDirigida);
+    const breathOffset = ancoraFixa ? 0 : getBreathOffset(T);
     const blinkState = getBlinkState(T, Math.round(x));
 
     if (resto.sombra !== false && escala > 0) {
@@ -545,6 +546,7 @@ export function criarMotorAuto(L, DEMOS, video) {
       t: T,
       seed: Math.round(x) % 7,
       ...resto,
+      paradoNoChao: ancoraFixa,
       sombra: false,
       blink: blinkState < 1 ? blinkState : undefined,
     });
