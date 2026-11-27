@@ -636,9 +636,10 @@ export function criarMotorAuto(L, DEMOS, video) {
         // USA chao/ceu/agua definidos no JSON da opção (storyboard.py agora define baseado no texto da opção)
         const ceuOpcao = o.ceu || (i ? "frio" : "noite");
         const chaoOpcao = o.chao || (i ? "neve" : "pedra");
-        const aguaOpcao = o.agua || false;
+        const aguaOpcao = o.agua ?? (o.chao === "agua");
         ctx.save(); ctx.beginPath(); ctx.rect(x0, 0, W / 2, H); ctx.clip(); L.AP_ini(ctx, yh);
-        cenario(ctx, Object.assign({ ceu: ceuOpcao, chao: chaoOpcao, agua: aguaOpcao }, o), T, yh, { semFundo: true });
+        cenario(ctx, { ...o, ceu: ceuOpcao, chao: aguaOpcao ? "madeira" : chaoOpcao, agua: aguaOpcao },
+          T, yh, { semFundo: true, terra: aguaOpcao ? 1350 : null });
         if ((o.pecas || [])[0]) peca(ctx, o.pecas[0], x0 + 270, 1250, yh, T, { tam: o.tam || 1 });
         pessoa(ctx, o.pessoa || (c.cartao ? (i ? "sabiaHoje" : "voceHoje") : null), x0 + (i ? 420 : 120), PE, yh, T, { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } });
         if (!c.cartao) { ctx.fillStyle = `rgba(0,0,0,${.45 * (1 - ativo)})`; ctx.fillRect(x0, 0, W / 2, H); }
