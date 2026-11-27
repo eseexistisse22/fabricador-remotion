@@ -528,7 +528,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     const escala = s * (q.tam || 1);
 
     // Aplica breathing offset e blink
-    const breathOffset = getBreathOffset(T);
+    const breathOffset = (resto.paradoNoChao || resto.maoDirigida) ? 0 : getBreathOffset(T);
     const blinkState = getBlinkState(T, Math.round(x));
 
     if (resto.sombra !== false && escala > 0) {
@@ -558,7 +558,9 @@ export function criarMotorAuto(L, DEMOS, video) {
     if (["noite", "fogo", "futuro"].includes(tema(c))) L.stars(ctx, T, 50, 3, yh - 60);
     else if (tema(c) === "por_do_sol") L.sun(ctx, 300, yh - 8, 60, "#FFE8B0", "#FF9A5C");
     else if (tema(c) !== "cinza") L.sun(ctx, 860, Math.min(420, yh - 300), 55);
-    if (["dia", "tarde", "frio"].includes(tema(c))) L.E_nuvem(ctx, 250 + T * 8 % 600, Math.min(380, yh - 400), 130, "#FFFFFF", .6);
+    if (c.nuvens !== false && ["dia", "tarde", "frio"].includes(tema(c))) {
+      L.E_nuvem(ctx, 250 + T * 8 % 600, Math.min(380, yh - 400), 130, "#FFFFFF", .6);
+    }
   }
   function chao(ctx, y, nome = "areia", h = 2400, linhas = true) {
     const [c1, c2] = CHAOS[nome] || CHAOS.areia;
@@ -632,10 +634,23 @@ export function criarMotorAuto(L, DEMOS, video) {
     for (const r of [].concat(c.rotulo || [])) { const q = typeof r === "string" ? { texto: r } : r; L.E_rotulo(ctx, q.texto, q.x ?? 540, q.y ?? 760, prog(t, q.em ?? 1, (q.em ?? 1) + .4)); }
     if (c.grande) { const g = typeof c.grande === "string" ? { texto: c.grande } : c.grande, em = g.em ?? 1, p = prog(t, em, em + .4) * (g.ate ? 1 - prog(t, g.ate, g.ate + .4) : 1); if (p > 0) L.E_txt(ctx, g.texto, g.x ?? 540, g.y ?? 620, g.tam ?? 220, g.cor ?? "#FFC23D", p, easeBack(p)); }
     if (c.titulo) {
-      const [l1, l2] = c.titulo;
-      [[l1, "#FFFFFF", 140, 520], [l2, "#F5B83D", 220, 710]].forEach(([s, cor, fs, y], i) => { if (!s) return; const p = prog(t, .15 + i * .35, .6 + i * .35); L.E_txt(ctx, s, W / 2, y, fs, cor, p, lerp(.5, 1, easeBack(p))); });
+      ctx.save();
+      ctx.font = "112px Anton";
+      const linhas = c.titulo.length === 1 ? L.EG_wrap(ctx, c.titulo[0], 880) : c.titulo;
+      const passo = Math.min(190, 400 / Math.max(1, linhas.length - 1));
+      linhas.forEach((linha, i) => {
+        if (!linha) return;
+        const ultima = i === linhas.length - 1;
+        const tamanho = Math.min(linhas.length > 2 ? 114 : ultima ? 220 : 140, passo * 1.08);
+        ctx.font = `${tamanho}px Anton`;
+        const escala = Math.min(1, 920 / (ctx.measureText(linha).width + tamanho * .13));
+        const p = prog(t, .15 + i * .19, .6 + i * .19);
+        L.E_txt(ctx, linha, W / 2, 488 + (i - (linhas.length - 1) / 2) * passo,
+          tamanho, ultima ? "#F5B83D" : "#FFFFFF", p, escala * lerp(.85, 1, p));
+      });
+      ctx.restore();
       const pb = prog(t, 1.2, 1.6), selo = c.selo ?? "HISTÓRIA ALTERNATIVA";
-      if (pb > 0 && selo) { ctx.save(); ctx.globalAlpha = pb; ctx.font = "40px Anton"; ctx.textAlign = "center"; const w = ctx.measureText(selo).width + 50; rrect(ctx, W / 2 - w / 2, 860, w, 62, 31); ctx.fillStyle = "rgba(0,0,0,.45)"; ctx.fill(); ctx.strokeStyle = "#F5B83D"; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = "#F5D28A"; ctx.textBaseline = "middle"; ctx.fillText(selo, W / 2, 893); ctx.restore(); }
+      if (pb > 0 && selo) { ctx.save(); ctx.globalAlpha = pb; ctx.font = "40px Anton"; ctx.textAlign = "center"; const w = Math.min(920, ctx.measureText(selo).width + 50); rrect(ctx, W / 2 - w / 2, 708, w, 62, 31); ctx.fillStyle = "rgba(0,0,0,.45)"; ctx.fill(); ctx.strokeStyle = "#F5B83D"; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = "#F5D28A"; ctx.textBaseline = "middle"; ctx.fillText(selo, W / 2, 741, w - 50); ctx.restore(); }
     }
   }
   function camera(ctx, c, t, d, cy = 1300) {
@@ -700,7 +715,13 @@ export function criarMotorAuto(L, DEMOS, video) {
       } else {
         const mesa = peca(ctx, c.mesa, 790, PE, yh, T);
         const sup = mesa.tampo ?? mesa.topo;
-        (c.pecas || []).forEach((n, i, a) => peca(ctx, n, 790 + (i - (a.length - 1) / 2) * 140, sup, yh, T, { k: 1, surge: c.surge ? surge(t, c) : 1 }));
+        if (mesa.s > 0) {
+          L.AP_sup(ctx, "linha", 790 - mesa.larg / 2, 790 + mesa.larg / 2, sup, PE);
+          (c.pecas || []).forEach((n, i, a) => {
+            const x = 790 + ((i + .5) / a.length - .5) * mesa.larg;
+            peca(ctx, n, x, sup, yh, T, { k: 1, surge: c.surge ? surge(t, c) : 1 });
+          });
+        }
         pessoa(ctx, P(c, 0), 330, PE, yh, T, { expressao: "pensando", pose: "maoNoQueixo", olhar: { x: 1, y: .3 } });
       }
       ctx.restore();
@@ -721,7 +742,9 @@ export function criarMotorAuto(L, DEMOS, video) {
       ceu(ctx, c, T, yh); L.hills(ctx, yh - 4, 30, MORROS[tema(c)] || "#9AA8B0", 6, 0, .7);
       if (c.estrada) chao(ctx, yh, c.chao || "terra"); else { agua(ctx, yh, c, T); if ((c.fundo || []).length) margem(ctx, -400, 520, yh + 8, 36, c.chao); }
       fundo(ctx, c, yh, T, -150, 460);
-      const ida = ease(prog(t, c.sai_em ?? .5, d - .3)), [xa, xb] = c.rota || [560, 1060];
+      const inicio = c.sai_em ?? .5;
+      const ida = c.veiculo_parado ? 0 : ease(prog(t, inicio, Math.max(inicio + .1, d - .3)));
+      const [xa, xb] = c.rota || [560, 1060];
       if ((c.pecas || [])[0]) peca(ctx, c.pecas[0], lerp(xa, xb, ida), lerp(1130, 1070, ida), yh, T, { tam: c.tam || 1, flip: xb < xa });
       chao(ctx, 1250, c.estrada ? (c.chao || "terra") : "madeira");
       if (!c.estrada) { ctx.fillStyle = "#3A281C"; for (let k = 0; k < 14; k++) ctx.fillRect(-100 + k * 100, 1250, 8, 200); }
@@ -788,7 +811,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     },
     // 11 Plano aberto: mundo grande, bonecos pequenos no fundo (fator 0,5–0,7); 1 vez por vídeo
     11(ctx, t, T, d, c) {
-      const yh = 820; ctx.save(); cam(ctx, 1 + t * .025, W / 2, H * .55); L.AP_ini(ctx, yh);
+      const yh = 820; ctx.save(); camera(ctx, c, t, d, H * .55); L.AP_ini(ctx, yh);
       cenario(ctx, c, T, yh, { terra: c.agua ? 980 : null, semFundo: !!c.agua });
       if (c.agua && (c.fundo || []).length) { margem(ctx, 560, W + 400, yh + 40, 40, c.chao); fundo(ctx, c, yh, T, 600, W + 150, 60); }
       (c.pecas || []).forEach((n, i) => peca(ctx, n, i ? 860 : 300, c.agua && !i ? 990 : 1000, yh, T, { tam: c.tam || 1 }));
@@ -873,6 +896,18 @@ export function criarMotorAuto(L, DEMOS, video) {
 
     ctx.save();
     efeitos(ctx, c, T, t);
+    if (typeof c.chuva_em === "number" && t >= c.chuva_em) {
+      ctx.strokeStyle = "rgba(227,247,255,.7)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (let k = 0; k < 120; k++) {
+        const y = (hash(k + 19) * H + (t - c.chuva_em) * (740 + hash(k * 7) * 240)) % H;
+        const x = (hash(k + 42) * W - y * .19 + W) % W;
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - 8, y + 33);
+      }
+      ctx.stroke();
+    }
     textos(ctx, c, t);
     L.vignette(ctx, c.vinheta ?? .45);
     ctx.restore();
