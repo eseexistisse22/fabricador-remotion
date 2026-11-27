@@ -46,108 +46,6 @@ const AGUAS = { dia: ["#5A90B8", "#1E4A70"], tarde: ["#6A98B8", "#2A4A68"], por_
 // EFEITOS VISUAIS AVANÇADOS (Partículas, Shake, Transições, Expressões)
 // ============================================================
 
-// Sistema de partículas genérico
-class ParticleSystem {
-  constructor() {
-    this.particles = [];
-    this.emitters = [];
-  }
-
-  addEmitter(emitter) {
-    this.emitters.push({ ...emitter, lastEmit: 0, count: 0 });
-  }
-
-  removeEmitter(tipo) {
-    this.emitters = this.emitters.filter(e => e.tipo !== tipo);
-  }
-
-  update(dt, T) {
-    for (const e of this.emitters) {
-      const numToEmit = Math.floor(e.rate * dt) + (Math.random() < (e.rate * dt) % 1 ? 1 : 0);
-      for (let i = 0; i < numToEmit; i++) {
-        const angle = e.anguloBase ? e.anguloBase + (Math.random() - 0.5) * (e.spread || 0.5) : Math.random() * Math.PI * 2;
-        const speed = (e.velocidade || 50) * (0.5 + Math.random() * 0.5);
-        this.particles.push({
-          x: e.x + (Math.random() - 0.5) * (e.width || 0),
-          y: e.y + (Math.random() - 0.5) * (e.height || 0),
-          vx: Math.cos(angle) * speed + (e.vento || 0),
-          vy: Math.sin(angle) * speed,
-          vida: (e.vida || 2) * (0.7 + Math.random() * 0.6),
-          vidaMax: e.vida || 2,
-          cor: e.cor || "#FFFFFF",
-          tamanho: (e.tamanho || 4) * (0.5 + Math.random() * 0.5),
-          gravidade: e.gravidade || 0,
-          tipo: e.tipo,
-          rotation: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 2,
-          alpha: 1,
-        });
-      }
-    }
-
-    for (let i = this.particles.length - 1; i >= 0; i--) {
-      const p = this.particles[i];
-      p.vida -= dt;
-      if (p.vida <= 0) {
-        this.particles.splice(i, 1);
-        continue;
-      }
-      p.x += p.vx * dt;
-      p.y += p.vy * dt;
-      p.vy += p.gravidade * dt;
-      p.rotation += p.rotSpeed * dt;
-      p.alpha = p.vida / p.vidaMax;
-    }
-  }
-
-  draw(ctx) {
-    for (const p of this.particles) {
-      ctx.save();
-      ctx.globalAlpha = p.alpha;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rotation);
-
-      if (p.tipo === "neve") {
-        ctx.fillStyle = p.cor;
-        ctx.beginPath();
-        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (p.tipo === "fogo" || p.tipo === "brasa") {
-        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, p.tamanho);
-        grad.addColorStop(0, p.cor);
-        grad.addColorStop(1, "rgba(255,100,20,0)");
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (p.tipo === "magia" || p.tipo === "brilho") {
-        ctx.fillStyle = p.cor;
-        ctx.globalCompositeOperation = "lighter";
-        ctx.beginPath();
-        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalCompositeOperation = "source-over";
-      } else if (p.tipo === "areia" || p.tipo === "poeira") {
-        ctx.fillStyle = p.cor;
-        ctx.beginPath();
-        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (p.tipo === "folha") {
-        ctx.fillStyle = p.cor;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, p.tamanho, p.tamanho * 0.4, p.rotation, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        ctx.fillStyle = p.cor;
-        ctx.beginPath();
-        ctx.arc(0, 0, p.tamanho, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
-    }
-  }
-}
-
 // Camera shake system
 class CameraShake {
   constructor() {
@@ -317,66 +215,8 @@ export function criarMotorAuto(L, DEMOS, video) {
   const fator = (yb, yh) => clamp((yb - yh) / (PE - yh), 0.05, 1.2);
 
   // ===== NOVOS SISTEMAS VISUAIS =====
-  const particleSystem = new ParticleSystem();
   const cameraShake = new CameraShake();
 
-  // Configura emissores de partículas baseados nos efeitos da cena
-  function setupParticleEmitters(c, yh) {
-    particleSystem.emitters = []; // limpa emissores anteriores
-
-    if (!c.efeitos) return;
-
-    for (const e of c.efeitos) {
-      if (e === "neve") {
-        particleSystem.addEmitter({
-          tipo: "neve",
-          x: W / 2, y: 0, width: W, height: yh,
-          rate: 30, velocidade: 80, vida: 4,
-          gravidade: 20, vento: (Math.random() - 0.5) * 30,
-          tamanho: 4, cor: "#FFFFFF",
-          anguloBase: Math.PI / 2, spread: 0.3,
-        });
-      } else if (e === "fogo" || e === "brasas") {
-        particleSystem.addEmitter({
-          tipo: "fogo",
-          x: W / 2, y: H * 0.8, width: W * 0.8, height: 100,
-          rate: 50, velocidade: 100, vida: 1.5,
-          gravidade: -50, vento: 0,
-          tamanho: 12, cor: "#FF6A2A",
-          anguloBase: -Math.PI / 2, spread: 0.6,
-        });
-      } else if (e === "fumaca") {
-        particleSystem.addEmitter({
-          tipo: "fogo",
-          x: W / 2, y: H * 0.6, width: W * 0.6, height: 200,
-          rate: 15, velocidade: 40, vida: 3,
-          gravidade: -30, vento: (Math.random() - 0.5) * 20,
-          tamanho: 40, cor: "#4A4444",
-          anguloBase: -Math.PI / 2, spread: 0.8,
-        });
-      } else if (e === "poeira") {
-        particleSystem.addEmitter({
-          tipo: "poeira",
-          x: W / 2, y: H * 0.7, width: W, height: 100,
-          rate: 20, velocidade: 60, vida: 2,
-          gravidade: 10, vento: (Math.random() - 0.5) * 40,
-          tamanho: 3, cor: "#FFE7B0",
-          anguloBase: 0, spread: Math.PI,
-        });
-      } else if (e === "estrelas" || e === "magia") {
-        particleSystem.addEmitter({
-          tipo: "magia",
-          x: W / 2, y: H / 2, width: W, height: H,
-          rate: 25, velocidade: 30, vida: 3,
-          gravidade: 0, vento: 0,
-          tamanho: 6, cor: "#FFD700",
-          anguloBase: 0, spread: Math.PI * 2,
-        });
-      }
-    }
-  }
-
-  // Adiciona trauma de câmera em momentos de impacto
   function checkCameraShake(c, t, T) {
     // Impacto em transições de cena (primeiros frames)
     if (t < 0.3) {
@@ -621,9 +461,13 @@ export function criarMotorAuto(L, DEMOS, video) {
     chao(ctx, yChao, c.chao || "madeira", 2400, !espacial);
     if (espacial) linhasDoPiso(ctx, cameraX);
   }
-  function efeitos(ctx, c, T, t) {
+  // Cada quadro deriva os efeitos do seu próprio tempo e da sua cena.
+  function efeitos(ctx, c, T) {
     for (const e of c.efeitos || []) {
-      if (e === "brasas") L.motes(ctx, T, 40, "#FFB050", 5, .7);
+      if (e === "fogo") L.steam(ctx, 540, 1500, T, { n: 26, life: 1.5, rise: 165,
+        color: "#FF6A2A", alpha: .66, seed: 5, spread: 320, size: 36 });
+      else if (e === "magia") L.motes(ctx, T, 25, "#FFD700", 9, .65);
+      else if (e === "brasas") L.motes(ctx, T, 40, "#FFB050", 5, .7);
       else if (e === "poeira") L.motes(ctx, T, 30, "#FFE7B0", 3, .5);
       else if (e === "neve") { ctx.save(); ctx.fillStyle = "#fff"; for (let k = 0; k < 70; k++) { const x = (hash(k) * W + Math.sin(T + k) * 30 + W) % W, y = (hash(k * 7) * H + T * (60 + hash(k * 3) * 80)) % H; ctx.globalAlpha = .5 + .5 * hash(k * 11); circle(ctx, x, y, 2 + hash(k * 5) * 4); ctx.fill(); } ctx.restore(); }
       else if (e === "fumaca") L.steam(ctx, 540, 1100, T, { n: 10, life: 2.4, rise: 500, size: 110, color: "#4A4444", alpha: .4, seed: 4 });
@@ -872,9 +716,6 @@ export function criarMotorAuto(L, DEMOS, video) {
     const d = b - a;
     AJUSTE = c.ajuste_escala || {}; CENA = c;
 
-    // Configura emissores de partículas para esta cena
-    setupParticleEmitters(c, c.yh || 1000);
-
     // Verifica camera shake
     if (!c.corte_direto) checkCameraShake(c, t, T);
 
@@ -889,15 +730,11 @@ export function criarMotorAuto(L, DEMOS, video) {
     MOLDES[c.molde](ctx, t, T, d, c);
     ctx.restore();
 
-    // Atualiza e desenha partículas
-    particleSystem.update(1/30, T); // assumes 30fps
-    particleSystem.draw(ctx);
-
     // Atualiza camera shake
     cameraShake.update(1/30);
 
     ctx.save();
-    efeitos(ctx, c, T, t);
+    efeitos(ctx, c, T);
     if (typeof c.chuva_em === "number" && t >= c.chuva_em) {
       ctx.strokeStyle = "rgba(227,247,255,.7)";
       ctx.lineWidth = 3;
