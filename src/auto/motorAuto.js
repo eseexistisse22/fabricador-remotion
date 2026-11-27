@@ -496,7 +496,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     if (dentroDaTela(ctx, x - m.w * s / 2, yb - m.h * s, x + m.w * s / 2, yb) < (CENA.dentro ?? .5)) return { topo: yb, larg: 0, s: 0 };
     const n0 = REG ? REG.obj.length : 0;
     ctx.save(); ctx.translate(x, yb); ctx.scale(o.flip ? -s : s, s); ctx.translate(-m.cx, -m.ancora);
-    const r = DEMOS[nome](L, ctx, T, o.p ?? 1);
+    const r = DEMOS[nome](L, ctx, T, CENA.estados_pecas?.[nome] ?? o.p ?? 1);
     ctx.restore();
     if (REG) { const novo = REG.obj.slice(n0).sort((a, b2) => b2.h - a.h)[0]; if (novo) { novo.w = Math.round(m.w * s * L.AP_k(ctx)); novo.cx = Math.round(L.AP_pt(ctx, x, yb)[0]); } }
     return { topo: yb - m.h * s, larg: m.w * s, s, tampo: typeof r === "number" ? yb + (r - m.ancora) * s : null };
