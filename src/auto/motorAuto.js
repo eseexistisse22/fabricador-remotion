@@ -46,34 +46,6 @@ const AGUAS = { dia: ["#5A90B8", "#1E4A70"], tarde: ["#6A98B8", "#2A4A68"], por_
 // EFEITOS VISUAIS AVANÇADOS (Partículas, Shake, Transições, Expressões)
 // ============================================================
 
-// Camera shake system
-class CameraShake {
-  constructor() {
-    this.trauma = 0;
-    this.decay = 0.8;
-  }
-
-  addTrauma(amount) {
-    this.trauma = Math.min(1, this.trauma + amount);
-  }
-
-  update(dt) {
-    this.trauma = Math.max(0, this.trauma - this.decay * dt);
-  }
-
-  getOffset() {
-    if (this.trauma <= 0) return { x: 0, y: 0, rotation: 0 };
-    const t = this.trauma * this.trauma;
-    const maxOffset = 15;
-    const maxRotation = 0.03;
-    return {
-      x: (Math.random() - 0.5) * maxOffset * t,
-      y: (Math.random() - 0.5) * maxOffset * t,
-      rotation: (Math.random() - 0.5) * maxRotation * t,
-    };
-  }
-}
-
 // Transition effects
 const TRANSITION_TYPES = {
   FADE: "fade",
@@ -213,24 +185,6 @@ export function criarMotorAuto(L, DEMOS, video) {
   const { clamp, lerp, prog, ease, easeBack, hash, mix, shade, lg, rg, rrect, circle } = L;
   const cam = (ctx, z, px = W / 2, py = H / 2, dx = 0, dy = 0) => { ctx.translate(px + dx, py + dy); ctx.scale(z, z); ctx.translate(-px, -py); };
   const fator = (yb, yh) => clamp((yb - yh) / (PE - yh), 0.05, 1.2);
-
-  // ===== NOVOS SISTEMAS VISUAIS =====
-  const cameraShake = new CameraShake();
-
-  function checkCameraShake(c, t, T) {
-    // Impacto em transições de cena (primeiros frames)
-    if (t < 0.3) {
-      cameraShake.addTrauma(0.3);
-    }
-    // Eventos específicos: fogo, explosão, impacto
-    if (c.efeitos && (c.efeitos.includes("fogo") || c.efeitos.includes("explosao"))) {
-      if (Math.sin(T * 8) > 0.9) cameraShake.addTrauma(0.15);
-    }
-    // Batalha / guerra
-    if (c.nome && (c.nome.includes("batalha") || c.nome.includes("guerra") || c.nome.includes("conquista"))) {
-      if (Math.sin(T * 12) > 0.95) cameraShake.addTrauma(0.2);
-    }
-  }
 
   // Aplica expressão e gesto baseados no contexto da cena
   function getExpressionGesture(c, pessoaIndex, t) {
@@ -613,7 +567,10 @@ export function criarMotorAuto(L, DEMOS, video) {
     },
     // 8 Mapa: painel na parede; pontos aparecem 1 por vez
     8(ctx, t, T, d, c) {
-      const yh = 760, yc = 1150; ctx.save(); cam(ctx, 1 + Math.min(.05, t * .01), W / 2, 900); L.AP_ini(ctx, yh);
+      const yh = 760, yc = 1150; ctx.save();
+      if (c.camera) camera(ctx, c, t, d, 900);
+      else cam(ctx, 1 + Math.min(.05, t * .01), W / 2, 900);
+      L.AP_ini(ctx, yh);
       interior(ctx, c, T, yc);
       ctx.fillStyle = "#5A3A22"; rrect(ctx, 100, 330, 880, 680, 18); ctx.fill(); // moldura presa na parede
       const r = painel(ctx, c.mapa || "AL_mapa", 540, 670, 820, T, 1);
@@ -625,7 +582,9 @@ export function criarMotorAuto(L, DEMOS, video) {
     },
     // 9 Destaque: fundo escuro, luz atrás, objeto em cima do pedestal (close; único sem chão/horizonte)
     9(ctx, t, T, d, c) {
-      ctx.save(); cam(ctx, 1.04 + t * .015, W / 2, 1100);
+      ctx.save();
+      if (c.camera) camera(ctx, c, t, d, 1100);
+      else cam(ctx, 1.04 + t * .015, W / 2, 1100);
       ctx.fillStyle = rg(ctx, W / 2, 900, 50, 1200, [[0, "#3A2A20"], [1, "#0A0606"]]); ctx.fillRect(-300, -300, W + 600, H + 600);
       L.glow(ctx, W / 2, 880, 560, c.luz || "#FFD27A", .5 + .08 * Math.sin(T * 2));
       const ped = peca(ctx, c.pedestal || "altar", 540, 1330, 0, T, { k: .9 });
@@ -638,7 +597,10 @@ export function criarMotorAuto(L, DEMOS, video) {
     },
     // 10 Antes × Depois: 2 faixas (em cima a nossa história, embaixo o "e se"), mesmo enquadramento
     10(ctx, t, T, d, c) {
-      const DY = 480, yh = 1060; ctx.save(); cam(ctx, 1 + t * .01, W / 2, 900); L.AP_ini(ctx, yh);
+      const DY = 480, yh = 1060; ctx.save();
+      if (c.camera) camera(ctx, c, t, d, 900);
+      else cam(ctx, 1 + t * .01, W / 2, 900);
+      L.AP_ini(ctx, yh);
       const faixa = (dy, lado, depois) => {
         ctx.save(); ctx.beginPath(); ctx.rect(-300, depois ? 880 : -300, W + 600, depois ? 1400 : 1180); ctx.clip();
         ctx.translate(0, -dy);
@@ -716,22 +678,9 @@ export function criarMotorAuto(L, DEMOS, video) {
     const d = b - a;
     AJUSTE = c.ajuste_escala || {}; CENA = c;
 
-    // Verifica camera shake
-    if (!c.corte_direto) checkCameraShake(c, t, T);
-
-    // Aplica offset de camera shake
-    const shakeOffset = c.corte_direto ? { x: 0, y: 0, rotation: 0 } : cameraShake.getOffset();
     ctx.save();
-    if (shakeOffset.x !== 0 || shakeOffset.y !== 0 || shakeOffset.rotation !== 0) {
-      ctx.translate(shakeOffset.x, shakeOffset.y);
-      ctx.rotate(shakeOffset.rotation);
-    }
-
     MOLDES[c.molde](ctx, t, T, d, c);
     ctx.restore();
-
-    // Atualiza camera shake
-    cameraShake.update(1/30);
 
     ctx.save();
     efeitos(ctx, c, T);
@@ -753,12 +702,45 @@ export function criarMotorAuto(L, DEMOS, video) {
   }
   function legenda(ctx, t) {
     const c = CAPS.find((c) => t >= c[0] && t < c[1]); if (!c) return;
-    const p = easeBack(prog(t, c[0], c[0] + .14)), out = prog(t, c[1] - .06, c[1]);
-    ctx.save(); ctx.font = "96px Anton"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineJoin = "round";
-    const lines = L.EG_wrap(ctx, c[2], 900), lh = 108, h = lines.length * lh, wmax = Math.max(...lines.map((l) => ctx.measureText(l).width));
-    ctx.globalAlpha = 1 - out; ctx.translate(W / 2, L.EG_CAP_TOP + 22 + h / 2); ctx.scale(lerp(.82, 1, p), lerp(.82, 1, p));
-    rrect(ctx, -wmax / 2 - 44, -h / 2 - 22, wmax + 88, h + 44, 30); ctx.fillStyle = "rgba(8,6,14,.55)"; ctx.fill();
-    lines.forEach((l, i) => { const y = (i - (lines.length - 1) / 2) * lh + 4; ctx.lineWidth = 12; ctx.strokeStyle = "#0A0610"; ctx.strokeText(l, 0, y); ctx.fillStyle = c[3] ? "#FFC23D" : "#FFFFFF"; ctx.fillText(l, 0, y); });
+    const texto = c[2].trim().replace(/\s+/g, " ");
+    if (!texto) return;
+    const larguraTexto = 812, margem = 44;
+    ctx.save();
+    ctx.font = "96px Anton";
+    let linhas = L.EG_wrap(ctx, texto, larguraTexto);
+    if (linhas.length > 2) {
+      const palavras = texto.split(" ");
+      const meio = ctx.measureText(texto).width / 2;
+      let corte = 1;
+      while (corte < palavras.length - 1 && ctx.measureText(palavras.slice(0, corte + 1).join(" ")).width <= meio) {
+        corte++;
+      }
+      linhas = [palavras.slice(0, corte).join(" "), palavras.slice(corte).join(" ")];
+    }
+    const maior = Math.max(...linhas.map(linha => ctx.measureText(linha).width));
+    const escala = Math.min(1, larguraTexto / maior);
+    const passo = Math.max(44, 108 * escala);
+    const largura = maior * escala + margem * 2;
+    const altura = linhas.length * passo + 44;
+    ctx.globalAlpha = 1 - prog(t, c[1] - .06, c[1]);
+    rrect(ctx, (W - largura) / 2, L.EG_CAP_TOP, largura, altura, 30);
+    ctx.fillStyle = "rgba(8,6,14,.55)";
+    ctx.fill();
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "rgba(10,6,16,.85)";
+    ctx.stroke();
+    ctx.font = `${96 * escala}px Anton`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 12 * escala;
+    ctx.strokeStyle = "#0A0610";
+    ctx.fillStyle = c[3] ? "#FFC23D" : "#FFFFFF";
+    linhas.forEach((linha, i) => {
+      const y = L.EG_CAP_TOP + 22 + (i + .5) * passo + 4;
+      ctx.strokeText(linha, W / 2, y, larguraTexto);
+      ctx.fillText(linha, W / 2, y, larguraTexto);
+    });
     ctx.restore();
   }
   const cenaEm = (t) => { const i = CENAS.findIndex((s) => t >= s[0] && t < s[1]); return i < 0 ? CENAS.length - 1 : i; };
