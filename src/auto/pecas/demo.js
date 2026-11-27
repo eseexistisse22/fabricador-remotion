@@ -8,6 +8,17 @@ const constel = (L, ctx) => {
 };
 export const DEMOS = {
   P_b: (L, c, T = T0, p = P0) => L.P_b(c, 600, Y, 5.4, 'lucas', { t: T }),
+  locomotiva: (L, c, T = T0, p) => L.locomotiva(c, 540, Y, 4, T, typeof p === 'string' ? p : 'parada'),
+  vagao_passageiro: (L, c, T = T0, p) => L.vagao_passageiro(c, 540, Y, 4, T, typeof p === 'string' ? p : 'porta_fechada'),
+  plataforma_estacao: (L, c, T = T0, p) => L.plataforma_estacao(c, 540, Y, 1.5, T, typeof p === 'string' ? p : 'com_banco'),
+  carta_envelope: (L, c, T = T0, p) => L.carta_envelope(c, 540, Y - 60, 2.4, T, typeof p === 'string' ? p : 'fechada'),
+  caixa_sapatos: (L, c, T = T0, p) => L.caixa_sapatos(c, 540, Y, 2.4, T, typeof p === 'string' ? p : 'fechada'),
+  gato: (L, c, T = T0, p) => L.gato(c, 540, Y, 2, T, typeof p === 'string' ? p : 'parado'),
+  janela_casa: (L, c, T = T0, p) => L.janela_casa(c, 540, Y - 100, 2, T, typeof p === 'string' ? p : 'fechada'),
+  luz_cozinha: (L, c, T = T0, p) => L.luz_cozinha(c, 540, Y - 200, 2, T, typeof p === 'string' ? p : 'pisca'),
+  mochila: (L, c, T = T0, p) => L.mochila(c, 540, Y, 2, T, typeof p === 'string' ? p : 'no_chao'),
+  braco_puxando_freio: (L, c, T = T0) => L.braco_puxando_freio(c, 540, Y, 2, T),
+  roda_ferro_girando: (L, c, T = T0) => L.roda_ferro_girando(c, 540, Y - 80, 2, T),
   sky: (L, c, T = T0, p = P0) => L.sky(c, [[0, '#120E1E'], [.45, '#3B1F2E'], [.7, '#A2462C'], [.82, '#E9893D'], [1, '#2A1712']]),
   sun: (L, c, T = T0, p = P0) => L.sun(c, 540, 700, 160, '#FFE3A6', '#FF9A3C'),
   stars: (L, c, T = T0, p = P0) => { c.fillStyle = '#1A1630'; c.fillRect(0, 0, 1080, 1500); L.stars(c, T, 80, 3, 1300); },
@@ -114,6 +125,79 @@ export const DEMOS = {
   AL_janela_barca: (L, c, T = T0, p = P0) => L.AL_janela_barca(c, 600, 1000, 400, 300),
   AL_rede_pescador: (L, c, T = T0, p = P0) => L.AL_rede_pescador(c, 600, Y, 1.4, T, {}),
   AL_peixe_seco: (L, c, T = T0, p = P0) => L.AL_peixe_seco(c, 600, Y, 1.4, T, {}),
+
+  // nova_cidade_tempo — demo para folha de peças: desenha TODOS os estados lado a lado
+  // Se `p` for string (estado), desenha SÓ esse estado no centro (para uso em cena)
+  relogio_praca: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.relogio_praca(c, 540, Y, 1.0, T, p); return; }
+    // folha: 3 estados
+    L.relogio_praca(c, 200, Y, 1.0, T, '18:00');
+    L.relogio_praca(c, 540, Y, 1.0, T, '17:00');
+    L.relogio_praca(c, 880, Y, 1.0, T, '17:55');
+    c.save(); c.scale(0.3, 0.3); c.fillStyle = '#1A1A1A'; c.font = 'bold 60px Arial'; c.textAlign = 'center';
+    c.fillText('18:00', 200 * 3.33, Y * 3.33 + 100); c.fillText('17:00', 540 * 3.33, Y * 3.33 + 100); c.fillText('17:55', 880 * 3.33, Y * 3.33 + 100); c.restore();
+  },
+  lampada_poste: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.lampada_poste(c, 540, 500, 1, T, p === 'acesa'); return; }
+    L.posteLotus(c, 350, Y, 1.45, T, { on: 1 });
+    L.lampada_poste(c, 350, 500, 1, T, true);
+    L.posteLotus(c, 850, Y, 1.45, T, { on: 0 });
+    L.lampada_poste(c, 850, 500, 1, T, false);
+    c.save(); c.scale(0.3, 0.3); c.fillStyle = '#1A1A1A'; c.font = 'bold 60px Arial'; c.textAlign = 'center';
+    c.fillText('acesa', 350 * 3.33, 400); c.fillText('apagada', 850 * 3.33, 400); c.restore();
+  },
+  sacola_amarela: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.sacola_amarela(c, 540, 700, 1.5, T, p); return; }
+    L.sacola_amarela(c, 250, 700, 1.5, T, 'na_mao_ciclista');
+    L.sacola_amarela(c, 540, 700, 1.5, T, 'na_mao_voce');
+    L.sacola_amarela(c, 830, 700, 1.5, T, 'entregando');
+    L.P_b(c, 250, Y, 5.4, 'lucas', { t: T, pose: 'segurando' });
+    L.P_b(c, 540, Y, 5.4, 'lucas', { t: T, pose: 'segurando' });
+  },
+  bicicleta: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.bicicleta(c, 540, Y, 1.2, T, p); return; }
+    L.bicicleta(c, 200, Y, 1.2, T, 'parada');
+    L.bicicleta(c, 540, Y, 1.2, T, 'pedalando');
+    L.bicicleta(c, 880, Y, 1.2, T, 'inversa');
+    c.save(); c.scale(0.3, 0.3); c.fillStyle = '#1A1A1A'; c.font = 'bold 60px Arial'; c.textAlign = 'center';
+    c.fillText('parada', 200 * 3.33, Y * 3.33 + 100); c.fillText('pedalando + ciclista (montado)', 540 * 3.33, Y * 3.33 + 100); c.fillText('inversa', 880 * 3.33, Y * 3.33 + 100); c.restore();
+  },
+  laranjas: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.laranjas(c, 540, 700, 2, T, p); return; }
+    L.laranjas(c, 250, 700, 2, T, 'na_mao_ciclista');
+    L.laranjas(c, 540, 700, 2, T, 'no_ar');
+    L.laranjas(c, 830, 700, 2, T, 'na_mao_padeiro');
+    L.P_b(c, 250, Y, 5.4, 'lucas', { t: T, pose: 'segurando' });
+    L.P_b(c, 830, Y, 5.4, 'pedro', { t: T, pose: 'segurando' });
+  },
+  mala: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.mala(c, 540, Y, 1.5, T, p); return; }
+    L.mala(c, 200, Y, 1.5, T, 'sobre_mesa');
+    L.mala(c, 540, 900, 1.5, T, 'na_mao');
+    L.mala(c, 880, Y, 1.5, T, 'no_onibus');
+    c.save(); c.scale(0.3, 0.3); c.fillStyle = '#1A1A1A'; c.font = 'bold 60px Arial'; c.textAlign = 'center';
+    c.fillText('sobre_mesa', 200 * 3.33, Y * 3.33 + 100); c.fillText('na_mao', 540 * 3.33, Y * 3.33 + 100); c.fillText('no_onibus', 880 * 3.33, Y * 3.33 + 100); c.restore();
+  },
+  foto_dois: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') { L.foto_dois(c, 540, 700, 2, T, p); return; }
+    L.foto_dois(c, 350, 700, 2, T, 'na_mao');
+    L.foto_dois(c, 850, 700, 3, T, 'close');
+    L.P_b(c, 350, Y, 5.4, 'lucas', { t: T, pose: 'segurando' });
+  },
+  onibus: (L, c, T = T0, p = P0) => {
+    if (typeof p === 'string') {
+      const isPortaAberta = p === 'porta_aberta';
+      L.onibus(c, 540, Y, 1.0, T, p);
+      if (isPortaAberta) L.P_b(c, 540 + 280, Y, 5.4, 'pedro', { t: T, pose: 'apontando', flip: true });
+      return;
+    }
+    L.onibus(c, 200, Y, 1.0, T, 'porta_fechada');
+    L.onibus(c, 540, Y, 1.0, T, 'porta_aberta');
+    L.P_b(c, 540 + 280, Y, 5.4, 'pedro', { t: T, pose: 'apontando', flip: true });
+    L.onibus(c, 880, Y, 1.0, T, 'parado');
+    c.save(); c.scale(0.3, 0.3); c.fillStyle = '#1A1A1A'; c.font = 'bold 60px Arial'; c.textAlign = 'center';
+    c.fillText('porta_fechada', 200 * 3.33, Y * 3.33 + 100); c.fillText('porta_aberta + assento', 540 * 3.33, Y * 3.33 + 100); c.fillText('parado', 880 * 3.33, Y * 3.33 + 100); c.restore();
+  },
 };
 // mostra o boneco de referência (frente, 5,4) ao lado das peças que têm escala
 export const PESSOA_REF = { x: 110, y: Y, s: 5.4, nome: 'lucas' };

@@ -1,0 +1,393 @@
+{
+  "id": "AutoNovaCidadeTempo",
+  "audio": "nova_cidade_tempo/nova_cidade_tempo_audio_v3.m4a",
+  "duracao": 98.36,
+  "titulo": "A cidade que voltava no tempo",
+  "caps": [
+    [4.89, 6.01, "O POSTE APAGA.", 1],
+    [6.64, 7.94, "NO PULSO DO CICLISTA,", 0],
+    [8.05, 8.97, "O RELÓGIO SALTA", 1],
+    [8.97, 10.25, "DAS SEIS PARA AS CINCO.", 0],
+    [10.88, 11.86, "O MESMO CICLISTA", 1],
+    [11.86, 12.76, "PASSA DE NOVO,", 0],
+    [12.88, 13.43, "COM A MESMA", 0],
+    [13.43, 14.42, "SACOLA AMARELA.", 0],
+    [15.05, 16.05, "NA NOSSA HISTÓRIA,", 1],
+    [16.05, 17.77, "EM 1965,", 0],
+    [17.88, 18.68, "UM APAGÃO DEIXOU", 0],
+    [18.68, 19.92, "NOVA YORK NO ESCURO.", 0],
+    [20.55, 21.96, "NESTA CIDADE INVENTADA,", 1],
+    [21.96, 23.05, "CADA APAGÃO DEVOLVE", 0],
+    [23.05, 23.62, "UMA HORA.", 0],
+    [24.25, 25.11, "SÓ VOCÊ LEMBRA", 0],
+    [25.11, 26.1, "DO QUE ACONTECEU.", 1],
+    [26.73, 27.7, "NA PRIMEIRA VOLTA,", 0],
+    [27.83, 28.94, "VOCÊ SEGUE O CICLISTA", 1],
+    [28.94, 29.85, "ATÉ A PADARIA.", 0],
+    [30.48, 31.52, "ELE ENTREGA AS LARANJAS", 1],
+    [31.52, 32.3, "AO PADEIRO E SAI", 0],
+    [32.3, 33.87, "PEDALANDO PELA MESMA RUA.", 0],
+    [34.51, 35.2, "ÀS SEIS,", 0],
+    [35.31, 36.09, "O POSTE APAGA", 1],
+    [36.09, 36.88, "OUTRA VEZ.", 0],
+    [37.52, 38.61, "NA SEGUNDA VOLTA,", 0],
+    [38.74, 39.83, "VOCÊ SEGURA A SACOLA", 1],
+    [39.83, 40.59, "ANTES QUE CAIA", 0],
+    [40.59, 41.27, "NA CURVA.", 0],
+    [41.9, 42.7, "NA PADARIA,", 0],
+    [42.82, 43.9, "VOCÊ ENCONTRA SEU MELHOR", 0],
+    [43.9, 45.01, "AMIGO COM UMA MALA.", 0],
+    [45.64, 46.72, "ELE VAI SE MUDAR.", 1],
+    [47.36, 48.24, "O ÚLTIMO ÔNIBUS", 1],
+    [48.24, 48.95, "SAI ÀS CINCO", 0],
+    [48.95, 49.95, "E CINQUENTA E CINCO.", 0],
+    [50.58, 51.81, "VOCÊ PROMETE ENCONTRÁ-LO", 0],
+    [51.81, 52.57, "NO PONTO DEPOIS", 0],
+    [52.57, 53.52, "DE BUSCAR UMA FOTO", 1],
+    [53.52, 54.23, "DOS DOIS.", 0],
+    [54.87, 55.95, "QUANDO VOCÊ CHEGA,", 0],
+    [55.95, 56.52, "O ÔNIBUS JÁ", 1],
+    [56.52, 57.49, "DOBROU A ESQUINA.", 0],
+    [58.13, 59.34, "VOCÊ FICA NA PRAÇA,", 0],
+    [59.45, 59.98, "COM A FOTO", 0],
+    [59.98, 60.53, "NA MÃO,", 0],
+    [60.53, 61.71, "ATÉ O POSTE APAGAR.", 1],
+    [62.34, 63.46, "NA TERCEIRA VOLTA,", 1],
+    [63.58, 64.53, "VOCÊ CORRE DIRETO", 0],
+    [64.53, 65.36, "PARA A PADARIA.", 0],
+    [65.99, 66.81, "A FOTO FICOU", 1],
+    [66.81, 67.39, "EM CASA.", 0],
+    [68.03, 68.82, "SEU AMIGO AINDA", 1],
+    [68.82, 69.42, "ESTÁ LÁ.", 0],
+    [70.05, 70.96, "VOCÊ PEGA A MALA", 1],
+    [70.96, 71.59, "E VAI COM ELE", 0],
+    [71.59, 72.42, "ATÉ O PONTO.", 0],
+    [73.05, 74.04, "VOCÊS SE ABRAÇAM", 0],
+    [74.04, 74.58, "COM A PORTA", 0],
+    [74.58, 75.69, "DO ÔNIBUS ABERTA.", 1],
+    [76.32, 77.28, "SEU AMIGO SOBE", 0],
+    [77.28, 78.37, "E APONTA PARA O ASSENTO", 1],
+    [78.37, 79.6, "LIVRE AO LADO DELE.", 0],
+    [80.23, 81.17, "NO SEU PULSO,", 0],
+    [81.17, 82.06, "O RELÓGIO MARCA", 1],
+    [82.06, 82.88, "CINCO E CINQUENTA", 0],
+    [82.88, 83.42, "E CINCO.", 0],
+    [84.05, 84.96, "AINDA DÁ TEMPO", 0],
+    [84.96, 85.6, "DE ESCOLHER.", 1],
+    [86.23, 87.36, "O QUE VOCÊ FAZ?", 1],
+    [87.99, 88.49, "UM:", 0],
+    [88.49, 89.6, "EMBARCAR COM ELE.", 1],
+    [90.23, 90.77, "DOIS:", 0],
+    [90.87, 91.87, "FICAR E INVESTIGAR", 1],
+    [91.87, 92.5, "O APAGÃO.", 0],
+    [93.13, 94.63, "COMENTA 1 OU 2!", 1]
+  ],
+  "cenas": [
+    {
+      "ini": 0.0,
+      "fim": 4.8,
+      "molde": 11,
+      "nome": "praca",
+      "ceu": "por_do_sol",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["posteLotus", "bicicleta", "sacola_amarela"],
+      "pessoas": [
+        { "quem": "ciclista", "expressao": "neutro", "pose": "montado", "tam": 0.85 }
+      ],
+      "camera": "fixa",
+      "titulo": ["A CIDADE QUE", "VOLTAVA NO TEMPO"]
+    },
+    {
+      "ini": 4.8,
+      "fim": 10.49,
+      "molde": 7,
+      "nome": "salto",
+      "ceu": "noite",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["posteLotus", "bicicleta", "sacola_amarela", "relogio_praca"],
+      "no_ceu": ["AL_lua"],
+      "placa": "1965",
+      "rotulo": { "texto": "NOVA YORK", "x": 540, "y": 1000, "em": 1.5 },
+      "camera": "zoom_out"
+    },
+    {
+      "ini": 10.49,
+      "fim": 14.66,
+      "molde": 1,
+      "nome": "repeticao",
+      "ceu": "tarde",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["bicicleta", "sacola_amarela"],
+      "pessoas": [
+        { "quem": "ciclista", "expressao": "neutro", "pose": "montado", "tam": 0.85 }
+      ],
+      "rotulo": { "texto": "SACOLA AMARELA", "x": 540, "y": 760, "em": 1.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 14.66,
+      "fim": 20.16,
+      "molde": 7,
+      "nome": "apagao",
+      "ceu": "noite",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "no_ceu": ["AL_lua"],
+      "placa": "1965 · NOVA YORK",
+      "efeitos": ["estrelas"],
+      "camera": "fixa"
+    },
+    {
+      "ini": 20.16,
+      "fim": 26.34,
+      "molde": 11,
+      "nome": "retorno",
+      "ceu": "tarde",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["posteLotus", "bicicleta", "relogio_praca"],
+      "pessoas": [
+        { "quem": "ciclista", "expressao": "neutro", "pose": "montado", "tam": 0.85 }
+      ],
+      "rotulo": { "texto": "UMA HORA ATRÁS", "x": 540, "y": 760, "em": 1.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 26.34,
+      "fim": 30.09,
+      "molde": 6,
+      "nome": "trajeto",
+      "ceu": "tarde",
+      "chao": "rua",
+      "estrada": true,
+      "fundo": ["cypress", "AL_predio"],
+      "pecas": ["bicicleta", "sacola_amarela", "AL_predio"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "pensando", "pose": "apontando" },
+        { "quem": "ciclista", "expressao": "neutro", "pose": "montado", "tam": 0.85 }
+      ],
+      "rotulo": { "texto": "PRIMEIRA VOLTA", "x": 540, "y": 760, "em": 0.5 },
+      "camera": "pan"
+    },
+    {
+      "ini": 30.09,
+      "fim": 37.12,
+      "molde": 4,
+      "nome": "entrega",
+      "ceu": "por_do_sol",
+      "chao": "madeira",
+      "parede": "hoje",
+      "mesa": "AL_mesa",
+      "fundo": ["AL_caixa"],
+      "pecas": ["laranjas", "bicicleta", "sacola_amarela", "posteLotus"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "pensando", "pose": "maoNoQueixo" },
+        { "quem": "padeiro", "expressao": "feliz", "pose": "segurando" }
+      ],
+      "rotulo": { "texto": "LARANJAS", "x": 540, "y": 760, "em": 1.0 },
+      "grande": { "texto": "18:00", "em": 4.0, "ate": 6.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 37.12,
+      "fim": 41.51,
+      "molde": 1,
+      "nome": "sacola",
+      "ceu": "tarde",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["sacola_amarela"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "surpreso", "pose": "segurando" }
+      ],
+      "rotulo": { "texto": "SEGUNDA VOLTA", "x": 540, "y": 760, "em": 0.5 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 41.51,
+      "fim": 45.25,
+      "molde": 4,
+      "nome": "encontro",
+      "ceu": "tarde",
+      "chao": "madeira",
+      "parede": "hoje",
+      "mesa": "AL_mesa",
+      "fundo": ["AL_caixa"],
+      "pecas": ["mala", "sacola_amarela"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "surpreso", "pose": "maoNoQueixo" },
+        { "quem": "pedro", "expressao": "triste", "pose": "segurando" }
+      ],
+      "rotulo": { "texto": "MALA", "x": 540, "y": 760, "em": 1.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 45.25,
+      "fim": 50.19,
+      "molde": 1,
+      "nome": "horario",
+      "ceu": "por_do_sol",
+      "chao": "madeira",
+      "parede": "hoje",
+      "mesa": "AL_mesa",
+      "fundo": ["AL_caixa"],
+      "pecas": ["mala"],
+      "pessoas": [
+        { "quem": "pedro", "expressao": "triste", "pose": "segurando" }
+      ],
+      "rotulo": { "texto": "ÚLTIMO ÔNIBUS", "x": 540, "y": 760, "em": 1.0 },
+      "grande": { "texto": "17:55", "em": 3.0, "ate": 4.5 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 50.19,
+      "fim": 54.48,
+      "molde": 6,
+      "nome": "foto",
+      "ceu": "por_do_sol",
+      "chao": "rua",
+      "estrada": true,
+      "fundo": ["cypress", "AL_predio"],
+      "pecas": ["foto_dois", "bicicleta"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "pensando", "pose": "apontando" }
+      ],
+      "rotulo": { "texto": "FOTO DOS DOIS", "x": 540, "y": 760, "em": 1.0 },
+      "camera": "pan"
+    },
+    {
+      "ini": 54.48,
+      "fim": 61.95,
+      "molde": 1,
+      "nome": "esquina",
+      "ceu": "por_do_sol",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["onibus", "foto_dois", "posteLotus", "lampada_poste"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "triste", "pose": "segurando" }
+      ],
+      "rotulo": { "texto": "NA PRAÇA", "x": 540, "y": 760, "em": 2.0 },
+      "grande": { "texto": "18:00", "em": 5.5, "ate": 7.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 61.95,
+      "fim": 67.63,
+      "molde": 6,
+      "nome": "atalho",
+      "ceu": "tarde",
+      "chao": "rua",
+      "estrada": true,
+      "fundo": ["cypress", "AL_predio"],
+      "pecas": ["bicicleta"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "pensando", "pose": "apontando" }
+      ],
+      "rotulo": { "texto": "FOTO EM CASA", "x": 540, "y": 760, "em": 1.0 },
+      "camera": "pan"
+    },
+    {
+      "ini": 67.63,
+      "fim": 72.66,
+      "molde": 4,
+      "nome": "mala",
+      "ceu": "por_do_sol",
+      "chao": "madeira",
+      "parede": "hoje",
+      "mesa": "AL_mesa",
+      "fundo": ["AL_caixa"],
+      "pecas": ["mala"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "feliz", "pose": "segurando" },
+        { "quem": "pedro", "expressao": "feliz", "pose": "segurando" }
+      ],
+      "rotulo": { "texto": "ATÉ O PONTO", "x": 540, "y": 760, "em": 1.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 72.66,
+      "fim": 79.84,
+      "molde": 6,
+      "nome": "embarque",
+      "ceu": "por_do_sol",
+      "chao": "rua",
+      "estrada": true,
+      "fundo": ["cypress"],
+      "pecas": ["onibus", "mala"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "feliz", "pose": "bracosAoLado" },
+        { "quem": "pedro", "expressao": "feliz", "pose": "apontando" }
+      ],
+      "rotulo": { "texto": "ASSENTO LIVRE", "x": 540, "y": 760, "em": 2.0 },
+      "camera": "zoom_in"
+    },
+    {
+      "ini": 79.84,
+      "fim": 87.60,
+      "molde": 1,
+      "nome": "escolha",
+      "ceu": "por_do_sol",
+      "chao": "rua",
+      "fundo": ["cypress"],
+      "pecas": ["onibus", "relogio_praca"],
+      "pessoas": [
+        { "quem": "voceHoje", "expressao": "pensando", "pose": "maoNoQueixo" },
+        { "quem": "pedro", "expressao": "feliz", "pose": "bracosAoLado" }
+      ],
+      "grande": { "texto": "17:55", "em": 1.0, "ate": 7.0 },
+      "camera": "fixa"
+    },
+    {
+      "ini": 87.60,
+      "fim": 92.74,
+      "molde": 12,
+      "nome": "escolhas",
+      "opcoes": [
+        {
+          "texto": "EMBARCAR COM ELE",
+          "pecas": ["onibus"],
+          "pessoa": "voceHoje",
+          "chao": "rua",
+          "ceu": "tarde",
+          "em": 0.5
+        },
+        {
+          "texto": "FICAR E INVESTIGAR",
+          "pecas": ["posteLotus", "lampada_poste"],
+          "pessoa": "voceHoje",
+          "chao": "rua",
+          "ceu": "noite",
+          "em": 2.5
+        }
+      ],
+      "camera": "fixa"
+    },
+    {
+      "ini": 92.74,
+      "fim": 98.36,
+      "molde": 12,
+      "nome": "fim",
+      "opcoes": [
+        {
+          "texto": "EMBARCAR COM ELE",
+          "pecas": ["onibus"],
+          "chao": "rua",
+          "ceu": "tarde"
+        },
+        {
+          "texto": "FICAR E INVESTIGAR",
+          "pecas": ["posteLotus", "lampada_poste"],
+          "chao": "rua",
+          "ceu": "noite"
+        }
+      ],
+      "cartao": true,
+      "pergunta": "COMENTA 1 OU 2!",
+      "camera": "fixa"
+    }
+  ]
+}

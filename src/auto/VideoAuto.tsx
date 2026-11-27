@@ -8,6 +8,7 @@ import { criarBiblioteca } from "./biblioteca";
 import { DEMOS } from "./pecas/demo";
 // @ts-ignore
 import { criarMotorAuto } from "./motorAuto";
+import { criarMotorEstacao } from "./estacao";
 import { VIDEOS_AUTO } from "./videos";
 import { desenharBoneco, NORMAIS, PERSONAGENS, VIKINGS, ALEXANDRIA } from "../personagens/boneco";
 
@@ -37,6 +38,7 @@ export const VideoAuto: React.FC<{ conferir?: boolean }> = ({ conferir }) => {
   const canvas = useRef<HTMLCanvasElement>(null);
   const motor = useMemo(() => {
     const L = criarBiblioteca({ desenharBoneco, NORMAIS, PERSONAGENS, VIKINGS, ALEXANDRIA });
+    if (video.cenas[0]?.direcao === "estacao") return criarMotorEstacao(L, video, desenharBoneco);
     return criarMotorAuto(L, DEMOS, video);
   }, [video]);
   const [handle] = useState(() => delayRender("fontes"));

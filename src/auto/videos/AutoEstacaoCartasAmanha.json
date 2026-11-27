@@ -1,0 +1,892 @@
+{
+ "id": "AutoEstacaoCartasAmanha",
+ "audio": "estacao_cartas_amanha/estacao_cartas_amanha_audio.m4a",
+ "duracao": 96.39,
+ "titulo": "A estação que recebia cartas do amanhã",
+ "caps": [
+  [
+   4.9,
+   5.66,
+   "TODA NOITE,",
+   0
+  ],
+  [
+   5.66,
+   6.44,
+   "UM TREM VAZIO",
+   0
+  ],
+  [
+   6.44,
+   7.61,
+   "PARA NA PLATAFORMA.",
+   1
+  ],
+  [
+   8.27,
+   9.51,
+   "NÃO HÁ PASSAGEIROS,",
+   1
+  ],
+  [
+   9.51,
+   10.89,
+   "NEM MAQUINISTA À VISTA.",
+   0
+  ],
+  [
+   11.56,
+   12.31,
+   "SÓ UMA CARTA",
+   0
+  ],
+  [
+   12.31,
+   12.97,
+   "SOBRE O BANCO",
+   0
+  ],
+  [
+   12.97,
+   13.65,
+   "DE MADEIRA.",
+   1
+  ],
+  [
+   14.32,
+   15.25,
+   "A CARTA DESCREVE",
+   0
+  ],
+  [
+   15.25,
+   16.12,
+   "O QUE VAI ACONTECER",
+   1
+  ],
+  [
+   16.12,
+   17.17,
+   "NO DIA SEGUINTE.",
+   0
+  ],
+  [
+   17.83,
+   18.66,
+   "CHUVA ÀS TRÊS",
+   0
+  ],
+  [
+   18.66,
+   19.46,
+   "DA TARDE,",
+   0
+  ],
+  [
+   19.46,
+   20.72,
+   "SEM NUVENS NO CÉU.",
+   1
+  ],
+  [
+   21.38,
+   22.32,
+   "O GATO DO VIZINHO",
+   1
+  ],
+  [
+   22.32,
+   23.88,
+   "FOGE PELA JANELA ABERTA.",
+   0
+  ],
+  [
+   24.54,
+   25.39,
+   "A LUZ DA COZINHA",
+   0
+  ],
+  [
+   25.39,
+   27.23,
+   "PISCA EXATAMENTE DUAS VEZES.",
+   1
+  ],
+  [
+   27.89,
+   29.2,
+   "TUDO ACONTECE IGUALZINHO",
+   1
+  ],
+  [
+   29.2,
+   30.24,
+   "AO QUE ESTÁ ESCRITO.",
+   0
+  ],
+  [
+   30.91,
+   32.04,
+   "VOCÊ GUARDA AS CARTAS",
+   0
+  ],
+  [
+   32.04,
+   33.77,
+   "NUMA CAIXA DE SAPATOS VELHA.",
+   1
+  ],
+  [
+   34.43,
+   35.98,
+   "NINGUÉM ACREDITA EM VOCÊ,",
+   1
+  ],
+  [
+   36.13,
+   36.83,
+   "MAS VOCÊ SABE",
+   0
+  ],
+  [
+   36.83,
+   37.54,
+   "A VERDADE.",
+   0
+  ],
+  [
+   38.21,
+   39.34,
+   "NESTA MADRUGADA,",
+   1
+  ],
+  [
+   39.34,
+   40.07,
+   "O TREM APITA",
+   0
+  ],
+  [
+   40.07,
+   41.45,
+   "MAIS CEDO QUE O HABITUAL.",
+   0
+  ],
+  [
+   42.11,
+   42.81,
+   "A CARTA VEM",
+   0
+  ],
+  [
+   42.81,
+   44.17,
+   "NUM ENVELOPE AZUL ESCURO,",
+   1
+  ],
+  [
+   44.33,
+   45.33,
+   "SELADO A CERA.",
+   0
+  ],
+  [
+   45.99,
+   47.27,
+   "A LETRA NO DESTINATÁRIO",
+   1
+  ],
+  [
+   47.27,
+   48.58,
+   "É A SUA PRÓPRIA LETRA.",
+   0
+  ],
+  [
+   49.25,
+   50.07,
+   "\"SEU IRMÃO ENTRA",
+   1
+  ],
+  [
+   50.07,
+   50.86,
+   "NO TREM ÀS SEIS",
+   0
+  ],
+  [
+   50.86,
+   51.44,
+   "DA MANHÃ.\"",
+   0
+  ],
+  [
+   52.1,
+   52.84,
+   "\"ELE NÃO VOLTA",
+   1
+  ],
+  [
+   52.84,
+   53.56,
+   "PARA CASA.\"",
+   0
+  ],
+  [
+   54.22,
+   55.55,
+   "VOCÊ CORRE DESESPERADO",
+   1
+  ],
+  [
+   55.55,
+   56.45,
+   "PARA A ESTAÇÃO.",
+   0
+  ],
+  [
+   57.11,
+   58.29,
+   "O TREM ESTÁ PARADO,",
+   0
+  ],
+  [
+   58.5,
+   59.61,
+   "VAPOR BRANCO SAINDO",
+   0
+  ],
+  [
+   59.61,
+   60.33,
+   "DA CHAMINÉ.",
+   1
+  ],
+  [
+   60.99,
+   61.76,
+   "SEU IRMÃO ESTÁ",
+   0
+  ],
+  [
+   61.76,
+   62.88,
+   "NA PORTA DO VAGÃO,",
+   0
+  ],
+  [
+   62.88,
+   64.16,
+   "MOCHILA NAS COSTAS.",
+   1
+  ],
+  [
+   64.82,
+   65.67,
+   "ELE SORRI,",
+   0
+  ],
+  [
+   65.67,
+   66.43,
+   "COMO QUEM SABE",
+   0
+  ],
+  [
+   66.43,
+   67.91,
+   "DE TUDO DESDE SEMPRE.",
+   1
+  ],
+  [
+   68.57,
+   69.33,
+   "O APITO SOA",
+   1
+  ],
+  [
+   69.33,
+   69.99,
+   "DE NOVO,",
+   0
+  ],
+  [
+   69.99,
+   70.94,
+   "LONGO E GRAVE.",
+   0
+  ],
+  [
+   71.6,
+   72.61,
+   "AS RODAS DE FERRO",
+   0
+  ],
+  [
+   72.61,
+   73.5,
+   "COMEÇAM A GIRAR",
+   1
+  ],
+  [
+   73.5,
+   74.3,
+   "NOS TRILHOS.",
+   0
+  ],
+  [
+   74.97,
+   75.77,
+   "A CARTA QUEIMA",
+   1
+  ],
+  [
+   75.77,
+   76.73,
+   "QUENTE NO SEU BOLSO",
+   0
+  ],
+  [
+   76.73,
+   77.43,
+   "DA CALÇA.",
+   0
+  ],
+  [
+   78.09,
+   78.94,
+   "AINDA DÁ TEMPO",
+   0
+  ],
+  [
+   78.94,
+   80.13,
+   "DE ESCOLHER O QUE FAZER.",
+   1
+  ],
+  [
+   80.79,
+   81.32,
+   "O QUE VOCÊ",
+   0
+  ],
+  [
+   81.32,
+   82.12,
+   "FAZ AGORA,",
+   0
+  ],
+  [
+   82.12,
+   83.44,
+   "ENQUANTO O TREM ACELERA?",
+   1
+  ],
+  [
+   84.1,
+   84.54,
+   "UM:",
+   0
+  ],
+  [
+   84.54,
+   85.5,
+   "EMBARCAR COM ELE",
+   0
+  ],
+  [
+   85.5,
+   86.64,
+   "NO TREM MISTERIOSO.",
+   1
+  ],
+  [
+   87.3,
+   87.89,
+   "DOIS:",
+   0
+  ],
+  [
+   88.0,
+   88.81,
+   "PUXAR O FREIO",
+   0
+  ],
+  [
+   88.81,
+   89.74,
+   "E IMPEDIR A PARTIDA",
+   1
+  ],
+  [
+   89.74,
+   90.4,
+   "DE VEZ.",
+   0
+  ],
+  [
+   91.06,
+   92.62,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "nome": "plataforma",
+      "direcao": "estacao",
+   "molde": 11,
+   "pecas": [
+    "locomotiva"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "titulo": [
+    "CARTAS DO",
+    "AMANHÃ"
+   ]
+  },
+  {
+   "ini": 4.8,
+   "fim": 11.15,
+   "nome": "chegada",
+   "molde": 6,
+   "pecas": [
+    "locomotiva"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estrada": true,
+   "rota": [
+    950,
+    470
+   ],
+   "sai_em": 0.2
+  },
+  {
+   "ini": 11.15,
+   "fim": 17.42,
+   "nome": "carta",
+   "molde": 1,
+   "pecas": [
+    "carta_envelope"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estados_pecas": {
+    "plataforma_estacao": "carta"
+   }
+  },
+  {
+   "ini": 17.42,
+   "fim": 20.97,
+   "nome": "chuva",
+   "molde": 7,
+   "pecas": [
+    "carta_envelope"
+   ],
+   "fundo": [],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "dia",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "placa": "15H"
+  },
+  {
+   "ini": 20.97,
+   "fim": 27.48,
+   "nome": "janela",
+   "molde": 4,
+   "pecas": [
+    "gato"
+   ],
+   "fundo": [
+    "janela_casa"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "parede": "hoje",
+   "estados_pecas": {
+    "gato": "fugindo"
+   },
+   "ajuste_escala": {
+    "caixa": 1.22
+   }
+  },
+  {
+   "ini": 27.48,
+   "fim": 34.03,
+   "nome": "arquivo",
+   "molde": 9,
+   "pecas": [
+    "caixa_sapatos"
+   ],
+   "fundo": [],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estados_pecas": {
+    "caixa_sapatos": "aberta_cartas"
+   }
+  },
+  {
+   "ini": 34.03,
+   "fim": 37.8,
+   "nome": "certeza",
+   "molde": 2,
+   "pecas": [
+    "carta_envelope"
+   ],
+   "fundo": [],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "segurando"
+    },
+    "lucas"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "parede": "hoje"
+  },
+  {
+   "ini": 37.8,
+   "fim": 41.7,
+   "nome": "apito",
+   "molde": 1,
+   "pecas": [
+    "vagao_passageiro"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true
+  },
+  {
+   "ini": 41.7,
+   "fim": 45.58,
+   "nome": "selo",
+   "molde": 9,
+   "pecas": [
+    "carta_envelope"
+   ],
+   "fundo": [],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estados_pecas": {
+    "carta_envelope": "azul_cera"
+   }
+  },
+  {
+   "ini": 45.58,
+   "fim": 51.69,
+   "nome": "aviso",
+   "molde": 4,
+   "pecas": [
+    "carta_envelope"
+   ],
+   "fundo": [],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "parede": "hoje",
+   "estados_pecas": {
+    "carta_envelope": "aberta"
+   }
+  },
+  {
+   "ini": 51.69,
+   "fim": 56.7,
+   "nome": "corrida",
+   "molde": 1,
+   "pecas": [],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true
+  },
+  {
+   "ini": 56.7,
+   "fim": 60.58,
+   "nome": "vapor",
+   "molde": 6,
+   "pecas": [
+    "locomotiva"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estrada": true,
+   "rota": [
+    480,
+    480
+   ],
+   "estados_pecas": {
+    "locomotiva": "vapor"
+   }
+  },
+  {
+   "ini": 60.58,
+   "fim": 64.42,
+   "nome": "porta",
+   "molde": 1,
+   "pecas": [
+    "vagao_passageiro"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "pedro"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estados_pecas": {
+    "vagao_passageiro": "porta_aberta"
+   }
+  },
+  {
+   "ini": 64.42,
+   "fim": 71.2,
+   "nome": "sorriso",
+   "molde": 6,
+   "pecas": [
+    "vagao_passageiro"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    {
+     "quem": "pedro",
+     "expressao": "feliz"
+    }
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estrada": true,
+   "rota": [
+    520,
+    520
+   ],
+   "estados_pecas": {
+    "vagao_passageiro": "porta_aberta"
+   }
+  },
+  {
+   "ini": 71.2,
+   "fim": 77.68,
+   "nome": "queima",
+   "molde": 9,
+   "pecas": [
+    "roda_ferro_girando"
+   ],
+   "fundo": [],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true
+  },
+  {
+   "ini": 77.68,
+   "fim": 83.7,
+   "nome": "escolha",
+   "molde": 6,
+   "pecas": [
+    "locomotiva"
+   ],
+   "fundo": [
+    "plataforma_estacao"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "estrada": true,
+   "rota": [
+    470,
+    1060
+   ],
+   "sai_em": 0.7
+  },
+  {
+   "ini": 83.7,
+   "fim": 90.66,
+   "nome": "escolhas",
+   "molde": 12,
+   "pecas": [],
+   "fundo": [],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "opcoes": [
+    {
+     "texto": "EMBARCAR",
+     "pecas": [
+      "vagao_passageiro"
+     ],
+     "pessoa": "pedro",
+     "chao": "pedra",
+     "ceu": "noite",
+     "em": 0.4
+    },
+    {
+     "texto": "PUXAR O FREIO",
+     "pecas": [
+      "locomotiva"
+     ],
+     "pessoa": "voceHoje",
+     "chao": "pedra",
+     "ceu": "noite",
+     "em": 3.6
+    }
+   ]
+  },
+  {
+   "ini": 90.66,
+   "fim": 96.388,
+   "nome": "fim",
+   "molde": 12,
+   "pecas": [],
+   "fundo": [],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "ceu": "noite",
+   "chao": "cinza",
+   "arvores": false,
+   "camera": "fixa",
+   "corte_direto": true,
+   "opcoes": [
+    {
+     "texto": "EMBARCAR",
+     "pecas": [
+      "vagao_passageiro"
+     ],
+     "pessoa": "pedro",
+     "chao": "pedra",
+     "ceu": "noite"
+    },
+    {
+     "texto": "PUXAR O FREIO",
+     "pecas": [
+      "locomotiva"
+     ],
+     "pessoa": "voceHoje",
+     "chao": "pedra",
+     "ceu": "noite"
+    }
+   ],
+   "cartao": true,
+   "pergunta": "O QUE VOCÊ FAZ?"
+  }
+ ]
+}

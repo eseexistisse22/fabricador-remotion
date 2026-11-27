@@ -12,7 +12,7 @@ export type Expressao =
   | "neutro" | "feliz" | "bravo" | "surpreso" | "triste" | "pensando";
 
 export type Pose =
-  | "maosJuntas" | "bracosAoLado" | "maoNoQueixo" | "apontando" | "segurando";
+  | "maosJuntas" | "bracosAoLado" | "maoNoQueixo" | "apontando" | "segurando" | "montado";
 
 export type Cabelo = "curto" | "longo" | "careca" | "grisalho" | "nenhum" | "trancas";
 export type Cabeca = "nenhum" | "nemes" | "pileus" | "oculos" | "faixa" | "boina" | "capacete" | "turbante";
@@ -384,6 +384,16 @@ export function desenharBoneco(ctx: CanvasRenderingContext2D, o: BonecoOpcoes) {
     linha(ctx, [ombroE, [-14.5, -46]], pele, bracoW);
     mao(-14.5, -45.5);
     desenharBracoQueixo = true;
+  } else if (pose === "montado") {
+    // Pose de ciclista montado: tronco inclinado, braços no guidão, pernas nos pedais
+    // O alvo dos pés vem de o.passada (em unidades do boneco, relativo ao quadril)
+    // Braços esticados para frente (guidão em ~x=27, y=-70)
+    const guidaoX = 27, guidaoY = -70;
+    linha(ctx, [ombroE, [guidaoX - 3, guidaoY]], pele, bracoW);
+    linha(ctx, [ombroD, [guidaoX + 3, guidaoY]], escurecer(pele, 0.06), bracoW);
+    mao(guidaoX - 3, guidaoY); mao(guidaoX + 3, guidaoY);
+    // Pernas: a seção de pernas (antes) usa o.passada para posicionar pés nos pedais
+    // Tronco inclinado à frente (ajuste visual)
   }
 
   // Mangas (túnica) ou ombros (peito nu)
@@ -730,6 +740,17 @@ export const NORMAIS: Record<string, Omit<BonecoOpcoes, "x" | "y">> = {
     objeto: "papiro", roupa: { tipo: "camiseta", cor: "#f1e8d6" } },
   triste: { pele: PELES.morena, cabelo: "curto", expressao: "triste", pose: "bracosAoLado",
     roupa: { tipo: "camiseta", cor: "#3fb7b0" } },
+  ciclista: { pele: PELES.media, cabelo: "curto", expressao: "neutro", pose: "montado",
+    roupa: { tipo: "camiseta", cor: "#d95a3a", calca: "#2a2f4a" } },
+  padeiro: { pele: PELES.morena, cabelo: "curto", expressao: "feliz", pose: "segurando",
+    roupa: { tipo: "camiseta", cor: "#f1e8d6", calca: "#5a4a3a" } },
+  irmao: { pele: PELES.clara, cabelo: "curto", corCabelo: "#4a3a2a", expressao: "neutro", pose: "bracosAoLado",
+    roupa: { tipo: "camiseta", cor: "#2a5a3a", calca: "#3a3f55" } },
+  ciclista_trem: { pele: PELES.media, cabelo: "curto", expressao: "neutro", pose: "bracosAoLado",
+    roupa: { tipo: "camiseta", cor: "#3a3a3a", calca: "#2a2a2a" } },
+  maquinista: { pele: PELES.morena, cabelo: "curto", corCabelo: "#2a1a14", cabeca: "boina", corChapeu: "#1a1a1a",
+    expressao: "neutro", pose: "bracosAoLado",
+    roupa: { tipo: "camiseta", cor: "#2a2a2a", calca: "#1a1a1a" } },
 };
 
 // Personagens de época (mesmo corpo, só troca a roupa)

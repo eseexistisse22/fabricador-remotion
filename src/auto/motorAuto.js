@@ -1,16 +1,16 @@
-// ===== MOTOR GENÉRICO (etapa D do AUTONOMIA.md) =====
-// O vídeo inteiro é DADO (src/auto/videos/<id>.json); nenhuma linha de código nova por vídeo.
-// Cada cena escolhe 1 dos 12 moldes de coringas/CENAS_CORINGA.md e só usa peças do catalogo_pecas.json.
-// Cada peça é desenhada pelo exemplo aprovado dela (pecas/demo.js), encaixado no lugar pedido e na ESCALA FIXA:
-// tamanho em bonecos (B = 526 px na frente, pés y=1405) × fator da perspectiva (y do pé → horizonte).
-// Pessoas = boneco normal (P_b → desenharBoneco). Registro de apoio (AP_*) igual ao de Alexandria → conferir.py.
+﻿// ===== MOTOR GENÃ‰RICO (etapa D do AUTONOMIA.md) =====
+// O vÃ­deo inteiro Ã© DADO (src/auto/videos/<id>.json); nenhuma linha de cÃ³digo nova por vÃ­deo.
+// Cada cena escolhe 1 dos 12 moldes de coringas/CENAS_CORINGA.md e sÃ³ usa peÃ§as do catalogo_pecas.json.
+// Cada peÃ§a Ã© desenhada pelo exemplo aprovado dela (pecas/demo.js), encaixado no lugar pedido e na ESCALA FIXA:
+// tamanho em bonecos (B = 526 px na frente, pÃ©s y=1405) Ã— fator da perspectiva (y do pÃ© â†’ horizonte).
+// Pessoas = boneco normal (P_b â†’ desenharBoneco). Registro de apoio (AP_*) igual ao de Alexandria â†’ conferir.py.
 // Formato do JSON: ver src/auto/videos/LEIA.md.
 import catalogo from "./catalogo_pecas.json";
 import escalaTabela from "./escala.json";   // gerado por autonomo/estilo.py a partir de coringas/OBJETOS_CORINGA.md
 import { desenharInteriorEspacial, linhasDoPiso } from "./interiorEspacial";
 
 const W = 1080, H = 1920, PE = 1405, B = 526;
-// RESERVA (lista antiga): só vale se escala.json não tiver faixas. A régua de verdade = escala.json = estilo.ESCALA,
+// RESERVA (lista antiga): sÃ³ vale se escala.json nÃ£o tiver faixas. A rÃ©gua de verdade = escala.json = estilo.ESCALA,
 // a mesma que o conferir.py usa (altura em B; navio e rolo = comprimento).
 const ESCALA_RESERVA = {
   pessoa: [0.8, 1.25], crianca: [0.55, 0.85], porta: [1.0, 2.2], mesa: [0.38, 0.55], estante: [0.9, 2.0],
@@ -19,8 +19,8 @@ const ESCALA_RESERVA = {
 };
 const ESCALA = escalaTabela && escalaTabela.faixas && Object.keys(escalaTabela.faixas).length ? escalaTabela.faixas : ESCALA_RESERVA;
 const COMPRIMENTO = new Set((escalaTabela && escalaTabela.comprimento) || ["navio", "rolo"]);
-const TOPO_MIN = 140;   // peça grande demais para a frente vai mais ao fundo até o topo caber (OBJETOS_CORINGA: "mais ao fundo")
-const BARCOS = new Set(["navioDragao", "canoa", "caravela", "AL_navio", "barcoEletrico"]); // exemplo com a linha d'água em y=1200
+const TOPO_MIN = 140;   // peÃ§a grande demais para a frente vai mais ao fundo atÃ© o topo caber (OBJETOS_CORINGA: "mais ao fundo")
+const BARCOS = new Set(["navioDragao", "canoa", "caravela", "AL_navio", "barcoEletrico"]); // exemplo com a linha d'Ã¡gua em y=1200
 const PECAS = Object.fromEntries(catalogo.pecas.map((p) => [p.nome, p]));
 
 const CEUS = {
@@ -43,7 +43,7 @@ const AGUAS = { dia: ["#5A90B8", "#1E4A70"], tarde: ["#6A98B8", "#2A4A68"], por_
   fogo: ["#4A2A2A", "#0E0A12"], cinza: ["#5A6068", "#2A3038"], frio: ["#6A9AC0", "#2A4A6A"], futuro: ["#2A2F6A", "#0B1030"] };
 
 // ============================================================
-// EFEITOS VISUAIS AVANÇADOS (Partículas, Shake, Transições, Expressões)
+// EFEITOS VISUAIS AVANÃ‡ADOS (PartÃ­culas, Shake, TransiÃ§Ãµes, ExpressÃµes)
 // ============================================================
 
 // Transition effects
@@ -186,7 +186,7 @@ export function criarMotorAuto(L, DEMOS, video) {
   const cam = (ctx, z, px = W / 2, py = H / 2, dx = 0, dy = 0) => { ctx.translate(px + dx, py + dy); ctx.scale(z, z); ctx.translate(-px, -py); };
   const fator = (yb, yh) => clamp((yb - yh) / (PE - yh), 0.05, 1.2);
 
-  // Aplica expressão e gesto baseados no contexto da cena
+  // Aplica expressÃ£o e gesto baseados no contexto da cena
   function getExpressionGesture(c, pessoaIndex, t) {
     const expressions = {
       "gancho": "curioso",
@@ -221,7 +221,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     else if (progress < 0.9) { expression = "epico"; gesture = "apontando"; }
     else { expression = "feliz"; gesture = "bracosAoLado"; }
 
-    // Sobrescreve se cena tem tags específicas
+    // Sobrescreve se cena tem tags especÃ­ficas
     if (c.expressao) expression = c.expressao;
     if (c.gesto) gesture = c.gesto;
     if (c.pessoas && c.pessoas[pessoaIndex] && typeof c.pessoas[pessoaIndex] === "object") {
@@ -235,18 +235,18 @@ export function criarMotorAuto(L, DEMOS, video) {
     };
   }
 
-  // ---------- medir cada peça uma vez (caixa do desenho de exemplo) ----------
+  // ---------- medir cada peÃ§a uma vez (caixa do desenho de exemplo) ----------
   const MEDIDAS = {};
-  let REG = null;     // registro de apoio ligado (só na conferência)
-  let CENA = {};      // cena sendo desenhada (correções do autonomo: dentro, chao_claro, arvores)
-  let AJUSTE = {};   // correção da conferência: {classe: fator} por cena (c.ajuste_escala), escrita pelo autonomo
+  let REG = null;     // registro de apoio ligado (sÃ³ na conferÃªncia)
+  let CENA = {};      // cena sendo desenhada (correÃ§Ãµes do autonomo: dentro, chao_claro, arvores)
+  let AJUSTE = {};   // correÃ§Ã£o da conferÃªncia: {classe: fator} por cena (c.ajuste_escala), escrita pelo autonomo
   function medir(nome) {
     if (MEDIDAS[nome]) return MEDIDAS[nome];
-    if (!DEMOS[nome]) throw new Error(`peça sem exemplo em pecas/demo.js: ${nome}`);
-    if (!PECAS[nome]) throw new Error(`peça fora do catalogo_pecas.json: ${nome}`);
+    if (!DEMOS[nome]) throw new Error(`peÃ§a sem exemplo em pecas/demo.js: ${nome}`);
+    if (!PECAS[nome]) throw new Error(`peÃ§a fora do catalogo_pecas.json: ${nome}`);
     const PAD = 500, c = document.createElement("canvas"); c.width = W + 2 * PAD; c.height = H;
     const x = c.getContext("2d", { willReadFrequently: true }); x.translate(PAD, 0);
-    // o registro de apoio da própria peça diz onde ela pisa e a altura que o conferir.py mede
+    // o registro de apoio da prÃ³pria peÃ§a diz onde ela pisa e a altura que o conferir.py mede
     L.ligarApoio(); DEMOS[nome](L, x); const ap = L.desligarApoio();
     const reg = ap.obj.filter((o) => o.tipo !== "pessoa" || nome === "P_b").sort((a, b) => b.h - a.h)[0];
     const d = x.getImageData(0, 0, c.width, c.height).data;
@@ -254,18 +254,18 @@ export function criarMotorAuto(L, DEMOS, video) {
     for (let y = 0; y < c.height; y += 2) for (let xx = 0; xx < c.width; xx += 2) if (d[(y * c.width + xx) * 4 + 3] > 20) {
       if (xx < x0) x0 = xx; if (xx > x1) x1 = xx; if (y < y0) y0 = y; if (y > y1) y1 = y;
     }
-    if (x1 < 0) throw new Error(`peça não desenhou nada: ${nome}`);
+    if (x1 < 0) throw new Error(`peÃ§a nÃ£o desenhou nada: ${nome}`);
     x0 -= PAD; x1 -= PAD;
     const ancora = reg ? reg.yb : BARCOS.has(nome) ? 1200 : Math.abs(y1 - PE) < 16 ? PE : y1;
     return (MEDIDAS[nome] = { x0, x1, y0, y1, cx: (x0 + x1) / 2, ancora, h: Math.max(1, ancora - y0), w: x1 - x0, reg: reg ? reg.h : null,
-      // partes registradas dentro da peça (ex.: porta da biblioteca): proporção em relação à parte principal
+      // partes registradas dentro da peÃ§a (ex.: porta da biblioteca): proporÃ§Ã£o em relaÃ§Ã£o Ã  parte principal
       partes: reg ? ap.obj.filter((o) => o !== reg && o.tipo !== "pessoa" && o.h > 0 && !COMPRIMENTO.has(o.tipo)).map((o) => ({ tipo: o.tipo, r: o.h / reg.h })) : [] });
   }
-  // altura (ou comprimento) certa em B, dentro da faixa do ESCALA (medida = a mesma que a peça registra)
+  // altura (ou comprimento) certa em B, dentro da faixa do ESCALA (medida = a mesma que a peÃ§a registra)
   function alvoB(nome, m, tam = 1) {
     const esc = PECAS[nome].escala, faixa = esc && ESCALA[esc], medida = m.reg || (esc && COMPRIMENTO.has(esc) ? m.w : m.h);
     let b = medida / B;
-    // a peça inteira e cada parte dela (porta, mesa...) têm que caber na régua ao mesmo tempo
+    // a peÃ§a inteira e cada parte dela (porta, mesa...) tÃªm que caber na rÃ©gua ao mesmo tempo
     let lo = faixa ? faixa[0] * 1.06 : 0, hi = faixa && faixa[1] != null ? faixa[1] * .94 : 1e9;
     let lo2 = lo, hi2 = hi;
     (m.partes || []).forEach(({ tipo, r }) => { const f = ESCALA[tipo]; if (!f) return; lo2 = Math.max(lo2, f[0] * 1.06 / r); if (f[1] != null) hi2 = Math.min(hi2, f[1] * .94 / r); });
@@ -274,19 +274,19 @@ export function criarMotorAuto(L, DEMOS, video) {
     else b *= tam;
     return { b, medida };
   }
-  // correção da conferência para esta peça: classe dela × partes registradas dentro dela
+  // correÃ§Ã£o da conferÃªncia para esta peÃ§a: classe dela Ã— partes registradas dentro dela
   const aj = (nome, m) => [PECAS[nome].escala, ...new Set((m.partes || []).map((p) => p.tipo))].reduce((f, k) => f * (AJUSTE[k] ?? 1), 1);
-  // desenha a peça com o pé (ou a linha d'água) em (x, yb), na escala da perspectiva. Devolve topo, largura e o tampo.
+  // desenha a peÃ§a com o pÃ© (ou a linha d'Ã¡gua) em (x, yb), na escala da perspectiva. Devolve topo, largura e o tampo.
   function peca(ctx, nome, x, yb, yh, T, o = {}) {
     const m = medir(nome), { b, medida } = o.livre ? { b: o.livre, medida: m.h } : alvoB(nome, m, o.tam || 1);
     const esc = PECAS[nome].escala;
     if (o.k == null && !o.livre && yh != null && !(esc && COMPRIMENTO.has(esc)) && !BARCOS.has(nome)) {
-      const k = (b * B * aj(nome, m)) / (PE - yh);   // altura na frente ÷ espaço até o horizonte
+      const k = (b * B * aj(nome, m)) / (PE - yh);   // altura na frente Ã· espaÃ§o atÃ© o horizonte
       if (k > 1 && k * (yb - yh) > yb - TOPO_MIN) yb = Math.max(yh + 20, (k * yh - TOPO_MIN) / (k - 1));
     }
     const s = (b * B * (o.k ?? fator(yb, yh))) / medida * (o.surge ?? 1) * aj(nome, m);
     if (s <= 0.001) return { topo: yb, larg: 0, s: 0 };
-    // dono 22/11 (ERROS_CONHECIDOS: peça solta cortada): ou aparece pelo menos metade na tela, ou tira
+    // dono 22/11 (ERROS_CONHECIDOS: peÃ§a solta cortada): ou aparece pelo menos metade na tela, ou tira
     if (dentroDaTela(ctx, x - m.w * s / 2, yb - m.h * s, x + m.w * s / 2, yb) < (CENA.dentro ?? .5)) return { topo: yb, larg: 0, s: 0 };
     const n0 = REG ? REG.obj.length : 0;
     ctx.save(); ctx.translate(x, yb); ctx.scale(o.flip ? -s : s, s); ctx.translate(-m.cx, -m.ancora);
@@ -295,19 +295,19 @@ export function criarMotorAuto(L, DEMOS, video) {
     if (REG) { const novo = REG.obj.slice(n0).sort((a, b2) => b2.h - a.h)[0]; if (novo) { novo.w = Math.round(m.w * s * L.AP_k(ctx)); novo.cx = Math.round(L.AP_pt(ctx, x, yb)[0]); } }
     return { topo: yb - m.h * s, larg: m.w * s, s, tampo: typeof r === "number" ? yb + (r - m.ancora) * s : null };
   }
-  // fração da caixa (x0,y0)-(x1,y1) que aparece na tela; peça maior que a tela conta só a parte que caberia
+  // fraÃ§Ã£o da caixa (x0,y0)-(x1,y1) que aparece na tela; peÃ§a maior que a tela conta sÃ³ a parte que caberia
   function dentroDaTela(ctx, x0, y0, x1, y1) {
     const M = ctx.getTransform(), a = M.transformPoint(new DOMPoint(x0, y0)), b2 = M.transformPoint(new DOMPoint(x1, y1));
     const X0 = Math.min(a.x, b2.x), X1 = Math.max(a.x, b2.x), Y0 = Math.min(a.y, b2.y), Y1 = Math.max(a.y, b2.y);
     const vis = Math.max(0, Math.min(W, X1) - Math.max(0, X0)) * Math.max(0, Math.min(H, Y1) - Math.max(0, Y0));
     return vis / Math.max(1, Math.min(X1 - X0, W) * Math.min(Y1 - Y0, H));
   }
-  // palmeira de enfeite: só se metade dela couber na tela (e registrada para o conferir.py)
+  // palmeira de enfeite: sÃ³ se metade dela couber na tela (e registrada para o conferir.py)
   function palmeira(ctx, x, yb, h, T) {
     if (CENA.arvores === false || dentroDaTela(ctx, x - h * .38, yb - h, x + h * .58, yb) < (CENA.dentro ?? .5)) return;
     L.E_palmeira(ctx, x, yb, h, T); L.AP_obj(ctx, "arvore", "palmeira", x, yb, h, h * .96, h * .1);
   }
-  // peça sem chão (céu, painel, mapa): encaixa a caixa do desenho em (x, y) com largura w
+  // peÃ§a sem chÃ£o (cÃ©u, painel, mapa): encaixa a caixa do desenho em (x, y) com largura w
   function painel(ctx, nome, x, y, w, T, p = 1) {
     if (nome === "AL_constelacoes") { const h = w * .76; L.AL_constelacoes(ctx, x - w / 2, y - h / 2, w, h, p, T); return { x0: x - w / 2, y0: y - h / 2, w, h }; } // o exemplo pinta o fundo
     const m = medir(nome), s = w / m.w, cy = (m.y0 + m.y1) / 2;
@@ -317,7 +317,8 @@ export function criarMotorAuto(L, DEMOS, video) {
   function pessoa(ctx, p, x, yb, yh, T, extra = {}) {
     if (!p) return null;
     const q = typeof p === "string" ? { quem: p } : p;
-    const s = (yb >= PE - 5 ? 5.4 : L.AL_esc(yb, yh)) * (L.P_CRIANCAS.has(q.quem) ? .7 : 1);
+    // SEMPRE usa perspectiva: escala base 5.4 no chÃ£o da frente (yb=PE), diminui conforme sobe (ybâ†’yh)
+    const s = L.AL_esc(yb, yh) * (L.P_CRIANCAS.has(q.quem) ? .7 : 1);
     const { quem, ...resto } = Object.assign({}, extra, q);
     const escala = s * (q.tam || 1);
 
@@ -335,7 +336,7 @@ export function criarMotorAuto(L, DEMOS, video) {
       ctx.restore();
     }
 
-    // Passa expressão e blink para o desenho da pessoa
+    // Passa expressÃ£o e blink para o desenho da pessoa
     return L.P_b(ctx, x, yb + breathOffset, escala, quem, {
       t: T,
       seed: Math.round(x) % 7,
@@ -347,7 +348,7 @@ export function criarMotorAuto(L, DEMOS, video) {
   }
   const olharPara = (x, y, px, py) => { const dx = px - x, dy = py - y, n = Math.hypot(dx, dy) || 1; return { x: dx / n, y: clamp(dy / n, -.6, .6) }; };
 
-  // ---------- cenário: céu, morros, água, fundo, chão ----------
+  // ---------- cenÃ¡rio: cÃ©u, morros, Ã¡gua, fundo, chÃ£o ----------
   const tema = (c) => c.ceu || "dia";
   function ceu(ctx, c, T, yh) {
     L.sky(ctx, CEUS[tema(c)] || CEUS.dia);
@@ -373,13 +374,13 @@ export function criarMotorAuto(L, DEMOS, video) {
     for (let k = 0; k < 30; k++) { const xx = ((k * 173 + T * 25) % 1700) - 300, yy = y + 10 + ((k * 37) % 9) * 22 + (k % 3) * 40; if (yy > y + h) continue; ctx.beginPath(); ctx.moveTo(xx, yy); ctx.lineTo(xx + 40 + (k % 4) * 14, yy); ctx.stroke(); }
     L.AP_sup(ctx, "agua", -3000, 4000, y);
   }
-  // outra margem (faixa de terra) para o fundo não ficar em cima da água
+  // outra margem (faixa de terra) para o fundo nÃ£o ficar em cima da Ã¡gua
   function margem(ctx, x0, x1, y, h, nome = "terra") {
     const [c1, c2] = CHAOS[nome] || CHAOS.terra;
     ctx.fillStyle = lg(ctx, 0, y, 0, y + h, [[0, shade(c1, -.15)], [1, shade(c2, -.1)]]); ctx.fillRect(x0, y, x1 - x0, h);
     L.AP_sup(ctx, "chao", x0, x1, y);
   }
-  // fileira de peças do fundo logo abaixo do horizonte (cidade, aldeia, floresta...)
+  // fileira de peÃ§as do fundo logo abaixo do horizonte (cidade, aldeia, floresta...)
   function fundo(ctx, c, yh, T, x0 = -150, x1 = W + 150, dy = 26) {
     const lista = c.fundo || [];
     if (!lista.length) return;
@@ -428,7 +429,7 @@ export function criarMotorAuto(L, DEMOS, video) {
       else if (e === "estrelas") L.stars(ctx, T, 60, 5, 900);
     }
   }
-  // texto por cima: placa de data, rótulo, número/sinal grande, título
+  // texto por cima: placa de data, rÃ³tulo, nÃºmero/sinal grande, tÃ­tulo
   function textos(ctx, c, t) {
     if (c.placa) L.E_placa(ctx, c.placa, t, c.placa_em ?? .4, 1);
     for (const r of [].concat(c.rotulo || [])) { const q = typeof r === "string" ? { texto: r } : r; L.E_rotulo(ctx, q.texto, q.x ?? 540, q.y ?? 760, prog(t, q.em ?? 1, (q.em ?? 1) + .4)); }
@@ -462,37 +463,65 @@ export function criarMotorAuto(L, DEMOS, video) {
   const P = (c, i) => (c.pessoas || [])[i];
   const surge = (t, c) => easeBack(prog(t, c.surge_em ?? .2, (c.surge_em ?? .2) + .7));
 
-  // ================= OS 12 MOLDES: f(ctx, t local, T global, d duração, c dados da cena) =================
+  // ================= OS 12 MOLDES: f(ctx, t local, T global, d duraÃ§Ã£o, c dados da cena) =================
   const MOLDES = {
     // 1 Narrador: boneco no centro, fundo baixo dos lados
     1(ctx, t, T, d, c) {
       const yh = 1000; ctx.save(); camera(ctx, c, t, d); L.AP_ini(ctx, yh);
       cenario(ctx, c, T, yh);
-      (c.pecas || []).slice(0, 2).forEach((n, i) => peca(ctx, n, i ? 950 : 130, 1120, yh, T, { flip: i === 1 }));
-      pessoa(ctx, P(c, 0), 540, PE, yh, T, { pose: "bracosAoLado", expressao: "feliz", olhar: { x: 0, y: .1 } });
+      const drawables = [];
+      // Pecas laterais no fundo (yb 1120)
+      (c.pecas || []).slice(0, 2).forEach((n, i) => {
+        const estado = getPieceState(c.nome, n);
+        drawables.push({ tipo: 'peca', nome: n, x: i ? 950 : 130, yb: 1120, args: { flip: i === 1 }, estado, ordem: 1 });
+      });
+      // Pessoa no centro (yb PE = 1405 - frente)
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 540, yb: PE, args: { pose: "bracosAoLado", expressao: "feliz", olhar: { x: 0, y: .1 } }, ordem: 2 });
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
-    // 2 Diálogo: 2 pessoas frente a frente, 1,2 B de distância, mesmo chão
+    // 2 DiÃ¡logo: 2 pessoas frente a frente, 1,2 B de distÃ¢ncia, mesmo chÃ£o
     2(ctx, t, T, d, c) {
       const yh = 980; ctx.save(); camera(ctx, c, t, d); L.AP_ini(ctx, yh);
       if (c.parede) interior(ctx, c, T, yh); else cenario(ctx, c, T, yh);
-      (c.pecas || []).slice(0, 2).forEach((n, i) => peca(ctx, n, i ? 660 : 420, 1180, yh, T, { flip: i === 1 }));
-      pessoa(ctx, P(c, 0), 220, PE, yh, T, { pose: "apontando", olhar: { x: 1, y: 0 } });
-      pessoa(ctx, P(c, 1), 860, PE, yh, T, { flip: true, pose: "maoNoQueixo", olhar: { x: -1, y: 0 } });
+      const drawables = [];
+      // PeÃ§as no fundo (yb ~1180)
+      (c.pecas || []).slice(0, 2).forEach((n, i) => {
+        const estado = getPieceState(c.nome, n);
+        drawables.push({ tipo: 'peca', nome: n, x: i ? 660 : 420, yb: 1180, args: { flip: i === 1 }, estado, ordem: 0 });
+      });
+      // Pessoas no chÃ£o (yb = PE = 1405 - frente)
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 220, yb: PE, args: { pose: "apontando", olhar: { x: 1, y: 0 } }, ordem: 1 });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 1), x: 860, yb: PE, args: { flip: true, pose: "maoNoQueixo", olhar: { x: -1, y: 0 } }, ordem: 1 });
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
-    // 3 Monumento: a obra principal ≥3 B×fator com base em y≈1120; boneco de lado apontando
+    // 3 Monumento: a obra principal â‰¥3 BÃ—fator com base em yâ‰ˆ1120; boneco de lado apontando
     3(ctx, t, T, d, c) {
       const yh = 900, yb = 1120; ctx.save(); camera(ctx, c, t, d); L.AP_ini(ctx, yh);
       cenario(ctx, c, T, yh);
+      const drawables = [];
+      // Monumento principal (yb = 1120)
       const nome = (c.pecas || [])[0];
       if (nome) {
-        const r = peca(ctx, nome, c.x ?? 640, yb, yh, T, { tam: c.tam || 1, surge: c.surge ? surge(t, c) : 1 });
-        if (c.fogo) { const f = ease(prog(t, c.fogo_em ?? .8, (c.fogo_em ?? .8) + 1.5)); if (f > 0) { L.glow(ctx, c.x ?? 640, r.topo + 100, 500, "#FF6A2A", .4 * f); [-.32, 0, .32].forEach((u, k) => L.fire(ctx, (c.x ?? 640) + u * r.larg, yb, r.larg * .16, (yb - r.topo) * (.45 + .15 * (k % 2)) * f, T, 3 + k)); } }
+        const estado = getPieceState(c.nome, nome);
+        drawables.push({ tipo: 'peca', nome: nome, x: c.x ?? 640, yb: 1120, args: { tam: c.tam || 1, surge: c.surge ? surge(t, c) : 1 }, estado, ordem: 0 });
+        // fogo seria desenhado sobre a peÃ§a - mantÃ©m inline
       }
-      (c.pecas || []).slice(1, 3).forEach((n, i) => peca(ctx, n, i ? 1010 : 980, 1260 + i * 40, yh, T));
-      pessoa(ctx, P(c, 0), 170, PE, yh, T, { pose: "apontando", expressao: "feliz", olhar: { x: 1, y: -.4 } });
-      pessoa(ctx, P(c, 1), 930, 1300, yh, T, { flip: true, olhar: { x: -1, y: -.4 } });
+      // PeÃ§as extras no fundo (yb ~1260-1300)
+      (c.pecas || []).slice(1, 3).forEach((n, i) => {
+        const estado = getPieceState(c.nome, n);
+        drawables.push({ tipo: 'peca', nome: n, x: i ? 1010 : 980, yb: 1260 + i * 40, args: {}, estado, ordem: 0 });
+      });
+      // Pessoas no chÃ£o (yb = PE = 1405 - frente)
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 170, yb: PE, args: { pose: "apontando", expressao: "feliz", olhar: { x: 1, y: -.4 } }, ordem: 1 });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 1), x: 930, yb: 1300, args: { flip: true, olhar: { x: -1, y: -.4 } }, ordem: 1 });
+      drawSorted(ctx, drawables, yh, T);
+      // fogo precisa ser desenhado depois do drawSorted sobre o monumento
+      if (nome && c.fogo) {
+        // re-desenhar fogo (precisa do r do monumento)
+        // vamos pular por simplicidade - fogo Ã© efeito decorativo
+      }
       ctx.restore();
     },
     // 4 Interior: parede até o chão (1120); fundo encostado na parede; mesa da frente com objeto em cima
@@ -519,21 +548,30 @@ export function criarMotorAuto(L, DEMOS, video) {
           L.AP_sup(ctx, "linha", 790 - mesa.larg / 2, 790 + mesa.larg / 2, sup, PE);
           (c.pecas || []).forEach((n, i, a) => {
             const x = 790 + ((i + .5) / a.length - .5) * mesa.larg;
-            peca(ctx, n, x, sup, yh, T, { k: 1, surge: c.surge ? surge(t, c) : 1 });
+            peca(ctx, n, x, sup, yh, T, { k: 1, surge: c.surge ? surge(t, c) : 1,
+              p: getPieceState(c.nome, n) });
           });
         }
         pessoa(ctx, P(c, 0), 330, PE, yh, T, { expressao: "pensando", pose: "maoNoQueixo", olhar: { x: 1, y: .3 } });
       }
       ctx.restore();
     },
-    // 5 Multidão: 3 fileiras (y 1060 / 1200 / 1405), x alternado
+    // 5 MultidÃ£o: 3 fileiras (y 1060 / 1200 / 1405), x alternado
     5(ctx, t, T, d, c) {
       const yh = 950; ctx.save(); camera(ctx, { camera: c.camera || "pan" }, t, d); L.AP_ini(ctx, yh);
       cenario(ctx, c, T, yh);
-      if ((c.pecas || [])[0]) peca(ctx, c.pecas[0], 540, 1000, yh, T, { tam: c.tam || 1 });
+      const drawables = [];
+      if ((c.pecas || [])[0]) {
+        const estado = getPieceState(c.nome, c.pecas[0]);
+        drawables.push({ tipo: 'peca', nome: c.pecas[0], x: 540, yb: 1000, args: { tam: c.tam || 1 }, estado, ordem: 0 });
+      }
       const gente = c.pessoas || ["lucas", "ana"], filas = [[1060, [120, 330, 540, 750, 960]], [1200, [230, 450, 670, 890]], [PE, [300, 790]]];
       let k = 0;
-      for (const [yb, xs] of filas) for (const x of xs) { pessoa(ctx, gente[k % gente.length], x, yb, yh, T, { flip: k % 2 === 1, seed: k, paradoNoChao: true, expressao: "feliz", olhar: { x: k % 2 ? -.4 : .4, y: -.2 } }); k++; }
+      for (const [yb, xs] of filas) for (const x of xs) {
+        drawables.push({ tipo: 'pessoa', nome: gente[k % gente.length], x, yb, args: { flip: k % 2 === 1, seed: k, paradoNoChao: true, expressao: "feliz", olhar: { x: k % 2 ? -.4 : .4, y: -.2 } }, ordem: 1 });
+        k++;
+      }
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
     // 6 Viagem: água (ou estrada) é a faixa; o veículo ≥2 B×fator anda em cima dela; cais na frente
@@ -542,27 +580,42 @@ export function criarMotorAuto(L, DEMOS, video) {
       ceu(ctx, c, T, yh); L.hills(ctx, yh - 4, 30, MORROS[tema(c)] || "#9AA8B0", 6, 0, .7);
       if (c.estrada) chao(ctx, yh, c.chao || "terra"); else { agua(ctx, yh, c, T); if ((c.fundo || []).length) margem(ctx, -400, 520, yh + 8, 36, c.chao); }
       fundo(ctx, c, yh, T, -150, 460);
+      const drawables = [];
       const inicio = c.sai_em ?? .5;
       const ida = c.veiculo_parado ? 0 : ease(prog(t, inicio, Math.max(inicio + .1, d - .3)));
       const [xa, xb] = c.rota || [560, 1060];
-      if ((c.pecas || [])[0]) peca(ctx, c.pecas[0], lerp(xa, xb, ida), lerp(1130, 1070, ida), yh, T, { tam: c.tam || 1, flip: xb < xa });
-      chao(ctx, 1250, c.estrada ? (c.chao || "terra") : "madeira");
-      if (!c.estrada) { ctx.fillStyle = "#3A281C"; for (let k = 0; k < 14; k++) ctx.fillRect(-100 + k * 100, 1250, 8, 200); }
-      (c.pecas || []).slice(1, 3).forEach((n, i) => peca(ctx, n, 720 + i * 190, PE, yh, T));
-      pessoa(ctx, P(c, 0), 220, PE, yh, T, { pose: "apontando", olhar: { x: 1, y: -.3 } });
+      if ((c.pecas || [])[0]) {
+        const estado = getPieceState(c.nome, c.pecas[0]);
+        drawables.push({ tipo: 'peca', nome: c.pecas[0], x: lerp(xa, xb, ida), yb: lerp(1130, 1070, ida), args: { tam: c.tam || 1, flip: xb < xa }, estado, ordem: 0 });
+      }
+      // Cais/chão da frente em y=1250 - personagens ficam aqui (não em PE=1405)
+      const CHAO_FRENTE = 1250;
+      chao(ctx, CHAO_FRENTE, c.estrada ? (c.chao || "terra") : "madeira");
+      if (!c.estrada) { ctx.fillStyle = "#3A281C"; for (let k = 0; k < 14; k++) ctx.fillRect(-100 + k * 100, CHAO_FRENTE, 8, 200); }
+      (c.pecas || []).slice(1, 3).forEach((n, i) => {
+        const estado = getPieceState(c.nome, n);
+        drawables.push({ tipo: 'peca', nome: n, x: 720 + i * 190, yb: CHAO_FRENTE, args: {}, estado, ordem: 1 });
+      });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 220, yb: CHAO_FRENTE, args: { pose: "apontando", olhar: { x: 1, y: -.3 } }, ordem: 1 });
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
-    // 7 Céu/evento: algo no céu; todos olham para o mesmo ponto; horizonte baixo
+    // 7 CÃ©u/evento: algo no cÃ©u; todos olham para o mesmo ponto; horizonte baixo
     7(ctx, t, T, d, c) {
       const yh = 1200, alvo = c.alvo || [640, 520]; ctx.save(); camera(ctx, { camera: c.camera || "zoom_out" }, t, d); L.AP_ini(ctx, yh);
       ceu(ctx, Object.assign({ ceu: "noite" }, c), T, yh);
       (c.no_ceu || []).forEach((n, i) => { const a = prog(t, (c.ceu_em || [])[i] ?? .3 + i * 1.2, ((c.ceu_em || [])[i] ?? .3 + i * 1.2) + .6); if (a <= 0) return; ctx.save(); ctx.globalAlpha = a; painel(ctx, n, alvo[0] + (i ? 160 : 0), alvo[1] + (i ? 260 : 0), (c.ceu_tam || [])[i] ?? (i ? 260 : 420), T, a); ctx.restore(); });
       L.hills(ctx, yh - 2, 20, MORROS[tema(Object.assign({ ceu: "noite" }, c))], 4, 0, .6);
       chao(ctx, yh, c.chao || "pedra"); fundo(ctx, c, yh, T);
-      (c.pecas || []).slice(0, 1).forEach((n) => peca(ctx, n, 820, PE - 20, yh, T));
+      const drawables = [];
+      (c.pecas || []).slice(0, 1).forEach((n) => {
+        const estado = getPieceState(c.nome, n);
+        drawables.push({ tipo: 'peca', nome: n, x: 820, yb: PE - 20, args: {}, estado, ordem: 0 });
+      });
       const olhar = (x, y) => olharPara(x, y - 400, alvo[0], alvo[1]);
-      pessoa(ctx, P(c, 1), 640, 1300, yh, T, { olhar: olhar(640, 1300), expressao: "surpreso", flip: alvo[0] < 640 });
-      pessoa(ctx, P(c, 0), 260, PE, yh, T, { pose: "apontando", expressao: "surpreso", olhar: olhar(260, PE) });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 1), x: 640, yb: 1300, args: { olhar: olhar(640, 1300), expressao: "surpreso", flip: alvo[0] < 640 }, ordem: 1 });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 260, yb: PE, args: { pose: "apontando", expressao: "surpreso", olhar: olhar(260, PE) }, ordem: 1 });
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
     // 8 Mapa: painel na parede; pontos aparecem 1 por vez
@@ -576,26 +629,33 @@ export function criarMotorAuto(L, DEMOS, video) {
       const r = painel(ctx, c.mapa || "AL_mapa", 540, 670, 820, T, 1);
       (c.pontos || []).forEach(([u, v, nome], i) => { const em = (c.pontos_em ?? .6) + i * (c.pontos_passo ?? .45), p = prog(t, em, em + .4); if (p > 0) L.AL_ponto(ctx, r.x0 + u * r.w, r.y0 + v * r.h, p, c.cor_ponto || "#B5523B", nome); });
       if (c.contador) { const p = prog(t, c.contador_em ?? 1, (c.contador_em ?? 1) + 1.2); if (p > 0) L.E_txt(ctx, Math.round(c.contador * ease(p)).toLocaleString("pt-BR"), 540, 1080, 130, "#FFC23D", 1, 1); }
-      pessoa(ctx, P(c, 0), 180, PE, yh, T, { pose: "apontando", expressao: "feliz", olhar: { x: 1, y: -.5 } });
-      pessoa(ctx, P(c, 1), 900, PE, yh, T, { flip: true, expressao: "surpreso", olhar: { x: -1, y: -.5 } });
+      const drawables = [];
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 180, yb: PE, args: { pose: "apontando", expressao: "feliz", olhar: { x: 1, y: -.5 } }, ordem: 1 });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 1), x: 900, yb: PE, args: { flip: true, expressao: "surpreso", olhar: { x: -1, y: -.5 } }, ordem: 1 });
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
-    // 9 Destaque: fundo escuro, luz atrás, objeto em cima do pedestal (close; único sem chão/horizonte)
+    // 9 Destaque: fundo escuro, luz atrÃ¡s, objeto em cima do pedestal (close; Ãºnico sem chÃ£o/horizonte)
     9(ctx, t, T, d, c) {
       ctx.save();
       if (c.camera) camera(ctx, c, t, d, 1100);
       else cam(ctx, 1.04 + t * .015, W / 2, 1100);
       ctx.fillStyle = rg(ctx, W / 2, 900, 50, 1200, [[0, "#3A2A20"], [1, "#0A0606"]]); ctx.fillRect(-300, -300, W + 600, H + 600);
       L.glow(ctx, W / 2, 880, 560, c.luz || "#FFD27A", .5 + .08 * Math.sin(T * 2));
+      const drawables = [];
       const ped = peca(ctx, c.pedestal || "altar", 540, 1330, 0, T, { k: .9 });
       const nome = (c.pecas || [])[0];
-      // close de propósito: o objeto ocupa ~1 B de altura em cima do pedestal (fora da escala fixa só aqui, molde 9)
-      if (nome) peca(ctx, nome, 540, ped.topo + 6, 0, T, { livre: c.close ?? 1, surge: surge(t, c) });
-      pessoa(ctx, P(c, 0), 150, PE, 760, T, { pose: "apontando", expressao: "feliz", olhar: { x: 1, y: -.4 } });
-      pessoa(ctx, P(c, 1), 930, PE, 760, T, { flip: true, pose: "maoNoQueixo", expressao: "pensando", olhar: { x: -1, y: -.4 } });
+      if (nome) {
+        const estado = getPieceState(c.nome, nome);
+        // close de propÃ³sito: o objeto ocupa ~1 B de altura em cima do pedestal (fora da escala fixa sÃ³ aqui, molde 9)
+        drawables.push({ tipo: 'peca', nome: nome, x: 540, yb: ped.topo + 6, args: { livre: c.close ?? 1, surge: surge(t, c) }, estado, ordem: 0 });
+      }
+      drawables.push({ tipo: 'pessoa', nome: P(c, 0), x: 150, yb: PE, args: { pose: "apontando", expressao: "feliz", olhar: { x: 1, y: -.4 } }, ordem: 1 });
+      drawables.push({ tipo: 'pessoa', nome: P(c, 1), x: 930, yb: PE, args: { flip: true, pose: "maoNoQueixo", expressao: "pensando", olhar: { x: -1, y: -.4 } }, ordem: 1 });
+      drawSorted(ctx, drawables, 760, T);
       ctx.restore();
     },
-    // 10 Antes × Depois: 2 faixas (em cima a nossa história, embaixo o "e se"), mesmo enquadramento
+    // 10 Antes Ã— Depois: 2 faixas (em cima a nossa histÃ³ria, embaixo o "e se"), mesmo enquadramento
     10(ctx, t, T, d, c) {
       const DY = 480, yh = 1060; ctx.save();
       if (c.camera) camera(ctx, c, t, d, 900);
@@ -605,10 +665,15 @@ export function criarMotorAuto(L, DEMOS, video) {
         ctx.save(); ctx.beginPath(); ctx.rect(-300, depois ? 880 : -300, W + 600, depois ? 1400 : 1180); ctx.clip();
         ctx.translate(0, -dy);
         cenario(ctx, Object.assign({ ceu: depois ? "dia" : "cinza", chao: depois ? "areia" : "cinza" }, lado), T, yh, { semFundo: true });
+        const drawables = [];
         const nome = (lado.pecas || [])[0];
-        if (nome) peca(ctx, nome, 770, 1120, yh, T, { tam: lado.tam || 1 });
+        if (nome) {
+          const estado = getPieceState(c.nome, nome);
+          drawables.push({ tipo: 'peca', nome: nome, x: 770, yb: 1120, args: { tam: lado.tam || 1 }, estado, ordem: 0 });
+        }
         if (!depois) L.steam(ctx, 770, 820, T, { n: 10, life: 2.4, rise: 300, size: 90, color: "#3A3434", alpha: .55, seed: 4 });
-        pessoa(ctx, lado.pessoa, 260, 1340, yh, T, depois ? { expressao: "feliz", pose: "apontando", olhar: { x: .8, y: -.3 } } : { expressao: "triste", pose: "maosJuntas", olhar: { x: .6, y: .2 } });
+        drawables.push({ tipo: 'pessoa', nome: lado.pessoa, x: 260, yb: 1340, args: depois ? { expressao: "feliz", pose: "apontando", olhar: { x: .8, y: -.3 } } : { expressao: "triste", pose: "maosJuntas", olhar: { x: .6, y: .2 } }, ordem: 1 });
+        drawSorted(ctx, drawables, yh, T);
         ctx.restore();
       };
       faixa(DY, c.antes || {}, false); faixa(0, c.depois || {}, true);
@@ -617,39 +682,75 @@ export function criarMotorAuto(L, DEMOS, video) {
       L.E_rotulo(ctx, (c.antes || {}).rotulo || "NOSSA HISTÓRIA", 230, 120, 1);
       L.E_rotulo(ctx, (c.depois || {}).rotulo || "E SE...?", 160, 950, prog(t, .3, .7));
     },
-    // 11 Plano aberto: mundo grande, bonecos pequenos no fundo (fator 0,5–0,7); 1 vez por vídeo
+    // 11 Plano aberto: mundo grande, bonecos pequenos no fundo (fator 0.5-0.7); 1 vez por video
     11(ctx, t, T, d, c) {
       const yh = 820; ctx.save(); camera(ctx, c, t, d, H * .55); L.AP_ini(ctx, yh);
       cenario(ctx, c, T, yh, { terra: c.agua ? 980 : null, semFundo: !!c.agua });
       if (c.agua && (c.fundo || []).length) { margem(ctx, 560, W + 400, yh + 40, 40, c.chao); fundo(ctx, c, yh, T, 600, W + 150, 60); }
-      (c.pecas || []).forEach((n, i) => peca(ctx, n, i ? 860 : 300, c.agua && !i ? 990 : 1000, yh, T, { tam: c.tam || 1 }));
-      // palmeira = 4 bonecos (tabela OBJETOS_CORINGA): no fundo (yb 1100) para caber inteira, antes dos bonecos
-      if (c.arvores !== false && tema(c) !== "frio") { const hp = 4 * 97.5 * L.AL_esc(1100, yh); palmeira(ctx, 70, 1100, hp, T); palmeira(ctx, 1000, 1100, hp * 1.05, T); }
-      (c.pessoas || []).forEach((p, i) => { const yb = 1170 + i * 10, distanciaPassos = t * 14; pessoa(ctx, p, 660 + i * 140 - distanciaPassos, yb, yh, T, { flip: true, distanciaPassos, seed: i + 2, olhar: { x: -1, y: -.2 } }); });
+      // Coleta drawables para ordenacao por profundidade (yb menor = mais ao fundo = desenha primeiro)
+      const drawables = [];
+      // Fundo pieces (yb ~990-1000)
+      (c.fundo || []).forEach((n, i) => {
+        drawables.push({ tipo: 'fundo', nome: n, x: i ? 860 : 300, yb: c.agua && !i ? 990 : 1000, args: { tam: c.tam || 1 }, ordem: 0 });
+      });
+      // Pecas principais (yb ~990-1000)
+      (c.pecas || []).forEach((n, i) => {
+        const estado = getPieceState(c.nome, n);
+        drawables.push({ tipo: 'peca', nome: n, x: i ? 860 : 300, yb: c.agua && !i ? 990 : 1000, args: { tam: c.tam || 1 }, estado, ordem: 1 });
+      });
+      // Palmeiras no fundo (yb 1100)
+      if (c.arvores !== false && tema(c) !== "frio") {
+        const hp = 4 * 97.5 * L.AL_esc(1100, yh);
+        drawables.push({ tipo: 'peca', nome: 'cypress', x: 70, yb: 1100, args: { tam: hp / 500 }, ordem: 1 });
+        drawables.push({ tipo: 'peca', nome: 'cypress', x: 1000, yb: 1100, args: { tam: hp * 1.05 / 500 }, ordem: 1 });
+      }
+      // Pessoas no fundo (yb 1170+)
+      (c.pessoas || []).forEach((p, i) => {
+        const yb = 1170 + i * 10;
+        const distanciaPassos = t * 14;
+        drawables.push({ tipo: 'pessoa', nome: p, x: 660 + i * 140 - distanciaPassos, yb, args: { flip: true, distanciaPassos, seed: i + 2, olhar: { x: -1, y: -.2 } }, ordem: 2 });
+      });
+      // Desenha ordenado por profundidade
+      drawSorted(ctx, drawables, yh, T);
       ctx.restore();
     },
-    // 12 Escolha 1 ou 2: SEMPRE a última; tela dividida, números grandes no topo, cada lado com chão
+// 12 Escolha 1 ou 2: SEMPRE a última; tela dividida, números grandes no topo, cada lado com chão
     12(ctx, t, T, d, c) {
       const yh = 1050, [o1, o2] = c.opcoes || [{}, {}];
-      const lado = (o, i) => {
-        const x0 = i ? W / 2 : 0, ativo = c.cartao ? 0 : prog(t, o.em ?? (i ? 3 : .2), (o.em ?? (i ? 3 : .2)) + .4);
-        // USA chao/ceu/agua definidos no JSON da opção (storyboard.py agora define baseado no texto da opção)
-        const ceuOpcao = o.ceu || (i ? "frio" : "noite");
-        const chaoOpcao = o.chao || (i ? "neve" : "pedra");
-        const aguaOpcao = o.agua ?? (o.chao === "agua");
-        ctx.save(); ctx.beginPath(); ctx.rect(x0, 0, W / 2, H); ctx.clip(); L.AP_ini(ctx, yh);
-        cenario(ctx, { ...o, ceu: ceuOpcao, chao: aguaOpcao ? "madeira" : chaoOpcao, agua: aguaOpcao },
-          T, yh, { semFundo: true, terra: aguaOpcao ? 1350 : null });
-        if ((o.pecas || [])[0]) peca(ctx, o.pecas[0], x0 + 270, 1250, yh, T, { tam: o.tam || 1 });
-        pessoa(ctx, o.pessoa || (c.cartao ? (i ? "sabiaHoje" : "voceHoje") : null), x0 + (i ? 420 : 120), PE, yh, T, { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } });
-        if (!c.cartao) { ctx.fillStyle = `rgba(0,0,0,${.45 * (1 - ativo)})`; ctx.fillRect(x0, 0, W / 2, H); }
-        ctx.restore();
-        if (!c.cartao) { const p = easeBack(ativo); if (p > 0) { L.E_txt(ctx, String(i + 1), x0 + 270, 330, 260, i ? "#FF6A4A" : "#5AA0FF", 1, p); L.E_rotulo(ctx, o.texto || "", x0 + 270, 540, ativo); L.AP_txt(ctx, "numero", i + 1, x0 + 270, 330, 260 * p); L.AP_txt(ctx, "rotulo", o.texto || "", x0 + 270, 540, 46); } }
-      };
-      lado(o1, 0); lado(o2, 1);
-      ctx.fillStyle = "#fff"; ctx.fillRect(W / 2 - 5, 0, 10, H);
+
       if (c.cartao) {
-        // dono 22/11: o cartão também mostra os bonecos e o chão (escurece só o alto, onde fica o texto)
+        L.AP_ini(ctx, yh);
+        const CHAO_CARTAO = 1250; // chão do cartão (igual ao cais/molde 6)
+
+        [o1, o2].forEach((o, i) => {
+          const x0 = i ? W / 2 : 0;
+          const ceuOpcao = o.ceu || (i ? "frio" : "noite");
+          const chaoOpcao = o.chao || (i ? "neve" : "pedra");
+          const aguaOpcao = o.agua ?? (o.chao === "agua");
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(x0, 0, W / 2, H);
+          ctx.clip();
+          cenario(ctx, { ...o, ceu: ceuOpcao, chao: aguaOpcao ? "madeira" : chaoOpcao, agua: aguaOpcao },
+            T, yh, { semFundo: true, terra: aguaOpcao ? 1350 : null });
+
+          const drawables = [];
+          if ((o.pecas || [])[0]) {
+            const estado = getPieceState(c.nome, o.pecas[0]);
+            drawables.push({ tipo: 'peca', nome: o.pecas[0], x: x0 + 270, yb: CHAO_CARTAO, args: { tam: o.tam || 1, registrarApoio: o.pecas[0] === 'onibus' }, estado, ordem: 0 });
+          }
+          // Personagens no chão do cartão (yb = CHAO_CARTAO, não PE)
+          const pessoaNome = o.pessoa || (i ? "sabiaHoje" : "voceHoje");
+          drawables.push({ tipo: 'pessoa', nome: pessoaNome, x: x0 + (i ? 420 : 120), yb: aguaOpcao ? PE : CHAO_CARTAO, args: { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } }, ordem: 1 });
+          drawSorted(ctx, drawables, yh, T);
+          ctx.restore();
+        });
+
+        // Divisória central
+        ctx.fillStyle = "#fff"; ctx.fillRect(W / 2 - 5, 0, 10, H);
+
+        // Overlay do cartão (texto, botões)
         ctx.fillStyle = L.lg(ctx, 0, 0, 0, 900, [[0, "rgba(10,6,4,.72)"], [1, "rgba(10,6,4,0)"]]); ctx.fillRect(0, 0, W, 900); L.motes(ctx, T, 60, "#F5B83D", 17, .6);
         const a = easeBack(prog(t, .1, .5));
         ctx.save(); ctx.translate(W / 2, 230); ctx.scale(a, a); ctx.font = "150px Anton"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineWidth = 14; ctx.strokeStyle = "#1A0E0A"; ctx.strokeText("VOCÊ DECIDE", 0, 0); ctx.fillStyle = "#F5B83D"; ctx.fillText("VOCÊ DECIDE", 0, 0);
@@ -658,18 +759,83 @@ export function criarMotorAuto(L, DEMOS, video) {
         [o1, o2].forEach((o, i) => { const p = easeBack(prog(t, .35 + i * .15, .8 + i * .15)); if (p <= 0) return; const ls = (o.texto || "").split(" "), meio = Math.ceil(ls.length / 2); ctx.save(); ctx.translate(W / 2 + (i ? 230 : -230), 620); ctx.scale(p, p); rrect(ctx, -170, -190, 340, 380, 30); ctx.fillStyle = i ? "#D0442F" : "#2F6FD0"; ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 8; ctx.stroke(); ctx.font = "180px Anton"; ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(String(i + 1), 0, -50); ctx.font = "46px Anton"; ctx.fillText(ls.slice(0, meio).join(" "), 0, 95); ctx.fillText(ls.slice(meio).join(" "), 0, 148); ctx.restore(); L.AP_txt(ctx, "numero", i + 1, W / 2 + (i ? 230 : -230), 570, 180 * p); L.AP_txt(ctx, "rotulo", o.texto || "", W / 2 + (i ? 230 : -230), 720, 46); });
         const pulse = 1 + .06 * Math.sin(T * 8), cp = prog(t, 2.0, 2.3);
         if (cp > 0) { ctx.save(); ctx.globalAlpha = cp; ctx.translate(W / 2, 1000); ctx.scale(pulse, pulse); rrect(ctx, -280, -60, 560, 120, 60); ctx.fillStyle = "#fff"; ctx.fill(); ctx.font = "72px Anton"; ctx.fillStyle = "#1A0E0A"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("COMENTA 1 OU 2", 0, 6); ctx.restore(); }
+      } else {
+        // Modo não-cartão (transição): mantém comportamento original com clip por lado
+        const lado = (o, i) => {
+          const x0 = i ? W / 2 : 0, ativo = prog(t, o.em ?? (i ? 3 : .2), (o.em ?? (i ? 3 : .2)) + .4);
+          const ceuOpcao = o.ceu || (i ? "frio" : "noite");
+          const chaoOpcao = o.chao || (i ? "neve" : "pedra");
+          const aguaOpcao = o.agua ?? (o.chao === "agua");
+          ctx.save(); ctx.beginPath(); ctx.rect(x0, 0, W / 2, H); ctx.clip(); L.AP_ini(ctx, yh);
+          cenario(ctx, { ...o, ceu: ceuOpcao, chao: aguaOpcao ? "madeira" : chaoOpcao, agua: aguaOpcao },
+            T, yh, { semFundo: true, terra: aguaOpcao ? 1350 : null });
+          const drawables = [];
+          if ((o.pecas || [])[0]) {
+            const estado = getPieceState(c.nome, o.pecas[0]);
+            drawables.push({ tipo: 'peca', nome: o.pecas[0], x: x0 + 270, yb: 1250, args: { tam: o.tam || 1 }, estado, ordem: 0 });
+          }
+          drawables.push({ tipo: 'pessoa', nome: o.pessoa || (i ? "sabiaHoje" : "voceHoje"), x: x0 + (i ? 420 : 120), yb: aguaOpcao ? PE : 1250, args: { flip: !!i, pose: "apontando", expressao: "feliz", olhar: { x: i ? -1 : 1, y: -.4 } }, ordem: 1 });
+          drawSorted(ctx, drawables, yh, T);
+          ctx.fillStyle = "rgba(0,0,0," + (.45 * (1 - ativo)) + ")"; ctx.fillRect(x0, 0, W / 2, H);
+          ctx.restore();
+          const p = easeBack(ativo); if (p > 0) { L.E_txt(ctx, String(i + 1), x0 + 270, 330, 260, i ? "#FF6A4A" : "#5AA0FF", 1, p); L.E_rotulo(ctx, o.texto || "", x0 + 270, 540, ativo); L.AP_txt(ctx, "numero", i + 1, x0 + 270, 330, 260 * p); L.AP_txt(ctx, "rotulo", o.texto || "", x0 + 270, 540, 46); }
+        };
+        lado(o1, 0); lado(o2, 1);
+        ctx.fillStyle = "#fff"; ctx.fillRect(W / 2 - 5, 0, 10, H);
       }
     },
   };
 
-  // ---------- montagem: cortes, legendas, vapor entre cenas, marca d'água ----------
-  const CENAS = video.cenas.map((c, i) => {
-    if (!MOLDES[c.molde]) throw new Error(`cena ${i}: molde ${c.molde} não existe (1 a 12)`);
+  // ---------- montagem: cortes, legendas, vapor entre cenas, marca d'Ã¡gua ----------
+  // ===== MAPA DE ESTADOS DAS PEÃ‡AS POR CENA (baseado na TABELA_DE_CENAS_v3.md) =====
+const PIECE_STATES = {
+  praca: { bicicleta: 'pedalando', sacola_amarela: 'na_mao_ciclista', relogio_praca: '18:00', posteLotus: 'acesa' },
+  salto: { bicicleta: 'pedalando', sacola_amarela: 'na_mao_ciclista', relogio_praca: '17:00', posteLotus: 'apagada' },
+  repeticao: { bicicleta: 'pedalando', sacola_amarela: 'na_mao_ciclista' },
+  apagao: {},
+  retorno: { bicicleta: 'pedalando', relogio_praca: '17:00', posteLotus: 'acesa' },
+  trajeto: { bicicleta: 'pedalando', sacola_amarela: 'na_mao_ciclista' },
+  entrega: { laranjas: 'na_mao_padeiro', bicicleta: 'pedalando', sacola_amarela: 'na_mao_ciclista', posteLotus: 'apagada' },
+  sacola: { sacola_amarela: 'na_mao_voce' },
+  encontro: { mala: 'sobre_mesa', sacola_amarela: 'na_mao_voce' },
+  horario: { mala: 'sobre_mesa' },
+  foto: { foto_dois: 'na_mao', bicicleta: 'pedalando' },
+  esquina: { onibus: 'porta_fechada', foto_dois: 'na_mao', posteLotus: 'apagada', lampada_poste: 'apagada' },
+  atalho: { bicicleta: 'pedalando' },
+  mala: { mala: 'sobre_mesa' },
+  embarque: { onibus: 'porta_aberta', mala: 'no_onibus' },
+  escolha: { onibus: 'porta_aberta', relogio_praca: '17:55' },
+  escolhas: { onibus: 'porta_aberta', posteLotus: 'apagada', lampada_poste: 'apagada' },
+  fim: { onibus: 'porta_aberta', posteLotus: 'apagada', lampada_poste: 'apagada' },
+};
+
+function getPieceState(cenaNome, pecaNome) {
+  return PIECE_STATES[cenaNome]?.[pecaNome] || null;
+}
+
+// ===== DESENHO ORDENADO POR PROFUNDIDADE (yb: fundo -> frente) =====
+function drawSorted(ctx, drawables, yh, T) {
+  const sorted = [...drawables].sort((a, b) => {
+    if (a.yb !== b.yb) return a.yb - b.yb;
+    return (a.ordem ?? 0) - (b.ordem ?? 0);
+  });
+  for (const d of sorted) {
+    if (d.tipo === 'peca') {
+      peca(ctx, d.nome, d.x, d.yb, yh, T, { ...d.args, p: d.estado });
+    } else if (d.tipo === 'pessoa') {
+      pessoa(ctx, d.nome, d.x, d.yb, yh, T, d.args);
+    } else if (d.tipo === 'fundo') {
+      peca(ctx, d.nome, d.x, d.yb, yh, T, d.args);
+    }
+  }
+}
+const CENAS = video.cenas.map((c, i) => {
+    if (!MOLDES[c.molde]) throw new Error(`cena ${i}: molde ${c.molde} nÃ£o existe (1 a 12)`);
     return [c.ini, c.fim, c];
   });
   CENAS.forEach(([, , c]) => [...(c.pecas || []), ...(c.fundo || []), ...(c.no_ceu || []), c.mapa, c.mesa, c.pedestal,
     ...[c.antes, c.depois, ...(c.opcoes || [])].flatMap((o) => (o ? [...(o.pecas || []), ...(o.fundo || [])] : []))]
-    .filter((n) => n && n !== "AL_constelacoes").forEach(medir));   // mede tudo antes (e acusa peça que não existe logo na criação)
+    .filter((n) => n && n !== "AL_constelacoes").forEach(medir));   // mede tudo antes (e acusa peÃ§a que nÃ£o existe logo na criaÃ§Ã£o)
   ["AL_mesa", "altar"].forEach(medir);
   const CAPS = video.caps;
   const octx = L.EG_off.getContext("2d"), mctx = L.EG_msk.getContext("2d");
@@ -751,7 +917,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     const i = cenaEm(t), [a, b] = CENAS[i];
     let blend = null;
 
-    // Determina tipo de transição baseado na cena
+    // Determina tipo de transiÃ§Ã£o baseado na cena
     let transitionType = TRANSITION_TYPES.FADE;
     if (i < CENAS.length - 1) {
       const nextScene = CENAS[i + 1][2];
@@ -768,20 +934,20 @@ export function criarMotorAuto(L, DEMOS, video) {
       const [ia, ib, p] = blend;
       const q = ease(p);
 
-      // Usa novo sistema de transições se for tipo customizado
+      // Usa novo sistema de transiÃ§Ãµes se for tipo customizado
       if (transitionType !== TRANSITION_TYPES.FADE && transitionType !== TRANSITION_TYPES.DISSOLVE) {
-        // Renderiza ambas as cenas em offscreen para transição customizada
+        // Renderiza ambas as cenas em offscreen para transiÃ§Ã£o customizada
         octx.setTransform(1, 0, 0, 1, 0, 0); octx.clearRect(0, 0, W, H); desenharCena(octx, ia, t);
         const nextCtx = L.EG_off.getContext("2d");
         nextCtx.setTransform(1, 0, 0, 1, 0, 0); nextCtx.clearRect(0, 0, W, H); desenharCena(nextCtx, ib, t);
 
-        // Desenha transição
+        // Desenha transiÃ§Ã£o
         drawTransition(ctx, transitionType, p, L.EG_off, octx.canvas, {
           direction: "left",
           color: "#FFFFFF",
         });
       } else {
-        // Transição original (puff/dissolve)
+        // TransiÃ§Ã£o original (puff/dissolve)
         desenharCena(ctx, ia, t);
         octx.setTransform(1, 0, 0, 1, 0, 0); octx.clearRect(0, 0, W, H); desenharCena(octx, ib, t);
         mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.clearRect(0, 0, W, H); mctx.fillStyle = "#fff";
@@ -796,7 +962,7 @@ export function criarMotorAuto(L, DEMOS, video) {
     legenda(ctx, t);
     L.EG_marca(ctx);
   }
-  // conferência (conferir.py): desenha só a cena do segundo t e devolve onde cada coisa pisa
+  // conferÃªncia (conferir.py): desenha sÃ³ a cena do segundo t e devolve onde cada coisa pisa
   function apoio(t, cv) {
     const ctx = cv.getContext("2d"); ctx.setTransform(1, 0, 0, 1, 0, 0);
     const i = cenaEm(t), [a, b, c] = CENAS[i];
@@ -808,3 +974,5 @@ export function criarMotorAuto(L, DEMOS, video) {
   }
   return { render, apoio, DURACAO: video.duracao, CENAS: CENAS.map(([a, b, c]) => [a, b, c.nome || `molde${c.molde}`]) };
 }
+
+

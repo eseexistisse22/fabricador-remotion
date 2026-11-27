@@ -1,0 +1,1206 @@
+{
+ "id": "AutoGrecia",
+ "audio": "grécia/grécia_audio.m4a",
+ "duracao": 114.63,
+ "titulo": "E se a eletricidade tivesse sido dominada na Grécia Antiga?",
+ "caps": [
+  [
+   4.89,
+   6.29,
+   "IMAGINE COLUNAS DE MÁRMORE",
+   0
+  ],
+  [
+   6.29,
+   7.19,
+   "BRILHANDO COM LUZES",
+   0
+  ],
+  [
+   7.19,
+   8.29,
+   "ARTIFICIAIS NA PRAÇA",
+   1
+  ],
+  [
+   8.29,
+   9.48,
+   "CENTRAL DE ATENAS.",
+   0
+  ],
+  [
+   10.11,
+   11.11,
+   "NA NOSSA HISTÓRIA,",
+   0
+  ],
+  [
+   11.11,
+   13.13,
+   "EM 212 A.C.,",
+   0
+  ],
+  [
+   13.13,
+   14.86,
+   "ARQUIMEDES MORREU AOS 75",
+   1
+  ],
+  [
+   14.86,
+   15.33,
+   "ANOS,",
+   0
+  ],
+  [
+   15.43,
+   16.84,
+   "SEGUNDO JOÃO TZETZES.",
+   0
+  ],
+  [
+   17.47,
+   18.41,
+   "A IDADE SUGERE",
+   0
+  ],
+  [
+   18.41,
+   19.47,
+   "QUE NASCEU EM SIRACUSA",
+   1
+  ],
+  [
+   19.47,
+   21.94,
+   "POR VOLTA DE 287 A.C.",
+   0
+  ],
+  [
+   21.94,
+   23.15,
+   "SIRACUSA ERA UMA CIDADE",
+   1
+  ],
+  [
+   23.15,
+   24.17,
+   "DA MAGNA GRÉCIA.",
+   0
+  ],
+  [
+   24.8,
+   25.54,
+   "E SE ARQUIMEDES",
+   1
+  ],
+  [
+   25.54,
+   26.66,
+   "SOBREVIVE EM SIRACUSA",
+   0
+  ],
+  [
+   26.66,
+   27.54,
+   "E ACENDE LÂMPADAS",
+   0
+  ],
+  [
+   27.54,
+   28.57,
+   "SEM USAR CHAMA?",
+   0
+  ],
+  [
+   29.21,
+   30.83,
+   "EM 50 D.C.,",
+   0
+  ],
+  [
+   30.83,
+   32.02,
+   "ARTESÃOS DE SIRACUSA",
+   0
+  ],
+  [
+   32.02,
+   33.29,
+   "LEVAM LÂMPADAS ELÉTRICAS",
+   1
+  ],
+  [
+   33.29,
+   33.89,
+   "A ROMA.",
+   0
+  ],
+  [
+   34.53,
+   35.95,
+   "LEGIONÁRIOS USAM LÂMPADAS",
+   1
+  ],
+  [
+   35.95,
+   36.99,
+   "PARA SINALIZAR ORDENS",
+   0
+  ],
+  [
+   36.99,
+   38.12,
+   "NO CAMPO DE BATALHA.",
+   0
+  ],
+  [
+   38.76,
+   39.98,
+   "SENTINELAS NA MURALHA",
+   1
+  ],
+  [
+   39.98,
+   40.98,
+   "RESPONDEM COM TRÊS",
+   0
+  ],
+  [
+   40.98,
+   42.14,
+   "PISCADAS DE LUZ.",
+   0
+  ],
+  [
+   42.78,
+   43.45,
+   "E VOCÊ,",
+   0
+  ],
+  [
+   43.56,
+   45.09,
+   "UM APRENDIZ DE ELETRICISTA,",
+   1
+  ],
+  [
+   45.09,
+   46.28,
+   "ENROLA FIOS DE COBRE",
+   0
+  ],
+  [
+   46.28,
+   47.24,
+   "NUMA PEQUENA BOBINA",
+   0
+  ],
+  [
+   47.24,
+   48.03,
+   "EM SIRACUSA.",
+   0
+  ],
+  [
+   48.66,
+   50.59,
+   "EM 150 D.C.,",
+   0
+  ],
+  [
+   50.59,
+   51.88,
+   "ARTESÃOS GREGOS ESTENDEM",
+   1
+  ],
+  [
+   51.88,
+   52.64,
+   "FIOS DE COBRE",
+   0
+  ],
+  [
+   52.64,
+   53.97,
+   "PELAS RUAS DE ATENAS.",
+   0
+  ],
+  [
+   54.61,
+   55.76,
+   "LÂMPADAS DE FILAMENTO",
+   1
+  ],
+  [
+   55.76,
+   56.78,
+   "DE CARBONO ILUMINAM",
+   0
+  ],
+  [
+   56.78,
+   58.19,
+   "AS COLUNAS DAS ÁGORAS.",
+   0
+  ],
+  [
+   58.82,
+   59.87,
+   "EM 1200,",
+   0
+  ],
+  [
+   59.98,
+   61.23,
+   "FAZENDEIROS USAM A REDE",
+   1
+  ],
+  [
+   61.23,
+   62.21,
+   "DE FIOS PARA ILUMINAR",
+   0
+  ],
+  [
+   62.21,
+   62.95,
+   "CELEIROS.",
+   0
+  ],
+  [
+   63.58,
+   64.89,
+   "RODAS D’ÁGUA NAS FAZENDAS",
+   0
+  ],
+  [
+   64.89,
+   65.94,
+   "GIRAM GERADORES PARA AS",
+   1
+  ],
+  [
+   65.94,
+   67.11,
+   "CIDADES VIZINHAS.",
+   0
+  ],
+  [
+   67.74,
+   69.45,
+   "EM 1550,",
+   0
+  ],
+  [
+   69.45,
+   70.77,
+   "NAVIOS ELÉTRICOS CRUZAM",
+   1
+  ],
+  [
+   70.77,
+   71.91,
+   "O OCEANO ATLÂNTICO.",
+   0
+  ],
+  [
+   72.54,
+   73.53,
+   "ELES LEVAM BOBINAS",
+   0
+  ],
+  [
+   73.53,
+   74.44,
+   "DE COBRE PARA LIGAR",
+   0
+  ],
+  [
+   74.44,
+   75.37,
+   "AS PRIMEIRAS LÂMPADAS",
+   0
+  ],
+  [
+   75.37,
+   76.29,
+   "AMERICANAS.",
+   1
+  ],
+  [
+   76.92,
+   78.53,
+   "EM 1850,",
+   0
+  ],
+  [
+   78.64,
+   79.73,
+   "CIDADES NAS AMÉRICAS",
+   1
+  ],
+  [
+   79.73,
+   80.75,
+   "SE CONECTAM POR CABOS",
+   0
+  ],
+  [
+   80.75,
+   81.29,
+   "DE OURO.",
+   0
+  ],
+  [
+   81.92,
+   83.32,
+   "TRENS SUSPENSOS POR INDUÇÃO",
+   1
+  ],
+  [
+   83.32,
+   84.42,
+   "CRUZAM DESERTOS SOBRE",
+   0
+  ],
+  [
+   84.42,
+   85.83,
+   "TRILHOS LIGADOS À REDE.",
+   0
+  ],
+  [
+   86.46,
+   86.94,
+   "HOJE,",
+   0
+  ],
+  [
+   87.08,
+   88.33,
+   "VOCÊ ATRAVESSA UMA PRAÇA",
+   1
+  ],
+  [
+   88.33,
+   89.21,
+   "DE MÁRMORE POLIDO",
+   0
+  ],
+  [
+   89.21,
+   90.21,
+   "SOB LÂMPADAS PRESAS",
+   0
+  ],
+  [
+   90.21,
+   91.09,
+   "ÀS COLUNAS.",
+   0
+  ],
+  [
+   91.72,
+   92.56,
+   "VOCÊ PEGA UM TREM",
+   0
+  ],
+  [
+   92.56,
+   93.28,
+   "SUSPENSO E LÊ",
+   0
+  ],
+  [
+   93.28,
+   94.09,
+   "OS MITOS GREGOS",
+   0
+  ],
+  [
+   94.09,
+   95.46,
+   "NOS PAINÉIS LUMINOSOS.",
+   1
+  ],
+  [
+   96.09,
+   97.24,
+   "CABOS ROMPIDOS PENDEM",
+   1
+  ],
+  [
+   97.24,
+   98.11,
+   "DAS COLUNAS,",
+   0
+  ],
+  [
+   98.11,
+   98.75,
+   "E AS LÂMPADAS",
+   0
+  ],
+  [
+   98.75,
+   99.94,
+   "DA PRAÇA SE APAGAM.",
+   0
+  ],
+  [
+   100.57,
+   101.57,
+   "QUAL AÇÃO DEVOLVE",
+   1
+  ],
+  [
+   101.57,
+   102.83,
+   "A LUZ À PRAÇA HOJE?",
+   0
+  ],
+  [
+   103.46,
+   103.85,
+   "UM:",
+   0
+  ],
+  [
+   103.99,
+   105.02,
+   "PENDURAR LANTERNAS",
+   1
+  ],
+  [
+   105.02,
+   105.92,
+   "NAS COLUNAS.",
+   0
+  ],
+  [
+   106.55,
+   107.1,
+   "DOIS:",
+   0
+  ],
+  [
+   107.21,
+   108.76,
+   "ESTENDER CABOS PELO CHÃO.",
+   1
+  ],
+  [
+   109.39,
+   110.89,
+   "COMENTA 1 OU 2!",
+   1
+  ]
+ ],
+ "cenas": [
+  {
+   "ini": 0.0,
+   "fim": 4.8,
+   "molde": 11,
+   "nome": "agora",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_biblioteca",
+    "colosseum"
+   ],
+   "agua": false,
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "surpreso",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "efeitos": [
+    "AL_biblioteca",
+    "colosseum"
+   ],
+   "camera": "fixa",
+   "titulo": [
+    "GRÉCIA ANTIGA",
+    "ELÉTRICA"
+   ]
+  },
+  {
+   "ini": 4.8,
+   "fim": 9.72,
+   "molde": 4,
+   "nome": "brilho",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_tapioca",
+    "bloco",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    "voceCopista"
+   ],
+   "rotulo": {
+    "texto": "LUZES ARTIFICIAIS",
+    "x": 540,
+    "y": 760,
+    "em": 2.152
+   },
+   "efeitos": [
+    "AL_tapioca",
+    "bloco"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 9.72,
+   "fim": 17.08,
+   "molde": 6,
+   "nome": "arquimedes",
+   "ceu": "tarde",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "romaHerao",
+     "expressao": "pensando",
+     "pose": "maosJuntas"
+    }
+   ],
+   "placa": "212 A.C.",
+   "rotulo": {
+    "texto": "ARQUIMEDES",
+    "x": 540,
+    "y": 760,
+    "em": 3.41
+   },
+   "grande": {
+    "texto": "75",
+    "em": 4.432,
+    "ate": 7.06
+   },
+   "efeitos": [
+    "AL_navio"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 17.08,
+   "fim": 24.41,
+   "molde": 1,
+   "nome": "siracusa",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "muralha",
+    "cypress"
+   ],
+   "pecas": [
+    "AL_caixa"
+   ],
+   "pessoas": [
+    "romaHerao"
+   ],
+   "placa": "287 A.C.",
+   "rotulo": {
+    "texto": "SIRACUSA",
+    "x": 540,
+    "y": 760,
+    "em": 1.834
+   },
+   "efeitos": [
+    "AL_caixa"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 24.41,
+   "fim": 28.82,
+   "molde": 6,
+   "nome": "lampada",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_navio"
+   ],
+   "pessoas": [
+    {
+     "quem": "romaHerao",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SEM CHAMA",
+    "x": 540,
+    "y": 760,
+    "em": 3.129
+   },
+   "efeitos": [
+    "AL_navio"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 28.82,
+   "fim": 34.14,
+   "molde": 4,
+   "nome": "roma",
+   "ceu": "dia",
+   "chao": "areia",
+   "parede": "pedra",
+   "fundo": [],
+   "pecas": [
+    "AL_tapioca"
+   ],
+   "pessoas": [
+    {
+     "quem": "romaOperadorLiberto",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "50 D.C.",
+   "rotulo": {
+    "texto": "ROMA",
+    "x": 540,
+    "y": 760,
+    "em": 4.594
+   },
+   "efeitos": [
+    "fumaca",
+    "AL_tapioca"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 34.14,
+   "fim": 38.36,
+   "molde": 1,
+   "nome": "sinal",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "guindaste"
+   ],
+   "pecas": [
+    "AL_lamparina",
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "cesar",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "SINALIZAR ORDENS",
+    "x": 540,
+    "y": 760,
+    "em": 1.978
+   },
+   "efeitos": [
+    "AL_lamparina",
+    "placasCobre"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 38.36,
+   "fim": 42.39,
+   "molde": 4,
+   "nome": "resposta",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "muralha"
+   ],
+   "pecas": [
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "romaOperadorLiberto",
+     "expressao": "neutro",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "TRÊS PISCADAS",
+    "x": 540,
+    "y": 760,
+    "em": 2.36
+   },
+   "efeitos": [
+    "AL_lamparina"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 42.39,
+   "fim": 48.27,
+   "molde": 1,
+   "nome": "bobina",
+   "ceu": "dia",
+   "chao": "pedra",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "placasCobre",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceCopista",
+     "expressao": "pensando",
+     "pose": "segurando"
+    }
+   ],
+   "rotulo": {
+    "texto": "BOBINA DE COBRE",
+    "x": 540,
+    "y": 760,
+    "em": 4.478
+   },
+   "efeitos": [
+    "placasCobre",
+    "AL_lamparina"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 48.27,
+   "fim": 54.22,
+   "molde": 8,
+   "nome": "rede",
+   "ceu": "dia",
+   "chao": "pedra",
+   "parede": "pedra",
+   "mapa": "AL_mapa",
+   "pontos": [
+    [
+     0.61,
+     0.39,
+     "ATENAS"
+    ]
+   ],
+   "placa": "150 D.C.",
+   "rotulo": {
+    "texto": "FIOS DE COBRE",
+    "x": 540,
+    "y": 1180,
+    "em": 3.61
+   },
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 54.22,
+   "fim": 58.43,
+   "molde": 4,
+   "nome": "colunas",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "AL_tapioca",
+    "bloco",
+    "AL_lamparina"
+   ],
+   "pessoas": [
+    "romaHerao"
+   ],
+   "rotulo": {
+    "texto": "FILAMENTO DE CARBONO",
+    "x": 540,
+    "y": 760,
+    "em": 1.0
+   },
+   "efeitos": [
+    "AL_tapioca",
+    "bloco"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 58.43,
+   "fim": 63.19,
+   "molde": 1,
+   "nome": "celeiro",
+   "ceu": "noite",
+   "chao": "madeira",
+   "fundo": [
+    "AL_farol"
+   ],
+   "pecas": [
+    "AL_lamparina",
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "feliz",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1200",
+   "rotulo": {
+    "texto": "CELEIROS",
+    "x": 540,
+    "y": 760,
+    "em": 3.779
+   },
+   "efeitos": [
+    "AL_lamparina",
+    "placasCobre"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 63.19,
+   "fim": 67.35,
+   "molde": 6,
+   "nome": "geradores",
+   "ceu": "dia",
+   "chao": "terra",
+   "fundo": [
+    "aqueduct"
+   ],
+   "pecas": [
+    "navioDragao"
+   ],
+   "pessoas": [
+    {
+     "quem": "nativa",
+     "expressao": "pensando",
+     "pose": "apontando"
+    }
+   ],
+   "rotulo": {
+    "texto": "RODAS D’ÁGUA",
+    "x": 540,
+    "y": 760,
+    "em": 0.394
+   },
+   "efeitos": [
+    "navioDragao"
+   ],
+   "camera": "zoom_in"
+  },
+  {
+   "ini": 67.35,
+   "fim": 72.15,
+   "molde": 1,
+   "nome": "atlantico",
+   "ceu": "dia",
+   "chao": "areia",
+   "fundo": [
+    "AL_casa"
+   ],
+   "pecas": [
+    "muralha"
+   ],
+   "pessoas": [
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando"
+    }
+   ],
+   "placa": "1550",
+   "rotulo": {
+    "texto": "OCEANO ATLÂNTICO",
+    "x": 540,
+    "y": 760,
+    "em": 3.439
+   },
+   "efeitos": [
+    "fumaca",
+    "muralha"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 72.15,
+   "fim": 76.53,
+   "molde": 4,
+   "nome": "cobre",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "escura",
+   "fundo": [
+    "AL_janela_barca"
+   ],
+   "pecas": [
+    "jarro",
+    "AL_lamparina",
+    "placasCobre"
+   ],
+   "pessoas": [
+    {
+     "quem": "colombo",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "examinar",
+     "peca": "jarro",
+     "em": 2.002
+    },
+    {
+     "quem": "copista1300",
+     "expressao": "pensando",
+     "pose": "segurando",
+     "acao": "organizar",
+     "peca": "placasCobre",
+     "em": 0.389
+    },
+    {
+     "quem": "marinheiro",
+     "expressao": "neutro",
+     "pose": "segurando",
+     "acao": "transportar",
+     "peca": "placasCobre",
+     "em": 0.616
+    }
+   ],
+   "rotulo": {
+    "texto": "BOBINAS DE COBRE",
+    "x": 540,
+    "y": 760,
+    "em": 0.923
+   },
+   "efeitos": [
+    "jarro",
+    "AL_lamparina"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 76.53,
+   "fim": 81.53,
+   "molde": 8,
+   "nome": "conexao",
+   "ceu": "dia",
+   "chao": "madeira",
+   "parede": "clara",
+   "mapa": "VK_mapa",
+   "pontos": [
+    [
+     0.2,
+     0.69,
+     "BOSTON"
+    ],
+    [
+     0.17,
+     0.76,
+     "NOVA YORK"
+    ]
+   ],
+   "placa": "1850",
+   "rotulo": {
+    "texto": "CABOS DE OURO",
+    "x": 540,
+    "y": 1180,
+    "em": 3.884
+   },
+   "camera": "fixa"
+  },
+  {
+   "ini": 81.53,
+   "fim": 86.07,
+   "molde": 6,
+   "nome": "inducao",
+   "ceu": "dia",
+   "chao": "areia",
+   "fundo": [],
+   "pecas": [
+    "locomotive"
+   ],
+   "estrada": true,
+   "pessoas": [
+    "romaHerao"
+   ],
+   "sai_em": 1.793,
+   "rotulo": {
+    "texto": "INDUÇÃO",
+    "x": 540,
+    "y": 760,
+    "em": 1.384
+   },
+   "efeitos": [
+    "fumaca",
+    "locomotive"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 86.07,
+   "fim": 91.33,
+   "molde": 1,
+   "nome": "praca",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "relogio_praca",
+    "column"
+   ],
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "feliz",
+     "pose": "bracosAoLado"
+    }
+   ],
+   "placa": "HOJE",
+   "efeitos": [
+    "relogio_praca",
+    "column"
+   ],
+   "camera": "pan"
+  },
+  {
+   "ini": 91.33,
+   "fim": 95.7,
+   "molde": 6,
+   "nome": "trem",
+   "ceu": "noite",
+   "chao": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "maglev"
+   ],
+   "estrada": true,
+   "pessoas": [
+    {
+     "quem": "voceHoje",
+     "expressao": "pensando",
+     "pose": "maoNoQueixo"
+    }
+   ],
+   "sai_em": 1.231,
+   "rotulo": {
+    "texto": "MITOS GREGOS",
+    "x": 540,
+    "y": 760,
+    "em": 2.072
+   },
+   "efeitos": [
+    "fumaca",
+    "maglev"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 95.7,
+   "fim": 103.07,
+   "molde": 4,
+   "nome": "apagao",
+   "ceu": "noite",
+   "chao": "pedra",
+   "parede": "pedra",
+   "fundo": [
+    "cypress"
+   ],
+   "pecas": [
+    "bloco",
+    "placasCobre",
+    "anforaVinagre"
+   ],
+   "pessoas": [
+    "voceHoje"
+   ],
+   "placa": "HOJE",
+   "rotulo": {
+    "texto": "CABOS ROMPIDOS",
+    "x": 540,
+    "y": 760,
+    "em": 0.748
+   },
+   "efeitos": [
+    "bloco",
+    "placasCobre"
+   ],
+   "camera": "fixa"
+  },
+  {
+   "ini": 103.07,
+   "fim": 109.0,
+   "molde": 12,
+   "nome": "escolhas",
+   "opcoes": [
+    {
+     "texto": "EMENDAR OS CABOS",
+     "pecas": [
+      "placasCobre"
+     ],
+     "pessoa": "voceHoje",
+     "chao": "pedra",
+     "ceu": "noite",
+     "em": 0.39
+    },
+    {
+     "texto": "ALIMENTAR COM PILHAS",
+     "pecas": [
+      "anforaVinagre"
+     ],
+     "pessoa": "voceHoje",
+     "chao": "pedra",
+     "ceu": "noite",
+     "em": 3.48
+    }
+   ]
+  },
+  {
+   "ini": 109.0,
+   "fim": 114.628,
+   "molde": 12,
+   "nome": "fim",
+   "opcoes": [
+    {
+     "texto": "EMENDAR OS CABOS",
+     "pecas": [
+      "placasCobre"
+     ],
+     "chao": "pedra",
+     "ceu": "noite"
+    },
+    {
+     "texto": "ALIMENTAR COM PILHAS",
+     "pecas": [
+      "anforaVinagre"
+     ],
+     "chao": "pedra",
+     "ceu": "noite"
+    }
+   ],
+   "cartao": true,
+   "pergunta": "COMO DEVOLVER A LUZ À PRAÇA?"
+  }
+ ]
+}
